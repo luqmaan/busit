@@ -15,10 +15,11 @@
 
 @property (nonatomic, strong) NSMutableData *cumulativeData;
 
--(NSDictionary *)restToJSON:(NSString *)jsonURL;
+-(NSDictionary *)restToJSON:(NSString *)jsonURL paramStr:(NSString *)paramStr;
 -(NSDictionary *)agencies;
 -(NSDictionary *)agency;
 -(NSDictionary *)routesForAgency;
 -(NSDictionary *)stopsForRoute:(NSString *)routeId;
+-(NSDictionary *)stop:(NSString *)stopId;
 
 @end
