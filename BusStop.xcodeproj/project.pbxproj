@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		145CAAA2171A0FAF00B49687 /* binoculars_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 145CAAA1171A0FAF00B49687 /* binoculars_icon.png */; };
+		145CAAA5171A101D00B49687 /* SearchStartingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 145CAAA4171A101D00B49687 /* SearchStartingViewController.m */; };
+		145CAAA8171A12CF00B49687 /* DestinationAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 145CAAA7171A12CF00B49687 /* DestinationAnnotation.m */; };
+		145CAAAD171A143900B49687 /* DestinationAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 145CAAAC171A143900B49687 /* DestinationAnnotationView.m */; };
 		14CF285317190F0800D69FB4 /* BusStopAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CF285217190F0800D69FB4 /* BusStopAnnotation.m */; };
 		14CF285617190F4D00D69FB4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14CF285517190F4D00D69FB4 /* MapKit.framework */; };
 		14D0D362171917D1000A1F7B /* BusStopAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D0D361171917D1000A1F7B /* BusStopAnnotationView.m */; };
@@ -44,6 +48,13 @@
 
 /* Begin PBXFileReference section */
 		145CAAA0171A044900B49687 /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
+		145CAAA1171A0FAF00B49687 /* binoculars_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = binoculars_icon.png; sourceTree = "<group>"; };
+		145CAAA3171A101D00B49687 /* SearchStartingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchStartingViewController.h; sourceTree = "<group>"; };
+		145CAAA4171A101D00B49687 /* SearchStartingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchStartingViewController.m; sourceTree = "<group>"; };
+		145CAAA6171A12CF00B49687 /* DestinationAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DestinationAnnotation.h; sourceTree = "<group>"; };
+		145CAAA7171A12CF00B49687 /* DestinationAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DestinationAnnotation.m; sourceTree = "<group>"; };
+		145CAAAB171A143900B49687 /* DestinationAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DestinationAnnotationView.h; sourceTree = "<group>"; };
+		145CAAAC171A143900B49687 /* DestinationAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DestinationAnnotationView.m; sourceTree = "<group>"; };
 		14CF285117190F0800D69FB4 /* BusStopAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusStopAnnotation.h; sourceTree = "<group>"; };
 		14CF285217190F0800D69FB4 /* BusStopAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusStopAnnotation.m; sourceTree = "<group>"; };
 		14CF285517190F4D00D69FB4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -117,6 +128,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		145CAAA9171A13DA00B49687 /* BusStop */ = {
+			isa = PBXGroup;
+			children = (
+				14CF285117190F0800D69FB4 /* BusStopAnnotation.h */,
+				14CF285217190F0800D69FB4 /* BusStopAnnotation.m */,
+				14D0D360171917D1000A1F7B /* BusStopAnnotationView.h */,
+				14D0D361171917D1000A1F7B /* BusStopAnnotationView.m */,
+			);
+			name = BusStop;
+			sourceTree = "<group>";
+		};
+		145CAAAA171A13E200B49687 /* Destination */ = {
+			isa = PBXGroup;
+			children = (
+				145CAAA6171A12CF00B49687 /* DestinationAnnotation.h */,
+				145CAAA7171A12CF00B49687 /* DestinationAnnotation.m */,
+				145CAAAB171A143900B49687 /* DestinationAnnotationView.h */,
+				145CAAAC171A143900B49687 /* DestinationAnnotationView.m */,
+			);
+			name = Destination;
+			sourceTree = "<group>";
+		};
 		14CF285417190F0F00D69FB4 /* Maps */ = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +158,10 @@
 				145CAAA0171A044900B49687 /* Location.gpx */,
 				14D0D36317191A43000A1F7B /* BusStopMapViewController.h */,
 				14D0D36417191A43000A1F7B /* BusStopMapViewController.m */,
+				145CAAAA171A13E200B49687 /* Destination */,
+				145CAAA9171A13DA00B49687 /* BusStop */,
+				145CAAA3171A101D00B49687 /* SearchStartingViewController.h */,
+				145CAAA4171A101D00B49687 /* SearchStartingViewController.m */,
 			);
 			name = Maps;
 			sourceTree = "<group>";
@@ -132,6 +169,7 @@
 		14ED356B1719D0D7009F6A11 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				145CAAA1171A0FAF00B49687 /* binoculars_icon.png */,
 				14ED356C1719D0D7009F6A11 /* bus_icon.png */,
 				14ED356D1719D0D7009F6A11 /* stopsign_icon.png */,
 			);
@@ -298,6 +336,7 @@
 				27C9C4E51718EB88005EAE68 /* MainStoryboard_iPad.storyboard in Resources */,
 				14ED356E1719D0D7009F6A11 /* bus_icon.png in Resources */,
 				14ED356F1719D0D7009F6A11 /* stopsign_icon.png in Resources */,
+				145CAAA2171A0FAF00B49687 /* binoculars_icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,6 +366,9 @@
 				27125B821719D61300815280 /* RouteStopsViewController.m in Sources */,
 				27125B851719F43100815280 /* StopCell.m in Sources */,
 				14ED35721719D632009F6A11 /* BusStopManager.m in Sources */,
+				145CAAA5171A101D00B49687 /* SearchStartingViewController.m in Sources */,
+				145CAAA8171A12CF00B49687 /* DestinationAnnotation.m in Sources */,
+				145CAAAD171A143900B49687 /* DestinationAnnotationView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
