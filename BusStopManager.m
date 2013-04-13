@@ -9,6 +9,7 @@
 #import <CoreData/CoreData.h>
 #import <CoreLocation/CoreLocation.h>
 
+#import "BusStopAppDelegate.h"
 #import "BusStopManager.h"
 #import "MBProgressHUD.h"
 #import "BusStopREST.h"
@@ -180,6 +181,57 @@
     if(rows.count>0)
         busStop = rows[0];
     return busStop;
+}
+
+-(NSArray *)stopsClosestToLatitude:(double)latitude andLogitude:(double)longitude withinMeters:(double)distanceInMeters limit:(NSInteger)numStopsToReturn
+{
+    NSMutableArray *closeStops = [[NSMutableArray alloc] initWithCapacity:0];
+    BusStopAppDelegate *delegate = (BusStopAppDelegate *)[[UIApplication sharedApplication] delegate];
+    CLLocation *currentLocation = delegate.mgr.location;
+
+    if(nil != currentLocation)
+    {
+        NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Route"];
+        fetchRequest.resultType = NSDictionaryResultType;
+        NSArray *rows = [self.context executeFetchRequest:fetchRequest error:nil];
+        for( NSDictionary *busStop in rows )
+        {
+            CLLocation *busStopLocation = [[CLLocation alloc] initWithLatitude:[busStop[@"lat"] doubleValue] longitude:[busStop[@"lon"] doubleValue]];
+            double distanceAwayInMeters = [busStopLocation distanceFromLocation:currentLocation];
+            if(distanceAwayInMeters<=distanceInMeters && closeStops.count<numStopsToReturn)
+            {
+                NSMutableDictionary *dBusStop = [[NSMutableDictionary alloc] initWithDictionary:busStop];
+                dBusStop[@"distance"] = @(distanceAwayInMeters);
+                [closeStops addObject:dBusStop];
+            }
+            busStopLocation = nil;
+        }
+    }
+    
+    NSArray *sortedStops = [closeStops sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSDictionary *stop1 = (NSDictionary *)obj1;
+        NSDictionary *stop2 = (NSDictionary *)obj2;
+        double dist1 = [stop1[@"distance"] doubleValue];
+        double dist2 = [stop2[@"distance"] doubleValue];
+        if(dist1>dist2)
+            return NSOrderedDescending;
+        else
+        if(dist1<dist2)
+            return NSOrderedAscending;
+        return NSOrderedSame;
+    }];
+    
+    closeStops = nil;
+    
+    return sortedStops;
+}
+
+-(NSDictionary *)scheduleForStop:(NSString *)stopId
+{
+}
+
+-(NSDictionary *)scheduleForStop:(NSString *)stopId andRoute:(NSString *)routeId
+{
 }
 
 @end

@@ -18,12 +18,19 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="relationship" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Route" inverseName="stops" inverseEntity="Route" syncable="YES"/>
     </entity>
-    <entity name="StopSchedule" syncable="YES"/>
+    <entity name="StopSchedule" representedClassName="StopSchedule" syncable="YES">
+        <attribute name="dayOfWeek" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="headSign" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="routeId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="serviceId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stopId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="timeArrival" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="timeDeparture" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="tripId" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
-        <element name="Route" positionX="2788" positionY="1551" width="128" height="150"/>
-        <element name="Stop" positionX="2979" positionY="1683" width="128" height="150"/>
         <element name="Route" positionX="160" positionY="192" width="128" height="150"/>
         <element name="Stop" positionX="160" positionY="192" width="128" height="150"/>
-        <element name="StopSchedule" positionX="160" positionY="192" width="128" height="45"/>
+        <element name="StopSchedule" positionX="160" positionY="192" width="128" height="165"/>
     </elements>
 </model>

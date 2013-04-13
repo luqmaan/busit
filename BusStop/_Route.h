@@ -5,8 +5,10 @@
 
 
 extern const struct RouteAttributes {
+	__unsafe_unretained NSString *distance;
 	__unsafe_unretained NSString *id;
 	__unsafe_unretained NSString *name;
+	__unsafe_unretained NSString *numStops;
 	__unsafe_unretained NSString *shortName;
 	__unsafe_unretained NSString *url;
 } RouteAttributes;
@@ -25,6 +27,8 @@ extern const struct RouteFetchedProperties {
 
 
 
+
+
 @interface RouteID : NSManagedObjectID {}
 @end
 
@@ -33,6 +37,20 @@ extern const struct RouteFetchedProperties {
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 - (RouteID*)objectID;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* distance;
+
+
+
+@property double distanceValue;
+- (double)distanceValue;
+- (void)setDistanceValue:(double)value_;
+
+//- (BOOL)validateDistance:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -53,6 +71,20 @@ extern const struct RouteFetchedProperties {
 
 
 //- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* numStops;
+
+
+
+@property int32_t numStopsValue;
+- (int32_t)numStopsValue;
+- (void)setNumStopsValue:(int32_t)value_;
+
+//- (BOOL)validateNumStops:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -100,6 +132,15 @@ extern const struct RouteFetchedProperties {
 @interface _Route (CoreDataGeneratedPrimitiveAccessors)
 
 
+- (NSNumber*)primitiveDistance;
+- (void)setPrimitiveDistance:(NSNumber*)value;
+
+- (double)primitiveDistanceValue;
+- (void)setPrimitiveDistanceValue:(double)value_;
+
+
+
+
 - (NSString*)primitiveId;
 - (void)setPrimitiveId:(NSString*)value;
 
@@ -108,6 +149,15 @@ extern const struct RouteFetchedProperties {
 
 - (NSString*)primitiveName;
 - (void)setPrimitiveName:(NSString*)value;
+
+
+
+
+- (NSNumber*)primitiveNumStops;
+- (void)setPrimitiveNumStops:(NSNumber*)value;
+
+- (int32_t)primitiveNumStopsValue;
+- (void)setPrimitiveNumStopsValue:(int32_t)value_;
 
 
 

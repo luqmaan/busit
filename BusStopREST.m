@@ -71,6 +71,13 @@
     return [self restToJSON:urlStr paramStr:@"includePolylines=false&"];
 }
 
+-(NSDictionary *)scheduleForStop:(NSString *)stopId
+{
+    NSString *encodedStopId = [stopId stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+    NSMutableString *urlStr = [NSMutableString stringWithFormat:@"http://onebusaway.forest.usf.edu/api/api/where/schedule-for-stop/%@.json", encodedStopId];
+    return [self restToJSON:urlStr paramStr:@""];
+}
+
 #pragma mark - NSURLConnection/Data Delegates
 
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response

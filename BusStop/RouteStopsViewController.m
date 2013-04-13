@@ -27,6 +27,7 @@
             double distanceInMeters = [stopLocation distanceFromLocation:newLocation];
             double distanceInMiles = distanceInMeters*0.000621371;
             self.distances[i++] = @(distanceInMiles);
+            stopLocation = nil;
         }
     }
 }
