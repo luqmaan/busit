@@ -34,6 +34,7 @@
 -(void)setAnnotation:(id<MKAnnotation>)annotation{
     [super setAnnotation:annotation];
     [self setNeedsDisplay];
+    [self setCanShowCallout:YES];
 }
 
 // Only override drawRect: if you perform custom drawing.
@@ -41,7 +42,7 @@
 - (void)drawRect:(CGRect)rect {
     DestinationAnnotation *alert = (DestinationAnnotation *)self.annotation;
     if (alert != nil) {
-        NSString *pinImage = [NSString stringWithFormat:@"stopsign_icon.png"];
+        NSString *pinImage = [NSString stringWithFormat:@"binoculars_icon.png"];
         [[UIImage imageNamed:pinImage] drawInRect:CGRectMake(0, 0, 30.0, 30.0)];
     }
 }

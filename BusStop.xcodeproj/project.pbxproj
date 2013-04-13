@@ -164,15 +164,9 @@
 		14CF285417190F0F00D69FB4 /* Maps */ = {
 			isa = PBXGroup;
 			children = (
-				14D0D3661719AF1F000A1F7B /* SearchDestinationViewController.h */,
-				14D0D3671719AF20000A1F7B /* SearchDestinationViewController.m */,
 				145CAAA0171A044900B49687 /* Location.gpx */,
-				14D0D36317191A43000A1F7B /* BusStopMapViewController.h */,
-				14D0D36417191A43000A1F7B /* BusStopMapViewController.m */,
 				145CAAAA171A13E200B49687 /* Destination */,
 				145CAAA9171A13DA00B49687 /* BusStop */,
-				145CAAA3171A101D00B49687 /* SearchStartingViewController.h */,
-				145CAAA4171A101D00B49687 /* SearchStartingViewController.m */,
 			);
 			name = Maps;
 			sourceTree = "<group>";

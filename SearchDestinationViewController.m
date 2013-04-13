@@ -8,7 +8,7 @@
 
 #import "SearchDestinationViewController.h"
 #import "DestinationAnnotation.h"
-#import "BusStopAnnotationView.h"
+#import "DestinationAnnotationView.h"
 
 @interface SearchDestinationViewController ()
 
@@ -31,8 +31,6 @@
     [self setInitialMapZoom];
     [self.searchBarForAddress setDelegate:self];
     [self.searchBarForAddress setAutocorrectionType:UITextAutocorrectionTypeNo];
-    
-	// Do any additional setup after loading the view.
 }
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
@@ -51,25 +49,6 @@
     }];
 }
 
-//-(CLLocationCoordinate2D *)geocodeTranslation:(NSString *)stringFromSearchBar inRegion:(CLRegion *)currentRegion {
-//    CLLocationCoordinate2D *returnObject = nil;
-//    
-//    CLGeocoder *geocodeAddressFromSearchBar = nil;
-//    [geocodeAddressFromSearchBar geocodeAddressString:stringFromSearchBar completionHandler:^(NSArray *placemarks, NSError *error)
-//    {
-//        NSLog(@"geocodeAddressString:inRegion:completionHandler: Completion Handler called!");
-//        if (error){
-//            NSLog(@"Geocode failed with error: %@", error);
-//            [self displayError:[error localizedDescription]];
-//            return;
-//        }
-//        
-//        NSLog(@"Received placemarks: %@", placemarks);
-//        [self displayPlacemarks:placemarks];
-//    }];
-//    return returnObject;
-//}
-
 - (MKAnnotationView *)mapView:(MKMapView *)map viewForAnnotation:(id <MKAnnotation>)annotation
 {
     NSLog(@"Entered viewForAnnotation");
@@ -78,7 +57,7 @@
     }
     if([annotation isKindOfClass:[DestinationAnnotation class]]){
         static NSString *AnnotationViewID = @"annotationViewID";
-        BusStopAnnotationView *customPinView = [[BusStopAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationViewID];
+        DestinationAnnotationView *customPinView = [[DestinationAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationViewID];
         [customPinView setCanShowCallout:YES];
         
         customPinView.opaque = NO;
@@ -98,18 +77,17 @@
 -(void)displayPlacemarks:(NSArray *)arrayOfPlacemarks {
     dispatch_async(dispatch_get_main_queue(), ^{
         CLPlacemark *placemark = [arrayOfPlacemarks objectAtIndex:0];
-        NSLog(@"%@", placemark);
-        
-        CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(placemark.location.coordinate.latitude, placemark.location.coordinate.longitude);
-        NSDictionary *areaOfInterest = [NSDictionary dictionaryWithDictionary:placemark.addressDictionary];
-        NSString *addressSubtitle = [NSString stringWithFormat:@"%@, %@ %@", [areaOfInterest objectForKey:@"Street"], [areaOfInterest objectForKey:@"City"], placemark.administrativeArea];
-        DestinationAnnotation *annotation = [[DestinationAnnotation alloc] initWithTitle:placemark.name andSubtitle:addressSubtitle];
-        [annotation setAlertLatitude:[NSNumber numberWithDouble:coordinate.latitude]];
-        [annotation setAlertLongitude:[NSNumber numberWithDouble:coordinate.longitude]];
-        [self.mapToDisplayAddressFromSearchBar setCenterCoordinate:coordinate];
+            NSLog(@"%@", placemark);
+            CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(placemark.location.coordinate.latitude, placemark.location.coordinate.longitude);
+            NSDictionary *areaOfInterest = [NSDictionary dictionaryWithDictionary:placemark.addressDictionary];
+            NSString *addressSubtitle = [NSString stringWithFormat:@"%@, %@ %@", [areaOfInterest objectForKey:@"Street"], [areaOfInterest objectForKey:@"City"], placemark.administrativeArea];
+            DestinationAnnotation *annotation = [[DestinationAnnotation alloc] initWithTitle:placemark.name andSubtitle:addressSubtitle];
+            [annotation setAlertLatitude:[NSNumber numberWithDouble:coordinate.latitude]];
+            [annotation setAlertLongitude:[NSNumber numberWithDouble:coordinate.longitude]];
+            [self.mapToDisplayAddressFromSearchBar setCenterCoordinate:coordinate];
         [self.mapToDisplayAddressFromSearchBar addAnnotation:annotation];
     });
-    
+
 }
 
 -(void)displayError:(NSString *)errorMessage {
