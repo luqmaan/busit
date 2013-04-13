@@ -289,10 +289,10 @@
             </objects>
             <point key="canvasLocation" x="-1064" y="-543"/>
         </scene>
-        <!--View Controller - Your Starting Point-->
+        <!--Search Starting View Controller - Your Starting Point-->
         <scene sceneID="6uK-gm-CoQ">
             <objects>
-                <viewController id="Jvl-5D-Kp0" sceneMemberID="viewController">
+                <viewController id="Jvl-5D-Kp0" customClass="SearchStartingViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="U5H-nH-4DE">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -300,11 +300,17 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="zXP-zX-Qlr">
                                 <rect key="frame" x="0.0" y="44" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Jvl-5D-Kp0" id="WUM-A4-sFq"/>
+                                </connections>
                             </mapView>
                             <searchBar contentMode="redraw" id="z7A-Q4-o4V">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Jvl-5D-Kp0" id="lS2-iU-cJK"/>
+                                </connections>
                             </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -316,6 +322,10 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="zXP-zX-Qlr" id="Ofg-4P-Mcr"/>
+                        <outlet property="searchBar" destination="z7A-Q4-o4V" id="yU2-sg-Vmt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hEJ-w0-LGY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -354,48 +364,6 @@
             <point key="canvasLocation" x="894" y="-756"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="BusStopViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/BusStopViewController.h"/>
-        </class>
-        <class className="RouteCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RouteCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="routeDetailsLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="routeNameLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="RouteListViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RouteListViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="refresh:"/>
-            </relationships>
-        </class>
-        <class className="RouteStopsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RouteStopsViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="addressLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="distanceFromHereLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="stopMap" candidateClass="MKMapView"/>
-                <relationship kind="outlet" name="stopsTable" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="SearchDestinationViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchDestinationViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="mapToDisplayAddressFromSearchBar" candidateClass="MKMapView"/>
-                <relationship kind="outlet" name="searchBarForAddress" candidateClass="UISearchBar"/>
-            </relationships>
-        </class>
-        <class className="StopCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/StopCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="stopDirectionLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="stopDistanceLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="stopNameLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

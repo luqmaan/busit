@@ -125,10 +125,6 @@
 				145CAAA0171A044900B49687 /* Location.gpx */,
 				14D0D36317191A43000A1F7B /* BusStopMapViewController.h */,
 				14D0D36417191A43000A1F7B /* BusStopMapViewController.m */,
-				14CF285117190F0800D69FB4 /* BusStopAnnotation.h */,
-				14CF285217190F0800D69FB4 /* BusStopAnnotation.m */,
-				14D0D360171917D1000A1F7B /* BusStopAnnotationView.h */,
-				14D0D361171917D1000A1F7B /* BusStopAnnotationView.m */,
 			);
 			name = Maps;
 			sourceTree = "<group>";

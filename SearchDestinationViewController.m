@@ -7,7 +7,7 @@
 //
 
 #import "SearchDestinationViewController.h"
-#import "BusStopAnnotation.h"
+#import "DestinationAnnotation.h"
 #import "BusStopAnnotationView.h"
 
 @interface SearchDestinationViewController ()
@@ -76,7 +76,7 @@
     if([annotation isKindOfClass:[MKUserLocation class]]){
         return nil;
     }
-    if([annotation isKindOfClass:[BusStopAnnotation class]]){
+    if([annotation isKindOfClass:[DestinationAnnotation class]]){
         static NSString *AnnotationViewID = @"annotationViewID";
         BusStopAnnotationView *customPinView = [[BusStopAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationViewID];
         [customPinView setCanShowCallout:YES];
@@ -103,7 +103,7 @@
         CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(placemark.location.coordinate.latitude, placemark.location.coordinate.longitude);
         NSDictionary *areaOfInterest = [NSDictionary dictionaryWithDictionary:placemark.addressDictionary];
         NSString *addressSubtitle = [NSString stringWithFormat:@"%@, %@ %@", [areaOfInterest objectForKey:@"Street"], [areaOfInterest objectForKey:@"City"], placemark.administrativeArea];
-        BusStopAnnotation *annotation = [[BusStopAnnotation alloc] initWithTitle:placemark.name andSubtitle:addressSubtitle];
+        DestinationAnnotation *annotation = [[DestinationAnnotation alloc] initWithTitle:placemark.name andSubtitle:addressSubtitle];
         [annotation setAlertLatitude:[NSNumber numberWithDouble:coordinate.latitude]];
         [annotation setAlertLongitude:[NSNumber numberWithDouble:coordinate.longitude]];
         [self.mapToDisplayAddressFromSearchBar setCenterCoordinate:coordinate];
