@@ -10,9 +10,20 @@
 #import <MapKit/MapKit.h>
 
 @interface BusStopAnnotation : NSObject <MKAnnotation> {
-    CLLocationCoordinate2D *coordinate;
+    NSString *title;
+    NSString *subtitle;
+    CLLocationCoordinate2D coordinate;
 }
 
--(id)initWithCoordinate:(CLLocationCoordinate2D *)setCoordinate;
+@property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
+@property (nonatomic, strong) NSNumber *alertLatitude;
+@property (nonatomic, strong) NSNumber *alertLongitude;
+@property (nonatomic, strong) NSString *alertDirection;
+@property (nonatomic, strong) NSString *alertCode;
+@property (nonatomic, strong) NSString *alertName;
+@property (nonatomic, strong) NSString *alertID;
+
+
+-(id)initWithCoordinate:(CLLocationCoordinate2D)setCoordinate;
 
 @end

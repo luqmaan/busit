@@ -10,7 +10,7 @@
 
 @implementation BusStopAnnotation
 
--(id)initWithCoordinate:(CLLocationCoordinate2D *)setCoordinate{
+-(id)initWithCoordinate:(CLLocationCoordinate2D)setCoordinate{
     self = [super init];
     if(self) {
         coordinate = setCoordinate;
@@ -18,12 +18,19 @@
     return self;
 }
 
--(NSString *)title:(NSString *)titleInput {
-    return titleInput;
+-(NSString *)title {
+    return title;
 }
 
--(NSString *)subtitle:(NSString *)subtitleInput {
-    return subtitleInput;
+-(NSString *)subtitle {
+    return subtitle;
+}
+
+- (CLLocationCoordinate2D)coordinate
+{
+    coordinate.latitude = [self.alertLatitude doubleValue];
+    coordinate.longitude = [self.alertLongitude doubleValue];
+    return coordinate;
 }
 
 @end

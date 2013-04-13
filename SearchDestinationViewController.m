@@ -7,6 +7,8 @@
 //
 
 #import "SearchDestinationViewController.h"
+#import "BusStopAnnotation.h"
+#import "BusStopAnnotationView.h"
 
 @interface SearchDestinationViewController ()
 
@@ -35,7 +37,8 @@
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    CLGeocoder *geocodeAddressFromSearchBar = nil;
+    [self.searchBarForAddress resignFirstResponder];
+    CLGeocoder *geocodeAddressFromSearchBar = [[CLGeocoder alloc] init];
     [geocodeAddressFromSearchBar geocodeAddressString:[self.searchBarForAddress text] completionHandler:^(NSArray *placemarks, NSError *error)         {
         NSLog(@"geocodeAddressString:inRegion:completionHandler: Completion Handler called!");
         if (error){
@@ -44,26 +47,65 @@
             return;
         }
         NSLog(@"Received placemarks: %@", placemarks);
-        //[self displayPlacemarks:placemarks];
+        [self displayPlacemarks:placemarks];
     }];
 }
 
--(CLLocationCoordinate2D *)geocodeTranslation:(NSString *)stringFromSearchBar inRegion:(CLRegion *)currentRegion {
-    CLLocationCoordinate2D *returnObject = nil;
-    
-    CLGeocoder *geocodeAddressFromSearchBar = nil;
-    [geocodeAddressFromSearchBar geocodeAddressString:stringFromSearchBar completionHandler:^(NSArray *placemarks, NSError *error)         {
-        NSLog(@"geocodeAddressString:inRegion:completionHandler: Completion Handler called!");
-        if (error){
-            NSLog(@"Geocode failed with error: %@", error);
-            [self displayError:[error localizedDescription]];
-            return;
-        }
+//-(CLLocationCoordinate2D *)geocodeTranslation:(NSString *)stringFromSearchBar inRegion:(CLRegion *)currentRegion {
+//    CLLocationCoordinate2D *returnObject = nil;
+//    
+//    CLGeocoder *geocodeAddressFromSearchBar = nil;
+//    [geocodeAddressFromSearchBar geocodeAddressString:stringFromSearchBar completionHandler:^(NSArray *placemarks, NSError *error)
+//    {
+//        NSLog(@"geocodeAddressString:inRegion:completionHandler: Completion Handler called!");
+//        if (error){
+//            NSLog(@"Geocode failed with error: %@", error);
+//            [self displayError:[error localizedDescription]];
+//            return;
+//        }
+//        
+//        NSLog(@"Received placemarks: %@", placemarks);
+//        [self displayPlacemarks:placemarks];
+//    }];
+//    return returnObject;
+//}
+
+- (MKAnnotationView *)mapView:(MKMapView *)map viewForAnnotation:(id <MKAnnotation>)annotation
+{
+    NSLog(@"Entered viewForAnnotation");
+    if([annotation isKindOfClass:[MKUserLocation class]]){
+        return nil;
+    }
+    if([annotation isKindOfClass:[BusStopAnnotation class]]){
+        static NSString *AnnotationViewID = @"annotationViewID";
+        BusStopAnnotationView *customPinView = [[BusStopAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationViewID];
+        [customPinView setCanShowCallout:YES];
         
-        NSLog(@"Received placemarks: %@", placemarks);
-        //[self displayPlacemarks:placemarks];
-    }];
-    return returnObject;
+        customPinView.opaque = NO;
+        
+        UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+        customPinView.rightCalloutAccessoryView = rightButton;
+        return customPinView;
+    }
+    return nil;
+}
+
+-(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control{
+    
+    //[self performSegueWithIdentifier:@"showAnnotationDetail" sender:view];
+}
+
+-(void)displayPlacemarks:(NSArray *)arrayOfPlacemarks {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        CLPlacemark *placemark = [arrayOfPlacemarks objectAtIndex:0];
+        NSLog(@"%@", placemark);
+        
+        CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(placemark.location.coordinate.latitude, placemark.location.coordinate.longitude);
+        BusStopAnnotation *annotation = [[BusStopAnnotation alloc] initWithCoordinate:coordinate];
+        [self.mapToDisplayAddressFromSearchBar setCenterCoordinate:coordinate];
+        [self.mapToDisplayAddressFromSearchBar addAnnotation:annotation];
+    });
+    
 }
 
 -(void)displayError:(NSString *)errorMessage {

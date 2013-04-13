@@ -43,6 +43,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		145CAAA0171A044900B49687 /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
 		14CF285117190F0800D69FB4 /* BusStopAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusStopAnnotation.h; sourceTree = "<group>"; };
 		14CF285217190F0800D69FB4 /* BusStopAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusStopAnnotation.m; sourceTree = "<group>"; };
 		14CF285517190F4D00D69FB4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -121,6 +122,7 @@
 			children = (
 				14D0D3661719AF1F000A1F7B /* SearchDestinationViewController.h */,
 				14D0D3671719AF20000A1F7B /* SearchDestinationViewController.m */,
+				145CAAA0171A044900B49687 /* Location.gpx */,
 				14D0D36317191A43000A1F7B /* BusStopMapViewController.h */,
 				14D0D36417191A43000A1F7B /* BusStopMapViewController.m */,
 				14CF285117190F0800D69FB4 /* BusStopAnnotation.h */,

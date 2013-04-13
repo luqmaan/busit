@@ -40,7 +40,7 @@
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect{
-    NSString *pinImage = nil;//[NSString stringWithFormat:@"%@%@", pinImage, @"_blue.png"];
+    NSString *pinImage = [NSString stringWithFormat:@"stopsign_icon.png"];
     [[UIImage imageNamed:pinImage] drawInRect:CGRectMake(0, 0, 30.0, 40.0)];
     
 }
