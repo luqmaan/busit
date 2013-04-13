@@ -406,13 +406,10 @@
 				145CAAA5171A101D00B49687 /* SearchStartingViewController.m in Sources */,
 				145CAAA8171A12CF00B49687 /* DestinationAnnotation.m in Sources */,
 				145CAAAD171A143900B49687 /* DestinationAnnotationView.m in Sources */,
-<<<<<<< HEAD
 				27125B8B171A1F7900815280 /* _StopSchedule.m in Sources */,
 				27125B8C171A1F7900815280 /* StopSchedule.m in Sources */,
-=======
 				145CAAB5171A164900B49687 /* UserStartAnnotationView.m in Sources */,
 				145CAAB8171A168600B49687 /* UserStartAnnotation.m in Sources */,
->>>>>>>  blah
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
