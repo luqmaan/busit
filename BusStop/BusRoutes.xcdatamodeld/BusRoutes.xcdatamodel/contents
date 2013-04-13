@@ -18,6 +18,6 @@
     </entity>
     <elements>
         <element name="Route" positionX="160" positionY="192" width="128" height="120"/>
-        <element name="Stop" positionX="160" positionY="192" width="128" height="150"/>
+        <element name="Stop" positionX="360" positionY="261" width="128" height="150"/>
     </elements>
 </model>
