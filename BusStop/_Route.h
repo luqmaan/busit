@@ -8,6 +8,7 @@ extern const struct RouteAttributes {
 	__unsafe_unretained NSString *id;
 	__unsafe_unretained NSString *name;
 	__unsafe_unretained NSString *shortName;
+	__unsafe_unretained NSString *url;
 } RouteAttributes;
 
 extern const struct RouteRelationships {
@@ -18,6 +19,7 @@ extern const struct RouteFetchedProperties {
 } RouteFetchedProperties;
 
 @class Stop;
+
 
 
 
@@ -66,6 +68,16 @@ extern const struct RouteFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSString* url;
+
+
+
+//- (BOOL)validateUrl:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSSet *stops;
 
 - (NSMutableSet*)stopsSet;
@@ -102,6 +114,12 @@ extern const struct RouteFetchedProperties {
 
 - (NSString*)primitiveShortName;
 - (void)setPrimitiveShortName:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveUrl;
+- (void)setPrimitiveUrl:(NSString*)value;
 
 
 

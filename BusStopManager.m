@@ -43,7 +43,8 @@
 	return sharedMgr;
 }
 
-//note - infoDict has to have stops in it
+//TBD - need something else to fill in.  on the way in how about counting up the number of stops and total length of route?
+// maybe how frequently the bus runs as well.
 -(void)addRouteWithInfo:(NSDictionary *)infoDict
 {
     Route *newRoute = [NSEntityDescription insertNewObjectForEntityForName:@"Route" inManagedObjectContext:self.context];
@@ -87,43 +88,60 @@
         routeDict[@"longName"] = route[@"longName"];
         routeDict[@"shortName"] = route[@"shortName"];
         routesList[route[@"id"]] = routeDict;
-    }
-    
-    // for each route, get stops - name, lat/lon, direction etc.
-    NSDictionary *stops = [bench stopsForRoute:@"Hillsborough Area Regional Transit_8"];
-    #if 0
-    // defines legs of route
-    NSArray *stopGroupings = stops[@"data"][@"entry"][@"stopGroupings"];
-    for( NSDictionary *grp in stopGroupings )
-    {
-        NSString *grpId = grp[@"id"];
-        NSArray *stopGrps = grp[@"stopGroups"];
-        for( NSDictionary *stopGrouping in stopGrps )
+        
+        sleep(1);
+        // for each route, get stops - name, lat/lon, direction etc.
+        NSDictionary *stops = [bench stopsForRoute:route[@"id"]];
+        
+        #if 0
+        // defines legs of route
+        NSArray *stopGroupings = stops[@"data"][@"entry"][@"stopGroupings"];
+        for( NSDictionary *grp in stopGroupings )
         {
-            NSString *grpName = stopGrouping[@"name"][@"name"];
-            NSString *grpType = stopGrouping[@"name"][@"type"];
-            NSArray *grpStops = stopGrouping[@"stopIds"];
-            
-            NSLog(@"stopGroup name: %@", grpName);
-            NSLog(@"stopGroup type: %@", grpType);
-            NSLog(@"stopGroup stops: %@", grpStops);
+            NSString *grpId = grp[@"id"];
+            NSArray *stopGrps = grp[@"stopGroups"];
+            for( NSDictionary *stopGrouping in stopGrps )
+            {
+                NSString *grpName = stopGrouping[@"name"][@"name"];
+                NSString *grpType = stopGrouping[@"name"][@"type"];
+                NSArray *grpStops = stopGrouping[@"stopIds"];
+                
+                NSLog(@"stopGroup name: %@", grpName);
+                NSLog(@"stopGroup type: %@", grpType);
+                NSLog(@"stopGroup stops: %@", grpStops);
+            }
+        }
+        #endif
+        
+        // has actual stops data
+        NSDictionary *refs = stops[@"data"][@"references"];
+        NSArray *stops1 = nil;
+        if(nil != refs)
+            stops1 = refs[@"stops"];
+//        stops1 = stops[@"data"][@"references"][@"stops"];
+        if(nil != stops1)
+        {
+            NSLog(@"about to add stops");
+            for( NSDictionary *stop in stops1 )
+            {
+                NSLog(@"candidate stop: %@", stop);
+                NSDictionary *busStop = @{@"name":stop[@"name"], @"code":stop[@"code"], @"id":stop[@"id"], @"direction":stop[@"direction"], @"lat":stop[@"lat"], @"lon":stop[@"lon"]};
+                NSLog(@"bus stop: %@", busStop);
+                NSArray *routeIds = stop[@"routeIds"];
+                for( NSString *routeId in routeIds )
+                {
+                    NSMutableDictionary *route = routesList[routeId];
+                    if(nil == route[@"stops"])
+                        route[@"stops"] = [NSMutableArray arrayWithCapacity:0];
+                    [route[@"stops"] addObject:busStop];
+                }
+            }
+            NSLog(@"Added stops.");
         }
     }
-    #endif
-    // has actual stops data
-    NSArray *stops1 = stops[@"data"][@"references"][@"stops"];
-    for( NSDictionary *stop in stops1 )
-    {        
-       NSDictionary *busStop = @{@"name":stop[@"name"], @"code":stop[@"code"], @"id":stop[@"id"], @"direction":stop[@"direction"], @"lat":stop[@"lat"], @"lon":stop[@"lon"]};
-       NSArray *routeIds = stop[@"routeIds"];
-       for( NSString *routeId in routeIds )
-       {
-            NSMutableDictionary *route = routesList[routeId];
-            if(nil == route[@"stops"])
-                route[@"stops"] = [NSMutableArray arrayWithCapacity:0];
-            [route[@"stops"] addObject:busStop];
-       }
-    }
+    
+    
+    NSLog(@"%@", routesList);
     
     // now that we've got the routes and stops, we can write them ou tto CoreData
     for( NSString *routeId in [routesList allKeys])

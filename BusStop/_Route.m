@@ -7,6 +7,7 @@ const struct RouteAttributes RouteAttributes = {
 	.id = @"id",
 	.name = @"name",
 	.shortName = @"shortName",
+	.url = @"url",
 };
 
 const struct RouteRelationships RouteRelationships = {
@@ -64,6 +65,13 @@ const struct RouteFetchedProperties RouteFetchedProperties = {
 
 
 @dynamic shortName;
+
+
+
+
+
+
+@dynamic url;
 
 
 

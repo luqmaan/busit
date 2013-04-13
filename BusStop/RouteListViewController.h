@@ -10,6 +10,6 @@
 
 @interface RouteListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, strong) NSMutableArray *routes;
+@property (nonatomic, strong) NSArray *routes;
 
 @end

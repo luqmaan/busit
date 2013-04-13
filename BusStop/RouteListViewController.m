@@ -7,6 +7,7 @@
 //
 
 #import "RouteListViewController.h"
+#import "RouteCell.h"
 #import "BusStopManager.h"
 
 @interface RouteListViewController ()
@@ -50,7 +51,13 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Route *route = self.routes[indexPath.row];
-    
+    RouteCell *cell = (RouteCell *)[tableView dequeueReusableCellWithIdentifier:@"RouteCell"];
+    if(nil == cell)
+        cell = (RouteCell *)[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"RouteCell"];
+    NSInteger numStops = route.stops.count;
+    cell.routeNameLabel.text = route.name;
+    cell.routeDetailsLabel.text = [NSString stringWithFormat:@"%d stops", numStops];
+    return cell;
 }
 
 -(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
