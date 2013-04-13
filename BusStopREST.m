@@ -42,6 +42,11 @@
     return [self restToJSON:@"http://onebusaway.forest.usf.edu/api/api/where/agencies-with-coverage.json"];
 }
 
+-(NSDictionary *)agency
+{
+    return [self restToJSON:@"http://onebusaway.forest.usf.edu/api/api/where/agency/Hillsborough%20Area%20Regional%20Transit.json"];
+}
+
 -(NSDictionary *)routesForAgency
 {
     return [self restToJSON:@"http://onebusaway.forest.usf.edu/api/api/where/routes-for-agency/Hillsborough%20Area%20Regional%20Transit.json"];

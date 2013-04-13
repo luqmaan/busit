@@ -18,6 +18,8 @@
     BusStopREST *bench = [[BusStopREST alloc] init];
     NSDictionary *agencyInfo = [bench agencies];
     NSLog(@"agencies %@", agencyInfo);
+    NSDictionary *agency = [bench agency];
+    NSLog(@"agency %@", agency);
     NSDictionary *routes = [bench routesForAgency];
     NSLog(@"routes: %@", routes);
     NSDictionary *stops = [bench stopsForRoute:@"Hillsborough Area Regional Transit_8"];
