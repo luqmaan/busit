@@ -26,10 +26,12 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	// Do any additional setup after loading the view.    
     self.stops = [[self.currentRoute.stops allObjects] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         Stop *stop1 = (Stop *)obj1;
         Stop *stop2 = (Stop *)obj2;
+        NSString *code1 = stop1.code;
+        NSString *code2 = stop2.code;
         if(stop1.code > stop2.code)
             return NSOrderedDescending;
         else

@@ -56,12 +56,12 @@
     for( NSDictionary *stop in stops )
     {
         Stop *newStop = [NSEntityDescription insertNewObjectForEntityForName:@"Stop" inManagedObjectContext:self.context];
-        newStop.name = infoDict[@"name"];
-        newStop.code = infoDict[@"code"];
-        newStop.id = infoDict[@"id"];
-        newStop.direction = infoDict[@"direction"];
-        newStop.lat = infoDict[@"lat"];
-        newStop.lon = infoDict[@"lon"];
+        newStop.name = stop[@"name"];
+        newStop.code = stop[@"code"];
+        newStop.id = stop[@"id"];
+        newStop.direction = stop[@"direction"];
+        newStop.lat = stop[@"lat"];
+        newStop.lon = stop[@"lon"];
         
         [newRoute addStopsObject:newStop];
     }
