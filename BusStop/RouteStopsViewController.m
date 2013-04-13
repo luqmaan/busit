@@ -104,7 +104,7 @@
     if(distanceAwayInMiles<.10)
     {
         double distanceAwayInFeet = distanceAwayInMiles * 5280.0;
-        cell.stopDistanceLabel.text = @"1.5 miles";
+        cell.stopDistanceLabel.text = [NSString stringWithFormat:@"%.1f feet", distanceAwayInFeet];
     }
     else
     if(distanceAwayInMiles<10.0)
