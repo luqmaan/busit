@@ -27,14 +27,14 @@
 {
     [super viewDidLoad];
     [self setInitialMapZoom];
+    [self.searchBarForAddress setDelegate:self];
     [self.searchBarForAddress setAutocorrectionType:UITextAutocorrectionTypeNo];
     
 	// Do any additional setup after loading the view.
 }
 
--(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
-    //CLRegion *region = [[CLRegion alloc] initCircularRegionWithCenter:[[locationManager location] coordinate]  radius:CLLocationDistanceMax identifier:@"whoCares"];
-    //[self geocodeTranslation:[self.searchBarForAddress text] inRegion:region];
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
     CLGeocoder *geocodeAddressFromSearchBar = nil;
     [geocodeAddressFromSearchBar geocodeAddressString:[self.searchBarForAddress text] completionHandler:^(NSArray *placemarks, NSError *error)         {
         NSLog(@"geocodeAddressString:inRegion:completionHandler: Completion Handler called!");
@@ -43,11 +43,9 @@
             [self displayError:[error localizedDescription]];
             return;
         }
-        
         NSLog(@"Received placemarks: %@", placemarks);
         //[self displayPlacemarks:placemarks];
     }];
-
 }
 
 -(CLLocationCoordinate2D *)geocodeTranslation:(NSString *)stringFromSearchBar inRegion:(CLRegion *)currentRegion {
