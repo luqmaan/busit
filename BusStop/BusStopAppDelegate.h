@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface BusStopAppDelegate : UIResponder <UIApplicationDelegate>
+#define kLocationUpdated        @"HeyWeMoved"
+
+@interface BusStopAppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) CLLocationManager *mgr;
+@property (strong, nonatomic) CLLocation *currentLocation;
 
 @end

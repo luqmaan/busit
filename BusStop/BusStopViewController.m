@@ -46,13 +46,13 @@
         dispatch_sync(dispatch_get_main_queue(),^{
             [self showHUD:@"Updating routes"];
         });
-        
+        #if 0
         BusStopManager *mgr = [BusStopManager sharedManagerWithOnDiskStore];
         [mgr updateBusRouteDataWithCompletion:^{
             }
             failure:^{
         }];
-        
+        #endif
         dispatch_sync(dispatch_get_main_queue(), ^{
             [self hideHUD];
         });

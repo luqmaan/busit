@@ -117,23 +117,42 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" rowHeight="77" id="GF9-d9-LKh">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="StopCell" rowHeight="77" id="GF9-d9-LKh" customClass="StopCell">
                                         <rect key="frame" x="0.0" y="22" width="331" height="77"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="331" height="76"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="311" height="76"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aZh-cO-65P">
-                                                    <rect key="frame" x="12" y="5" width="282" height="21"/>
+                                                    <rect key="frame" x="12" y="5" width="299" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2wU-zz-V4m">
+                                                    <rect key="frame" x="12" y="48" width="213" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
+                                                    <color key="textColor" red="0.51997707199999998" green="0.51997707199999998" blue="0.51997707199999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GsU-fD-fq9">
+                                                    <rect key="frame" x="276" y="48" width="35" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="0.084936852470000004" green="0.097174807360000004" blue="0.61404551630000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <connections>
+                                            <outlet property="stopDirectionLabel" destination="GsU-fD-fq9" id="6Q4-yv-KG3"/>
+                                            <outlet property="stopDistanceLabel" destination="2wU-zz-V4m" id="mCI-GU-pxx"/>
+                                            <outlet property="stopNameLabel" destination="aZh-cO-65P" id="JTx-B0-x1s"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -165,7 +184,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Route Stops" id="zuS-Yo-kod"/>
+                    <navigationItem key="navigationItem" title="Route Stops" id="zuS-Yo-kod">
+                        <barButtonItem key="rightBarButtonItem" title="Schedule" id="Lln-Qs-pJB">
+                            <connections>
+                                <segue destination="X2K-4U-ue4" kind="modal" identifier="popStopSchedule" modalTransitionStyle="crossDissolve" id="hTt-uz-iyn"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="addressLabel" destination="E6H-AB-TIu" id="HWg-d4-ApO"/>
                         <outlet property="distanceFromHereLabel" destination="fbe-Xh-2sn" id="19o-Hq-u45"/>
@@ -176,6 +201,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z2s-Bq-qqM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="398" y="-33"/>
+        </scene>
+        <!--Table View Controller - Stop Schedule-->
+        <scene sceneID="fa1-lJ-42q">
+            <objects>
+                <tableViewController id="X2K-4U-ue4" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="58" sectionHeaderHeight="22" sectionFooterHeight="22" id="FD1-Uh-ZFX">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="58" id="p1d-pJ-Hsx">
+                                <rect key="frame" x="0.0" y="22" width="320" height="58"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="57"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="X2K-4U-ue4" id="G6F-0k-ftM"/>
+                            <outlet property="delegate" destination="X2K-4U-ue4" id="aqu-T8-2Sb"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Stop Schedule" id="DON-as-BbG"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yQf-3n-XP8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="828" y="-33"/>
         </scene>
         <!--Search Destination View Controller - Your Destination-->
         <scene sceneID="uNV-mp-0gs">
@@ -327,6 +382,14 @@
             <relationships>
                 <relationship kind="outlet" name="mapToDisplayAddressFromSearchBar" candidateClass="MKMapView"/>
                 <relationship kind="outlet" name="searchBarForAddress" candidateClass="UISearchBar"/>
+            </relationships>
+        </class>
+        <class className="StopCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/StopCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="stopDirectionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="stopDistanceLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="stopNameLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
     </classes>

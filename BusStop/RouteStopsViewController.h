@@ -12,7 +12,9 @@
 #import "Route.h"
 #import "Stop.h"
 
-@interface RouteStopsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate>
+@interface RouteStopsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate> {
+    CLLocation *newLocation;
+}
 
 @property (nonatomic, weak) IBOutlet UILabel *addressLabel;
 @property (nonatomic, weak) IBOutlet UILabel *distanceFromHereLabel;
@@ -21,5 +23,8 @@
 
 @property (nonatomic, strong) Route *currentRoute;
 @property (nonatomic, strong) NSArray *stops;
+@property (nonatomic, strong) NSMutableArray *distances;
+
+-(void)locationChanged:(NSNotification *)note;
 
 @end

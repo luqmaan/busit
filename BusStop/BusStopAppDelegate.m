@@ -14,6 +14,13 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    self.mgr = [[CLLocationManager alloc] init];
+    self.mgr.delegate = self;
+    
+    if([CLLocationManager locationServicesEnabled])
+    {
+        [self.mgr startUpdatingLocation];
+    }
     return YES;
 }
 							
@@ -42,6 +49,25 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma mark - CLLocation Delegate methods
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:kLocationUpdated object:self];
+}
+
+-(void)locationManagerDidPauseLocationUpdates:(CLLocationManager *)manager
+{
+}
+
+-(void)locationManagerDidResumeLocationUpdates:(CLLocationManager *)manager
+{
+}
+
+-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
 }
 
 @end

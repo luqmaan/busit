@@ -17,6 +17,7 @@
 		14ED356F1719D0D7009F6A11 /* stopsign_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 14ED356D1719D0D7009F6A11 /* stopsign_icon.png */; };
 		27125B7F1719C8AF00815280 /* RouteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27125B7E1719C8AF00815280 /* RouteCell.m */; };
 		27125B821719D61300815280 /* RouteStopsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27125B811719D61300815280 /* RouteStopsViewController.m */; };
+		27125B851719F43100815280 /* StopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27125B841719F43100815280 /* StopCell.m */; };
 		2749E34917191872008FCDCD /* BusRoutes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2749E34717191872008FCDCD /* BusRoutes.xcdatamodeld */; };
 		2749E352171919B1008FCDCD /* _Route.m in Sources */ = {isa = PBXBuildFile; fileRef = 2749E34B171919B1008FCDCD /* _Route.m */; };
 		2749E353171919B1008FCDCD /* _Stop.m in Sources */ = {isa = PBXBuildFile; fileRef = 2749E34D171919B1008FCDCD /* _Stop.m */; };
@@ -59,6 +60,8 @@
 		27125B7E1719C8AF00815280 /* RouteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteCell.m; sourceTree = "<group>"; };
 		27125B801719D61200815280 /* RouteStopsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteStopsViewController.h; sourceTree = "<group>"; };
 		27125B811719D61300815280 /* RouteStopsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteStopsViewController.m; sourceTree = "<group>"; };
+		27125B831719F43100815280 /* StopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopCell.h; sourceTree = "<group>"; };
+		27125B841719F43100815280 /* StopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopCell.m; sourceTree = "<group>"; };
 		2749E34817191872008FCDCD /* BusRoutes.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BusRoutes.xcdatamodel; sourceTree = "<group>"; };
 		2749E34A171919B1008FCDCD /* _Route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Route.h; sourceTree = "<group>"; };
 		2749E34B171919B1008FCDCD /* _Route.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Route.m; sourceTree = "<group>"; };
@@ -200,11 +203,13 @@
 				27C9C4E31718EB88005EAE68 /* MainStoryboard_iPad.storyboard */,
 				27C9C4E61718EB88005EAE68 /* BusStopViewController.h */,
 				27C9C4E71718EB88005EAE68 /* BusStopViewController.m */,
+				27125B7D1719C8AF00815280 /* RouteCell.h */,
+				27125B7E1719C8AF00815280 /* RouteCell.m */,
 				27C9C4F217190FA1005EAE68 /* RouteListViewController.h */,
 				27C9C4F317190FA1005EAE68 /* RouteListViewController.m */,
 				2749E34717191872008FCDCD /* BusRoutes.xcdatamodeld */,
-				27125B7D1719C8AF00815280 /* RouteCell.h */,
-				27125B7E1719C8AF00815280 /* RouteCell.m */,
+				27125B831719F43100815280 /* StopCell.h */,
+				27125B841719F43100815280 /* StopCell.m */,
 				27125B801719D61200815280 /* RouteStopsViewController.h */,
 				27125B811719D61300815280 /* RouteStopsViewController.m */,
 			);
@@ -323,6 +328,7 @@
 				14D0D3681719AF20000A1F7B /* SearchDestinationViewController.m in Sources */,
 				27125B7F1719C8AF00815280 /* RouteCell.m in Sources */,
 				27125B821719D61300815280 /* RouteStopsViewController.m in Sources */,
+				27125B851719F43100815280 /* StopCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

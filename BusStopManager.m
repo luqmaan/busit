@@ -7,6 +7,7 @@
 //
 
 #import <CoreData/CoreData.h>
+#import <CoreLocation/CoreLocation.h>
 
 #import "BusStopManager.h"
 #import "MBProgressHUD.h"
