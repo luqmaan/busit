@@ -8,8 +8,8 @@
 
 #import "BusStopREST.h"
 
-#define kFrakkingLongAPIKey @"onebusaway.forest.usf.edu-7e74c063-43c9-4067-8aef-5730aa860628"
-#define kFrakkingLongAPIKey1 @"onebusaway.forest.usf.edu-f75b1e48-80c4-4880-a294-e353e13bd9d2"
+#define kFrakkingLongAPIKey1 @"onebusaway.forest.usf.edu-7e74c063-43c9-4067-8aef-5730aa860628"
+#define kFrakkingLongAPIKey2 @"onebusaway.forest.usf.edu-f75b1e48-80c4-4880-a294-e353e13bd9d2"
 #define kFrakkingStupidAgencyID @"Hillsborough%20Area%20Regional%20Transit"
 
 @implementation BusStopREST

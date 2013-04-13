@@ -7,6 +7,7 @@
 //
 
 #import "RouteListViewController.h"
+#import "BusStopManager.h"
 
 @interface RouteListViewController ()
 
@@ -26,7 +27,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    self.routes = [[BusStopManager sharedManagerWithOnDiskStore] routes];
 }
 
 - (void)didReceiveMemoryWarning
@@ -42,10 +43,14 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    NSInteger numRoutes = self.routes.count;
+    return numRoutes;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    Route *route = self.routes[indexPath.row];
+    
 }
 
 -(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath

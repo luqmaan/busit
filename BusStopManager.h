@@ -7,13 +7,24 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Route.h"
+#import "Stop.h"
+#import <CoreData/CoreData.h>
 
-@interface BusStopManager : NSObject
+@interface BusStopManager : NSObject 
+
+@property (nonatomic, strong) NSManagedObjectContext *context;
+@property (nonatomic, strong) NSManagedObjectModel *model;
+@property (nonatomic, strong) NSPersistentStore *store;
+@property (nonatomic, strong) NSPersistentStoreCoordinator *coord;
+@property (nonatomic, strong) NSOperationQueue *opQueue;
+
++(BusStopManager *)sharedManagerWithOnDiskStore;
 
 -(void)updateBusRouteDataWithCompletion:(void (^)(void))completion failure:(void (^)(void))failure;
+
 -(NSArray *)routes;
--(NSDictionary *)detailsForRoute:(NSString *)routeId;
--(NSArray *)stopsForRoute:(NSString *)routeId;
--(NSDictionary *)detailsForStop:(NSString *)routeId;
+-(Route *)routeForId:(NSString *)routeId;
+-(Stop *)stopForId:(NSString *)stopId;
 
 @end

@@ -11,42 +11,156 @@
 #import "BusStopManager.h"
 #import "MBProgressHUD.h"
 #import "BusStopREST.h"
+#import "Route.h"
+#import "Stop.h"
 
 @implementation BusStopManager
+
++(BusStopManager *)sharedManagerWithOnDiskStore
+{
+	static BusStopManager *sharedMgr = nil;
+	static dispatch_once_t token = 0;
+	dispatch_once( &token, ^{
+		sharedMgr = [[BusStopManager alloc] init];
+		sharedMgr.model = [[NSManagedObjectModel alloc] initWithContentsOfURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"BusRoutes" ofType:@"momd"]]];
+
+        NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
+    						 [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
+    						 [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
+    
+		sharedMgr.coord = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:sharedMgr.model];
+        
+		sharedMgr.context = [[NSManagedObjectContext alloc] init];
+		[sharedMgr.context setPersistentStoreCoordinator:sharedMgr.coord];
+        
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+        NSURL *storeURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/BusRoutes.db", paths[0]]];
+        
+		sharedMgr.store = [sharedMgr.coord addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:NULL];
+        
+        sharedMgr.opQueue = [[NSOperationQueue alloc] init];
+	});
+	return sharedMgr;
+}
+
+//note - infoDict has to have stops in it
+-(void)addRouteWithInfo:(NSDictionary *)infoDict
+{
+    Route *newRoute = [NSEntityDescription insertNewObjectForEntityForName:@"Route" inManagedObjectContext:self.context];
+    newRoute.name = infoDict[@"longName"];
+    newRoute.shortName = infoDict[@"shortName"];
+    newRoute.id = infoDict[@"id"];
+    newRoute.stops = [NSMutableSet set];
+    NSArray *stops = infoDict[@"stops"];
+    for( NSDictionary *stop in stops )
+    {
+        Stop *newStop = [NSEntityDescription insertNewObjectForEntityForName:@"Stop" inManagedObjectContext:self.context];
+        newStop.name = infoDict[@"name"];
+        newStop.code = infoDict[@"code"];
+        newStop.id = infoDict[@"id"];
+        newStop.direction = infoDict[@"direction"];
+        newStop.lat = infoDict[@"lat"];
+        newStop.lon = infoDict[@"lon"];
+        
+        [newRoute addStopsObject:newStop];
+    }
+}
 
 -(void)updateBusRouteDataWithCompletion:(void (^)(void))completion failure:(void (^)(void))failure
 {
     BusStopREST *bench = [[BusStopREST alloc] init];
     
+    NSArray *allRoutes = [self routes];
+    for( Route *route in allRoutes )
+    {
+        [self.context deleteObject:route];
+    }
+    
+    NSMutableDictionary *routesList = [NSMutableDictionary dictionaryWithCapacity:0];
+    
     // get routes and add them to CD store, including route details
     NSDictionary *routes = [bench routesForAgency];
     for( NSDictionary *route in routes[@"data"][@"list"] )
     {
-        NSLog(@"route: %@", route);
-        // pull out route[@"longName"], route[@"shortName"], route[@"id"], route[@"url"]
+        NSMutableDictionary *routeDict = [NSMutableDictionary dictionaryWithCapacity:0];
+        routeDict[@"routeId"] = route[@"id"];
+        routeDict[@"longName"] = route[@"longName"];
+        routeDict[@"shortName"] = route[@"shortName"];
+        routesList[route[@"id"]] = routeDict;
     }
     
     // for each route, get stops - name, lat/lon, direction etc.
     NSDictionary *stops = [bench stopsForRoute:@"Hillsborough Area Regional Transit_8"];
-    NSLog(@"stops: %@", stops);
-}
+    #if 0
+    // defines legs of route
+    NSArray *stopGroupings = stops[@"data"][@"entry"][@"stopGroupings"];
+    for( NSDictionary *grp in stopGroupings )
+    {
+        NSString *grpId = grp[@"id"];
+        NSArray *stopGrps = grp[@"stopGroups"];
+        for( NSDictionary *stopGrouping in stopGrps )
+        {
+            NSString *grpName = stopGrouping[@"name"][@"name"];
+            NSString *grpType = stopGrouping[@"name"][@"type"];
+            NSArray *grpStops = stopGrouping[@"stopIds"];
+            
+            NSLog(@"stopGroup name: %@", grpName);
+            NSLog(@"stopGroup type: %@", grpType);
+            NSLog(@"stopGroup stops: %@", grpStops);
+        }
+    }
+    #endif
+    // has actual stops data
+    NSArray *stops1 = stops[@"data"][@"references"][@"stops"];
+    for( NSDictionary *stop in stops1 )
+    {        
+       NSDictionary *busStop = @{@"name":stop[@"name"], @"code":stop[@"code"], @"id":stop[@"id"], @"direction":stop[@"direction"], @"lat":stop[@"lat"], @"lon":stop[@"lon"]};
+       NSArray *routeIds = stop[@"routeIds"];
+       for( NSString *routeId in routeIds )
+       {
+            NSMutableDictionary *route = routesList[routeId];
+            if(nil == route[@"stops"])
+                route[@"stops"] = [NSMutableArray arrayWithCapacity:0];
+            [route[@"stops"] addObject:busStop];
+       }
+    }
+    
+    // now that we've got the routes and stops, we can write them ou tto CoreData
+    for( NSString *routeId in [routesList allKeys])
+    {
+        [self addRouteWithInfo:routesList[routeId]];
+    }
+
+    [self.context save:nil];
+ }
 
 -(NSArray *)routes
 {
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Route"];
+    NSArray *rows = [self.context executeFetchRequest:fetchRequest error:nil];
+    return rows;
 }
 
--(NSArray *)stopsForRoute:(NSString *)routeId
+-(Route *)routeForId:(NSString *)routeId
 {
+    Route *route = nil;
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Route"];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"id = %@", routeId];
+    NSArray *rows = [self.context executeFetchRequest:fetchRequest error:nil];
+    if(rows.count>0)
+        route = rows[0];
+    return route;
 }
 
--(NSDictionary *)detailsForRoute:(NSString *)routeId
+-(Stop *)stopForId:(NSString *)stopId
 {
-}
-
--(NSDictionary *)detailsForStop:(NSString *)routeId
-{
+    Stop *busStop = nil;
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Stop"];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"id = %@", stopId];
+    NSArray *rows = [self.context executeFetchRequest:fetchRequest error:nil];
+    if(rows.count>0)
+        busStop = rows[0];
+    return busStop;
 }
 
 @end

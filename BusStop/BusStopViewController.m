@@ -40,32 +40,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    
-    // actually, do refresh of data here
-#if 0
-    BusStopREST *bench = [[BusStopREST alloc] init];
-    NSDictionary *routes = [bench routesForAgency];
-    NSLog(@"routes: %@", routes[@"data"][@"list"]);
-    sleep(2);
-    NSDictionary *stops = [bench stopsForRoute:@"Hillsborough Area Regional Transit_8"];
-    NSLog(@"stops: %@", stops);
-    sleep(2);
-    NSDictionary *stop = [bench stop:@"Hillsborough Area Regional Transit_2553"];
-    NSLog(@"stop: %@", stop);
-#endif
-   
-    BusStopManager *bsm = [[BusStopManager alloc] init];
-    [bsm updateBusRouteDataWithCompletion:nil failure:nil];
-    
+       
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     
         dispatch_sync(dispatch_get_main_queue(),^{
             [self showHUD:@"Updating routes"];
         });
         
-        BusStopManager *mgr = [[BusStopManager alloc] init];
-        
+        BusStopManager *mgr = [BusStopManager sharedManagerWithOnDiskStore];
         [mgr updateBusRouteDataWithCompletion:^{
             }
             failure:^{
