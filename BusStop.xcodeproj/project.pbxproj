@@ -18,6 +18,8 @@
 		2749E357171919E3008FCDCD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2749E356171919E3008FCDCD /* CoreData.framework */; };
 		2749E35B17191C23008FCDCD /* BusStopManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2749E35A17191C23008FCDCD /* BusStopManager.m */; };
 		2749E35E17191F75008FCDCD /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 2749E35D17191F75008FCDCD /* MBProgressHUD.m */; };
+		14D0D362171917D1000A1F7B /* BusStopAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D0D361171917D1000A1F7B /* BusStopAnnotationView.m */; };
+		14D0D36517191A43000A1F7B /* BusStopMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D0D36417191A43000A1F7B /* BusStopMapViewController.m */; };
 		27C9C4C91718EB87005EAE68 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C9C4C81718EB87005EAE68 /* UIKit.framework */; };
 		27C9C4CB1718EB87005EAE68 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C9C4CA1718EB87005EAE68 /* Foundation.framework */; };
 		27C9C4CD1718EB87005EAE68 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C9C4CC1718EB87005EAE68 /* CoreGraphics.framework */; };
@@ -54,6 +56,10 @@
 		2749E35A17191C23008FCDCD /* BusStopManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusStopManager.m; sourceTree = "<group>"; };
 		2749E35C17191F75008FCDCD /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		2749E35D17191F75008FCDCD /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		14D0D360171917D1000A1F7B /* BusStopAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusStopAnnotationView.h; sourceTree = "<group>"; };
+		14D0D361171917D1000A1F7B /* BusStopAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusStopAnnotationView.m; sourceTree = "<group>"; };
+		14D0D36317191A43000A1F7B /* BusStopMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusStopMapViewController.h; sourceTree = "<group>"; };
+		14D0D36417191A43000A1F7B /* BusStopMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusStopMapViewController.m; sourceTree = "<group>"; };
 		27C9C4C51718EB87005EAE68 /* BusStop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BusStop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27C9C4C81718EB87005EAE68 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		27C9C4CA1718EB87005EAE68 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -96,6 +102,8 @@
 		14CF285417190F0F00D69FB4 /* Maps */ = {
 			isa = PBXGroup;
 			children = (
+				14D0D36317191A43000A1F7B /* BusStopMapViewController.h */,
+				14D0D36417191A43000A1F7B /* BusStopMapViewController.m */,
 				14CF285117190F0800D69FB4 /* BusStopAnnotation.h */,
 				14CF285217190F0800D69FB4 /* BusStopAnnotation.m */,
 				14D0D360171917D1000A1F7B /* BusStopAnnotationView.h */,
@@ -277,6 +285,7 @@
 				2749E35B17191C23008FCDCD /* BusStopManager.m in Sources */,
 				14D0D362171917D1000A1F7B /* BusStopAnnotationView.m in Sources */,
 				2749E35E17191F75008FCDCD /* MBProgressHUD.m in Sources */,
+				14D0D36517191A43000A1F7B /* BusStopMapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
