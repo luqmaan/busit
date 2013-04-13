@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14CF285317190F0800D69FB4 /* BusStopAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CF285217190F0800D69FB4 /* BusStopAnnotation.m */; };
+		14CF285617190F4D00D69FB4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14CF285517190F4D00D69FB4 /* MapKit.framework */; };
 		27C9C4C91718EB87005EAE68 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C9C4C81718EB87005EAE68 /* UIKit.framework */; };
 		27C9C4CB1718EB87005EAE68 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C9C4CA1718EB87005EAE68 /* Foundation.framework */; };
 		27C9C4CD1718EB87005EAE68 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C9C4CC1718EB87005EAE68 /* CoreGraphics.framework */; };
@@ -23,6 +25,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		14CF285117190F0800D69FB4 /* BusStopAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusStopAnnotation.h; sourceTree = "<group>"; };
+		14CF285217190F0800D69FB4 /* BusStopAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusStopAnnotation.m; sourceTree = "<group>"; };
+		14CF285517190F4D00D69FB4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		27C9C4C51718EB87005EAE68 /* BusStop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BusStop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27C9C4C81718EB87005EAE68 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		27C9C4CA1718EB87005EAE68 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -49,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14CF285617190F4D00D69FB4 /* MapKit.framework in Frameworks */,
 				27C9C4C91718EB87005EAE68 /* UIKit.framework in Frameworks */,
 				27C9C4CB1718EB87005EAE68 /* Foundation.framework in Frameworks */,
 				27C9C4CD1718EB87005EAE68 /* CoreGraphics.framework in Frameworks */,
@@ -58,9 +64,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		14CF285417190F0F00D69FB4 /* Maps */ = {
+			isa = PBXGroup;
+			children = (
+				14CF285117190F0800D69FB4 /* BusStopAnnotation.h */,
+				14CF285217190F0800D69FB4 /* BusStopAnnotation.m */,
+			);
+			name = Maps;
+			sourceTree = "<group>";
+		};
 		27C9C4BC1718EB87005EAE68 = {
 			isa = PBXGroup;
 			children = (
+				14CF285417190F0F00D69FB4 /* Maps */,
 				27C9C4EE1718F491005EAE68 /* REST */,
 				27C9C4CE1718EB87005EAE68 /* BusStop */,
 				27C9C4C71718EB87005EAE68 /* Frameworks */,
@@ -79,6 +95,7 @@
 		27C9C4C71718EB87005EAE68 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				14CF285517190F4D00D69FB4 /* MapKit.framework */,
 				27C9C4C81718EB87005EAE68 /* UIKit.framework */,
 				27C9C4CA1718EB87005EAE68 /* Foundation.framework */,
 				27C9C4CC1718EB87005EAE68 /* CoreGraphics.framework */,
@@ -195,6 +212,7 @@
 				27C9C4D91718EB87005EAE68 /* BusStopAppDelegate.m in Sources */,
 				27C9C4E81718EB88005EAE68 /* BusStopViewController.m in Sources */,
 				27C9C4F11718F4E0005EAE68 /* BusStopREST.m in Sources */,
+				14CF285317190F0800D69FB4 /* BusStopAnnotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,6 +345,7 @@
 				27C9C4ED1718EB88005EAE68 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
