@@ -234,8 +234,6 @@
             <point key="canvasLocation" x="894" y="-756"/>
         </scene>
     </scenes>
-<<<<<<< Updated upstream
-=======
     <classes>
         <class className="BusStopViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/BusStopViewController.h"/>
@@ -251,7 +249,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RouteListViewController.h"/>
         </class>
     </classes>
->>>>>>> Stashed changes
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
