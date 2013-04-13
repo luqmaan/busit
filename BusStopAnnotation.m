@@ -18,6 +18,15 @@
     return self;
 }
 
+-(id)initWithTitle:(NSString *)titleToSet andSubtitle:(NSString *)subtitleToSet {
+    self = [super init];
+    if(self != nil) {
+        title = titleToSet;
+        subtitle = subtitleToSet;
+    }
+    return self;
+}
+
 -(NSString *)title {
     return title;
 }

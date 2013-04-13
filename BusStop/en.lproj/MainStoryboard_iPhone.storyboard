@@ -243,6 +243,9 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="FD2-HP-mux">
                                 <rect key="frame" x="0.0" y="44" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="n5f-fJ-TRK" id="4bc-uX-Xh1"/>
+                                </connections>
                             </mapView>
                             <searchBar contentMode="redraw" id="dBR-Wy-JnH">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

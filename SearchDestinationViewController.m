@@ -101,7 +101,11 @@
         NSLog(@"%@", placemark);
         
         CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(placemark.location.coordinate.latitude, placemark.location.coordinate.longitude);
-        BusStopAnnotation *annotation = [[BusStopAnnotation alloc] initWithCoordinate:coordinate];
+        NSDictionary *areaOfInterest = [NSDictionary dictionaryWithDictionary:placemark.addressDictionary];
+        NSString *addressSubtitle = [NSString stringWithFormat:@"%@, %@ %@", [areaOfInterest objectForKey:@"Street"], [areaOfInterest objectForKey:@"City"], placemark.administrativeArea];
+        BusStopAnnotation *annotation = [[BusStopAnnotation alloc] initWithTitle:placemark.name andSubtitle:addressSubtitle];
+        [annotation setAlertLatitude:[NSNumber numberWithDouble:coordinate.latitude]];
+        [annotation setAlertLongitude:[NSNumber numberWithDouble:coordinate.longitude]];
         [self.mapToDisplayAddressFromSearchBar setCenterCoordinate:coordinate];
         [self.mapToDisplayAddressFromSearchBar addAnnotation:annotation];
     });

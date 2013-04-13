@@ -27,7 +27,6 @@
         frame.size = CGSizeMake(30.0,40.0);
         [self setFrame:frame];
         [self setBackgroundColor:[UIColor clearColor]];
-        //[self setCenterOffset:CGPointMake(30.0, 42.0)];
     }
     return self;
 }
@@ -39,10 +38,12 @@
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect{
-    NSString *pinImage = [NSString stringWithFormat:@"stopsign_icon.png"];
-    [[UIImage imageNamed:pinImage] drawInRect:CGRectMake(0, 0, 30.0, 40.0)];
-    
+- (void)drawRect:(CGRect)rect {
+    BusStopAnnotation *alert = (BusStopAnnotation *)self.annotation;
+    if (alert != nil) {
+        NSString *pinImage = [NSString stringWithFormat:@"stopsign_icon.png"];
+        [[UIImage imageNamed:pinImage] drawInRect:CGRectMake(0, 0, 30.0, 30.0)];
+    }
 }
 
 @end

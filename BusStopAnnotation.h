@@ -25,5 +25,6 @@
 
 
 -(id)initWithCoordinate:(CLLocationCoordinate2D)setCoordinate;
+-(id)initWithTitle:(NSString *)title andSubtitle:(NSString *)subtitle;
 
 @end
