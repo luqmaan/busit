@@ -12,4 +12,6 @@
 
 @property (nonatomic, strong) NSArray *routes;
 
+-(IBAction)refresh:(id)sender;
+
 @end

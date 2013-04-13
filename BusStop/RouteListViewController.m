@@ -7,6 +7,7 @@
 //
 
 #import "RouteListViewController.h"
+#import "RouteStopsViewController.h"
 #import "RouteCell.h"
 #import "BusStopManager.h"
 
@@ -15,6 +16,11 @@
 @end
 
 @implementation RouteListViewController
+
+-(IBAction)refresh:(id)sender
+{
+    NSLog(@"refresh");
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -66,6 +72,21 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    NSString *segueId = [segue identifier];
+    if([@"showRouteStops" isEqualToString: segueId])
+    {
+        // which row was this?
+        RouteCell *rc = (RouteCell *)sender;
+        UITableView *tbl = (UITableView *)rc.superview;
+        NSIndexPath *ipx = [tbl indexPathForCell:rc];
+        
+        RouteStopsViewController *routesVC = (RouteStopsViewController *)[segue destinationViewController];
+        routesVC.currentRoute = self.routes[ipx.row];
+    }
 }
 
 @end

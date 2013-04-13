@@ -16,6 +16,7 @@
 		14ED356E1719D0D7009F6A11 /* bus_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 14ED356C1719D0D7009F6A11 /* bus_icon.png */; };
 		14ED356F1719D0D7009F6A11 /* stopsign_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 14ED356D1719D0D7009F6A11 /* stopsign_icon.png */; };
 		27125B7F1719C8AF00815280 /* RouteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27125B7E1719C8AF00815280 /* RouteCell.m */; };
+		27125B821719D61300815280 /* RouteStopsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27125B811719D61300815280 /* RouteStopsViewController.m */; };
 		2749E34917191872008FCDCD /* BusRoutes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2749E34717191872008FCDCD /* BusRoutes.xcdatamodeld */; };
 		2749E352171919B1008FCDCD /* _Route.m in Sources */ = {isa = PBXBuildFile; fileRef = 2749E34B171919B1008FCDCD /* _Route.m */; };
 		2749E353171919B1008FCDCD /* _Stop.m in Sources */ = {isa = PBXBuildFile; fileRef = 2749E34D171919B1008FCDCD /* _Stop.m */; };
@@ -53,9 +54,11 @@
 		14D0D3691719B662000A1F7B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		14ED356C1719D0D7009F6A11 /* bus_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bus_icon.png; sourceTree = "<group>"; };
 		14ED356D1719D0D7009F6A11 /* stopsign_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stopsign_icon.png; sourceTree = "<group>"; };
-		27125B7C1719C5D300815280 /* BusRoutes 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BusRoutes 2.xcdatamodel"; sourceTree = "<group>"; };
+		27125B7C1719C5D300815280 /* BusRoutes 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "BusRoutes 2.xcdatamodel"; sourceTree = "<group>"; };
 		27125B7D1719C8AF00815280 /* RouteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteCell.h; sourceTree = "<group>"; };
 		27125B7E1719C8AF00815280 /* RouteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteCell.m; sourceTree = "<group>"; };
+		27125B801719D61200815280 /* RouteStopsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteStopsViewController.h; sourceTree = "<group>"; };
+		27125B811719D61300815280 /* RouteStopsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteStopsViewController.m; sourceTree = "<group>"; };
 		2749E34817191872008FCDCD /* BusRoutes.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BusRoutes.xcdatamodel; sourceTree = "<group>"; };
 		2749E34A171919B1008FCDCD /* _Route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Route.h; sourceTree = "<group>"; };
 		2749E34B171919B1008FCDCD /* _Route.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Route.m; sourceTree = "<group>"; };
@@ -151,6 +154,7 @@
 				14CF285417190F0F00D69FB4 /* Maps */,
 				27C9C4EE1718F491005EAE68 /* REST */,
 				27C9C4CE1718EB87005EAE68 /* BusStop */,
+				27C9C4CF1718EB87005EAE68 /* Supporting Files */,
 				27C9C4C71718EB87005EAE68 /* Frameworks */,
 				27C9C4C61718EB87005EAE68 /* Products */,
 			);
@@ -199,9 +203,10 @@
 				27C9C4F217190FA1005EAE68 /* RouteListViewController.h */,
 				27C9C4F317190FA1005EAE68 /* RouteListViewController.m */,
 				2749E34717191872008FCDCD /* BusRoutes.xcdatamodeld */,
-				27C9C4CF1718EB87005EAE68 /* Supporting Files */,
 				27125B7D1719C8AF00815280 /* RouteCell.h */,
 				27125B7E1719C8AF00815280 /* RouteCell.m */,
+				27125B801719D61200815280 /* RouteStopsViewController.h */,
+				27125B811719D61300815280 /* RouteStopsViewController.m */,
 			);
 			path = BusStop;
 			sourceTree = "<group>";
@@ -218,6 +223,7 @@
 				27C9C4DE1718EB87005EAE68 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			path = BusStop;
 			sourceTree = "<group>";
 		};
 		27C9C4EE1718F491005EAE68 /* REST */ = {
@@ -316,6 +322,7 @@
 				14D0D36517191A43000A1F7B /* BusStopMapViewController.m in Sources */,
 				14D0D3681719AF20000A1F7B /* SearchDestinationViewController.m in Sources */,
 				27125B7F1719C8AF00815280 /* RouteCell.m in Sources */,
+				27125B821719D61300815280 /* RouteStopsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

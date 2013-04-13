@@ -47,11 +47,11 @@
             [self showHUD:@"Updating routes"];
         });
         
-        BusStopManager *mgr = [BusStopManager sharedManagerWithOnDiskStore];
-        [mgr updateBusRouteDataWithCompletion:^{
-            }
-            failure:^{
-        }];
+//        BusStopManager *mgr = [BusStopManager sharedManagerWithOnDiskStore];
+//        [mgr updateBusRouteDataWithCompletion:^{
+//            }
+//            failure:^{
+//        }];
         
         dispatch_sync(dispatch_get_main_queue(), ^{
             [self hideHUD];
