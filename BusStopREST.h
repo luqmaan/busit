@@ -18,5 +18,6 @@
 -(NSDictionary *)restToJSON:(NSString *)jsonURL;
 -(NSDictionary *)agencies;
 -(NSDictionary *)routesForAgency;
+-(NSDictionary *)stopsForRoute:(NSString *)routeId;
 
 @end

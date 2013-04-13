@@ -20,6 +20,8 @@
     NSLog(@"agencies %@", agencyInfo);
     NSDictionary *routes = [bench routesForAgency];
     NSLog(@"routes: %@", routes);
+    NSDictionary *stops = [bench stopsForRoute:@"Hillsborough Area Regional Transit_8"];
+    NSLog(@"stops: %@", stops);
     return YES;
 }
 							

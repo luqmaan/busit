@@ -32,6 +32,8 @@
     }
     
     NSDictionary *response = [NSJSONSerialization JSONObjectWithData:self.cumulativeData options:0 error:nil];
+    NSString *strData = [[NSString alloc] initWithData:self.cumulativeData encoding:NSUTF8StringEncoding];
+    [self.cumulativeData setLength:0];
     return response;
 }
 
@@ -43,6 +45,13 @@
 -(NSDictionary *)routesForAgency
 {
     return [self restToJSON:@"http://onebusaway.forest.usf.edu/api/api/where/routes-for-agency/Hillsborough%20Area%20Regional%20Transit.json"];
+}
+
+-(NSDictionary *)stopsForRoute:(NSString *)routeId
+{
+    NSString *encodedRouteId = [routeId stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+    NSMutableString *urlStr = [NSMutableString stringWithFormat:@"http://onebusaway.forest.usf.edu/api/api/where/stops-for-route/%@.json", encodedRouteId];
+    return [self restToJSON:urlStr];
 }
 
 #pragma mark - NSURLConnection/Data Delegates
