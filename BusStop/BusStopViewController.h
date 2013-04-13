@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MBProgressHUD.h"
 
-@interface BusStopViewController : UIViewController
+@interface BusStopViewController : UIViewController {
+    MBProgressHUD *hud;
+}
 
 @end

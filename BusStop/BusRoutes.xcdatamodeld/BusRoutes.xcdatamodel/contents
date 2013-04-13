@@ -4,6 +4,7 @@
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="shortName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="stops" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Stop" inverseName="relationship" inverseEntity="Stop" syncable="YES"/>
     </entity>
     <entity name="Stop" representedClassName="Stop" syncable="YES">
@@ -16,7 +17,7 @@
         <relationship name="relationship" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Route" inverseName="stops" inverseEntity="Route" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Route" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="Route" positionX="160" positionY="192" width="128" height="120"/>
         <element name="Stop" positionX="160" positionY="192" width="128" height="150"/>
     </elements>
 </model>

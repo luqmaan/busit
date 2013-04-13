@@ -10,9 +10,10 @@
 
 @interface BusStopManager : NSObject
 
--(void)updateBusRouteData;
+-(void)updateBusRouteDataWithCompletion:(void (^)(void))completion failure:(void (^)(void))failure;
 -(NSArray *)routes;
--(NSArray *)stopForRoute:(NSString *)routeId;
 -(NSDictionary *)detailsForRoute:(NSString *)routeId;
+-(NSArray *)stopsForRoute:(NSString *)routeId;
+-(NSDictionary *)detailsForStop:(NSString *)routeId;
 
 @end
