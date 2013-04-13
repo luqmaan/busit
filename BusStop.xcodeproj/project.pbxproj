@@ -11,6 +11,8 @@
 		145CAAA5171A101D00B49687 /* SearchStartingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 145CAAA4171A101D00B49687 /* SearchStartingViewController.m */; };
 		145CAAA8171A12CF00B49687 /* DestinationAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 145CAAA7171A12CF00B49687 /* DestinationAnnotation.m */; };
 		145CAAAD171A143900B49687 /* DestinationAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 145CAAAC171A143900B49687 /* DestinationAnnotationView.m */; };
+		145CAAB0171A14DC00B49687 /* btn_explore_routes.png in Resources */ = {isa = PBXBuildFile; fileRef = 145CAAAE171A14DC00B49687 /* btn_explore_routes.png */; };
+		145CAAB1171A14DC00B49687 /* btn_plan_a_route.png in Resources */ = {isa = PBXBuildFile; fileRef = 145CAAAF171A14DC00B49687 /* btn_plan_a_route.png */; };
 		14CF285317190F0800D69FB4 /* BusStopAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CF285217190F0800D69FB4 /* BusStopAnnotation.m */; };
 		14CF285617190F4D00D69FB4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14CF285517190F4D00D69FB4 /* MapKit.framework */; };
 		14D0D362171917D1000A1F7B /* BusStopAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D0D361171917D1000A1F7B /* BusStopAnnotationView.m */; };
@@ -55,6 +57,8 @@
 		145CAAA7171A12CF00B49687 /* DestinationAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DestinationAnnotation.m; sourceTree = "<group>"; };
 		145CAAAB171A143900B49687 /* DestinationAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DestinationAnnotationView.h; sourceTree = "<group>"; };
 		145CAAAC171A143900B49687 /* DestinationAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DestinationAnnotationView.m; sourceTree = "<group>"; };
+		145CAAAE171A14DC00B49687 /* btn_explore_routes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_explore_routes.png; sourceTree = "<group>"; };
+		145CAAAF171A14DC00B49687 /* btn_plan_a_route.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_plan_a_route.png; sourceTree = "<group>"; };
 		14CF285117190F0800D69FB4 /* BusStopAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusStopAnnotation.h; sourceTree = "<group>"; };
 		14CF285217190F0800D69FB4 /* BusStopAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusStopAnnotation.m; sourceTree = "<group>"; };
 		14CF285517190F4D00D69FB4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -169,6 +173,8 @@
 		14ED356B1719D0D7009F6A11 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				145CAAAE171A14DC00B49687 /* btn_explore_routes.png */,
+				145CAAAF171A14DC00B49687 /* btn_plan_a_route.png */,
 				145CAAA1171A0FAF00B49687 /* binoculars_icon.png */,
 				14ED356C1719D0D7009F6A11 /* bus_icon.png */,
 				14ED356D1719D0D7009F6A11 /* stopsign_icon.png */,
@@ -337,6 +343,8 @@
 				14ED356E1719D0D7009F6A11 /* bus_icon.png in Resources */,
 				14ED356F1719D0D7009F6A11 /* stopsign_icon.png in Resources */,
 				145CAAA2171A0FAF00B49687 /* binoculars_icon.png in Resources */,
+				145CAAB0171A14DC00B49687 /* btn_explore_routes.png in Resources */,
+				145CAAB1171A14DC00B49687 /* btn_plan_a_route.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
