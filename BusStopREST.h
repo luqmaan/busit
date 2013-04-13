@@ -8,11 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-@interface BusStopREST : NSObject <NSURLConnectionDelegate> {
-    NSMutableData *cumulativeData;
+@interface BusStopREST : NSObject <NSURLConnectionDelegate, NSURLConnectionDataDelegate> {
+    BOOL isFinished;
+    BOOL isScrewed;
 }
+
+@property (nonatomic, strong) NSMutableData *cumulativeData;
 
 -(NSDictionary *)restToJSON:(NSString *)jsonURL;
 -(NSDictionary *)agencies;
+-(NSDictionary *)routesForAgency;
 
 @end

@@ -7,12 +7,19 @@
 //
 
 #import "BusStopAppDelegate.h"
+#import "BusStopREST.h"
 
 @implementation BusStopAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    BusStopREST *bench = [[BusStopREST alloc] init];
+    NSDictionary *agencyInfo = [bench agencies];
+    NSLog(@"agencies %@", agencyInfo);
+    NSDictionary *routes = [bench routesForAgency];
+    NSLog(@"routes: %@", routes);
     return YES;
 }
 							
