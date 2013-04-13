@@ -7,6 +7,7 @@
 //
 
 #import "BusStopManager.h"
+#import "BusStopREST.h"
 
 @implementation BusStopManager
 

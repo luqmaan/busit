@@ -5,16 +5,16 @@
 
 
 extern const struct StopAttributes {
-	 NSString *code;
-	 NSString *direction;
-	 NSString *id;
-	 NSString *lat;
-	 NSString *lon;
-	 NSString *name;
+	__unsafe_unretained NSString *code;
+	__unsafe_unretained NSString *direction;
+	__unsafe_unretained NSString *id;
+	__unsafe_unretained NSString *lat;
+	__unsafe_unretained NSString *lon;
+	__unsafe_unretained NSString *name;
 } StopAttributes;
 
 extern const struct StopRelationships {
-	 NSString *relationship;
+	__unsafe_unretained NSString *relationship;
 } StopRelationships;
 
 extern const struct StopFetchedProperties {
@@ -42,7 +42,7 @@ extern const struct StopFetchedProperties {
 
 
 
-@property (nonatomic, retain) NSString* code;
+@property (nonatomic, strong) NSString* code;
 
 
 
@@ -52,7 +52,7 @@ extern const struct StopFetchedProperties {
 
 
 
-@property (nonatomic, retain) NSString* direction;
+@property (nonatomic, strong) NSString* direction;
 
 
 
@@ -62,7 +62,7 @@ extern const struct StopFetchedProperties {
 
 
 
-@property (nonatomic, retain) NSString* id;
+@property (nonatomic, strong) NSString* id;
 
 
 
@@ -72,7 +72,7 @@ extern const struct StopFetchedProperties {
 
 
 
-@property (nonatomic, retain) NSNumber* lat;
+@property (nonatomic, strong) NSNumber* lat;
 
 
 
@@ -86,7 +86,7 @@ extern const struct StopFetchedProperties {
 
 
 
-@property (nonatomic, retain) NSNumber* lon;
+@property (nonatomic, strong) NSNumber* lon;
 
 
 
@@ -100,7 +100,7 @@ extern const struct StopFetchedProperties {
 
 
 
-@property (nonatomic, retain) NSString* name;
+@property (nonatomic, strong) NSString* name;
 
 
 
@@ -110,7 +110,7 @@ extern const struct StopFetchedProperties {
 
 
 
-@property (nonatomic, retain) Route *relationship;
+@property (nonatomic, strong) Route *relationship;
 
 //- (BOOL)validateRelationship:(id*)value_ error:(NSError**)error_;
 

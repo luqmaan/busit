@@ -5,13 +5,13 @@
 
 
 extern const struct RouteAttributes {
-	 NSString *id;
-	 NSString *name;
-	 NSString *shortName;
+	__unsafe_unretained NSString *id;
+	__unsafe_unretained NSString *name;
+	__unsafe_unretained NSString *shortName;
 } RouteAttributes;
 
 extern const struct RouteRelationships {
-	 NSString *stops;
+	__unsafe_unretained NSString *stops;
 } RouteRelationships;
 
 extern const struct RouteFetchedProperties {
@@ -36,7 +36,7 @@ extern const struct RouteFetchedProperties {
 
 
 
-@property (nonatomic, retain) NSString* id;
+@property (nonatomic, strong) NSString* id;
 
 
 
@@ -46,7 +46,7 @@ extern const struct RouteFetchedProperties {
 
 
 
-@property (nonatomic, retain) NSString* name;
+@property (nonatomic, strong) NSString* name;
 
 
 
@@ -56,7 +56,7 @@ extern const struct RouteFetchedProperties {
 
 
 
-@property (nonatomic, retain) NSString* shortName;
+@property (nonatomic, strong) NSString* shortName;
 
 
 
@@ -66,7 +66,7 @@ extern const struct RouteFetchedProperties {
 
 
 
-@property (nonatomic, retain) NSSet *stops;
+@property (nonatomic, strong) NSSet *stops;
 
 - (NSMutableSet*)stopsSet;
 

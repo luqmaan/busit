@@ -10,4 +10,9 @@
 
 @interface BusStopManager : NSObject
 
+-(void)updateBusRouteData;
+-(NSArray *)routes;
+-(NSArray *)stopForRoute:(NSString *)routeId;
+-(NSDictionary *)detailsForRoute:(NSString *)routeId;
+
 @end
