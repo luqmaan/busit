@@ -12,9 +12,10 @@
 #import "Route.h"
 #import "Stop.h"
 
-@interface RouteStopsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate> {
+@interface RouteStopsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate, CLLocationManagerDelegate> {
     CLLocation *newLocation;
     NSInteger currentIndex;
+    CLLocationManager *mgr;
 }
 
 @property (nonatomic, weak) IBOutlet UILabel *addressLabel;

@@ -7,6 +7,8 @@
 //
 
 #import "StopScheduleViewController.h"
+#import "ScheduleRouteChooserViewController.h"
+#import "FPPopoverController.h"
 #import "ScheduleCell.h"
 #import "MBProgressHUD.h"
 #import "BusStopREST.h"
@@ -16,23 +18,6 @@
 @end
 
 @implementation StopScheduleViewController
-
--(IBAction)routerFilterTapped:(id)sender
-{
-    NSLog(@"filter routes");
-    
-#if 0
-   //the view controller you want to present as popover
-    YourViewController *controller = [[YourViewController alloc] init]; 
-
-    //our popover
-    FPPopoverController *popover = [[FPPopoverController alloc] initWithViewController:controller]; 
-
-    //the popover will be presented from the okButton view 
-    [popover presentPopoverFromView:okButton]; 
-#endif
-
-}
 
 -(void)updateCurrentTime
 {
@@ -194,6 +179,11 @@
     cell.departureLabel.text = row[@"departs"];
     
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"yeah");
 }
 
 @end

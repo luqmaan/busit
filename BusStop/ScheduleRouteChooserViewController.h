@@ -15,6 +15,7 @@
 @interface ScheduleRouteChooserViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) NSDictionary *routes;
+@property (nonatomic, strong) NSArray *routeKeys;
 @property (nonatomic, weak) id<ScheduleRouteChooserDelegate> delegate;
 
 @end

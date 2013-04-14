@@ -6,6 +6,9 @@
 //  Copyright (c) 2013 0xC0ffee. All rights reserved.
 //
 
+#import <MapKit/MapKit.h>
+#import "BusStopAnnotation.h"
+#import "BusStopAnnotationView.h"
 #import "BusStopAppDelegate.h"
 #import "RouteStopsViewController.h"
 #import "StopScheduleViewController.h"
@@ -39,6 +42,59 @@
     newLocation = delegate.mgr.location;
     [self recomputeDistances];
     [self.stopsTable reloadData];
+}
+
+#if 0
+
+-(void)displayPlacemarks:(NSArray *)arrayOfPlacemarks {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.placemarkToPass = [arrayOfPlacemarks objectAtIndex:0];
+        NSLog(@"%@", self.placemarkToPass);
+        CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(self.placemarkToPass.location.coordinate.latitude, self.placemarkToPass.location.coordinate.longitude);
+        NSDictionary *areaOfInterest = [NSDictionary dictionaryWithDictionary:self.placemarkToPass.addressDictionary];
+        NSString *addressSubtitle = [NSString stringWithFormat:@"%@, %@ %@", [areaOfInterest objectForKey:@"Street"], [areaOfInterest objectForKey:@"City"], self.placemarkToPass.administrativeArea];
+        DestinationAnnotation *annotation = [[DestinationAnnotation alloc] initWithTitle:addressSubtitle andSubtitle:@"Click to advance"];
+        [annotation setAlertLatitude:[NSNumber numberWithDouble:coordinate.latitude]];
+        [annotation setAlertLongitude:[NSNumber numberWithDouble:coordinate.longitude]];
+        [self.mapToDisplayAddressFromSearchBar setCenterCoordinate:coordinate];
+        NSArray *existingAnnotations = [NSArray arrayWithArray:self.mapToDisplayAddressFromSearchBar.annotations];
+        if ([existingAnnotations count] > 0) {
+            [self.mapToDisplayAddressFromSearchBar removeAnnotations:existingAnnotations];
+        }
+        [self.mapToDisplayAddressFromSearchBar addAnnotation:annotation];
+        [self.nextButton setEnabled:YES];
+    });
+}
+
+#endif
+
+-(void)moveMapToLocationWithLatitude:(double)lat andLongitude:(double)lon
+{
+    CLLocationCoordinate2D coord;
+    coord.latitude = lat;
+    coord.longitude = lon;
+    MKCoordinateSpan span;
+    span.latitudeDelta = .1/111.699;
+    span.longitudeDelta = .1/111.321;
+    
+    MKCoordinateRegion rgn = MKCoordinateRegionMake(coord, span);
+    [self.stopMap setRegion:rgn];
+    
+    CLLocation *location = [[CLLocation alloc] initWithLatitude:lat longitude:lon];
+    
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];//<#^(NSArray *placemarks, NSError *error)completionHandler#>
+    [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
+        CLPlacemark *placemark = [placemarks objectAtIndex:0];
+        NSString *str = [NSString stringWithFormat:@"%@ %@ %@", placemark.addressDictionary[@"Street"], placemark.addressDictionary[@"City"], placemark.addressDictionary[@"State"]];
+        self.addressLabel.text = str;
+    }];
+    
+    BusStopAnnotation *annotation = [[BusStopAnnotation alloc] initWithCoordinate:coord];
+    
+}
+
+-(void)geocodeLatitude:(double)lat andLongitude:(double)lon
+{
 }
 
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -126,6 +182,8 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     currentIndex = indexPath.row;
+    Stop *busStop = self.stops[indexPath.row];
+    [self moveMapToLocationWithLatitude:[busStop.lat doubleValue] andLongitude:[busStop.lon doubleValue]];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -134,5 +192,7 @@
     StopScheduleViewController *stopSchedVC = (StopScheduleViewController *)[segue destinationViewController];
     stopSchedVC.busStop = busStop;
 }
+
+#pragma mark - Map View delegates
 
 @end
