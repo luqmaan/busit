@@ -89,12 +89,13 @@
         [customPinView setCanShowCallout:YES];
         
         customPinView.opaque = NO;
-        
-        UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-        customPinView.rightCalloutAccessoryView = rightButton;
         return customPinView;
     }
     return nil;
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
 }
 
 -(void)setInitialMapZoom{

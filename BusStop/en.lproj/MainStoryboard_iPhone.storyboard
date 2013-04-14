@@ -381,10 +381,8 @@
             </objects>
             <point key="canvasLocation" x="398" y="-756"/>
         </scene>
-        <!--Table View Controller - Possible Routes-->
         <scene sceneID="99h-hs-qAu">
             <objects>
-                <tableViewController id="uNE-P4-wXK" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="n6X-2t-Ejs">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
