@@ -28,6 +28,7 @@
 		14E63F42171A2AB2000A4013 /* startflag_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 14E63F3D171A2AB2000A4013 /* startflag_icon.png */; };
 		14E63F44171A2AF3000A4013 /* AppIcon@57.png in Resources */ = {isa = PBXBuildFile; fileRef = 14E63F43171A2AF3000A4013 /* AppIcon@57.png */; };
 		14E63F46171A2B04000A4013 /* AppIcon@114.png in Resources */ = {isa = PBXBuildFile; fileRef = 14E63F45171A2B04000A4013 /* AppIcon@114.png */; };
+		14E63F4D171A2F04000A4013 /* BusRouteOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E63F4C171A2F04000A4013 /* BusRouteOptionsViewController.m */; };
 		14ED356E1719D0D7009F6A11 /* bus_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 14ED356C1719D0D7009F6A11 /* bus_icon.png */; };
 		14ED356F1719D0D7009F6A11 /* stopsign_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 14ED356D1719D0D7009F6A11 /* stopsign_icon.png */; };
 		14ED35721719D632009F6A11 /* BusStopManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14ED35711719D632009F6A11 /* BusStopManager.m */; };
@@ -94,6 +95,10 @@
 		14E63F3B171A2AB2000A4013 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "app_icons/Default-568h@2x.png"; sourceTree = "<group>"; };
 		14E63F3C171A2AB2000A4013 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "app_icons/Default@2x.png"; sourceTree = "<group>"; };
 		14E63F3D171A2AB2000A4013 /* startflag_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = startflag_icon.png; sourceTree = "<group>"; };
+		14E63F43171A2AF3000A4013 /* AppIcon@57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppIcon@57.png"; path = "../AppIcon@57.png"; sourceTree = "<group>"; };
+		14E63F45171A2B04000A4013 /* AppIcon@114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppIcon@114.png"; path = "../AppIcon@114.png"; sourceTree = "<group>"; };
+		14E63F4B171A2F04000A4013 /* BusRouteOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusRouteOptionsViewController.h; sourceTree = "<group>"; };
+		14E63F4C171A2F04000A4013 /* BusRouteOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusRouteOptionsViewController.m; sourceTree = "<group>"; };
 		14ED356C1719D0D7009F6A11 /* bus_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bus_icon.png; sourceTree = "<group>"; };
 		14ED356D1719D0D7009F6A11 /* stopsign_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stopsign_icon.png; sourceTree = "<group>"; };
 		14ED35701719D632009F6A11 /* BusStopManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusStopManager.h; sourceTree = "<group>"; };
@@ -223,9 +228,20 @@
 			name = Maps;
 			sourceTree = "<group>";
 		};
+		14E63F4A171A2EDE000A4013 /* RouteForUserTrip */ = {
+			isa = PBXGroup;
+			children = (
+				14E63F4B171A2F04000A4013 /* BusRouteOptionsViewController.h */,
+				14E63F4C171A2F04000A4013 /* BusRouteOptionsViewController.m */,
+			);
+			name = RouteForUserTrip;
+			sourceTree = "<group>";
+		};
 		14ED356B1719D0D7009F6A11 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				14E63F45171A2B04000A4013 /* AppIcon@114.png */,
+				14E63F43171A2AF3000A4013 /* AppIcon@57.png */,
 				14E63F3B171A2AB2000A4013 /* Default-568h@2x.png */,
 				14E63F3C171A2AB2000A4013 /* Default@2x.png */,
 				14E63F3D171A2AB2000A4013 /* startflag_icon.png */,
@@ -252,6 +268,7 @@
 		27C9C4BC1718EB87005EAE68 = {
 			isa = PBXGroup;
 			children = (
+				14E63F4A171A2EDE000A4013 /* RouteForUserTrip */,
 				14ED356B1719D0D7009F6A11 /* images */,
 				2749E35817191BFD008FCDCD /* BusStopData */,
 				14CF285417190F0F00D69FB4 /* Maps */,
@@ -461,11 +478,15 @@
 				27125B8C171A1F7900815280 /* StopSchedule.m in Sources */,
 				145CAAB5171A164900B49687 /* UserStartAnnotationView.m in Sources */,
 				145CAAB8171A168600B49687 /* UserStartAnnotation.m in Sources */,
+<<<<<<< HEAD
 				27125B8F171A2A0C00815280 /* ScheduleCell.m in Sources */,
 				27125B92171A2AD900815280 /* StopScheduleViewController.m in Sources */,
 				27125B99171A2BC100815280 /* FPPopoverController.m in Sources */,
 				27125B9A171A2BC100815280 /* FPPopoverView.m in Sources */,
 				27125B9B171A2BC100815280 /* FPTouchView.m in Sources */,
+=======
+				14E63F4D171A2F04000A4013 /* BusRouteOptionsViewController.m in Sources */,
+>>>>>>> added viewcontroller
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
