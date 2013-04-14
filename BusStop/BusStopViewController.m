@@ -47,6 +47,7 @@
             [self showHUD:@"Updating routes"];
         });
         #if 0
+        #if 1
         BusStopManager *mgr = [BusStopManager sharedManagerWithOnDiskStore];
         [mgr updateBusRouteDataWithCompletion:^{
             }

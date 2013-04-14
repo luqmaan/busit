@@ -478,15 +478,12 @@
 				27125B8C171A1F7900815280 /* StopSchedule.m in Sources */,
 				145CAAB5171A164900B49687 /* UserStartAnnotationView.m in Sources */,
 				145CAAB8171A168600B49687 /* UserStartAnnotation.m in Sources */,
-<<<<<<< HEAD
 				27125B8F171A2A0C00815280 /* ScheduleCell.m in Sources */,
 				27125B92171A2AD900815280 /* StopScheduleViewController.m in Sources */,
 				27125B99171A2BC100815280 /* FPPopoverController.m in Sources */,
 				27125B9A171A2BC100815280 /* FPPopoverView.m in Sources */,
 				27125B9B171A2BC100815280 /* FPTouchView.m in Sources */,
-=======
 				14E63F4D171A2F04000A4013 /* BusRouteOptionsViewController.m in Sources */,
->>>>>>> added viewcontroller
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
