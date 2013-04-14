@@ -136,7 +136,7 @@
                                 </connections>
                             </webView>
                         </subviews>
-                        <color key="backgroundColor" red="0.24509752779999999" green="0.67590862770000004" blue="0.1158370225" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.49019607843137253" green="0.67843137254901964" blue="0.79607843137254897" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="HART Transit Guide" id="XdA-Pp-d5l"/>
                     <connections>
