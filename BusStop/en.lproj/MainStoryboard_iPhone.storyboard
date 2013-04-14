@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
-        <!--Bus Stop View Controller - Bus It-->
+        <!--Bus Stop View Controller - Bus it! Hillsborough-->
         <scene sceneID="5">
             <objects>
                 <viewController id="2" customClass="BusStopViewController" sceneMemberID="viewController">
@@ -42,14 +42,25 @@
                                     <segue destination="uLg-q7-Ivs" kind="push" id="2BQ-hl-9AK"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="busit_title.png" id="Tu3-ZN-OgS">
-                                <rect key="frame" x="0.0" y="333" width="320" height="171"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fWX-ta-7Fk">
+                                <rect key="frame" x="0.0" y="339" width="320" height="166"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Button" image="busit_title.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Vka-dc-8DK" kind="push" id="7NC-6e-Qos"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Bus It" id="5Yp-FN-aDo"/>
+                    <navigationItem key="navigationItem" title="Bus it! Hillsborough" id="5Yp-FN-aDo"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
@@ -107,6 +118,34 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LPA-Ke-tLv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-25" y="-33"/>
+        </scene>
+        <!--Map Web View Controller - HART Transit Guide-->
+        <scene sceneID="I35-Qa-e15">
+            <objects>
+                <viewController id="Vka-dc-8DK" customClass="MapWebViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1bZ-uL-GO5">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" scalesPageToFit="YES" id="rW0-Og-L7R">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Vka-dc-8DK" id="jQk-oG-Png"/>
+                                </connections>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="HART Transit Guide" id="XdA-Pp-d5l"/>
+                    <connections>
+                        <outlet property="webView" destination="rW0-Og-L7R" id="fye-2k-r8K"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S7s-2P-hVy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-74" y="704"/>
         </scene>
         <!--Route Stops View Controller - Route Stops-->
         <scene sceneID="h9W-Sk-rSQ">
@@ -488,6 +527,12 @@
         </class>
         <class className="BusStopViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/BusStopViewController.h"/>
+        </class>
+        <class className="MapWebViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MapWebViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
+            </relationships>
         </class>
         <class className="RouteCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RouteCell.h"/>
