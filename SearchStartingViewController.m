@@ -9,6 +9,7 @@
 #import "SearchStartingViewController.h"
 #import "UserStartAnnotation.h"
 #import "UserStartAnnotationView.h"
+#import "BusRouteOptionsViewController.h"
 
 @interface SearchStartingViewController ()
 
@@ -64,6 +65,10 @@
         [annotation setAlertLatitude:[NSNumber numberWithDouble:coordinate.latitude]];
         [annotation setAlertLongitude:[NSNumber numberWithDouble:coordinate.longitude]];
         [self.mapView setCenterCoordinate:coordinate];
+        NSArray *existingAnnotations = [NSArray arrayWithArray:self.mapView.annotations];
+        if ([existingAnnotations count] > 0) {
+            [self.mapView removeAnnotations:existingAnnotations];
+        }
         [self.mapView addAnnotation:annotation];
     });
 }
@@ -95,7 +100,9 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
+    BusRouteOptionsViewController *destination = [segue destinationViewController];
+    [destination setDestinationPlacemark:[self.placemarkFromDestination objectAtIndex:0]];
+    [destination setStartingPlacemark:self.placemarkToPass];
 }
 
 -(void)setInitialMapZoom{

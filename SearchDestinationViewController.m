@@ -30,6 +30,7 @@
 {
     [super viewDidLoad];
     [self setInitialMapZoom];
+    [self.nextButton setEnabled:NO];
     [self.searchBarForAddress setDelegate:self];
     [self.searchBarForAddress setAutocorrectionType:UITextAutocorrectionTypeNo];
 }
@@ -86,8 +87,17 @@
         [annotation setAlertLatitude:[NSNumber numberWithDouble:coordinate.latitude]];
         [annotation setAlertLongitude:[NSNumber numberWithDouble:coordinate.longitude]];
         [self.mapToDisplayAddressFromSearchBar setCenterCoordinate:coordinate];
+        NSArray *existingAnnotations = [NSArray arrayWithArray:self.mapToDisplayAddressFromSearchBar.annotations];
+        if ([existingAnnotations count] > 0) {
+            [self.mapToDisplayAddressFromSearchBar removeAnnotations:existingAnnotations];
+        }
         [self.mapToDisplayAddressFromSearchBar addAnnotation:annotation];
+        [self.nextButton setEnabled:YES];
     });
+}
+
+- (IBAction)nextButtonPressed:(id)sender {
+    [self performSegueWithIdentifier:@"toStartingPoint" sender:self];
 }
 
 -(void)displayError:(NSString *)errorMessage {
@@ -153,4 +163,8 @@
     [super didReceiveMemoryWarning];
 }
 
+- (void)viewDidUnload {
+    [self setNextButton:nil];
+    [super viewDidUnload];
+}
 @end

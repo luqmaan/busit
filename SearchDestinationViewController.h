@@ -14,8 +14,10 @@
     CLLocationManager *locationManager;
     MBProgressHUD *hud;
 }
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *nextButton;
 @property (weak, nonatomic) IBOutlet MKMapView *mapToDisplayAddressFromSearchBar;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBarForAddress;
+- (IBAction)nextButtonPressed:(id)sender;
 
 -(void)displayError:(NSString *)errorMessage;
 

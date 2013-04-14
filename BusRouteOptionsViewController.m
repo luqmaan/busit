@@ -25,6 +25,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSLog(@"Destination: %@", _destinationPlacemark);
+    NSLog(@"Starting: %@", _startingPlacemark);
 }
 
 - (void)didReceiveMemoryWarning

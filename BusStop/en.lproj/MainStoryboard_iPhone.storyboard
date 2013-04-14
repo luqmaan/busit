@@ -317,9 +317,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Your Destination" id="Bmx-oP-Kvr"/>
+                    <navigationItem key="navigationItem" title="Your Destination" id="Bmx-oP-Kvr">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="K4R-ad-srV">
+                            <connections>
+                                <action selector="nextButtonPressed:" destination="n5f-fJ-TRK" id="ica-ww-e23"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="mapToDisplayAddressFromSearchBar" destination="FD2-HP-mux" id="Nn0-Jt-fqx"/>
+                        <outlet property="nextButton" destination="K4R-ad-srV" id="za0-ls-KyW"/>
                         <outlet property="searchBarForAddress" destination="dBR-Wy-JnH" id="McA-OK-KB0"/>
                         <segue destination="Jvl-5D-Kp0" kind="push" identifier="toStartingPoint" id="oyQ-TL-t8i"/>
                     </connections>
@@ -463,7 +470,9 @@
         <class className="SearchDestinationViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchDestinationViewController.h"/>
             <relationships>
+                <relationship kind="action" name="nextButtonPressed:"/>
                 <relationship kind="outlet" name="mapToDisplayAddressFromSearchBar" candidateClass="MKMapView"/>
+                <relationship kind="outlet" name="nextButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="searchBarForAddress" candidateClass="UISearchBar"/>
             </relationships>
         </class>
