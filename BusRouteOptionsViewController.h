@@ -13,4 +13,6 @@
 
 @property (nonatomic, strong) CLPlacemark *destinationPlacemark;
 @property (nonatomic, strong) CLPlacemark *startingPlacemark;
+
+@property (nonatomic, strong) NSArray *possibleRoutes;
 @end

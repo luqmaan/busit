@@ -1,0 +1,18 @@
+fetch stop with closest coordinates to destination, verify stop is going in correct direction
+fetch stop with closest coordinates to start point, verify route has correct heading
+call next stop in route
+
+
+
+since were only covering Hillsborough, I like "depth first search style"
+If original stop coordinate heading is N, head north until next-next stop coordinate is beyond destination
+    at which point fetch potential routes heading E/W, check next 2 stops (from the N route) to see which is closer
+
+Idk, I'll think on it some more, I'm starting to get a bit delusional
+
+
+swtich (original-stop-heading)
+case 0: N continue N
+case 1: E continue E
+case 2: S continue S
+case 3: W continue W
