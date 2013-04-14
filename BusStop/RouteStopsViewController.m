@@ -8,6 +8,7 @@
 
 #import "BusStopAppDelegate.h"
 #import "RouteStopsViewController.h"
+#import "StopScheduleViewController.h"
 #import "StopCell.h"
 
 @interface RouteStopsViewController ()
@@ -121,7 +122,19 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    [self performSegueWithIdentifier:@"showStopSchedule" sender:cell];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    NSIndexPath *indexPath;
+    UITableViewCell *cell = (UITableViewCell *)sender;
+    UITableView *table = (UITableView *)[cell superview];
+    indexPath = [table indexPathForCell:cell];
+    Stop *busStop = self.stops[indexPath.row];
+    StopScheduleViewController *stopSchedVC = (StopScheduleViewController *)[segue destinationViewController];
+    stopSchedVC.busStop = busStop;
 }
 
 @end

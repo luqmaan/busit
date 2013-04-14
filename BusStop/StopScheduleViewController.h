@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Stop.h"
 
 @interface StopScheduleViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, strong) NSString *busStopID;
+@property (nonatomic, strong) Stop *busStop;
 
 @property (nonatomic, strong) NSArray *allEntries;
 @property (nonatomic, strong) NSMutableArray *visibleEntries;

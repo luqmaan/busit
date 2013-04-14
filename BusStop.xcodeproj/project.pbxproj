@@ -44,6 +44,7 @@
 		27125B99171A2BC100815280 /* FPPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27125B94171A2BC100815280 /* FPPopoverController.m */; };
 		27125B9A171A2BC100815280 /* FPPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 27125B96171A2BC100815280 /* FPPopoverView.m */; };
 		27125B9B171A2BC100815280 /* FPTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 27125B98171A2BC100815280 /* FPTouchView.m */; };
+		27125B9F171AB87E00815280 /* ScheduleRouteChooserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27125B9E171AB87E00815280 /* ScheduleRouteChooserViewController.m */; };
 		2749E34917191872008FCDCD /* BusRoutes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2749E34717191872008FCDCD /* BusRoutes.xcdatamodeld */; };
 		2749E352171919B1008FCDCD /* _Route.m in Sources */ = {isa = PBXBuildFile; fileRef = 2749E34B171919B1008FCDCD /* _Route.m */; };
 		2749E353171919B1008FCDCD /* _Stop.m in Sources */ = {isa = PBXBuildFile; fileRef = 2749E34D171919B1008FCDCD /* _Stop.m */; };
@@ -130,6 +131,8 @@
 		27125B97171A2BC100815280 /* FPTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPTouchView.h; sourceTree = "<group>"; };
 		27125B98171A2BC100815280 /* FPTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPTouchView.m; sourceTree = "<group>"; };
 		27125B9C171A35FD00815280 /* ARCMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARCMacros.h; sourceTree = "<group>"; };
+		27125B9D171AB87E00815280 /* ScheduleRouteChooserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleRouteChooserViewController.h; sourceTree = "<group>"; };
+		27125B9E171AB87E00815280 /* ScheduleRouteChooserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleRouteChooserViewController.m; sourceTree = "<group>"; };
 		2749E34817191872008FCDCD /* BusRoutes.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BusRoutes.xcdatamodel; sourceTree = "<group>"; };
 		2749E34A171919B1008FCDCD /* _Route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Route.h; sourceTree = "<group>"; };
 		2749E34B171919B1008FCDCD /* _Route.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Route.m; sourceTree = "<group>"; };
@@ -343,6 +346,8 @@
 				27125B8E171A2A0C00815280 /* ScheduleCell.m */,
 				27125B90171A2AD900815280 /* StopScheduleViewController.h */,
 				27125B91171A2AD900815280 /* StopScheduleViewController.m */,
+				27125B9D171AB87E00815280 /* ScheduleRouteChooserViewController.h */,
+				27125B9E171AB87E00815280 /* ScheduleRouteChooserViewController.m */,
 			);
 			path = BusStop;
 			sourceTree = "<group>";
@@ -492,6 +497,7 @@
 				27125B9A171A2BC100815280 /* FPPopoverView.m in Sources */,
 				27125B9B171A2BC100815280 /* FPTouchView.m in Sources */,
 				14E63F4D171A2F04000A4013 /* BusRouteOptionsViewController.m in Sources */,
+				27125B9F171AB87E00815280 /* ScheduleRouteChooserViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
