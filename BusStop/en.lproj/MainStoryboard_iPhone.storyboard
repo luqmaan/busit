@@ -13,6 +13,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="X3n-X4-dwa">
+                                <rect key="frame" x="34" y="51" width="252" height="109"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" image="btn_plan_a_route.png">
@@ -27,6 +28,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="dBR-Qn-hvN">
+                                <rect key="frame" x="34" y="192" width="252" height="110"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Explore Routes" image="btn_explore_routes.png">
@@ -40,6 +42,10 @@
                                     <segue destination="uLg-q7-Ivs" kind="push" id="2BQ-hl-9AK"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="busit_title.png" id="Tu3-ZN-OgS">
+                                <rect key="frame" x="0.0" y="333" width="320" height="171"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -415,6 +421,7 @@
     <resources>
         <image name="btn_explore_routes.png" width="519" height="226"/>
         <image name="btn_plan_a_route.png" width="519" height="226"/>
+        <image name="busit_title.png" width="640" height="340"/>
     </resources>
     <classes>
         <class className="BusRouteOptionsViewController" superclassName="UITableViewController">
@@ -480,6 +487,7 @@
             <relationships>
                 <relationship kind="action" name="routerFilterTapped:"/>
                 <relationship kind="outlet" name="currentTimeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="slotsTable" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="stopNameLabel" candidateClass="UILabel"/>
             </relationships>
         </class>

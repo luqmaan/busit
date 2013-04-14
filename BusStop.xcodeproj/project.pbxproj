@@ -29,6 +29,7 @@
 		14E63F44171A2AF3000A4013 /* AppIcon@57.png in Resources */ = {isa = PBXBuildFile; fileRef = 14E63F43171A2AF3000A4013 /* AppIcon@57.png */; };
 		14E63F46171A2B04000A4013 /* AppIcon@114.png in Resources */ = {isa = PBXBuildFile; fileRef = 14E63F45171A2B04000A4013 /* AppIcon@114.png */; };
 		14E63F4D171A2F04000A4013 /* BusRouteOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E63F4C171A2F04000A4013 /* BusRouteOptionsViewController.m */; };
+		14E63F4F171A3AA3000A4013 /* busit_title.png in Resources */ = {isa = PBXBuildFile; fileRef = 14E63F4E171A3AA3000A4013 /* busit_title.png */; };
 		14ED356E1719D0D7009F6A11 /* bus_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 14ED356C1719D0D7009F6A11 /* bus_icon.png */; };
 		14ED356F1719D0D7009F6A11 /* stopsign_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 14ED356D1719D0D7009F6A11 /* stopsign_icon.png */; };
 		14ED35721719D632009F6A11 /* BusStopManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14ED35711719D632009F6A11 /* BusStopManager.m */; };
@@ -99,6 +100,7 @@
 		14E63F45171A2B04000A4013 /* AppIcon@114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppIcon@114.png"; path = "../AppIcon@114.png"; sourceTree = "<group>"; };
 		14E63F4B171A2F04000A4013 /* BusRouteOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusRouteOptionsViewController.h; sourceTree = "<group>"; };
 		14E63F4C171A2F04000A4013 /* BusRouteOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusRouteOptionsViewController.m; sourceTree = "<group>"; };
+		14E63F4E171A3AA3000A4013 /* busit_title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = busit_title.png; sourceTree = "<group>"; };
 		14ED356C1719D0D7009F6A11 /* bus_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bus_icon.png; sourceTree = "<group>"; };
 		14ED356D1719D0D7009F6A11 /* stopsign_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stopsign_icon.png; sourceTree = "<group>"; };
 		14ED35701719D632009F6A11 /* BusStopManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusStopManager.h; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 		14ED356B1719D0D7009F6A11 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				14E63F4E171A3AA3000A4013 /* busit_title.png */,
 				14E63F45171A2B04000A4013 /* AppIcon@114.png */,
 				14E63F43171A2AF3000A4013 /* AppIcon@57.png */,
 				14E63F3B171A2AB2000A4013 /* Default-568h@2x.png */,
@@ -442,6 +445,7 @@
 				14E63F42171A2AB2000A4013 /* startflag_icon.png in Resources */,
 				14E63F44171A2AF3000A4013 /* AppIcon@57.png in Resources */,
 				14E63F46171A2B04000A4013 /* AppIcon@114.png in Resources */,
+				14E63F4F171A3AA3000A4013 /* busit_title.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
