@@ -24,7 +24,7 @@
     </entity>
     <elements>
         <element name="Route" positionX="160" positionY="192" width="128" height="150"/>
-        <element name="Stop" positionX="358" positionY="120" width="128" height="165"/>
-        <element name="RouteId" positionX="160" positionY="192" width="128" height="60"/>
+        <element name="RouteId" positionX="565" positionY="390" width="128" height="60"/>
+        <element name="Stop" positionX="378" positionY="243" width="128" height="165"/>
     </elements>
 </model>

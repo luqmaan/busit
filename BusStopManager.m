@@ -197,17 +197,26 @@
     if(nil != currentTestingLocation)
     {
         NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Stop"];
-        fetchRequest.resultType = NSDictionaryResultType;
+        fetchRequest.resultType = NSManagedObjectResultType;
         NSArray *rows = [self.context executeFetchRequest:fetchRequest error:nil];
-        for( NSDictionary *busStop in rows )
+        for( Stop *busStop in rows )
         {
-            CLLocation *busStopLocation = [[CLLocation alloc] initWithLatitude:[busStop[@"lat"] doubleValue] longitude:[busStop[@"lon"] doubleValue]];
+            CLLocation *busStopLocation = [[CLLocation alloc] initWithLatitude:[busStop.lat doubleValue] longitude:[busStop.lon doubleValue]];
             double distanceAwayInMeters = [busStopLocation distanceFromLocation:currentTestingLocation];
+            NSSet *setOfRouteIDs = busStop.routeIds;
+            NSArray *routeIDs = [NSArray arrayWithArray:[setOfRouteIDs allObjects]];
             if(distanceAwayInMeters<=distanceInMeters && closeStops.count<numStopsToReturn)
             {
-                NSMutableDictionary *dBusStop = [[NSMutableDictionary alloc] initWithDictionary:busStop];
-                dBusStop[@"distance"] = @(distanceAwayInMeters);
-                [closeStops addObject:dBusStop];
+                NSMutableDictionary *tempBusStop = [NSMutableDictionary dictionary];
+                tempBusStop[@"lat"] = busStop.lat;
+                tempBusStop[@"lon"] = busStop.lon;
+                tempBusStop[@"routeID"] = [busStop.routeIds allObjects];
+                tempBusStop[@"code"] = busStop.code;
+                tempBusStop[@"direction"] = busStop.direction;
+                tempBusStop[@"id"] = busStop.id;
+                tempBusStop[@"name"] = busStop.name;
+                tempBusStop[@"distance"] = @(distanceAwayInMeters);
+                [closeStops addObject:tempBusStop];
             }
             busStopLocation = nil;
         }
