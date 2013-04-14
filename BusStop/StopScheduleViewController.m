@@ -150,9 +150,11 @@
         self.allEntries[routeId] = trips;
     }
     
-    self.currentRouteId = stopRouteSchedules[0][@"routeId"];
-    
-    [self switchToSlotsForRoute:self.currentRouteId];
+    if(stopRouteSchedules.count>0)
+    {
+        self.currentRouteId = stopRouteSchedules[0][@"routeId"];
+        [self switchToSlotsForRoute:self.currentRouteId];
+    }
 }
 
 -(void)didSelectRouteWithId:(NSString *)routeId
