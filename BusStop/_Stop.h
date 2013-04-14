@@ -15,12 +15,14 @@ extern const struct StopAttributes {
 
 extern const struct StopRelationships {
 	__unsafe_unretained NSString *relationship;
+	__unsafe_unretained NSString *routeIds;
 } StopRelationships;
 
 extern const struct StopFetchedProperties {
 } StopFetchedProperties;
 
 @class Route;
+@class RouteId;
 
 
 
@@ -117,10 +119,22 @@ extern const struct StopFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSSet *routeIds;
+
+- (NSMutableSet*)routeIdsSet;
+
+
+
+
 
 @end
 
 @interface _Stop (CoreDataGeneratedAccessors)
+
+- (void)addRouteIds:(NSSet*)value_;
+- (void)removeRouteIds:(NSSet*)value_;
+- (void)addRouteIdsObject:(RouteId*)value_;
+- (void)removeRouteIdsObject:(RouteId*)value_;
 
 @end
 
@@ -172,6 +186,11 @@ extern const struct StopFetchedProperties {
 
 - (Route*)primitiveRelationship;
 - (void)setPrimitiveRelationship:(Route*)value;
+
+
+
+- (NSMutableSet*)primitiveRouteIds;
+- (void)setPrimitiveRouteIds:(NSMutableSet*)value;
 
 
 @end

@@ -17,10 +17,6 @@
 
 @implementation StopScheduleViewController
 
--(void)displaySlotsForRoute:(NSString *)routeId
-{
-}
-
 -(IBAction)routerFilterTapped:(id)sender
 {
     NSLog(@"filter routes");
@@ -38,7 +34,29 @@
 
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+-(void)updateCurrentTime
+{
+    NSDate *rightNow = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *currentComponents = [calendar components:NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:rightNow];
+    
+    NSString *aAMPM = @"AM";
+    int ahr = [currentComponents hour];
+    if(ahr>12)
+    {
+        ahr -= 12;
+        aAMPM = @"PM";
+    }
+    
+    self.currentTimeLabel.text = [NSString stringWithFormat:@"%0d:%02d %@", ahr, [currentComponents minute], aAMPM];
+}
+
+-(void)updateTime:(NSTimer *)timer
+{
+    [self updateCurrentTime];
+}
+
+-(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -80,6 +98,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self updateCurrentTime];
+    
+    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTime:) userInfo:nil repeats:YES];
+    
+    self.stopNameLabel.text = self.busStop.name;
     
     self.allEntries = [[NSMutableDictionary alloc] initWithCapacity:0];
     NSCalendar *calendar = [NSCalendar currentCalendar];

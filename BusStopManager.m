@@ -14,6 +14,7 @@
 #import "MBProgressHUD.h"
 #import "BusStopREST.h"
 #import "Route.h"
+#import "RouteId.h"
 #import "Stop.h"
 
 @implementation BusStopManager
@@ -45,8 +46,6 @@
 	return sharedMgr;
 }
 
-//TBD - need something else to fill in.  on the way in how about counting up the number of stops and total length of route?
-// maybe how frequently the bus runs as well.
 -(void)addRouteWithInfo:(NSDictionary *)infoDict
 {
     Route *newRoute = [NSEntityDescription insertNewObjectForEntityForName:@"Route" inManagedObjectContext:self.context];
@@ -64,6 +63,16 @@
         newStop.direction = stop[@"direction"];
         newStop.lat = stop[@"lat"];
         newStop.lon = stop[@"lon"];
+        
+        NSMutableSet *routeIds = [NSMutableSet setWithCapacity:0];
+        for( NSString *routeId in stop[@"routeIds"] )
+        {
+            RouteId *rid = [NSEntityDescription insertNewObjectForEntityForName:@"RouteId" inManagedObjectContext:self.context];
+            rid.routeId = routeId;
+            [routeIds addObject:rid];
+        }
+        
+        [newStop addRouteIds:routeIds];
         
         [newRoute addStopsObject:newStop];
     }
@@ -126,9 +135,9 @@
             NSLog(@"about to add stops");
             for( NSDictionary *stop in stops1 )
             {
-                NSLog(@"candidate stop: %@", stop);
-                NSDictionary *busStop = @{@"name":stop[@"name"], @"code":stop[@"code"], @"id":stop[@"id"], @"direction":stop[@"direction"], @"lat":stop[@"lat"], @"lon":stop[@"lon"]};
-                NSLog(@"bus stop: %@", busStop);
+//                NSLog(@"candidate stop: %@", stop);
+                NSDictionary *busStop = @{@"name":stop[@"name"], @"code":stop[@"code"], @"id":stop[@"id"], @"direction":stop[@"direction"], @"lat":stop[@"lat"], @"lon":stop[@"lon"], @"routeIds":stop[@"routeIds"]};
+//                NSLog(@"bus stop: %@", busStop);
                 NSArray *routeIds = stop[@"routeIds"];
                 for( NSString *routeId in routeIds )
                 {
@@ -141,9 +150,6 @@
             NSLog(@"Added stops.");
         }
     }
-    
-    
-    NSLog(@"%@", routesList);
     
     // now that we've got the routes and stops, we can write them ou tto CoreData
     for( NSString *routeId in [routesList allKeys])

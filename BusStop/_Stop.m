@@ -14,6 +14,7 @@ const struct StopAttributes StopAttributes = {
 
 const struct StopRelationships StopRelationships = {
 	.relationship = @"relationship",
+	.routeIds = @"routeIds",
 };
 
 const struct StopFetchedProperties StopFetchedProperties = {
@@ -144,6 +145,19 @@ const struct StopFetchedProperties StopFetchedProperties = {
 
 @dynamic relationship;
 
+	
+
+@dynamic routeIds;
+
+	
+- (NSMutableSet*)routeIdsSet {
+	[self willAccessValueForKey:@"routeIds"];
+  
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"routeIds"];
+  
+	[self didAccessValueForKey:@"routeIds"];
+	return result;
+}
 	
 
 

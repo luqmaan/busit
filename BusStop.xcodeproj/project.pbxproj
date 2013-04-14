@@ -52,6 +52,8 @@
 		2749E355171919B1008FCDCD /* Stop.m in Sources */ = {isa = PBXBuildFile; fileRef = 2749E351171919B1008FCDCD /* Stop.m */; };
 		2749E357171919E3008FCDCD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2749E356171919E3008FCDCD /* CoreData.framework */; };
 		2749E35E17191F75008FCDCD /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 2749E35D17191F75008FCDCD /* MBProgressHUD.m */; };
+		27738541171AF7CF00CFD1CB /* _RouteId.m in Sources */ = {isa = PBXBuildFile; fileRef = 2773853E171AF7CF00CFD1CB /* _RouteId.m */; };
+		27738542171AF7CF00CFD1CB /* RouteId.m in Sources */ = {isa = PBXBuildFile; fileRef = 27738540171AF7CF00CFD1CB /* RouteId.m */; };
 		27C9C4C91718EB87005EAE68 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C9C4C81718EB87005EAE68 /* UIKit.framework */; };
 		27C9C4CB1718EB87005EAE68 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C9C4CA1718EB87005EAE68 /* Foundation.framework */; };
 		27C9C4CD1718EB87005EAE68 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C9C4CC1718EB87005EAE68 /* CoreGraphics.framework */; };
@@ -144,6 +146,11 @@
 		2749E356171919E3008FCDCD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		2749E35C17191F75008FCDCD /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		2749E35D17191F75008FCDCD /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		2773853C171AF73B00CFD1CB /* BusRoutes 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BusRoutes 4.xcdatamodel"; sourceTree = "<group>"; };
+		2773853D171AF7CF00CFD1CB /* _RouteId.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _RouteId.h; sourceTree = "<group>"; };
+		2773853E171AF7CF00CFD1CB /* _RouteId.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _RouteId.m; sourceTree = "<group>"; };
+		2773853F171AF7CF00CFD1CB /* RouteId.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteId.h; sourceTree = "<group>"; };
+		27738540171AF7CF00CFD1CB /* RouteId.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteId.m; sourceTree = "<group>"; };
 		27C9C4C51718EB87005EAE68 /* BusStop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BusStop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27C9C4C81718EB87005EAE68 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		27C9C4CA1718EB87005EAE68 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -311,6 +318,10 @@
 		27C9C4CE1718EB87005EAE68 /* BusStop */ = {
 			isa = PBXGroup;
 			children = (
+				2773853D171AF7CF00CFD1CB /* _RouteId.h */,
+				2773853E171AF7CF00CFD1CB /* _RouteId.m */,
+				2773853F171AF7CF00CFD1CB /* RouteId.h */,
+				27738540171AF7CF00CFD1CB /* RouteId.m */,
 				27125B87171A1F7900815280 /* _StopSchedule.h */,
 				27125B88171A1F7900815280 /* _StopSchedule.m */,
 				27125B89171A1F7900815280 /* StopSchedule.h */,
@@ -494,6 +505,8 @@
 				27125B9B171A2BC100815280 /* FPTouchView.m in Sources */,
 				14E63F4D171A2F04000A4013 /* BusRouteOptionsViewController.m in Sources */,
 				27125B9F171AB87E00815280 /* ScheduleRouteChooserViewController.m in Sources */,
+				27738541171AF7CF00CFD1CB /* _RouteId.m in Sources */,
+				27738542171AF7CF00CFD1CB /* RouteId.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -628,11 +641,12 @@
 		2749E34717191872008FCDCD /* BusRoutes.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				2773853C171AF73B00CFD1CB /* BusRoutes 4.xcdatamodel */,
 				27125B86171A03AC00815280 /* BusRoutes 3.xcdatamodel */,
 				27125B7C1719C5D300815280 /* BusRoutes 2.xcdatamodel */,
 				2749E34817191872008FCDCD /* BusRoutes.xcdatamodel */,
 			);
-			currentVersion = 27125B86171A03AC00815280 /* BusRoutes 3.xcdatamodel */;
+			currentVersion = 2773853C171AF73B00CFD1CB /* BusRoutes 4.xcdatamodel */;
 			path = BusRoutes.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
