@@ -122,6 +122,7 @@
 		27125B96171A2BC100815280 /* FPPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPPopoverView.m; sourceTree = "<group>"; };
 		27125B97171A2BC100815280 /* FPTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPTouchView.h; sourceTree = "<group>"; };
 		27125B98171A2BC100815280 /* FPTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPTouchView.m; sourceTree = "<group>"; };
+		27125B9C171A35FD00815280 /* ARCMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARCMacros.h; sourceTree = "<group>"; };
 		2749E34817191872008FCDCD /* BusRoutes.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BusRoutes.xcdatamodel; sourceTree = "<group>"; };
 		2749E34A171919B1008FCDCD /* _Route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Route.h; sourceTree = "<group>"; };
 		2749E34B171919B1008FCDCD /* _Route.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Route.m; sourceTree = "<group>"; };
@@ -330,6 +331,7 @@
 		27C9C4CF1718EB87005EAE68 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				27125B9C171A35FD00815280 /* ARCMacros.h */,
 				27125B93171A2BC100815280 /* FPPopoverController.h */,
 				27125B94171A2BC100815280 /* FPPopoverController.m */,
 				27125B95171A2BC100815280 /* FPPopoverView.h */,
