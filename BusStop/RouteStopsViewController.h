@@ -14,6 +14,7 @@
 
 @interface RouteStopsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate> {
     CLLocation *newLocation;
+    NSInteger currentIndex;
 }
 
 @property (nonatomic, weak) IBOutlet UILabel *addressLabel;

@@ -7,6 +7,7 @@
 //
 
 #import "StopScheduleViewController.h"
+#import "ScheduleCell.h"
 #import "MBProgressHUD.h"
 #import "BusStopREST.h"
 
@@ -15,6 +16,10 @@
 @end
 
 @implementation StopScheduleViewController
+
+-(void)displaySlotsForRoute:(NSString *)routeId
+{
+}
 
 -(IBAction)routerFilterTapped:(id)sender
 {
@@ -38,15 +43,101 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.visibleEntries = [[NSMutableArray alloc] initWithCapacity:0];
     }
     return self;
+}
+
+-(id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        // Custom initialization
+        self.visibleEntries = [[NSMutableArray alloc] initWithCapacity:0];
+    }
+    return self;
+}
+
+-(void)switchToSlotsForRoute:(NSString *)routeId
+{
+    self.currentRouteId = routeId;
+    [self.visibleEntries removeAllObjects];
+    
+    for( NSString *storedRouteId in [self.allEntries allKeys])
+    {
+        for( NSString *tripHeadSign in self.allEntries[storedRouteId])
+        {
+            for( NSDictionary *slot in self.allEntries[storedRouteId][tripHeadSign])
+            {
+                [self.visibleEntries addObject:@{@"tripHeadSign":tripHeadSign, @"arrives":slot[@"arrival"], @"departs":slot[@"departure"]}];
+            }
+        }
+    }
+    
+    [self.slotsTable reloadData];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-	// Do any additional setup after loading the view.
+    self.allEntries = [[NSMutableDictionary alloc] initWithCapacity:0];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    
+    BusStopREST *mgr = [[BusStopREST alloc] init];
+    NSDictionary *stopSched = [mgr scheduleForStop:self.busStop.id];
+    NSArray *stopRouteSchedules = stopSched[@"data"][@"entry"][@"stopRouteSchedules"];
+    for( NSDictionary *row in stopRouteSchedules )
+    {
+        // row[@"routeId"]
+        NSString *routeId = row[@"routeId"];
+        NSArray *stopRouteDirectionSchedules = row[@"stopRouteDirectionSchedules"];
+        NSMutableDictionary *trips = [[NSMutableDictionary alloc] initWithCapacity:0];
+        for( NSDictionary *row2 in stopRouteDirectionSchedules )
+        {// one per "trip" - tripId and tripHeadSign
+            NSString *tripHeadSign = row2[@"tripHeadsign"];
+
+            NSMutableArray *times = [[NSMutableArray alloc] initWithCapacity:0];            
+            NSArray *scheduleStopTimes = row2[@"scheduleStopTimes"];
+            for( NSDictionary *row3 in scheduleStopTimes )
+            {
+                NSNumber *arrivalTimeNbr = row3[@"arrivalTime"];
+                NSNumber *departureTimeNbr = row3[@"departureTime"];
+                NSDate *arrivalTime = [NSDate dateWithTimeIntervalSince1970:[arrivalTimeNbr doubleValue]/1000.0];
+                NSDate *departureTime = [NSDate dateWithTimeIntervalSince1970:[departureTimeNbr doubleValue]/1000.0];
+                 
+                NSDateComponents *arrivalComponents = [calendar components:NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:arrivalTime];
+                NSDateComponents *departureComponents = [calendar components:NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:departureTime];
+                
+                NSString *aAMPM = @"AM";
+                int ahr = [arrivalComponents hour];
+                if(ahr>12)
+                {
+                    ahr -= 12;
+                    aAMPM = @"PM";
+                }
+                
+                NSString *dAMPM = @"AM";
+                int dhr = [departureComponents hour];
+                if(dhr>12)
+                {
+                    dhr -= 12;
+                    dAMPM = @"PM";
+                }
+                
+                NSString *arrivalStr = [NSString stringWithFormat:@"arrives %0d:%02d %@", ahr, [arrivalComponents minute], aAMPM];
+                NSString *departureStr = [NSString stringWithFormat:@"departs %0d:%02d %@", dhr, [departureComponents minute], dAMPM];
+                
+                [times addObject:@{@"arrival":arrivalStr, @"departure":departureStr}];
+            }
+            
+            trips[tripHeadSign] = times;
+        }
+        
+        self.allEntries[routeId] = trips;
+    }
+    
+    [self switchToSlotsForRoute:self.currentRouteId];
 }
 
 - (void)didReceiveMemoryWarning
@@ -57,14 +148,28 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    return 1;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    NSInteger numEntries = self.visibleEntries.count;
+    return numEntries;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSDictionary *row = self.visibleEntries[indexPath.row];
+    
+    ScheduleCell *cell = (ScheduleCell *)[tableView dequeueReusableCellWithIdentifier:@"ScheduleCell"];
+    if(nil == cell)
+        cell = (ScheduleCell *)[[ScheduleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ScheduleCell"];
+    
+    cell.headSignLabel.text = row[@"tripHeadSign"];
+    cell.arrivalLabel.text = row[@"arrives"];
+    cell.departureLabel.text = row[@"departs"];
+    
+    return cell;
 }
 
 @end

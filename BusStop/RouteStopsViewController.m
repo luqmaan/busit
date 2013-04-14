@@ -8,6 +8,7 @@
 
 #import "BusStopAppDelegate.h"
 #import "RouteStopsViewController.h"
+#import "StopScheduleViewController.h"
 #import "StopCell.h"
 
 @interface RouteStopsViewController ()
@@ -72,6 +73,9 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationChanged:) name:kLocationUpdated object:nil];
     [self recomputeDistances];
     [self.stopsTable reloadData];
+    
+    currentIndex = 0;
+    [self.stopsTable selectRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
 }
 
 -(void)didReceiveMemoryWarning
@@ -104,16 +108,16 @@
     if(distanceAwayInMiles<.10)
     {
         double distanceAwayInFeet = distanceAwayInMiles * 5280.0;
-        cell.stopDistanceLabel.text = [NSString stringWithFormat:@"%.1f feet", distanceAwayInFeet];
+        cell.stopDistanceLabel.text = [NSString stringWithFormat:@"%.1f feet away", distanceAwayInFeet];
     }
     else
     if(distanceAwayInMiles<10.0)
     {
-        cell.stopDistanceLabel.text = [NSString stringWithFormat:@"%.1f miles", distanceAwayInMiles];
+        cell.stopDistanceLabel.text = [NSString stringWithFormat:@"%.1f miles away", distanceAwayInMiles];
     }
     else
     {
-        cell.stopDistanceLabel.text = [NSString stringWithFormat:@"%.0f miles", distanceAwayInMiles];
+        cell.stopDistanceLabel.text = [NSString stringWithFormat:@"%.0f miles away", distanceAwayInMiles];
     }
     
     return cell;
@@ -121,7 +125,14 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    currentIndex = indexPath.row;
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    Stop *busStop = self.stops[currentIndex];
+    StopScheduleViewController *stopSchedVC = (StopScheduleViewController *)[segue destinationViewController];
+    stopSchedVC.busStop = busStop;
 }
 
 @end
