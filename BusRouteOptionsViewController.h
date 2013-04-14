@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "BusStopManager.h"
 
 @interface BusRouteOptionsViewController : UITableViewController
 
 @property (nonatomic, strong) CLPlacemark *destinationPlacemark;
 @property (nonatomic, strong) CLPlacemark *startingPlacemark;
-
 @property (nonatomic, strong) NSArray *possibleRoutes;
+
 @end

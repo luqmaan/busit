@@ -25,8 +25,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"Destination: %@", _destinationPlacemark);
-    NSLog(@"Starting: %@", _startingPlacemark);
+    CLLocation *destination = [[CLLocation alloc] initWithLatitude:28.06193110 longitude:-82.41392803];
+    CLLocation *starting = [[CLLocation alloc] initWithLatitude:28.06457550 longitude:-82.41806000];
+    //NSLog(@"Destination: %@", _destinationPlacemark);
+    //NSLog(@"Starting: %@", _startingPlacemark);
+    BusStopManager *stopManager = [BusStopManager sharedManagerWithOnDiskStore];
+    NSArray *closestStopsToDestination = [NSArray arrayWithArray:[stopManager stopsClosestToLatitude:destination.coordinate.latitude andLogitude:destination.coordinate.longitude withinMeters:500 limit:10]];
+    NSArray *closestStopsToStart = [NSArray arrayWithArray:[stopManager stopsClosestToLatitude:starting.coordinate.latitude andLogitude:starting.coordinate.longitude withinMeters:500 limit:10]];
+//    NSArray *closestStops = [NSArray arrayWithArray:[stopManager stopsClosestToLatitude:_startingPlacemark.location.coordinate.latitude andLogitude:_startingPlacemark.location.coordinate.longitude withinMeters:500 limit:5]];
+    NSLog(@"%@", closestStopsToDestination);
 }
 
 - (void)didReceiveMemoryWarning

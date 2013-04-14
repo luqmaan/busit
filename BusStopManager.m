@@ -187,17 +187,17 @@
 {
     NSMutableArray *closeStops = [[NSMutableArray alloc] initWithCapacity:0];
     BusStopAppDelegate *delegate = (BusStopAppDelegate *)[[UIApplication sharedApplication] delegate];
-    CLLocation *currentLocation = delegate.mgr.location;
+    CLLocation *currentTestingLocation = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
 
-    if(nil != currentLocation)
+    if(nil != currentTestingLocation)
     {
-        NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Route"];
+        NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Stop"];
         fetchRequest.resultType = NSDictionaryResultType;
         NSArray *rows = [self.context executeFetchRequest:fetchRequest error:nil];
         for( NSDictionary *busStop in rows )
         {
             CLLocation *busStopLocation = [[CLLocation alloc] initWithLatitude:[busStop[@"lat"] doubleValue] longitude:[busStop[@"lon"] doubleValue]];
-            double distanceAwayInMeters = [busStopLocation distanceFromLocation:currentLocation];
+            double distanceAwayInMeters = [busStopLocation distanceFromLocation:currentTestingLocation];
             if(distanceAwayInMeters<=distanceInMeters && closeStops.count<numStopsToReturn)
             {
                 NSMutableDictionary *dBusStop = [[NSMutableDictionary alloc] initWithDictionary:busStop];

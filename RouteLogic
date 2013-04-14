@@ -16,3 +16,12 @@ case 0: N continue N
 case 1: E continue E
 case 2: S continue S
 case 3: W continue W
+
+
+From Chris:
+
+4. If we haven't done it yet, we need to be able to carry the destination CLLocation and starting CLLocation forward to the last view controller.  When we get to the final view controller (after the starting point map) we will, in the viewDidLoad method we'll need to do the following things:
+	a. take the destination CLLocation and find bus stops within some distance (500 meters, say) of that CLLocation; each of these stops will come with a list of routes that stop on that bus stop
+	b. take the starting CLLocation and do the same thing.
+	c. pick the routes that service both locations; this is the set intersection of the route ids for routes that service the starting and ending stops we just got.
+once we've got that list of routes, we can display that list in a table view.

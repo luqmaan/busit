@@ -30,7 +30,8 @@
 {
     [super viewDidLoad];
     [self setInitialMapZoom];
-    [self.nextButton setEnabled:NO];
+    [self.searchBarForAddress setPlaceholder:@"Enter Address of Destination"];
+    [self.nextButton setEnabled:YES];
     [self.searchBarForAddress setDelegate:self];
     [self.searchBarForAddress setAutocorrectionType:UITextAutocorrectionTypeNo];
 }
@@ -153,8 +154,11 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    SearchStartingViewController *destinationViewController = [segue destinationViewController];
-    [destinationViewController setPlacemarkFromDestination:[NSArray arrayWithObject:self.placemarkToPass]];
+    if (self.placemarkToPass != nil) {
+        SearchStartingViewController *destinationViewController = [segue destinationViewController];
+        [destinationViewController setPlacemarkFromDestination:[NSArray arrayWithObject:self.placemarkToPass]];
+    }
+
 }
 
 

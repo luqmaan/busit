@@ -29,6 +29,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.searchBar setPlaceholder:@"Enter Starting Address"];
     [self setInitialMapZoom];
 }
 
@@ -100,9 +101,11 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    BusRouteOptionsViewController *destination = [segue destinationViewController];
-    [destination setDestinationPlacemark:[self.placemarkFromDestination objectAtIndex:0]];
-    [destination setStartingPlacemark:self.placemarkToPass];
+    if (self.placemarkToPass != nil && self.placemarkFromDestination != nil) {
+        BusRouteOptionsViewController *destination = [segue destinationViewController];
+        [destination setDestinationPlacemark:[self.placemarkFromDestination objectAtIndex:0]];
+        [destination setStartingPlacemark:self.placemarkToPass];
+    }
 }
 
 -(void)setInitialMapZoom{
