@@ -67,6 +67,7 @@
 		27C9C4E81718EB88005EAE68 /* BusStopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C9C4E71718EB88005EAE68 /* BusStopViewController.m */; };
 		27C9C4F11718F4E0005EAE68 /* BusStopREST.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C9C4F01718F4E0005EAE68 /* BusStopREST.m */; };
 		27C9C4F417190FA1005EAE68 /* RouteListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C9C4F317190FA1005EAE68 /* RouteListViewController.m */; };
+		A3DAC004171B242200FC6C38 /* MapWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DAC003171B242200FC6C38 /* MapWebViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -146,7 +147,7 @@
 		2749E356171919E3008FCDCD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		2749E35C17191F75008FCDCD /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		2749E35D17191F75008FCDCD /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
-		2773853C171AF73B00CFD1CB /* BusRoutes 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BusRoutes 4.xcdatamodel"; sourceTree = "<group>"; };
+		2773853C171AF73B00CFD1CB /* BusRoutes 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "BusRoutes 4.xcdatamodel"; sourceTree = "<group>"; };
 		2773853D171AF7CF00CFD1CB /* _RouteId.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _RouteId.h; sourceTree = "<group>"; };
 		2773853E171AF7CF00CFD1CB /* _RouteId.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _RouteId.m; sourceTree = "<group>"; };
 		2773853F171AF7CF00CFD1CB /* RouteId.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteId.h; sourceTree = "<group>"; };
@@ -171,6 +172,8 @@
 		27C9C4F01718F4E0005EAE68 /* BusStopREST.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusStopREST.m; sourceTree = "<group>"; };
 		27C9C4F217190FA1005EAE68 /* RouteListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteListViewController.h; sourceTree = "<group>"; };
 		27C9C4F317190FA1005EAE68 /* RouteListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteListViewController.m; sourceTree = "<group>"; };
+		A3DAC002171B242200FC6C38 /* MapWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapWebViewController.h; sourceTree = "<group>"; };
+		A3DAC003171B242200FC6C38 /* MapWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapWebViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -282,6 +285,7 @@
 		27C9C4BC1718EB87005EAE68 = {
 			isa = PBXGroup;
 			children = (
+				A3DABFFF171B231000FC6C38 /* PDF */,
 				14E63F4A171A2EDE000A4013 /* RouteForUserTrip */,
 				14ED356B1719D0D7009F6A11 /* images */,
 				2749E35817191BFD008FCDCD /* BusStopData */,
@@ -389,6 +393,15 @@
 				27C9C4F01718F4E0005EAE68 /* BusStopREST.m */,
 			);
 			name = REST;
+			sourceTree = "<group>";
+		};
+		A3DABFFF171B231000FC6C38 /* PDF */ = {
+			isa = PBXGroup;
+			children = (
+				A3DAC002171B242200FC6C38 /* MapWebViewController.h */,
+				A3DAC003171B242200FC6C38 /* MapWebViewController.m */,
+			);
+			name = PDF;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -507,6 +520,7 @@
 				27125B9F171AB87E00815280 /* ScheduleRouteChooserViewController.m in Sources */,
 				27738541171AF7CF00CFD1CB /* _RouteId.m in Sources */,
 				27738542171AF7CF00CFD1CB /* RouteId.m in Sources */,
+				A3DAC004171B242200FC6C38 /* MapWebViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
