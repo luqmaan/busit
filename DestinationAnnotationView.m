@@ -42,7 +42,7 @@
 - (void)drawRect:(CGRect)rect {
     DestinationAnnotation *alert = (DestinationAnnotation *)self.annotation;
     if (alert != nil) {
-        NSString *pinImage = [NSString stringWithFormat:@"binoculars_icon.png"];
+        NSString *pinImage = [NSString stringWithFormat:@"flag_icon.png"];
         [[UIImage imageNamed:pinImage] drawInRect:CGRectMake(0, 0, 30.0, 30.0)];
     }
 }

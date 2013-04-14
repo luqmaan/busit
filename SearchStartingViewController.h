@@ -17,5 +17,7 @@
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (strong, nonatomic) NSArray *placemarkFromDestination;
+@property (strong, nonatomic) CLPlacemark *placemarkToPass;
 
 @end

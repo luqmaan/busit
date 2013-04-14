@@ -7,6 +7,8 @@
 //
 
 #import "SearchStartingViewController.h"
+#import "UserStartAnnotation.h"
+#import "UserStartAnnotationView.h"
 
 @interface SearchStartingViewController ()
 
@@ -47,8 +49,32 @@
             return;
         }
         NSLog(@"Received placemarks: %@", placemarks);
-        //[self displayPlacemarks:placemarks];
+        [self displayPlacemarks:placemarks];
     }];
+}
+
+-(void)displayPlacemarks:(NSArray *)arrayOfPlacemarks {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.placemarkToPass = [arrayOfPlacemarks objectAtIndex:0];
+        NSLog(@"%@", self.placemarkToPass);
+        CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(self.placemarkToPass.location.coordinate.latitude, self.placemarkToPass.location.coordinate.longitude);
+        NSDictionary *areaOfInterest = [NSDictionary dictionaryWithDictionary:self.placemarkToPass.addressDictionary];
+        NSString *addressSubtitle = [NSString stringWithFormat:@"%@, %@ %@", [areaOfInterest objectForKey:@"Street"], [areaOfInterest objectForKey:@"City"], self.placemarkToPass.administrativeArea];
+        UserStartAnnotation *annotation = [[UserStartAnnotation alloc] initWithTitle:addressSubtitle andSubtitle:@"Click Route"];
+        [annotation setAlertLatitude:[NSNumber numberWithDouble:coordinate.latitude]];
+        [annotation setAlertLongitude:[NSNumber numberWithDouble:coordinate.longitude]];
+        [self.mapView setCenterCoordinate:coordinate];
+        [self.mapView addAnnotation:annotation];
+    });
+}
+
+-(void)displayError:(NSString *)errorMessage {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                        message:errorMessage
+                                                       delegate:self
+                                              cancelButtonTitle:@"Ok"
+                                              otherButtonTitles:nil];
+    [alertView show];
 }
 
 -(void)setInitialMapZoom{
