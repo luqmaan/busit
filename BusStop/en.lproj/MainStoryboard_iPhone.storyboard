@@ -164,8 +164,8 @@
                                     <outlet property="delegate" destination="QSe-D0-3HS" id="CUx-OQ-QCl"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="E6H-AB-TIu">
-                                <rect key="frame" x="10" y="108" width="228" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" id="E6H-AB-TIu">
+                                <rect key="frame" x="10" y="108" width="290" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -178,13 +178,6 @@
                                     <outlet property="delegate" destination="QSe-D0-3HS" id="tvS-53-gIH"/>
                                 </connections>
                             </mapView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fbe-Xh-2sn">
-                                <rect key="frame" x="236" y="105" width="78" height="27"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
-                                <color key="textColor" red="0.51997707199999998" green="0.51997707199999998" blue="0.51997707199999998" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -197,7 +190,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addressLabel" destination="E6H-AB-TIu" id="HWg-d4-ApO"/>
-                        <outlet property="distanceFromHereLabel" destination="fbe-Xh-2sn" id="19o-Hq-u45"/>
                         <outlet property="stopMap" destination="z8h-nt-Hhb" id="8z6-Ps-Kbc"/>
                         <outlet property="stopsTable" destination="0UK-xO-Fnp" id="xJL-FQ-VlO"/>
                     </connections>

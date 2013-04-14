@@ -44,29 +44,28 @@
     [self.stopsTable reloadData];
 }
 
-#if 0
+//#if 0
 
 -(void)displayPlacemarks:(NSArray *)arrayOfPlacemarks {
     dispatch_async(dispatch_get_main_queue(), ^{
-        self.placemarkToPass = [arrayOfPlacemarks objectAtIndex:0];
-        NSLog(@"%@", self.placemarkToPass);
-        CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(self.placemarkToPass.location.coordinate.latitude, self.placemarkToPass.location.coordinate.longitude);
-        NSDictionary *areaOfInterest = [NSDictionary dictionaryWithDictionary:self.placemarkToPass.addressDictionary];
-        NSString *addressSubtitle = [NSString stringWithFormat:@"%@, %@ %@", [areaOfInterest objectForKey:@"Street"], [areaOfInterest objectForKey:@"City"], self.placemarkToPass.administrativeArea];
-        DestinationAnnotation *annotation = [[DestinationAnnotation alloc] initWithTitle:addressSubtitle andSubtitle:@"Click to advance"];
+        CLPlacemark *placemark = [arrayOfPlacemarks objectAtIndex:0];
+        NSLog(@"%@", placemark);
+        CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(placemark.location.coordinate.latitude, placemark.location.coordinate.longitude);
+        NSDictionary *areaOfInterest = [NSDictionary dictionaryWithDictionary:placemark.addressDictionary];
+        NSString *addressSubtitle = [NSString stringWithFormat:@"%@, %@ %@", [areaOfInterest objectForKey:@"Street"], [areaOfInterest objectForKey:@"City"], placemark.administrativeArea];
+        BusStopAnnotation *annotation = [[BusStopAnnotation alloc] initWithTitle:addressSubtitle andSubtitle:@"Click to advance"];
         [annotation setAlertLatitude:[NSNumber numberWithDouble:coordinate.latitude]];
         [annotation setAlertLongitude:[NSNumber numberWithDouble:coordinate.longitude]];
-        [self.mapToDisplayAddressFromSearchBar setCenterCoordinate:coordinate];
-        NSArray *existingAnnotations = [NSArray arrayWithArray:self.mapToDisplayAddressFromSearchBar.annotations];
+        //[self.stopMap setCenterCoordinate:coordinate];
+        NSArray *existingAnnotations = [NSArray arrayWithArray:self.stopMap.annotations];
         if ([existingAnnotations count] > 0) {
-            [self.mapToDisplayAddressFromSearchBar removeAnnotations:existingAnnotations];
+            [self.stopMap removeAnnotations:existingAnnotations];
         }
-        [self.mapToDisplayAddressFromSearchBar addAnnotation:annotation];
-        [self.nextButton setEnabled:YES];
+        [self.stopMap addAnnotation:annotation];
     });
 }
 
-#endif
+//#endif
 
 -(void)moveMapToLocationWithLatitude:(double)lat andLongitude:(double)lon
 {
@@ -82,15 +81,28 @@
     
     CLLocation *location = [[CLLocation alloc] initWithLatitude:lat longitude:lon];
     
-    CLGeocoder *geocoder = [[CLGeocoder alloc] init];//<#^(NSArray *placemarks, NSError *error)completionHandler#>
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
+        [self displayPlacemarks:placemarks];
         CLPlacemark *placemark = [placemarks objectAtIndex:0];
         NSString *str = [NSString stringWithFormat:@"%@ %@ %@", placemark.addressDictionary[@"Street"], placemark.addressDictionary[@"City"], placemark.addressDictionary[@"State"]];
         self.addressLabel.text = str;
     }];
-    
-    BusStopAnnotation *annotation = [[BusStopAnnotation alloc] initWithCoordinate:coord];
-    
+}
+
+- (MKAnnotationView *)mapView:(MKMapView *)map viewForAnnotation:(id <MKAnnotation>)annotation
+{
+    NSLog(@"Entered viewForAnnotation");
+    if([annotation isKindOfClass:[MKUserLocation class]]){
+        return nil;
+    }
+    if([annotation isKindOfClass:[BusStopAnnotation class]]){
+        static NSString *AnnotationViewID = @"annotationViewID";
+        BusStopAnnotationView *customPinView = [[BusStopAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationViewID];
+        customPinView.opaque = NO;
+        return customPinView;
+    }
+    return nil;
 }
 
 -(void)geocodeLatitude:(double)lat andLongitude:(double)lon
@@ -131,7 +143,8 @@
     [self.stopsTable reloadData];
     
     currentIndex = 0;
-    [self.stopsTable selectRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
+    //[self.stopsTable selectRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
+    [self tableView:self.stopsTable didSelectRowAtIndexPath:0];
 }
 
 -(void)didReceiveMemoryWarning
