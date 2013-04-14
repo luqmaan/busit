@@ -191,7 +191,7 @@
                     <navigationItem key="navigationItem" title="Route Stops" id="zuS-Yo-kod">
                         <barButtonItem key="rightBarButtonItem" title="Schedule" id="Lln-Qs-pJB">
                             <connections>
-                                <segue destination="e0R-Ty-LPH" kind="push" identifier="showStopSchedule" id="bAi-w4-4A9"/>
+                                <segue destination="e0R-Ty-LPH" kind="push" id="rIf-oF-cFL"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -276,7 +276,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Schedule for Stop" id="pNe-qa-iKX">
-                        <barButtonItem key="rightBarButtonItem" title="Route" id="JIX-P0-QfF">
+                        <barButtonItem key="rightBarButtonItem" title="Filter" id="JIX-P0-QfF">
                             <connections>
                                 <action selector="routerFilterTapped:" destination="e0R-Ty-LPH" id="0Ps-mz-w6y"/>
                             </connections>

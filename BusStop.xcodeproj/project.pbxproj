@@ -62,7 +62,6 @@
 		27C9C4DD1718EB87005EAE68 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27C9C4DC1718EB87005EAE68 /* Default@2x.png */; };
 		27C9C4DF1718EB87005EAE68 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27C9C4DE1718EB87005EAE68 /* Default-568h@2x.png */; };
 		27C9C4E21718EB87005EAE68 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27C9C4E01718EB87005EAE68 /* MainStoryboard_iPhone.storyboard */; };
-		27C9C4E51718EB88005EAE68 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27C9C4E31718EB88005EAE68 /* MainStoryboard_iPad.storyboard */; };
 		27C9C4E81718EB88005EAE68 /* BusStopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C9C4E71718EB88005EAE68 /* BusStopViewController.m */; };
 		27C9C4F11718F4E0005EAE68 /* BusStopREST.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C9C4F01718F4E0005EAE68 /* BusStopREST.m */; };
 		27C9C4F417190FA1005EAE68 /* RouteListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C9C4F317190FA1005EAE68 /* RouteListViewController.m */; };
@@ -159,7 +158,6 @@
 		27C9C4DC1718EB87005EAE68 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		27C9C4DE1718EB87005EAE68 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		27C9C4E11718EB87005EAE68 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
-		27C9C4E41718EB88005EAE68 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		27C9C4E61718EB88005EAE68 /* BusStopViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BusStopViewController.h; sourceTree = "<group>"; };
 		27C9C4E71718EB88005EAE68 /* BusStopViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BusStopViewController.m; sourceTree = "<group>"; };
 		27C9C4EF1718F4E0005EAE68 /* BusStopREST.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusStopREST.h; sourceTree = "<group>"; };
@@ -330,7 +328,6 @@
 				27C9C4D71718EB87005EAE68 /* BusStopAppDelegate.h */,
 				27C9C4D81718EB87005EAE68 /* BusStopAppDelegate.m */,
 				27C9C4E01718EB87005EAE68 /* MainStoryboard_iPhone.storyboard */,
-				27C9C4E31718EB88005EAE68 /* MainStoryboard_iPad.storyboard */,
 				27C9C4E61718EB88005EAE68 /* BusStopViewController.h */,
 				27C9C4E71718EB88005EAE68 /* BusStopViewController.m */,
 				27125B7D1719C8AF00815280 /* RouteCell.h */,
@@ -440,7 +437,6 @@
 				27C9C4DD1718EB87005EAE68 /* Default@2x.png in Resources */,
 				27C9C4DF1718EB87005EAE68 /* Default-568h@2x.png in Resources */,
 				27C9C4E21718EB87005EAE68 /* MainStoryboard_iPhone.storyboard in Resources */,
-				27C9C4E51718EB88005EAE68 /* MainStoryboard_iPad.storyboard in Resources */,
 				14ED356E1719D0D7009F6A11 /* bus_icon.png in Resources */,
 				14ED356F1719D0D7009F6A11 /* stopsign_icon.png in Resources */,
 				145CAAA2171A0FAF00B49687 /* binoculars_icon.png in Resources */,
@@ -518,14 +514,6 @@
 				27C9C4E11718EB87005EAE68 /* en */,
 			);
 			name = MainStoryboard_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
-		27C9C4E31718EB88005EAE68 /* MainStoryboard_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				27C9C4E41718EB88005EAE68 /* en */,
-			);
-			name = MainStoryboard_iPad.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
