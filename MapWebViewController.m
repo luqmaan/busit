@@ -26,6 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.view setBackgroundColor:[UIColor lightGrayColor]];
     
     //NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"www"]];
     //[self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:@"index.html"]]];
