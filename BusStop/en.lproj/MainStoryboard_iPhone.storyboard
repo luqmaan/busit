@@ -313,16 +313,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Your Destination" id="Bmx-oP-Kvr">
-                        <barButtonItem key="rightBarButtonItem" title="Next" id="FRp-E2-9cu">
-                            <connections>
-                                <segue destination="Jvl-5D-Kp0" kind="push" id="ncK-gm-IXK"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Your Destination" id="Bmx-oP-Kvr"/>
                     <connections>
                         <outlet property="mapToDisplayAddressFromSearchBar" destination="FD2-HP-mux" id="Nn0-Jt-fqx"/>
                         <outlet property="searchBarForAddress" destination="dBR-Wy-JnH" id="McA-OK-KB0"/>
+                        <segue destination="Jvl-5D-Kp0" kind="push" identifier="toStartingPoint" id="oyQ-TL-t8i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qe9-bM-cEi" userLabel="First Responder" sceneMemberID="firstResponder"/>

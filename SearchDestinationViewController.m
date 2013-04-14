@@ -9,9 +9,10 @@
 #import "SearchDestinationViewController.h"
 #import "DestinationAnnotation.h"
 #import "DestinationAnnotationView.h"
+#import "SearchStartingViewController.h"
 
 @interface SearchDestinationViewController ()
-
+@property (nonatomic, strong) CLPlacemark *placemarkToPass;
 @end
 
 @implementation SearchDestinationViewController
@@ -71,23 +72,22 @@
 
 -(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control{
     
-    //[self performSegueWithIdentifier:@"showAnnotationDetail" sender:view];
+    [self performSegueWithIdentifier:@"toStartingPoint" sender:view];
 }
 
 -(void)displayPlacemarks:(NSArray *)arrayOfPlacemarks {
     dispatch_async(dispatch_get_main_queue(), ^{
-        CLPlacemark *placemark = [arrayOfPlacemarks objectAtIndex:0];
-            NSLog(@"%@", placemark);
-            CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(placemark.location.coordinate.latitude, placemark.location.coordinate.longitude);
-            NSDictionary *areaOfInterest = [NSDictionary dictionaryWithDictionary:placemark.addressDictionary];
-            NSString *addressSubtitle = [NSString stringWithFormat:@"%@, %@ %@", [areaOfInterest objectForKey:@"Street"], [areaOfInterest objectForKey:@"City"], placemark.administrativeArea];
-            DestinationAnnotation *annotation = [[DestinationAnnotation alloc] initWithTitle:placemark.name andSubtitle:addressSubtitle];
-            [annotation setAlertLatitude:[NSNumber numberWithDouble:coordinate.latitude]];
-            [annotation setAlertLongitude:[NSNumber numberWithDouble:coordinate.longitude]];
-            [self.mapToDisplayAddressFromSearchBar setCenterCoordinate:coordinate];
+        self.placemarkToPass = [arrayOfPlacemarks objectAtIndex:0];
+        NSLog(@"%@", self.placemarkToPass);
+        CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(self.placemarkToPass.location.coordinate.latitude, self.placemarkToPass.location.coordinate.longitude);
+        NSDictionary *areaOfInterest = [NSDictionary dictionaryWithDictionary:self.placemarkToPass.addressDictionary];
+        NSString *addressSubtitle = [NSString stringWithFormat:@"%@, %@ %@", [areaOfInterest objectForKey:@"Street"], [areaOfInterest objectForKey:@"City"], self.placemarkToPass.administrativeArea];
+        DestinationAnnotation *annotation = [[DestinationAnnotation alloc] initWithTitle:addressSubtitle andSubtitle:@"Click to advance"];
+        [annotation setAlertLatitude:[NSNumber numberWithDouble:coordinate.latitude]];
+        [annotation setAlertLongitude:[NSNumber numberWithDouble:coordinate.longitude]];
+        [self.mapToDisplayAddressFromSearchBar setCenterCoordinate:coordinate];
         [self.mapToDisplayAddressFromSearchBar addAnnotation:annotation];
     });
-
 }
 
 -(void)displayError:(NSString *)errorMessage {
@@ -142,10 +142,15 @@
     [self.mapToDisplayAddressFromSearchBar setRegion:region animated:YES];
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    SearchStartingViewController *destinationViewController = [segue destinationViewController];
+    [destinationViewController setPlacemarkFromDestination:[NSArray arrayWithObject:self.placemarkToPass]];
+}
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end
