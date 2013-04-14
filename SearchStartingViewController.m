@@ -45,7 +45,7 @@
         NSLog(@"geocodeAddressString:inRegion:completionHandler: Completion Handler called!");
         if (error){
             NSLog(@"Geocode failed with error: %@", error);
-            //[self displayError:[error localizedDescription]];
+            [self displayError:[error localizedDescription]];
             return;
         }
         NSLog(@"Received placemarks: %@", placemarks);
@@ -75,6 +75,26 @@
                                               cancelButtonTitle:@"Ok"
                                               otherButtonTitles:nil];
     [alertView show];
+}
+
+- (MKAnnotationView *)mapView:(MKMapView *)map viewForAnnotation:(id <MKAnnotation>)annotation
+{
+    NSLog(@"Entered viewForAnnotation");
+    if([annotation isKindOfClass:[MKUserLocation class]]){
+        return nil;
+    }
+    if([annotation isKindOfClass:[UserStartAnnotation class]]){
+        static NSString *AnnotationViewID = @"annotationViewID";
+        UserStartAnnotationView *customPinView = [[UserStartAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationViewID];
+        [customPinView setCanShowCallout:YES];
+        
+        customPinView.opaque = NO;
+        
+        UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+        customPinView.rightCalloutAccessoryView = rightButton;
+        return customPinView;
+    }
+    return nil;
 }
 
 -(void)setInitialMapZoom{

@@ -23,6 +23,11 @@
 		14D0D36517191A43000A1F7B /* BusStopMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D0D36417191A43000A1F7B /* BusStopMapViewController.m */; };
 		14D0D3681719AF20000A1F7B /* SearchDestinationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D0D3671719AF20000A1F7B /* SearchDestinationViewController.m */; };
 		14D0D36A1719B662000A1F7B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D0D3691719B662000A1F7B /* CoreLocation.framework */; };
+		14E63F40171A2AB2000A4013 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 14E63F3B171A2AB2000A4013 /* Default-568h@2x.png */; };
+		14E63F41171A2AB2000A4013 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 14E63F3C171A2AB2000A4013 /* Default@2x.png */; };
+		14E63F42171A2AB2000A4013 /* startflag_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 14E63F3D171A2AB2000A4013 /* startflag_icon.png */; };
+		14E63F44171A2AF3000A4013 /* AppIcon@57.png in Resources */ = {isa = PBXBuildFile; fileRef = 14E63F43171A2AF3000A4013 /* AppIcon@57.png */; };
+		14E63F46171A2B04000A4013 /* AppIcon@114.png in Resources */ = {isa = PBXBuildFile; fileRef = 14E63F45171A2B04000A4013 /* AppIcon@114.png */; };
 		14ED356E1719D0D7009F6A11 /* bus_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 14ED356C1719D0D7009F6A11 /* bus_icon.png */; };
 		14ED356F1719D0D7009F6A11 /* stopsign_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 14ED356D1719D0D7009F6A11 /* stopsign_icon.png */; };
 		14ED35721719D632009F6A11 /* BusStopManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14ED35711719D632009F6A11 /* BusStopManager.m */; };
@@ -81,6 +86,11 @@
 		14D0D3661719AF1F000A1F7B /* SearchDestinationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDestinationViewController.h; sourceTree = "<group>"; };
 		14D0D3671719AF20000A1F7B /* SearchDestinationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchDestinationViewController.m; sourceTree = "<group>"; };
 		14D0D3691719B662000A1F7B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		14E63F3B171A2AB2000A4013 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "app_icons/Default-568h@2x.png"; sourceTree = "<group>"; };
+		14E63F3C171A2AB2000A4013 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "app_icons/Default@2x.png"; sourceTree = "<group>"; };
+		14E63F3D171A2AB2000A4013 /* startflag_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = startflag_icon.png; sourceTree = "<group>"; };
+		14E63F43171A2AF3000A4013 /* AppIcon@57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon@57.png"; sourceTree = "<group>"; };
+		14E63F45171A2B04000A4013 /* AppIcon@114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon@114.png"; sourceTree = "<group>"; };
 		14ED356C1719D0D7009F6A11 /* bus_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bus_icon.png; sourceTree = "<group>"; };
 		14ED356D1719D0D7009F6A11 /* stopsign_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stopsign_icon.png; sourceTree = "<group>"; };
 		14ED35701719D632009F6A11 /* BusStopManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusStopManager.h; sourceTree = "<group>"; };
@@ -202,6 +212,9 @@
 		14ED356B1719D0D7009F6A11 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				14E63F3B171A2AB2000A4013 /* Default-568h@2x.png */,
+				14E63F3C171A2AB2000A4013 /* Default@2x.png */,
+				14E63F3D171A2AB2000A4013 /* startflag_icon.png */,
 				145CAABB171A212700B49687 /* flag_icon.png */,
 				145CAAB9171A20E000B49687 /* gmm_icon@2x.png */,
 				145CAAAE171A14DC00B49687 /* btn_explore_routes.png */,
@@ -225,6 +238,8 @@
 		27C9C4BC1718EB87005EAE68 = {
 			isa = PBXGroup;
 			children = (
+				14E63F45171A2B04000A4013 /* AppIcon@114.png */,
+				14E63F43171A2AF3000A4013 /* AppIcon@57.png */,
 				14ED356B1719D0D7009F6A11 /* images */,
 				2749E35817191BFD008FCDCD /* BusStopData */,
 				14CF285417190F0F00D69FB4 /* Maps */,
@@ -382,6 +397,11 @@
 				145CAAB1171A14DC00B49687 /* btn_plan_a_route.png in Resources */,
 				145CAABA171A20E000B49687 /* gmm_icon@2x.png in Resources */,
 				145CAABC171A212700B49687 /* flag_icon.png in Resources */,
+				14E63F40171A2AB2000A4013 /* Default-568h@2x.png in Resources */,
+				14E63F41171A2AB2000A4013 /* Default@2x.png in Resources */,
+				14E63F42171A2AB2000A4013 /* startflag_icon.png in Resources */,
+				14E63F44171A2AF3000A4013 /* AppIcon@57.png in Resources */,
+				14E63F46171A2B04000A4013 /* AppIcon@114.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

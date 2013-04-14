@@ -393,7 +393,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchDestinationViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="mapToDisplayAddressFromSearchBar" candidateClass="MKMapView"/>
-                <relationship kind="outlet" name="nextButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="searchBarForAddress" candidateClass="UISearchBar"/>
             </relationships>
         </class>
