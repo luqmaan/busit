@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "MBProgressHUD.h"
 #import "BusStopManager.h"
 
-@interface BusRouteOptionsViewController : UITableViewController
+@interface BusRouteOptionsViewController : UITableViewController {
+    MBProgressHUD *hud;
+}
 
 @property (nonatomic, strong) CLPlacemark *destinationPlacemark;
 @property (nonatomic, strong) CLPlacemark *startingPlacemark;

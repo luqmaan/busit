@@ -6,9 +6,9 @@
 
 extern const struct RouteAttributes {
 	__unsafe_unretained NSString *distance;
-	__unsafe_unretained NSString *id;
 	__unsafe_unretained NSString *name;
 	__unsafe_unretained NSString *numStops;
+	__unsafe_unretained NSString *routeid;
 	__unsafe_unretained NSString *shortName;
 	__unsafe_unretained NSString *url;
 } RouteAttributes;
@@ -56,16 +56,6 @@ extern const struct RouteFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSString* id;
-
-
-
-//- (BOOL)validateId:(id*)value_ error:(NSError**)error_;
-
-
-
-
-
 @property (nonatomic, strong) NSString* name;
 
 
@@ -85,6 +75,16 @@ extern const struct RouteFetchedProperties {
 - (void)setNumStopsValue:(int32_t)value_;
 
 //- (BOOL)validateNumStops:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* routeid;
+
+
+
+//- (BOOL)validateRouteid:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -141,12 +141,6 @@ extern const struct RouteFetchedProperties {
 
 
 
-- (NSString*)primitiveId;
-- (void)setPrimitiveId:(NSString*)value;
-
-
-
-
 - (NSString*)primitiveName;
 - (void)setPrimitiveName:(NSString*)value;
 
@@ -158,6 +152,12 @@ extern const struct RouteFetchedProperties {
 
 - (int32_t)primitiveNumStopsValue;
 - (void)setPrimitiveNumStopsValue:(int32_t)value_;
+
+
+
+
+- (NSString*)primitiveRouteid;
+- (void)setPrimitiveRouteid:(NSString*)value;
 
 
 

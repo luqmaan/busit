@@ -36,6 +36,21 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(IBAction)cancel:(id)sender
+{
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+-(IBAction)done:(id)sender
+{
+    if(nil != self.delegate)
+    {
+        [self.delegate didSelectRouteWithId:self.currentKey];
+//        [self.delegate performSelector:@selector(didSelectRouteWithId) withObject:self.currentKey];
+    }
+    [self dismissModalViewControllerAnimated:YES];
+}
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -50,17 +65,25 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *key = self.routeKeys[indexPath.row];
-    NSDictionary *row = self.routes[key];
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Choice"];
     if(nil == cell)
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Choice"];
-    cell.textLabel.text = row[@"routeId"];
+    cell.textLabel.text = key;
+    cell.textLabel.adjustsFontSizeToFitWidth = YES;
+    cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:14];;
+    if([key isEqualToString:self.currentKey])
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    else
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    self.currentKey = self.routeKeys[indexPath.row];
+    [tableView reloadData];
 }
 
 @end

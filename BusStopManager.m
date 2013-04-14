@@ -51,7 +51,7 @@
     Route *newRoute = [NSEntityDescription insertNewObjectForEntityForName:@"Route" inManagedObjectContext:self.context];
     newRoute.name = infoDict[@"longName"];
     newRoute.shortName = infoDict[@"shortName"];
-    newRoute.id = infoDict[@"id"];
+    newRoute.routeid = infoDict[@"routeId"];
     newRoute.stops = [NSMutableSet set];
     NSArray *stops = infoDict[@"stops"];
     for( NSDictionary *stop in stops )
@@ -170,7 +170,7 @@
 -(NSArray *)routesForIds:(NSArray *)routeIds
 {
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Route"];
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"id in %@", routeIds];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"routeid in %@", routeIds];
     NSArray *rows = [self.context executeFetchRequest:fetchRequest error:nil];
     return rows;
 }
@@ -179,7 +179,7 @@
 {
     Route *route = nil;
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Route"];
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"id = %@", routeId];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"routeid = %@", routeId];
     NSArray *rows = [self.context executeFetchRequest:fetchRequest error:nil];
     if(rows.count>0)
         route = rows[0];
@@ -190,7 +190,7 @@
 {
     Stop *busStop = nil;
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Stop"];
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"id = %@", stopId];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"routeid = %@", stopId];
     NSArray *rows = [self.context executeFetchRequest:fetchRequest error:nil];
     if(rows.count>0)
         busStop = rows[0];

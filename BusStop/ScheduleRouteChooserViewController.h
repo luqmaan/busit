@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ScheduleRouteChooserViewController.h"
 
 @protocol ScheduleRouteChooserDelegate <NSObject>
 -(void)didSelectRouteWithId:(NSString *)routeId;
@@ -17,5 +18,9 @@
 @property (nonatomic, strong) NSDictionary *routes;
 @property (nonatomic, strong) NSArray *routeKeys;
 @property (nonatomic, weak) id<ScheduleRouteChooserDelegate> delegate;
+@property (nonatomic, assign) NSString *currentKey;
+
+-(IBAction)cancel:(id)sender;
+-(IBAction)done:(id)sender;
 
 @end

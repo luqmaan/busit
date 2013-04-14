@@ -68,11 +68,14 @@
     
     for( NSString *storedRouteId in [self.allEntries allKeys])
     {
-        for( NSString *tripHeadSign in self.allEntries[storedRouteId])
+        if([routeId isEqualToString:storedRouteId])
         {
-            for( NSDictionary *slot in self.allEntries[storedRouteId][tripHeadSign])
+            for( NSString *tripHeadSign in self.allEntries[storedRouteId])
             {
-                [self.visibleEntries addObject:@{@"tripHeadSign":tripHeadSign, @"arrives":slot[@"arrival"], @"departs":slot[@"departure"]}];
+                for( NSDictionary *slot in self.allEntries[storedRouteId][tripHeadSign])
+                {
+                    [self.visibleEntries addObject:@{@"tripHeadSign":tripHeadSign, @"arrives":slot[@"arrival"], @"departs":slot[@"departure"]}];
+                }
             }
         }
     }
@@ -92,7 +95,7 @@
     
     self.allEntries = [[NSMutableDictionary alloc] initWithCapacity:0];
     NSCalendar *calendar = [NSCalendar currentCalendar];
-    
+        
     BusStopREST *mgr = [[BusStopREST alloc] init];
     NSDictionary *stopSched = [mgr scheduleForStop:self.busStop.id];
     NSArray *stopRouteSchedules = stopSched[@"data"][@"entry"][@"stopRouteSchedules"];
@@ -100,6 +103,7 @@
     {
         // row[@"routeId"]
         NSString *routeId = row[@"routeId"];
+        
         NSArray *stopRouteDirectionSchedules = row[@"stopRouteDirectionSchedules"];
         NSMutableDictionary *trips = [[NSMutableDictionary alloc] initWithCapacity:0];
         for( NSDictionary *row2 in stopRouteDirectionSchedules )
@@ -146,7 +150,14 @@
         self.allEntries[routeId] = trips;
     }
     
+    self.currentRouteId = stopRouteSchedules[0][@"routeId"];
+    
     [self switchToSlotsForRoute:self.currentRouteId];
+}
+
+-(void)didSelectRouteWithId:(NSString *)routeId
+{
+    [self switchToSlotsForRoute:routeId];
 }
 
 - (void)didReceiveMemoryWarning
@@ -184,6 +195,21 @@
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"yeah");
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    ScheduleRouteChooserViewController *vc = (ScheduleRouteChooserViewController *)[segue destinationViewController];
+    
+    NSMutableDictionary *d = [[NSMutableDictionary alloc] initWithCapacity:0];
+    for( NSString *routeId in [self.allEntries allKeys])
+    {
+        d[routeId] = @YES;
+    }
+    
+    vc.delegate = self;
+    vc.currentKey = self.currentRouteId;
+    vc.routes = d;
 }
 
 @end

@@ -296,7 +296,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="LZd-YV-SWP">
-                                <rect key="frame" x="0.0" y="94" width="320" height="454"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="504"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -315,14 +315,23 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
+                                    <barButtonItem title="Cancel" id="b1X-z2-ecH">
+                                        <connections>
+                                            <action selector="cancel:" destination="NII-sj-Ets" id="pdL-jW-aDI"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="47C-rp-Ydi"/>
-                                    <barButtonItem title="Done" style="done" id="GxQ-Mm-Kuz"/>
+                                    <barButtonItem title="Done" style="done" id="GxQ-Mm-Kuz">
+                                        <connections>
+                                            <action selector="done:" destination="NII-sj-Ets" id="NAf-I3-wGb"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Routes Serving This Stop" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Lky-SR-YSo">
-                                <rect key="frame" x="20" y="11" width="227" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Routes For This Stop" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Lky-SR-YSo">
+                                <rect key="frame" x="73" y="11" width="175" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -334,7 +343,7 @@
             </objects>
             <point key="canvasLocation" x="1282" y="-147"/>
         </scene>
-        <!--Search Destination View Controller - Your Destination-->
+        <!--Search Destination View Controller - Destination-->
         <scene sceneID="uNV-mp-0gs">
             <objects>
                 <viewController id="n5f-fJ-TRK" customClass="SearchDestinationViewController" sceneMemberID="viewController">
@@ -360,7 +369,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Your Destination" id="Bmx-oP-Kvr">
+                    <navigationItem key="navigationItem" title="Destination" id="Bmx-oP-Kvr">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="K4R-ad-srV">
                             <connections>
                                 <action selector="nextButtonPressed:" destination="n5f-fJ-TRK" id="ica-ww-e23"/>
@@ -393,7 +402,7 @@
             </objects>
             <point key="canvasLocation" x="-1064" y="-543"/>
         </scene>
-        <!--Search Starting View Controller - Your Starting Point-->
+        <!--Search Starting View Controller - Starting-->
         <scene sceneID="6uK-gm-CoQ">
             <objects>
                 <viewController id="Jvl-5D-Kp0" customClass="SearchStartingViewController" sceneMemberID="viewController">
@@ -419,7 +428,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Your Starting Point" id="nax-nm-5Ng">
+                    <navigationItem key="navigationItem" title="Starting" id="nax-nm-5Ng">
                         <barButtonItem key="rightBarButtonItem" title="Routes" style="done" id="BOd-Dz-Jc8">
                             <connections>
                                 <segue destination="uNE-P4-wXK" kind="push" id="c5Q-3I-bBD"/>
@@ -512,6 +521,10 @@
         </class>
         <class className="ScheduleRouteChooserViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ScheduleRouteChooserViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancel:"/>
+                <relationship kind="action" name="done:"/>
+            </relationships>
         </class>
         <class className="SearchDestinationViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchDestinationViewController.h"/>

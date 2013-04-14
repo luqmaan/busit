@@ -7,6 +7,8 @@
 //
 
 #import "BusRouteOptionsViewController.h"
+#import "MBProgressHUD.h"
+#import "Route.h"
 #import "Stop.h"
 #import "RouteId.h"
 
@@ -16,6 +18,26 @@
 
 @implementation BusRouteOptionsViewController
 
+-(void)showHUD:(NSString *)hudMsg
+{
+    if(nil == hud)
+    {
+        hud = [[MBProgressHUD alloc] init];
+        hud.labelText = hudMsg;
+        [self.view addSubview:hud];
+        [hud show:YES];
+    }
+}
+
+-(void)updateHUD:(NSString *)hudMsg
+{
+    hud.labelText = hudMsg;
+}
+
+-(void)hideHUD
+{
+    [hud hide:YES];
+}
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -32,42 +54,51 @@
     //NSLog(@"Destination: %@", _destinationPlacemark);
     //NSLog(@"Starting: %@", _startingPlacemark);
     
-    BusStopManager *stopManager = [BusStopManager sharedManagerWithOnDiskStore];
-    NSArray *closestStopsToDestination = [NSArray arrayWithArray:[stopManager stopsClosestToLatitude:destination.coordinate.latitude andLogitude:destination.coordinate.longitude withinMeters:500 limit:10]];
+    dispatch_queue_t queue = dispatch_queue_create("hackathon", DISPATCH_QUEUE_SERIAL);
     
-    NSArray *closestStopsToStart = [NSArray arrayWithArray:[stopManager stopsClosestToLatitude:starting.coordinate.latitude andLogitude:starting.coordinate.longitude withinMeters:500 limit:10]];
-//    NSArray *closestStops = [NSArray arrayWithArray:[stopManager stopsClosestToLatitude:_startingPlacemark.location.coordinate.latitude andLogitude:_startingPlacemark.location.coordinate.longitude withinMeters:500 limit:5]];
+    dispatch_async(queue, ^{
     
-    NSMutableDictionary *destRouteIds = [NSMutableDictionary dictionaryWithCapacity:0];
-    for( NSDictionary *busStop in closestStopsToDestination )
-    {
-        for( RouteId *routeId in busStop[@"routeIds"] )
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [self showHUD:@"Finding routes..."];
+        });
+        
+        BusStopManager *stopManager = [BusStopManager sharedManagerWithOnDiskStore];
+        NSArray *closestStopsToDestination = [NSArray arrayWithArray:[stopManager stopsClosestToLatitude:destination.coordinate.latitude andLogitude:destination.coordinate.longitude withinMeters:500 limit:10]];
+        
+        NSArray *closestStopsToStart = [NSArray arrayWithArray:[stopManager stopsClosestToLatitude:starting.coordinate.latitude andLogitude:starting.coordinate.longitude withinMeters:500 limit:10]];
+    //    NSArray *closestStops = [NSArray arrayWithArray:[stopManager stopsClosestToLatitude:_startingPlacemark.location.coordinate.latitude andLogitude:_startingPlacemark.location.coordinate.longitude withinMeters:500 limit:5]];
+        
+        NSMutableDictionary *destRouteIds = [NSMutableDictionary dictionaryWithCapacity:0];
+        for( NSDictionary *busStop in closestStopsToDestination )
         {
-            destRouteIds[routeId.routeId] = @YES;
+            for( RouteId *routeId in busStop[@"routeIds"] )
+            {
+                destRouteIds[routeId.routeId] = @YES;
+            }
         }
-    }
-    
-    NSMutableDictionary *startRouteIds = [NSMutableDictionary dictionaryWithCapacity:0];
-    for( NSDictionary *busStop in closestStopsToStart )
-    {
-        for( RouteId *routeId in busStop[@"routeIds"] )
+        
+        NSMutableDictionary *startRouteIds = [NSMutableDictionary dictionaryWithCapacity:0];
+        for( NSDictionary *busStop in closestStopsToStart )
         {
-            startRouteIds[routeId.routeId] = @YES;
+            for( RouteId *routeId in busStop[@"routeIds"] )
+            {
+                startRouteIds[routeId.routeId] = @YES;
+            }
         }
-    }
-    
-    NSLog(@"startRouteIds: %@", startRouteIds);
-    NSLog(@"destRouteIds: %@", destRouteIds);
+        
+        NSMutableSet *set1 = [NSMutableSet setWithArray:[startRouteIds allKeys]];
+        NSMutableSet *set2 = [NSMutableSet setWithArray:[destRouteIds allKeys]];
+        [set1 intersectSet:set2];
+        
+        BusStopManager *mgr = [BusStopManager sharedManagerWithOnDiskStore];
+        self.possibleRoutes = [mgr routesForIds:set1.allObjects];
 
-    NSMutableSet *set1 = [NSMutableSet setWithArray:[startRouteIds allKeys]];
-    NSMutableSet *set2 = [NSMutableSet setWithArray:[destRouteIds allKeys]];
-    [set1 intersectSet:set2];
-    NSLog(@"routeIds in common: %@", set1);
-    NSLog(@"YEA");
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [self hideHUD];
+            [self.tableView reloadData];
+        });
     
-    // now we need to get these from the store.
-    BusStopManager *mgr = [BusStopManager sharedManagerWithOnDiskStore];
-    self.possibleRoutes = [mgr routesForIds:set1.allObjects];
+    });
 }
 
 - (void)didReceiveMemoryWarning
@@ -91,22 +122,10 @@
     
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    
+    if(nil == cell)
+        cell = (UITableViewCell *)[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+    cell.textLabel.text = route.name;
     return cell;
 }
-
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
-}
-
 
 @end

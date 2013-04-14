@@ -5,9 +5,9 @@
 
 const struct RouteAttributes RouteAttributes = {
 	.distance = @"distance",
-	.id = @"id",
 	.name = @"name",
 	.numStops = @"numStops",
+	.routeid = @"routeid",
 	.shortName = @"shortName",
 	.url = @"url",
 };
@@ -88,13 +88,6 @@ const struct RouteFetchedProperties RouteFetchedProperties = {
 
 
 
-@dynamic id;
-
-
-
-
-
-
 @dynamic name;
 
 
@@ -123,6 +116,13 @@ const struct RouteFetchedProperties RouteFetchedProperties = {
 - (void)setPrimitiveNumStopsValue:(int32_t)value_ {
 	[self setPrimitiveNumStops:[NSNumber numberWithInt:value_]];
 }
+
+
+
+
+
+@dynamic routeid;
+
 
 
 
