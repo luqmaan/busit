@@ -78,6 +78,7 @@
     
     MKCoordinateRegion rgn = MKCoordinateRegionMake(coord, span);
     [self.stopMap setRegion:rgn];
+    [self.stopMap setCenterCoordinate:coord];
     
     CLLocation *location = [[CLLocation alloc] initWithLatitude:lat longitude:lon];
     
