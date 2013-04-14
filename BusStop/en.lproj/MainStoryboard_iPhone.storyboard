@@ -264,6 +264,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="e0R-Ty-LPH" id="J5f-AP-QgQ"/>
+                                    <outlet property="delegate" destination="e0R-Ty-LPH" id="Edk-CQ-76h"/>
+                                </connections>
                             </tableView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="00:00 AM" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DoB-9V-hWq">
                                 <rect key="frame" x="157" y="50" width="156" height="44"/>

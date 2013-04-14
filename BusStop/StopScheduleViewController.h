@@ -12,8 +12,9 @@
 @interface StopScheduleViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) Stop *busStop;
+@property (nonatomic, strong) NSString *currentRouteId;
 
-@property (nonatomic, strong) NSArray *allEntries;
+@property (nonatomic, strong) NSMutableDictionary *allEntries;
 @property (nonatomic, strong) NSMutableArray *visibleEntries;
 
 @property (nonatomic, weak) IBOutlet UILabel *stopNameLabel;
