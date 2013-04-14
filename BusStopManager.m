@@ -129,15 +129,15 @@
         NSArray *stops1 = nil;
         if(nil != refs)
             stops1 = refs[@"stops"];
-//        stops1 = stops[@"data"][@"references"][@"stops"];
+        stops1 = stops[@"data"][@"references"][@"stops"];
         if(nil != stops1)
         {
             NSLog(@"about to add stops");
             for( NSDictionary *stop in stops1 )
             {
-//                NSLog(@"candidate stop: %@", stop);
+                NSLog(@"candidate stop: %@", stop);
                 NSDictionary *busStop = @{@"name":stop[@"name"], @"code":stop[@"code"], @"id":stop[@"id"], @"direction":stop[@"direction"], @"lat":stop[@"lat"], @"lon":stop[@"lon"], @"routeIds":stop[@"routeIds"]};
-//                NSLog(@"bus stop: %@", busStop);
+                NSLog(@"bus stop: %@", busStop);
                 NSArray *routeIds = stop[@"routeIds"];
                 for( NSString *routeId in routeIds )
                 {
@@ -163,6 +163,14 @@
 -(NSArray *)routes
 {
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Route"];
+    NSArray *rows = [self.context executeFetchRequest:fetchRequest error:nil];
+    return rows;
+}
+
+-(NSArray *)routesForIds:(NSArray *)routeIds
+{
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Route"];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"id in %@", routeIds];
     NSArray *rows = [self.context executeFetchRequest:fetchRequest error:nil];
     return rows;
 }
@@ -203,14 +211,14 @@
         {
             CLLocation *busStopLocation = [[CLLocation alloc] initWithLatitude:[busStop.lat doubleValue] longitude:[busStop.lon doubleValue]];
             double distanceAwayInMeters = [busStopLocation distanceFromLocation:currentTestingLocation];
-            NSSet *setOfRouteIDs = busStop.routeIds;
+            NSSet *setOfRouteIDs = [busStop valueForKey:@"routeIds"];
             NSArray *routeIDs = [NSArray arrayWithArray:[setOfRouteIDs allObjects]];
-            if(distanceAwayInMeters<=distanceInMeters && closeStops.count<numStopsToReturn)
+            if(distanceAwayInMeters<=distanceInMeters && closeStops.count<numStopsToReturn && setOfRouteIDs.count>0)
             {
                 NSMutableDictionary *tempBusStop = [NSMutableDictionary dictionary];
                 tempBusStop[@"lat"] = busStop.lat;
                 tempBusStop[@"lon"] = busStop.lon;
-                tempBusStop[@"routeID"] = [busStop.routeIds allObjects];
+                tempBusStop[@"routeIds"] = [busStop.routeIds allObjects];
                 tempBusStop[@"code"] = busStop.code;
                 tempBusStop[@"direction"] = busStop.direction;
                 tempBusStop[@"id"] = busStop.id;

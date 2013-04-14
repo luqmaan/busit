@@ -7,6 +7,8 @@
 //
 
 #import "BusRouteOptionsViewController.h"
+#import "Stop.h"
+#import "RouteId.h"
 
 @interface BusRouteOptionsViewController ()
 
@@ -29,11 +31,43 @@
     CLLocation *starting = [[CLLocation alloc] initWithLatitude:28.06457550 longitude:-82.41806000];
     //NSLog(@"Destination: %@", _destinationPlacemark);
     //NSLog(@"Starting: %@", _startingPlacemark);
+    
     BusStopManager *stopManager = [BusStopManager sharedManagerWithOnDiskStore];
     NSArray *closestStopsToDestination = [NSArray arrayWithArray:[stopManager stopsClosestToLatitude:destination.coordinate.latitude andLogitude:destination.coordinate.longitude withinMeters:500 limit:10]];
+    
     NSArray *closestStopsToStart = [NSArray arrayWithArray:[stopManager stopsClosestToLatitude:starting.coordinate.latitude andLogitude:starting.coordinate.longitude withinMeters:500 limit:10]];
 //    NSArray *closestStops = [NSArray arrayWithArray:[stopManager stopsClosestToLatitude:_startingPlacemark.location.coordinate.latitude andLogitude:_startingPlacemark.location.coordinate.longitude withinMeters:500 limit:5]];
-    NSLog(@"%@", closestStopsToDestination);
+    
+    NSMutableDictionary *destRouteIds = [NSMutableDictionary dictionaryWithCapacity:0];
+    for( NSDictionary *busStop in closestStopsToDestination )
+    {
+        for( RouteId *routeId in busStop[@"routeIds"] )
+        {
+            destRouteIds[routeId.routeId] = @YES;
+        }
+    }
+    
+    NSMutableDictionary *startRouteIds = [NSMutableDictionary dictionaryWithCapacity:0];
+    for( NSDictionary *busStop in closestStopsToStart )
+    {
+        for( RouteId *routeId in busStop[@"routeIds"] )
+        {
+            startRouteIds[routeId.routeId] = @YES;
+        }
+    }
+    
+    NSLog(@"startRouteIds: %@", startRouteIds);
+    NSLog(@"destRouteIds: %@", destRouteIds);
+
+    NSMutableSet *set1 = [NSMutableSet setWithArray:[startRouteIds allKeys]];
+    NSMutableSet *set2 = [NSMutableSet setWithArray:[destRouteIds allKeys]];
+    [set1 intersectSet:set2];
+    NSLog(@"routeIds in common: %@", set1);
+    NSLog(@"YEA");
+    
+    // now we need to get these from the store.
+    BusStopManager *mgr = [BusStopManager sharedManagerWithOnDiskStore];
+    self.possibleRoutes = [mgr routesForIds:set1.allObjects];
 }
 
 - (void)didReceiveMemoryWarning
@@ -43,16 +77,18 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+    return self.possibleRoutes.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    Route *route = self.possibleRoutes[indexPath.row];
+    
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     

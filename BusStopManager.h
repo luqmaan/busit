@@ -24,6 +24,7 @@
 -(void)updateBusRouteDataWithCompletion:(void (^)(void))completion failure:(void (^)(void))failure;
 
 -(NSArray *)routes;
+-(NSArray *)routesForIds:(NSArray *)routeIds;
 -(Route *)routeForId:(NSString *)routeId;
 -(Stop *)stopForId:(NSString *)stopId;
 -(NSArray *)stopsClosestToLatitude:(double)latitude andLogitude:(double)longitude withinMeters:(double)distanceInMeters limit:(NSInteger)numStopsToReturn;
