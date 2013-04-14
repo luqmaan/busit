@@ -27,7 +27,5 @@
 -(Route *)routeForId:(NSString *)routeId;
 -(Stop *)stopForId:(NSString *)stopId;
 -(NSArray *)stopsClosestToLatitude:(double)latitude andLogitude:(double)longitude withinMeters:(double)distanceInMeters limit:(NSInteger)numStopsToReturn;
--(NSDictionary *)scheduleForStop:(NSString *)stopId;
--(NSDictionary *)scheduleForStop:(NSString *)stopId andRoute:(NSString *)routeId;
 
 @end

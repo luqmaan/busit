@@ -192,7 +192,6 @@
 -(NSArray *)stopsClosestToLatitude:(double)latitude andLogitude:(double)longitude withinMeters:(double)distanceInMeters limit:(NSInteger)numStopsToReturn
 {
     NSMutableArray *closeStops = [[NSMutableArray alloc] initWithCapacity:0];
-    BusStopAppDelegate *delegate = (BusStopAppDelegate *)[[UIApplication sharedApplication] delegate];
     CLLocation *currentTestingLocation = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
 
     if(nil != currentTestingLocation)
@@ -230,14 +229,6 @@
     closeStops = nil;
     
     return sortedStops;
-}
-
--(NSDictionary *)scheduleForStop:(NSString *)stopId
-{
-}
-
--(NSDictionary *)scheduleForStop:(NSString *)stopId andRoute:(NSString *)routeId
-{
 }
 
 @end
