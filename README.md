@@ -30,7 +30,7 @@ Interaction with the API is handled by BusStopREST.m. All requests must be passe
 	          "trips": [],
 	          "routes": [],
 	          "agencies": [{
-	                  "id": "Hillsborough Area Regional Transit",
+	                  "id": "Hillsbo	                  rough Area Regional Transit",
 	                  "privateService": false,
 	                  "phone": "813-254-4278",
 	                  "timezone": "America/New_York",
@@ -332,3 +332,15 @@ Interaction with the API is handled by BusStopREST.m. All requests must be passe
 	  }
 	}
 	```
+
+Real-Time Vehicle Positions
+--
+
+https://github.com/CUTR-at-USF/onebusaway-application-modules/wiki/Tampa---Third-Party-App-Interfaces#gtfs-realtime-feed
+
+- Trip Updates Feed http://onebusaway.forest.usf.edu:8088/trip-updates?debug
+- Vehicle Positions Feed http://onebusaway.forest.usf.edu:8088/vehicle-positions?debug
+
+![](https://github.com/CUTR-at-USF/HART-GTFS-realtimeGenerator/wiki/HART_OrbCAD_GTFS-realtime_architecture.png)
+
+
