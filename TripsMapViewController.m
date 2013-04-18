@@ -1,18 +1,18 @@
 //
-//  MapWebViewController.m
+//  TripsMapViewController.m
 //  BusStop
 //
 //  Created by Robert Ries on 4/14/13.
 //  Copyright (c) 2013 0xC0ffee. All rights reserved.
 //
 
-#import "MapWebViewController.h"
+#import "TripsMapViewController.h"
 
-@interface MapWebViewController ()
+@interface TripsMapViewController ()
 
 @end
 
-@implementation MapWebViewController
+@implementation TripsMapViewController
 
 @synthesize mapView;
 

@@ -1,5 +1,5 @@
 //
-//  MapWebViewController.h
+//  TripsMapViewController.h
 //  BusStop
 //
 //  Created by Robert Ries on 4/14/13.
@@ -13,7 +13,7 @@
 
 #define METERS_PER_MILE 1609.344
 
-@interface MapWebViewController : UIViewController <MKMapViewDelegate>
+@interface TripsMapViewController : UIViewController <MKMapViewDelegate>
 
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
