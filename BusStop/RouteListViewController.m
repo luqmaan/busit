@@ -35,6 +35,8 @@
 {
     [super viewDidLoad];
     self.routes = [[BusStopManager sharedManagerWithOnDiskStore] routes];
+    
+    NSLog(@"self.routes: %@", self.routes);
 }
 
 - (void)didReceiveMemoryWarning
@@ -51,6 +53,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSInteger numRoutes = self.routes.count;
+    NSLog(@"numRoutes: %d", numRoutes);
     return numRoutes;
 }
 

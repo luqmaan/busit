@@ -7,9 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
+#import "BusItem.h"
+#import "BusAnnotationView.h"
 
-@interface MapWebViewController : UIViewController
+#define METERS_PER_MILE 1609.344
 
-@property (nonatomic, retain) IBOutlet UIWebView *webView;
+@interface MapWebViewController : UIViewController <MKMapViewDelegate>
+
+
+@property (weak, nonatomic) IBOutlet MKMapView *mapView;
+
 
 @end

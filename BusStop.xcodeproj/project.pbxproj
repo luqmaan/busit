@@ -67,6 +67,8 @@
 		27C9C4F11718F4E0005EAE68 /* BusStopREST.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C9C4F01718F4E0005EAE68 /* BusStopREST.m */; };
 		27C9C4F417190FA1005EAE68 /* RouteListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C9C4F317190FA1005EAE68 /* RouteListViewController.m */; };
 		A3DAC004171B242200FC6C38 /* MapWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DAC003171B242200FC6C38 /* MapWebViewController.m */; };
+		C1BE03A4172064F000D99D74 /* BusAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1BE03A3172064F000D99D74 /* BusAnnotationView.m */; };
+		C1BE03A7172064FD00D99D74 /* BusItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C1BE03A6172064FD00D99D74 /* BusItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -173,6 +175,10 @@
 		27C9C4F317190FA1005EAE68 /* RouteListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteListViewController.m; sourceTree = "<group>"; };
 		A3DAC002171B242200FC6C38 /* MapWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapWebViewController.h; sourceTree = "<group>"; };
 		A3DAC003171B242200FC6C38 /* MapWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapWebViewController.m; sourceTree = "<group>"; };
+		C1BE03A2172064F000D99D74 /* BusAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusAnnotationView.h; sourceTree = "<group>"; };
+		C1BE03A3172064F000D99D74 /* BusAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BusAnnotationView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		C1BE03A5172064FD00D99D74 /* BusItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusItem.h; sourceTree = "<group>"; };
+		C1BE03A6172064FD00D99D74 /* BusItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -398,6 +404,10 @@
 				27738544171B3A5E00CFD1CB /* map.pdf */,
 				A3DAC002171B242200FC6C38 /* MapWebViewController.h */,
 				A3DAC003171B242200FC6C38 /* MapWebViewController.m */,
+				C1BE03A2172064F000D99D74 /* BusAnnotationView.h */,
+				C1BE03A3172064F000D99D74 /* BusAnnotationView.m */,
+				C1BE03A5172064FD00D99D74 /* BusItem.h */,
+				C1BE03A6172064FD00D99D74 /* BusItem.m */,
 			);
 			name = PDF;
 			sourceTree = "<group>";
@@ -518,6 +528,8 @@
 				27738541171AF7CF00CFD1CB /* _RouteId.m in Sources */,
 				27738542171AF7CF00CFD1CB /* RouteId.m in Sources */,
 				A3DAC004171B242200FC6C38 /* MapWebViewController.m in Sources */,
+				C1BE03A4172064F000D99D74 /* BusAnnotationView.m in Sources */,
+				C1BE03A7172064FD00D99D74 /* BusItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
