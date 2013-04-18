@@ -59,7 +59,7 @@
 
     NSLog(@"about to add bus6 to view");
     [mapView addAnnotations:buses];
-
+    
     NSLog(@"about to animate");
     [UIView animateWithDuration:1.2 animations:^{
         NSLog(@"inside of block");
@@ -95,7 +95,13 @@
     if (annotationView == nil)
     {
         NSLog(@"Brand new annotation!");
-        annotationView = [[BusAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationViewID];
+        if ([annotation class] == [BusItem class]) {
+            annotationView = [[BusAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationViewID];
+        }
+        else {
+            // does this even work?
+            annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationViewID];
+        }
         NSLog(@"Allocated space for the new annotation!");
     }
     
