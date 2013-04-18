@@ -63,10 +63,9 @@
         });
         
         BusStopManager *stopManager = [BusStopManager sharedManagerWithOnDiskStore];
-        NSArray *closestStopsToDestination = [NSArray arrayWithArray:[stopManager stopsClosestToLatitude:destination.coordinate.latitude andLogitude:destination.coordinate.longitude withinMeters:500 limit:10]];
+        NSArray *closestStopsToDestination = [NSArray arrayWithArray:[stopManager stopsClosestToLatitude:_destinationPlacemark.location.coordinate.latitude andLogitude:_destinationPlacemark.location.coordinate.longitude withinMeters:500 limit:10]];
         
-        NSArray *closestStopsToStart = [NSArray arrayWithArray:[stopManager stopsClosestToLatitude:starting.coordinate.latitude andLogitude:starting.coordinate.longitude withinMeters:500 limit:10]];
-    //    NSArray *closestStops = [NSArray arrayWithArray:[stopManager stopsClosestToLatitude:_startingPlacemark.location.coordinate.latitude andLogitude:_startingPlacemark.location.coordinate.longitude withinMeters:500 limit:5]];
+        NSArray *closestStopsToStart = [NSArray arrayWithArray:[stopManager stopsClosestToLatitude:_startingPlacemark.location.coordinate.latitude andLogitude:_startingPlacemark.location.coordinate.longitude withinMeters:500 limit:10]];
         
         NSMutableDictionary *destRouteIds = [NSMutableDictionary dictionaryWithCapacity:0];
         for( NSDictionary *busStop in closestStopsToDestination )
