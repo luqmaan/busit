@@ -10,6 +10,7 @@
 #import <MapKit/MapKit.h>
 #import "BusItem.h"
 #import "BusAnnotationView.h"
+#import "TripData.h"
 
 #define METERS_PER_MILE 1609.344
 

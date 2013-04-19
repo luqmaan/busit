@@ -12,17 +12,21 @@
 
 @synthesize coordinate, title, subtitle;
 
--(id) initWithCoordinate:(CLLocationCoordinate2D)location routeName:(NSString *)routeName
+-(id) initWithLatitude:(NSNumber*)lat Longitude:(NSNumber*)lon Route:(NSString *)routeName andName:(NSString *)tripName
 {
     
     self = [super init];
     
     if (self != nil) {
+        CLLocationCoordinate2D location;
+        location.latitude = [lat doubleValue];
+        location.longitude = [lon doubleValue];
+        NSLog(@"created the cllocation: %f %f", location.latitude, location.longitude);
         coordinate = location;
         title = routeName;
-        subtitle = @"";
+        subtitle = tripName;
     }
-    NSLog(@"Did Init BusItem: %@", self);    
+    NSLog(@"Did Init BusItem: %@", self);
     return self;
 }
 

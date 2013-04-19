@@ -49,27 +49,40 @@
     aLocation.latitude = 28;
     aLocation.longitude = -82.464109;
     
-    BusItem *bus6 = [[BusItem alloc] initWithCoordinate:zoomLocation routeName:@"Bus 6"];
-    BusItem *bus4 = [[BusItem alloc] initWithCoordinate:aLocation routeName:@"Bus 4"];
-    NSArray *buses = [NSArray arrayWithObjects:bus6, bus4, nil];
-
-    CLLocationCoordinate2D moveLocation;
-    moveLocation.latitude = 27.87;
-    moveLocation.longitude = -82.394109;
-
-    NSLog(@"about to add bus6 to view");
-    [mapView addAnnotations:buses];
+//    BusItem *bus6 = [[BusItem alloc] initWithLatitude:[NSNumber numberWithDouble:zoomLocation.latitude]
+//                                            Longitude:[NSNumber numberWithDouble:zoomLocation.longitude]
+//                                                Route:@"Bus 6"
+//                                         andName:@"Northbound"];
+//    BusItem *bus5 = [[BusItem alloc] initWithLatitude:[NSNumber numberWithDouble:aLocation.latitude]
+//                                            Longitude:[NSNumber numberWithDouble:aLocation.longitude]
+//                                                Route:@"Bus 5"
+//                                         andName:@"Southbound"];
+//    NSArray *buses = [NSArray arrayWithObjects:bus6, bus5, nil];
+//
+//    CLLocationCoordinate2D moveLocation;
+//    moveLocation.latitude = 27.87;
+//    moveLocation.longitude = -82.394109;
+//
+//    NSLog(@"about to add bus6 to view");
+//    [mapView addAnnotations:buses];
+//    
+//    NSLog(@"about to animate");
+//    [UIView animateWithDuration:1.2 animations:^{
+//        NSLog(@"inside of block");
+//        [bus5 setCoordinate:moveLocation];
+//        NSLog(@"called SetCoordinate");
+//    }];
+//
+//    NSLog(@"%@", mapView);
     
-    NSLog(@"about to animate");
-    [UIView animateWithDuration:1.2 animations:^{
-        NSLog(@"inside of block");
-        [bus4 setCoordinate:moveLocation];
-        NSLog(@"called SetCoordinate");
-    }];
+    TripData *tripData = [[TripData alloc] init];
+    NSArray *busItems = [tripData busItemsForRoute:@"Hillsborough Area Regional Transit_6"];
     
     
-    NSLog(@"%@", mapView);
+    NSLog(@"about to add annotations to map");
+    [mapView addAnnotations:busItems];
     
+    NSLog(@"Done did get busItemsArray");
 }
 
 - (void)didReceiveMemoryWarning
@@ -81,35 +94,6 @@
 - (void)viewDidUnload {
     [self setMapView:nil];
     [super viewDidUnload];
-}
-
-- (MKAnnotationView *)mapView:(MKMapView *)map viewForAnnotation:(id <MKAnnotation>)annotation
-{
-    static NSString *AnnotationViewID = @"annotationViewID";
-    
-    NSLog(@"called viewForAnnotation");
-    
-    BusAnnotationView *annotationView = (BusAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:AnnotationViewID];
-    
-    NSLog(@"annotationView: %@", annotationView);
-    if (annotationView == nil)
-    {
-        NSLog(@"Brand new annotation!");
-        if ([annotation class] == [BusItem class]) {
-            annotationView = [[BusAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationViewID];
-        }
-        else {
-            // does this even work?
-            annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationViewID];
-        }
-        NSLog(@"Allocated space for the new annotation!");
-    }
-    
-    annotationView.annotation = annotation;
-
-    NSLog(@"Done with the annotations!");
-    
-    return annotationView;
 }
 
 

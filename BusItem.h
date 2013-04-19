@@ -19,7 +19,6 @@
 @property (nonatomic, readonly) NSString *title;
 @property (nonatomic, readonly) NSString *subtitle;
 
--(id) initWithCoordinate:(CLLocationCoordinate2D)coordinate routeName:(NSString *)routeName;
-
+-(id) initWithLatitude:(NSNumber*)lat Longitude:(NSNumber*)lon Route:(NSString *)routeName andName:(NSString *)tripName;
 
 @end

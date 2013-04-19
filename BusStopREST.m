@@ -64,6 +64,15 @@
     return [self restToJSON:urlStr paramStr:@"includePolylines=false&"];
 }
 
+
+-(NSDictionary *)tripsForRoute:(NSString *)routeId
+{
+    NSLog(@"woeijfwoeijfwoiejf");
+    NSString *encodedRouteId = [routeId stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+    NSMutableString *urlStr = [NSMutableString stringWithFormat:@"http://onebusaway.forest.usf.edu/api/api/where/trips-for-route/%@.json", encodedRouteId];
+    return [self restToJSON:urlStr paramStr:@""];
+}
+
 -(NSDictionary *)stop:(NSString *)stopId
 {
     NSString *encodedStopId = [stopId stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
@@ -75,6 +84,16 @@
 {
     NSString *encodedStopId = [stopId stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
     NSMutableString *urlStr = [NSMutableString stringWithFormat:@"http://onebusaway.forest.usf.edu/api/api/where/schedule-for-stop/%@.json", encodedStopId];
+    return [self restToJSON:urlStr paramStr:@""];
+}
+
+
+-(NSDictionary *)tripDetailsForTrip:(NSString *)tripId
+{
+    NSString *encodedTripId = [tripId stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+    NSMutableString *urlStr = [NSMutableString stringWithFormat:@"http://onebusaway.forest.usf.edu/api/api/where/trip-details/%@.json", encodedTripId];
+    NSLog(@"urlStr: %@", urlStr);
+
     return [self restToJSON:urlStr paramStr:@""];
 }
 
