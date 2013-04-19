@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 0xC0ffee. All rights reserved.
 //
 
-#import "BusItem.h"
+#import "BusAnnotation.h"
 
-@implementation BusItem
+@implementation BusAnnotation
 
 @synthesize coordinate, title, subtitle;
 

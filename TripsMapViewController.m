@@ -49,38 +49,12 @@
     aLocation.latitude = 28;
     aLocation.longitude = -82.464109;
     
-//    BusItem *bus6 = [[BusItem alloc] initWithLatitude:[NSNumber numberWithDouble:zoomLocation.latitude]
-//                                            Longitude:[NSNumber numberWithDouble:zoomLocation.longitude]
-//                                                Route:@"Bus 6"
-//                                         andName:@"Northbound"];
-//    BusItem *bus5 = [[BusItem alloc] initWithLatitude:[NSNumber numberWithDouble:aLocation.latitude]
-//                                            Longitude:[NSNumber numberWithDouble:aLocation.longitude]
-//                                                Route:@"Bus 5"
-//                                         andName:@"Southbound"];
-//    NSArray *buses = [NSArray arrayWithObjects:bus6, bus5, nil];
-//
-//    CLLocationCoordinate2D moveLocation;
-//    moveLocation.latitude = 27.87;
-//    moveLocation.longitude = -82.394109;
-//
-//    NSLog(@"about to add bus6 to view");
-//    [mapView addAnnotations:buses];
-//    
-//    NSLog(@"about to animate");
-//    [UIView animateWithDuration:1.2 animations:^{
-//        NSLog(@"inside of block");
-//        [bus5 setCoordinate:moveLocation];
-//        NSLog(@"called SetCoordinate");
-//    }];
-//
-//    NSLog(@"%@", mapView);
-    
     TripData *tripData = [[TripData alloc] init];
-    NSArray *busItems = [tripData busItemsForRoute:@"Hillsborough Area Regional Transit_6"];
+    NSArray *busAnnotations = [tripData busAnnotationsForRoute:@"Hillsborough Area Regional Transit_6"];
     
     
     NSLog(@"about to add annotations to map");
-    [mapView addAnnotations:busItems];
+    [mapView addAnnotations:busAnnotations];
     
     NSLog(@"Done did get busItemsArray");
 }

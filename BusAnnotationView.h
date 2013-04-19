@@ -7,7 +7,7 @@
 //
 
 #import <MapKit/MapKit.h>
-#import "BusItem.h"
+#import "BusAnnotation.h"
 
 @interface BusAnnotationView : MKAnnotationView
 
