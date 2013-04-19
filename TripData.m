@@ -82,8 +82,9 @@
                                                      andName:tripName];
         
         NSLog(@"tripName: %@", tripName);
+        [[self delegate] addAnnotationToMap:busAnnotation];
         
-        [busAnnotations addObject:busAnnotation];
+        //[busAnnotations addObject:busAnnotation];
     }
     
 //    NSLog(@"busAnnotations: %@", busAnnotations);

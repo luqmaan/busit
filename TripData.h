@@ -11,8 +11,14 @@
 #import "BusStopManager.h"
 #import "BusAnnotation.h"
 
-@interface TripData : NSObject
+@protocol TripDataDelegate <NSObject>
 
+-(BOOL)addAnnotationToMap:(BusAnnotation *)annotation;
+
+@end
+
+@interface TripData : NSObject
+@property (retain) id<TripDataDelegate> delegate;
 @property BusStopREST *bench;
 
 - (NSArray *)busAnnotationsForRoute:(NSString *)route;

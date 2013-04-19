@@ -14,7 +14,7 @@
 
 #define METERS_PER_MILE 1609.344
 
-@interface TripsMapViewController : UIViewController <MKMapViewDelegate>
+@interface TripsMapViewController : UIViewController <MKMapViewDelegate, TripDataDelegate>
 
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;

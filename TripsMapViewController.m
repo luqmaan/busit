@@ -50,16 +50,26 @@
     aLocation.longitude = -82.464109;
     
     TripData *tripData = [[TripData alloc] init];
+    [tripData setDelegate:self];
     dispatch_queue_t getAnnotations = dispatch_queue_create("com.awesomeness.I.am", DISPATCH_QUEUE_SERIAL);
     dispatch_async(getAnnotations, ^{
         NSArray *busAnnotations = [tripData busAnnotationsForRoute:@"Hillsborough Area Regional Transit_6"];
         NSLog(@"about to add annotations to map");
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [mapView addAnnotations:busAnnotations];
-        });
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [mapView addAnnotations:busAnnotations];
+//        });
+        NSLog(@"Done did get busItemsArray");
     });
     dispatch_release(getAnnotations);
-    NSLog(@"Done did get busItemsArray");
+}
+
+-(BOOL)addAnnotationToMap:(BusAnnotation *)annotation
+{
+    NSLog(@"TEST");
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [mapView addAnnotation:annotation];
+    });
+    return true;
 }
 
 - (void)didReceiveMemoryWarning
