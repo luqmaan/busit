@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-#import "BusItem.h"
+#import "BusAnnotation.h"
 #import "BusAnnotationView.h"
 #import "TripData.h"
 

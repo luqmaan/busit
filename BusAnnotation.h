@@ -1,5 +1,5 @@
 //
-//  BusItem.h
+//  BusAnnotation.h
 //  BusStop
 //
 //  Created by Lolcat on 18/04/2013.

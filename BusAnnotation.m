@@ -26,7 +26,7 @@
         title = routeName;
         subtitle = tripName;
     }
-    NSLog(@"Did Init BusItem: %@", self);
+    NSLog(@"Did Init BusAnnotation: %@", self);
     return self;
 }
 

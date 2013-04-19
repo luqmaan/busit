@@ -9,12 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "BusStopREST.h"
 #import "BusStopManager.h"
-#import "BusItem.h"
+#import "BusAnnotation.h"
 
 @interface TripData : NSObject
 
 @property BusStopREST *bench;
 
-- (NSArray *)busItemsForRoute:(NSString *)route;
+- (NSArray *)busAnnotationsForRoute:(NSString *)route;
 
 @end

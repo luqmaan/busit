@@ -17,7 +17,7 @@
     return self;
 }
 
-- (NSArray *)busItemsForRoute:(NSString *)routeId {
+- (NSArray *)busAnnotationsForRoute:(NSString *)routeId {
     
     NSLog(@"About to call tripsForRoute");
     NSDictionary *tripsDict = [bench tripsForRoute:routeId];
@@ -29,10 +29,10 @@
     NSLog(@"Got the trips!");
     NSLog(@"Trips: %@", tripsList);
     
-    NSMutableArray *busItems = [[NSMutableArray alloc] init];
+    NSMutableArray *busAnnotations = [[NSMutableArray alloc] init];
     
     for (NSDictionary *trip in tripsList) {
-                
+        
         NSString *activeTripId = [trip objectForKey:@"id"];
         NSString *routeId = [trip objectForKey:@"routeId"];
         NSMutableString *routeName = [[NSMutableString alloc] initWithString:@""];
@@ -50,11 +50,12 @@
             
         }
         
-//        NSLog(@"id: %@", activeTripId);
+        NSLog(@"activeTripId: %@", activeTripId);
         
         // get the trip details from the API
+        sleep(1);
         NSDictionary* tripDetailsDict = [bench tripDetailsForTrip:activeTripId];
-//        NSLog(@"tripDetails: %@", tripDetailsDict);
+        NSLog(@"tripDetails: %@", tripDetailsDict);
 
         NSDictionary *status = [[[tripDetailsDict objectForKey:@"data"]
                                                   objectForKey:@"entry"]
@@ -75,19 +76,19 @@
         // position
         NSDictionary *pos = [status objectForKey:@"position"];
         
-        BusItem *busItem = [[BusItem alloc] initWithLatitude:[pos objectForKey:@"lat"]
+        BusAnnotation *busAnnotation = [[BusAnnotation alloc] initWithLatitude:[pos objectForKey:@"lat"]
                                                    Longitude:[pos objectForKey:@"lon"]
                                                        Route:routeName
                                                      andName:tripName];
         
         NSLog(@"tripName: %@", tripName);
         
-        [busItems addObject:busItem];
+        [busAnnotations addObject:busAnnotation];
     }
     
-//    NSLog(@"busItems: %@", busItems);
+//    NSLog(@"busAnnotations: %@", busAnnotations);
     
-    return busItems;
+    return busAnnotations;
 }
 
 @end
