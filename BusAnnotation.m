@@ -34,5 +34,13 @@
     coordinate = newCoordinate;
 }
 
+-(NSString *)title{
+    return title;
+}
+
+-(NSString *)subtitle{
+    return subtitle;
+}
+
 
 @end

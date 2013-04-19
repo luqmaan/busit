@@ -50,12 +50,15 @@
     aLocation.longitude = -82.464109;
     
     TripData *tripData = [[TripData alloc] init];
-    NSArray *busAnnotations = [tripData busAnnotationsForRoute:@"Hillsborough Area Regional Transit_6"];
-    
-    
-    NSLog(@"about to add annotations to map");
-    [mapView addAnnotations:busAnnotations];
-    
+    dispatch_queue_t getAnnotations = dispatch_queue_create("com.awesomeness.I.am", DISPATCH_QUEUE_SERIAL);
+    dispatch_async(getAnnotations, ^{
+        NSArray *busAnnotations = [tripData busAnnotationsForRoute:@"Hillsborough Area Regional Transit_6"];
+        NSLog(@"about to add annotations to map");
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [mapView addAnnotations:busAnnotations];
+        });
+    });
+    dispatch_release(getAnnotations);
     NSLog(@"Done did get busItemsArray");
 }
 
@@ -70,7 +73,7 @@
     [super viewDidUnload];
 }
 
-/* way too buggy
+// way too buggy
 - (MKAnnotationView *)mapView:(MKMapView *)map viewForAnnotation:(id <MKAnnotation>)annotation
 {
     static NSString *AnnotationViewID = @"annotationViewID";
@@ -83,7 +86,7 @@
     if (annotationView == nil)
     {
         NSLog(@"Brand new annotation!");
-        if([annotation isKindOfClass:[BusItem class]]){
+        if([annotation isKindOfClass:[BusAnnotation class]]){
             annotationView = [[BusAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationViewID];
             annotationView.canShowCallout = YES;
             annotationView.opaque = NO;
@@ -104,6 +107,6 @@
     
     return annotationView;
 }
-*/
+
 
 @end
