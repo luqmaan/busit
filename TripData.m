@@ -22,16 +22,34 @@
     NSLog(@"About to call tripsForRoute");
     NSDictionary *tripsDict = [bench tripsForRoute:routeId];
     
-    NSArray *tripsList = [[tripsDict objectForKey:@"data"] objectForKey:@"list"];
+    NSArray *tripsList = [[[tripsDict objectForKey:@"data"]
+                                      objectForKey:@"references"]
+                                      objectForKey:@"trips"];
     
     NSLog(@"Got the trips!");
     NSLog(@"Trips: %@", tripsList);
     
     NSMutableArray *busItems = [[NSMutableArray alloc] init];
     
-    for (NSDictionary* trip in tripsList) {
+    for (NSDictionary *trip in tripsList) {
                 
-        NSString *activeTripId = [trip objectForKey:@"tripId"];
+        NSString *activeTripId = [trip objectForKey:@"id"];
+        NSString *routeId = [trip objectForKey:@"routeId"];
+        NSMutableString *routeName = [[NSMutableString alloc] initWithString:@""];
+        
+        for (NSDictionary *route in [[[tripsDict objectForKey:@"data"]
+                                                 objectForKey:@"references"]
+                                                 objectForKey:@"routes"])
+        {
+            if ([[route objectForKey:@"id"] isEqualToString:routeId]) {
+                [routeName appendString:[route objectForKey:@"shortName"]];
+                [routeName appendString:@" - "];
+                [routeName appendString:[route objectForKey:@"longName"]];
+                break;
+            }
+            
+        }
+        
 //        NSLog(@"id: %@", activeTripId);
         
         // get the trip details from the API
@@ -59,7 +77,7 @@
         
         BusItem *busItem = [[BusItem alloc] initWithLatitude:[pos objectForKey:@"lat"]
                                                    Longitude:[pos objectForKey:@"lon"]
-                                                       Route:@"Route 6"
+                                                       Route:routeName
                                                      andName:tripName];
         
         NSLog(@"tripName: %@", tripName);

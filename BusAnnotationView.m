@@ -20,6 +20,11 @@
     return self;
 }
 
+-(void)setAnnotation:(id<MKAnnotation>)annotation{
+    [super setAnnotation:annotation];
+//    [self setNeedsDisplay];
+    [self setCanShowCallout:YES];
+}
 
 - (id)initWithAnnotation:(id <MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier
 {

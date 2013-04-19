@@ -33,7 +33,7 @@
     [super viewDidLoad];
     [self.view setBackgroundColor:[UIColor lightGrayColor]];
 
-//    [mapView setUserTrackingMode:MKUserTrackingModeFollowWithHeading];
+    [mapView setUserTrackingMode:MKUserTrackingModeFollowWithHeading];
     
     CLLocationCoordinate2D zoomLocation;
     zoomLocation.latitude = 27.977727;
@@ -96,5 +96,40 @@
     [super viewDidUnload];
 }
 
+/* way too buggy
+- (MKAnnotationView *)mapView:(MKMapView *)map viewForAnnotation:(id <MKAnnotation>)annotation
+{
+    static NSString *AnnotationViewID = @"annotationViewID";
+    
+    NSLog(@"called viewForAnnotation");
+    
+    BusAnnotationView *annotationView = (BusAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:AnnotationViewID];
+    
+    NSLog(@"annotationView: %@", annotationView);
+    if (annotationView == nil)
+    {
+        NSLog(@"Brand new annotation!");
+        if([annotation isKindOfClass:[BusItem class]]){
+            annotationView = [[BusAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationViewID];
+            annotationView.canShowCallout = YES;
+            annotationView.opaque = NO;
+        }
+        else {
+            NSLog(@"Annotation that is not a bus pin");
+            // does this even work?
+            AnnotationViewID = @"GenericPinViewID";
+            annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationViewID];
+//            return nil;
+        }
+        NSLog(@"Allocated space for the new annotation!");
+    }
+    
+    annotationView.annotation = annotation;
+    
+    NSLog(@"Done with the annotations!");
+    
+    return annotationView;
+}
+*/
 
 @end
