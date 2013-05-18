@@ -29,28 +29,21 @@
 - (void)viewDidLoad
 {
     mapView.delegate = self;
-
     [super viewDidLoad];
     [self.view setBackgroundColor:[UIColor lightGrayColor]];
-
     [mapView setUserTrackingMode:MKUserTrackingModeFollowWithHeading];
     
     CLLocationCoordinate2D zoomLocation;
     zoomLocation.latitude = 27.977727;
     zoomLocation.longitude = -82.454109;
-    
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation,
                                                                        10*METERS_PER_MILE,
                                                                        10.*METERS_PER_MILE);
-    
     [mapView setRegion:viewRegion animated:YES];
-    
-    CLLocationCoordinate2D aLocation;
-    aLocation.latitude = 28;
-    aLocation.longitude = -82.464109;
     
     TripData *tripData = [[TripData alloc] init];
     [tripData setDelegate:self];
+    
     dispatch_queue_t getAnnotations = dispatch_queue_create("com.awesomeness.I.am", DISPATCH_QUEUE_SERIAL);
     dispatch_async(getAnnotations, ^{
         NSArray *busAnnotations = [tripData busAnnotationsForRoute:@"Hillsborough Area Regional Transit_6"];
