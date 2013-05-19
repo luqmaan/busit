@@ -10,6 +10,8 @@
 
 @implementation BMVehicle
 
+@synthesize title, subtitle, vehicleId, coordinate, lastUpdateTime, tripId, orientation, nextStop, nextStopName, nextStopTimeOffset, tripHeadsign, routeShortName, routeLongName, routeId;
+
 -(id)initWithJSON:(NSDictionary *)vehicleData
        andAPIData:(NSDictionary * __strong*)apiData {
     

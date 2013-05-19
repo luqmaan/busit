@@ -10,12 +10,9 @@
 #import <MapKit/MapKit.h>
 #import "BusStopREST.h"
 #import "BMVehicle.h"
+#import "BMOptions.h"
+#import "BMRoutes.h"
 
-@interface BusMapViewController : UIViewController {
-    BusStopREST *bench;
-    NSMutableDictionary *routes;
-
-}
-@property (nonatomic, retain) BusStopREST *bench;
+@interface BusMapViewController : UIViewController
     
 @end

@@ -8,11 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@interface BIOptions : NSMutableDictionary {
-    NSMutableArray* visibleRouteIds;
+@interface BMOptions : NSMutableDictionary {
+    NSMutableDictionary* visibleRoutes;
 }
 
-@property (nonatomic, retain) NSMutableArray* visibleRouteIds;
+- (void) addRouteWithRoutesDict:(NSDictionary *)routesDict;
+-(void)addRoute:(NSString *)routeId shortName:(NSString *)shortName longName:(NSString *)longName;
+-(void) removeRoute:(NSString *)routeId;
 
 @end
 

@@ -11,8 +11,13 @@ Models
         metadata
         position
 
-    Options
-        NSMutableArray visibleRoutes - array of routeId strings
+    mapOptions
+        NSMutableArray visibleRoutes
+            NSDictionary {
+                routeId
+                shortName
+                longName
+            }
 
 
 MapViewController
