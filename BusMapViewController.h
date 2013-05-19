@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
+#import "BusStopREST.h"
+#import "BMVehicle.h"
 
-@interface BusMapViewController : UIViewController
+@interface BusMapViewController : UIViewController {
+    BusStopREST *bench;
+}
 
 @end

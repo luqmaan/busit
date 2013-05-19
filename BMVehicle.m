@@ -13,6 +13,8 @@
 -(id)initWithJSON:(NSDictionary *)vehicleData
        andAPIData:(NSDictionary **)apiData {
     
+    // apiData is passed as a pointer to object so as to avoid creating multiple copies of a large object
+    
     self = [super init];
     if(self) {
         
@@ -21,13 +23,15 @@
         tripId = [vehicleData objectForKey:@"tripId"];
         
         // trip status info
-        NSDictionary *tripData = [vehicleData objectForKey:@"tripData"];
-        orientation = (NSNumber *)[tripData objectForKey:@"orientation"];
-        nextStop = [tripData objectForKey:@"nextStop"];
-        nextStopTimeOffset = (NSNumber *)[tripData objectForKey:@"nextStopTimeOffset" ];
-        NSTimeInterval timestamp = [(NSNumber*)[tripData objectForKey:@"lastUpdateTime"] doubleValue];
+        NSDictionary *tripStatus = [vehicleData objectForKey:@"tripStatus"];
+        orientation = (NSNumber *)[tripStatus objectForKey:@"orientation"];
+        nextStop = [tripStatus objectForKey:@"nextStop"];
+        nextStopTimeOffset = (NSNumber *)[tripStatus objectForKey:@"nextStopTimeOffset" ];
+        NSTimeInterval timestamp = [(NSNumber*)[tripStatus objectForKey:@"lastUpdateTime"] doubleValue];
         lastUpdateTime = [NSDate dateWithTimeIntervalSince1970:timestamp];
         
+        NSLog(@"About to start filtering stuff");
+        NSLog(@"tripId: %@", tripId);
     
         // search the data/references/trips for the tripdetails for this trip
         NSDictionary *tripDetails = [self findDictionaryWithKey:@"id"
@@ -37,6 +41,8 @@
         tripHeadsign = [tripDetails objectForKey:@"tripHeadsign"];
         routeId = [tripDetails objectForKey:@"routeId"];
         
+        NSLog(@"routeId: %@", routeId);
+        
         // search the data/references/routes for the routedetails for this route
         NSDictionary *routeDetails = [self findDictionaryWithKey:@"id"
                                                         andValue:routeId
@@ -44,6 +50,8 @@
                                                      withAPIData:apiData];
         routeShortName = [routeDetails objectForKey:@"shortName"];
         routeLongName = [routeDetails objectForKey:@"longName"];
+
+        NSLog(@"nextStop: %@", nextStop);
         
         // search the data/references/stops for stopdetails
         NSDictionary *stopDetails = [self findDictionaryWithKey:@"id"
@@ -71,13 +79,19 @@
 {
     // http://stackoverflow.com/questions/5846271/iphone-searching-nsarray-of-nsdictionary-objects
     // filter the very large array contained in the reference (trips, stops, routes, agencies) and find the object that dictionary that
-    NSString *filter = [NSString stringWithFormat:@"%@ = %@", key, value];
+    NSString *filter = [NSString stringWithFormat:@"%@ like '%@'", key, value];
+    NSLog(@"filter: %@", filter);
     NSPredicate *predicate = [NSPredicate predicateWithFormat:filter];
     
     NSArray *matches = [[[[*apiData objectForKey:@"data"] objectForKey:@"references"]
                          objectForKey:reference] filteredArrayUsingPredicate:predicate];
     
     return [matches objectAtIndex:0];
+}
+
+- (NSString *)description {      
+    NSString *desc = [NSString stringWithFormat:@"<%@ %@>", title, subtitle];
+    return desc;
 }
 @end
 

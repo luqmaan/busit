@@ -14,11 +14,19 @@
 
 @implementation BusMapViewController
 
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    NSLog(@"init with coder");
+    if(self = [super initWithCoder:aDecoder]) {        
+        bench = [[BusStopREST alloc] init];
+    }
+    return self;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        
     }
     return self;
 }
@@ -26,7 +34,25 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    NSDictionary *apiData = [bench vehiclesForAgency:@"Hillsborough Area Regional Transit"];
+    
+    NSArray *vehicles = [[apiData objectForKey:@"data"] objectForKey:@"list"];
+    
+    for (NSDictionary *vehicleDict in vehicles) {
+        if ([vehicleDict objectForKey:@"tripStatus"] == nil || [[vehicleDict objectForKey:@"tripId"] isEqual: @""])
+        {
+            NSLog(@"discard");
+        }
+        else {
+            NSLog(@"vehiclesDict: %@", vehicleDict);
+            BMVehicle *vehicleTest = [[BMVehicle alloc] initWithJSON:vehicleDict
+                                                          andAPIData:&apiData];
+            NSLog(@"vehiclesTest: %@", vehicleTest);
+            break;
+        }
+            
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning

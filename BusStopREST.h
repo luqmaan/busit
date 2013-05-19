@@ -24,5 +24,7 @@
 -(NSDictionary *)scheduleForStop:(NSString *)stopId;
 -(NSDictionary *)tripsForRoute:(NSString *)routeId;
 -(NSDictionary *)tripDetailsForTrip:(NSString *)tripId;
+-(NSDictionary *)vehiclesForAgency:(NSString *)agencyId;
 
 @end
+

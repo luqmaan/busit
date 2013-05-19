@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
+#import <objc/runtime.h> // used for -description
 
-@interface BMVehicle : NSMutableDictionary <MKAnnotation> {
+@interface BMVehicle : NSObject <MKAnnotation> {
     NSString *title;
     NSString *subtitle;
     NSString *vehicleId;
