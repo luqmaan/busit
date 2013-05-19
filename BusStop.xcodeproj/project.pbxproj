@@ -54,7 +54,6 @@
 		2749E35E17191F75008FCDCD /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 2749E35D17191F75008FCDCD /* MBProgressHUD.m */; };
 		27738541171AF7CF00CFD1CB /* _RouteId.m in Sources */ = {isa = PBXBuildFile; fileRef = 2773853E171AF7CF00CFD1CB /* _RouteId.m */; };
 		27738542171AF7CF00CFD1CB /* RouteId.m in Sources */ = {isa = PBXBuildFile; fileRef = 27738540171AF7CF00CFD1CB /* RouteId.m */; };
-		27738545171B3A5E00CFD1CB /* map.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 27738544171B3A5E00CFD1CB /* map.pdf */; };
 		2773854D171B3CF400CFD1CB /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 2773854C171B3CF400CFD1CB /* Default.png */; };
 		27C9C4C91718EB87005EAE68 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C9C4C81718EB87005EAE68 /* UIKit.framework */; };
 		27C9C4CB1718EB87005EAE68 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C9C4CA1718EB87005EAE68 /* Foundation.framework */; };
@@ -66,10 +65,11 @@
 		27C9C4E81718EB88005EAE68 /* BusStopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C9C4E71718EB88005EAE68 /* BusStopViewController.m */; };
 		27C9C4F11718F4E0005EAE68 /* BusStopREST.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C9C4F01718F4E0005EAE68 /* BusStopREST.m */; };
 		27C9C4F417190FA1005EAE68 /* RouteListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C9C4F317190FA1005EAE68 /* RouteListViewController.m */; };
-		A3DAC004171B242200FC6C38 /* VehiclesMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DAC003171B242200FC6C38 /* VehiclesMapViewController.m */; };
-		C19FC2341720BBE900198CFE /* TripData.m in Sources */ = {isa = PBXBuildFile; fileRef = C19FC2331720BBE900198CFE /* TripData.m */; };
-		C1BE03A4172064F000D99D74 /* BusAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1BE03A3172064F000D99D74 /* BusAnnotationView.m */; };
-		C1BE03A7172064FD00D99D74 /* BusAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = C1BE03A6172064FD00D99D74 /* BusAnnotation.m */; };
+		C18E2D7617482F6B003D8831 /* BusMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C18E2D7517482F6B003D8831 /* BusMapViewController.m */; };
+		C18E2D7917482F97003D8831 /* BMRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = C18E2D7817482F96003D8831 /* BMRoute.m */; };
+		C18E2D7C17482FA9003D8831 /* BMVehicle.m in Sources */ = {isa = PBXBuildFile; fileRef = C18E2D7B17482FA9003D8831 /* BMVehicle.m */; };
+		C18E2D8217482FEA003D8831 /* BIOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = C18E2D8117482FEA003D8831 /* BIOptions.m */; };
+		C18E2D8517483035003D8831 /* BMRoutes.m in Sources */ = {isa = PBXBuildFile; fileRef = C18E2D8417483035003D8831 /* BMRoutes.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -155,7 +155,6 @@
 		2773853F171AF7CF00CFD1CB /* RouteId.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteId.h; sourceTree = "<group>"; };
 		27738540171AF7CF00CFD1CB /* RouteId.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteId.m; sourceTree = "<group>"; };
 		27738543171B25C500CFD1CB /* BusRoutes 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "BusRoutes 5.xcdatamodel"; sourceTree = "<group>"; };
-		27738544171B3A5E00CFD1CB /* map.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = map.pdf; path = images/map.pdf; sourceTree = "<group>"; };
 		2773854C171B3CF400CFD1CB /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		27C9C4C51718EB87005EAE68 /* BusStop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BusStop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27C9C4C81718EB87005EAE68 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -174,14 +173,16 @@
 		27C9C4F01718F4E0005EAE68 /* BusStopREST.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusStopREST.m; sourceTree = "<group>"; };
 		27C9C4F217190FA1005EAE68 /* RouteListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteListViewController.h; sourceTree = "<group>"; };
 		27C9C4F317190FA1005EAE68 /* RouteListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteListViewController.m; sourceTree = "<group>"; };
-		A3DAC002171B242200FC6C38 /* VehiclesMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VehiclesMapViewController.h; sourceTree = "<group>"; };
-		A3DAC003171B242200FC6C38 /* VehiclesMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VehiclesMapViewController.m; sourceTree = "<group>"; };
-		C19FC2321720BBE900198CFE /* TripData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripData.h; sourceTree = "<group>"; };
-		C19FC2331720BBE900198CFE /* TripData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripData.m; sourceTree = "<group>"; };
-		C1BE03A2172064F000D99D74 /* BusAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusAnnotationView.h; sourceTree = "<group>"; };
-		C1BE03A3172064F000D99D74 /* BusAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BusAnnotationView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		C1BE03A5172064FD00D99D74 /* BusAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusAnnotation.h; sourceTree = "<group>"; };
-		C1BE03A6172064FD00D99D74 /* BusAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusAnnotation.m; sourceTree = "<group>"; };
+		C18E2D7417482F6B003D8831 /* BusMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusMapViewController.h; sourceTree = "<group>"; };
+		C18E2D7517482F6B003D8831 /* BusMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusMapViewController.m; sourceTree = "<group>"; };
+		C18E2D7717482F96003D8831 /* BMRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMRoute.h; sourceTree = "<group>"; };
+		C18E2D7817482F96003D8831 /* BMRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMRoute.m; sourceTree = "<group>"; };
+		C18E2D7A17482FA9003D8831 /* BMVehicle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMVehicle.h; sourceTree = "<group>"; };
+		C18E2D7B17482FA9003D8831 /* BMVehicle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMVehicle.m; sourceTree = "<group>"; };
+		C18E2D8017482FEA003D8831 /* BMOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMOptions.h; sourceTree = "<group>"; };
+		C18E2D8117482FEA003D8831 /* BIOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIOptions.m; sourceTree = "<group>"; };
+		C18E2D8317483035003D8831 /* BMRoutes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMRoutes.h; sourceTree = "<group>"; };
+		C18E2D8417483035003D8831 /* BMRoutes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMRoutes.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -293,7 +294,7 @@
 		27C9C4BC1718EB87005EAE68 = {
 			isa = PBXGroup;
 			children = (
-				A3DABFFF171B231000FC6C38 /* VehiclesMap */,
+				A3DABFFF171B231000FC6C38 /* BusMap */,
 				14E63F4A171A2EDE000A4013 /* RouteForUserTrip */,
 				14ED356B1719D0D7009F6A11 /* images */,
 				2749E35817191BFD008FCDCD /* BusStopData */,
@@ -401,20 +402,21 @@
 			name = REST;
 			sourceTree = "<group>";
 		};
-		A3DABFFF171B231000FC6C38 /* VehiclesMap */ = {
+		A3DABFFF171B231000FC6C38 /* BusMap */ = {
 			isa = PBXGroup;
 			children = (
-				27738544171B3A5E00CFD1CB /* map.pdf */,
-				A3DAC002171B242200FC6C38 /* VehiclesMapViewController.h */,
-				A3DAC003171B242200FC6C38 /* VehiclesMapViewController.m */,
-				C1BE03A2172064F000D99D74 /* BusAnnotationView.h */,
-				C1BE03A3172064F000D99D74 /* BusAnnotationView.m */,
-				C1BE03A5172064FD00D99D74 /* BusAnnotation.h */,
-				C1BE03A6172064FD00D99D74 /* BusAnnotation.m */,
-				C19FC2321720BBE900198CFE /* TripData.h */,
-				C19FC2331720BBE900198CFE /* TripData.m */,
+				C18E2D7417482F6B003D8831 /* BusMapViewController.h */,
+				C18E2D7517482F6B003D8831 /* BusMapViewController.m */,
+				C18E2D7717482F96003D8831 /* BMRoute.h */,
+				C18E2D7817482F96003D8831 /* BMRoute.m */,
+				C18E2D7A17482FA9003D8831 /* BMVehicle.h */,
+				C18E2D7B17482FA9003D8831 /* BMVehicle.m */,
+				C18E2D8017482FEA003D8831 /* BMOptions.h */,
+				C18E2D8117482FEA003D8831 /* BIOptions.m */,
+				C18E2D8317483035003D8831 /* BMRoutes.h */,
+				C18E2D8417483035003D8831 /* BMRoutes.m */,
 			);
-			name = VehiclesMap;
+			name = BusMap;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -485,7 +487,6 @@
 				14E63F46171A2B04000A4013 /* AppIcon@114.png in Resources */,
 				14E63F4F171A3AA3000A4013 /* busit_title.png in Resources */,
 				14E63F51171A549A000A4013 /* RouteLogic in Resources */,
-				27738545171B3A5E00CFD1CB /* map.pdf in Resources */,
 				2773854D171B3CF400CFD1CB /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -532,10 +533,11 @@
 				27125B9F171AB87E00815280 /* ScheduleRouteChooserViewController.m in Sources */,
 				27738541171AF7CF00CFD1CB /* _RouteId.m in Sources */,
 				27738542171AF7CF00CFD1CB /* RouteId.m in Sources */,
-				A3DAC004171B242200FC6C38 /* VehiclesMapViewController.m in Sources */,
-				C1BE03A4172064F000D99D74 /* BusAnnotationView.m in Sources */,
-				C1BE03A7172064FD00D99D74 /* BusAnnotation.m in Sources */,
-				C19FC2341720BBE900198CFE /* TripData.m in Sources */,
+				C18E2D7617482F6B003D8831 /* BusMapViewController.m in Sources */,
+				C18E2D7917482F97003D8831 /* BMRoute.m in Sources */,
+				C18E2D7C17482FA9003D8831 /* BMVehicle.m in Sources */,
+				C18E2D8217482FEA003D8831 /* BIOptions.m in Sources */,
+				C18E2D8517483035003D8831 /* BMRoutes.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -76,7 +76,8 @@ _
 
     
     initWithRoutes:(NSDictionary *)routeData
-        presents a grid of the routes for the user to drag and enable/disable
+        for now: just enable routes 5 and 6
+        ideal: presents a grid of the routes for the user to drag and enable/disable
 
 
     drag to enable
