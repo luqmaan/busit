@@ -13,6 +13,9 @@
 
 @interface BusMapViewController : UIViewController {
     BusStopREST *bench;
-}
+    NSMutableDictionary *routes;
 
+}
+@property (nonatomic, retain) BusStopREST *bench;
+    
 @end

@@ -3,16 +3,16 @@
 Models
 ==
 
-    Routes
+    Route
         metadata
-        list of many Vehicle objects
+        mutablearray of BMVehicles with the same routeId
 
-    Vehicle
+    BMVehicle
         metadata
         position
 
     Options
-        visibleRoutes
+        NSMutableArray visibleRoutes - array of routeId strings
 
 
 MapViewController

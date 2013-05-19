@@ -23,12 +23,11 @@
     NSNumber *nextStopTimeOffset;
     NSString *tripHeadsign;
     NSString *routeShortName;
-    
     NSString *routeLongName;
     NSString *routeId;
 }
 
 -(id)initWithJSON:(NSDictionary *)vehicleData
-       andAPIData:(NSDictionary **)apiData;
+       andAPIData:(NSDictionary * __strong*)apiData;
 
 @end

@@ -8,16 +8,23 @@
 
 #import "BusMapViewController.h"
 
-@interface BusMapViewController ()
+@interface BusMapViewController () {
+    NSDictionary *apiData;
+}
+
+@property (nonatomic, strong) NSDictionary *apiData;
 
 @end
 
 @implementation BusMapViewController
 
+@synthesize apiData, bench;
+
 - (id)initWithCoder:(NSCoder *)aDecoder {
     NSLog(@"init with coder");
     if(self = [super initWithCoder:aDecoder]) {        
         bench = [[BusStopREST alloc] init];
+        apiData = [[NSDictionary alloc]init];
     }
     return self;
 }
@@ -26,7 +33,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        
     }
     return self;
 }
@@ -34,11 +40,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSDictionary *apiData = [bench vehiclesForAgency:@"Hillsborough Area Regional Transit"];
+    [self updateAPIData];
+    [self addVehiclesToRoutes];
     
-    NSArray *vehicles = [[apiData objectForKey:@"data"] objectForKey:@"list"];
+}
+
+- (void)updateAPIData
+{
+    apiData = [bench vehiclesForAgency:@"Hillsborough Area Regional Transit"];
+}
+
+- (void)addVehiclesToRoutes {
     
-    for (NSDictionary *vehicleDict in vehicles) {
+    for (NSDictionary *vehicleDict in [[apiData objectForKey:@"data"] objectForKey:@"list"]) {
         if ([vehicleDict objectForKey:@"tripStatus"] == nil || [[vehicleDict objectForKey:@"tripId"] isEqual: @""])
         {
             NSLog(@"discard");
@@ -50,9 +64,8 @@
             NSLog(@"vehiclesTest: %@", vehicleTest);
             break;
         }
-            
+        
     }
-    
 }
 
 - (void)didReceiveMemoryWarning
