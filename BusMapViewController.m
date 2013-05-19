@@ -23,7 +23,7 @@
 
 @implementation BusMapViewController
 
-@synthesize apiData, bench;
+@synthesize apiData, bench, mapView;
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     NSLog(@"init with coder");
@@ -45,18 +45,37 @@
     return self;
 }
 
-- (void)viewDidLoad
+- (void)viewDidLoad 
 {
     [super viewDidLoad];
+    
+    dispatch_queue_t fetchAPIData = dispatch_queue_create("com.awesomeness.I.am", DISPATCH_QUEUE_SERIAL);
+    dispatch_async(fetchAPIData, ^{
+        [self updateAPIData];
+        [self updateRoutes];
+        [self addVehiclesToRoutes];
+    });
+    dispatch_release(fetchAPIData);
+    
     [self initMap];
-    [self updateAPIData];
-    [self updateRoutes];
-    [self addVehiclesToRoutes];
+    
 }
 
 - (void)initMap
 {
+    mapView.delegate = self;
+    [self.view setBackgroundColor:[UIColor lightGrayColor]];
+    [mapView setCenterCoordinate:mapView.userLocation.coordinate animated:YES];
     
+    CLLocationCoordinate2D zoomLocation;
+    zoomLocation.latitude = 27.977727;
+    zoomLocation.longitude = -82.454109;
+    
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation,
+                                                                       10.5*METERS_PER_MILE,
+                                                                       10.5*METERS_PER_MILE);
+    [mapView setRegion:viewRegion animated:YES];
+
 };
 
 - (void)updateAPIData
@@ -80,12 +99,14 @@
             NSLog(@"discard");
             continue;
         }
-        NSLog(@"vehiclesDict: %@", vehicleDict);
         BMVehicle *vehicle = [[BMVehicle alloc] initWithJSON:vehicleDict
                                                       andAPIData:&apiData];
-        
         [routes addVehicle:vehicle];
-        NSLog(@"vehiclesTest: %@", vehicle);
+        if ([mapOptions isVisibleRoute:vehicle.routeId]) {
+            NSLog(@"adding vehicle to map: %@", vehicle );
+            [mapView addAnnotation:vehicle];
+        }
+        NSLog(@"%@", vehicle);
     }
     
     NSLog(@"Routes: %@", routes);

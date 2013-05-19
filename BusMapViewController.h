@@ -13,6 +13,10 @@
 #import "BMOptions.h"
 #import "BMRoutes.h"
 
-@interface BusMapViewController : UIViewController
-    
+#define METERS_PER_MILE 1609.344
+
+@interface BusMapViewController : UIViewController <MKMapViewDelegate>
+
+@property (weak, nonatomic) IBOutlet MKMapView *mapView;
+
 @end

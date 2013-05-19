@@ -57,4 +57,9 @@
     [visibleRoutes removeObjectForKey:routeId];
 }
 
+- (BOOL)isVisibleRoute:(NSString *)routeId
+{
+    return visibleRoutes[routeId] != nil;
+}
+
 @end

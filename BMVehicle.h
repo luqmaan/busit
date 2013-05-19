@@ -11,20 +11,20 @@
 #import <objc/runtime.h> // used for -description
 
 @interface BMVehicle : NSObject <MKAnnotation> {
-        @public NSString *title;
-        @public NSString *subtitle;
-        @public NSString *vehicleId;
-        @public CLLocationCoordinate2D coordinate;
-        @public NSDate *lastUpdateTime;
-        @public NSString *tripId;
-        @public NSNumber *orientation;
-        @public NSString *nextStop;
-        @public NSString *nextStopName;
-        @public NSNumber *nextStopTimeOffset;
-        @public NSString *tripHeadsign;
-        @public NSString *routeShortName;
-        @public NSString *routeLongName;
-        @public NSString *routeId;
+    @public NSString *title;
+    @public NSString *subtitle;
+    @public NSString *vehicleId;
+    @public CLLocationCoordinate2D coordinate;
+    @public NSDate *lastUpdateTime;
+    @public NSString *tripId;
+    @public NSNumber *orientation;
+    @public NSString *nextStop;
+    @public NSString *nextStopName;
+    @public NSNumber *nextStopTimeOffset;
+    @public NSString *tripHeadsign;
+    @public NSString *routeShortName;
+    @public NSString *routeLongName;
+    @public NSString *routeId;
 }
 
 @property(nonatomic, retain) NSString *title;
