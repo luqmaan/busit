@@ -14,6 +14,8 @@
     BMRoutes *routes;
     NSString *agencyId;
     BMOptions *mapOptions;
+    NSTimer *updateTimer;
+    BOOL updateInProgress;
 }
 
 @property (nonatomic, retain) BusStopREST *bench;
@@ -33,6 +35,7 @@
         agencyId = @"Hillsborough Area Regional Transit";
         mapOptions = [[BMOptions alloc] init];
         routes = [[BMRoutes alloc] init];
+        updateInProgress = FALSE;
     }
     return self;
 }
@@ -70,13 +73,23 @@
 
 - (void)updateMap
 {
+    if (updateInProgress) {
+        NSLog(@"Attempted to run a new update while update is in progress.");
+        return;
+    }
+    
     dispatch_queue_t fetchAPIData = dispatch_queue_create("com.awesomeness.I.am", DISPATCH_QUEUE_SERIAL);
+
     dispatch_async(fetchAPIData, ^{
+        updateInProgress = TRUE;
+        [self stopTimer];
         [self updateAPIData];
         NSLog(@"updateRoutes");
         [self updateRoutes];
         NSLog(@"addVehiclesToRoutes");
         [self addVehiclesToRoutes];
+        [self startTimer];
+        updateInProgress = FALSE;
     });
     dispatch_release(fetchAPIData);
 }
@@ -112,17 +125,18 @@
         // for routes that should no longer be visible (based on mapOptions)
 
         if (!firstTime && [routes hasVehicle:vehicle]) {
-            NSLog(@"Updating vehicle: %@", vehicle);
-            /* THIS IS WHERE I AM STUCK, hasVehicle always returns false */
+//            NSLog(@"Updating vehicle: %@", vehicle);
             [routes updateVehicle:vehicle];
         }
         else {
-            NSLog(@"New vehicle: %@", vehicle);
+//            NSLog(@"New vehicle: %@", vehicle);
             [routes addVehicle:vehicle];
             // if the annotation is not yet on the map (and its route is visible),
             // add it to the map
             if ([mapOptions isVisibleRoute:vehicle.routeId]) {
-                [mapView addAnnotation:vehicle];
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    [mapView addAnnotation:vehicle];
+                });
             }
         }
             
@@ -138,6 +152,54 @@
 }
 
 
+- (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id<MKAnnotation>)annotation
+{
+    if([annotation isKindOfClass:[MKUserLocation class]]){
+        return nil;
+    }
+    
+    if([annotation isKindOfClass:[BMVehicle class]]){
+
+        BMVehicle *vehicle = (BMVehicle *)annotation;
+        NSString *annotationViewID = [NSString stringWithFormat:@"busPin%@", vehicle.routeShortName];
+        
+        MKAnnotationView *customPinView = [theMapView dequeueReusableAnnotationViewWithIdentifier:annotationViewID];
+        if (! customPinView) {
+            NSLog(@"Did not deque. New type of pin: %@", annotationViewID);
+            customPinView = [[BMVehicleAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:annotationViewID];
+            
+            [customPinView setCanShowCallout:YES];
+            
+            UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+            customPinView.rightCalloutAccessoryView = rightButton;
+        }
+        else {
+            NSLog(@"Did deque.");
+        }
+    
+        return customPinView;
+    }
+    
+    return nil;
+    
+}
+
+- (void)startTimer
+{
+    NSLog(@"Started timer");
+    updateTimer = [NSTimer timerWithTimeInterval:15.0
+                                         target:self
+                                       selector:@selector(updateMap)
+                                       userInfo:nil
+                                        repeats:NO];
+    [[NSRunLoop mainRunLoop] addTimer:updateTimer forMode:NSRunLoopCommonModes];
+}
+- (void)stopTimer
+{
+    [updateTimer invalidate];
+    updateTimer = nil;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -147,6 +209,7 @@
 }
 
 - (void)viewDidUnload {
+    [self stopTimer];
     [super viewDidUnload];
 }
 @end

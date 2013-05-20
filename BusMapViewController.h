@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import <QuartzCore/QuartzCore.h>
 #import "BusStopREST.h"
 #import "BMVehicle.h"
+#import "BMVehicleAnnotationView.h"
 #import "BMOptions.h"
 #import "BMRoutes.h"
 

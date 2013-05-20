@@ -65,6 +65,8 @@
 		27C9C4E81718EB88005EAE68 /* BusStopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C9C4E71718EB88005EAE68 /* BusStopViewController.m */; };
 		27C9C4F11718F4E0005EAE68 /* BusStopREST.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C9C4F01718F4E0005EAE68 /* BusStopREST.m */; };
 		27C9C4F417190FA1005EAE68 /* RouteListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C9C4F317190FA1005EAE68 /* RouteListViewController.m */; };
+		C1000204174A33AD00F3F465 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1000203174A33AD00F3F465 /* QuartzCore.framework */; };
+		C1000207174A36A000F3F465 /* BMVehicleAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1000206174A36A000F3F465 /* BMVehicleAnnotationView.m */; };
 		C18E2D7617482F6B003D8831 /* BusMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C18E2D7517482F6B003D8831 /* BusMapViewController.m */; };
 		C18E2D7C17482FA9003D8831 /* BMVehicle.m in Sources */ = {isa = PBXBuildFile; fileRef = C18E2D7B17482FA9003D8831 /* BMVehicle.m */; };
 		C18E2D8217482FEA003D8831 /* BIOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = C18E2D8117482FEA003D8831 /* BIOptions.m */; };
@@ -172,6 +174,9 @@
 		27C9C4F01718F4E0005EAE68 /* BusStopREST.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusStopREST.m; sourceTree = "<group>"; };
 		27C9C4F217190FA1005EAE68 /* RouteListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteListViewController.h; sourceTree = "<group>"; };
 		27C9C4F317190FA1005EAE68 /* RouteListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteListViewController.m; sourceTree = "<group>"; };
+		C1000203174A33AD00F3F465 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		C1000205174A36A000F3F465 /* BMVehicleAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMVehicleAnnotationView.h; sourceTree = "<group>"; };
+		C1000206174A36A000F3F465 /* BMVehicleAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMVehicleAnnotationView.m; sourceTree = "<group>"; };
 		C18E2D7417482F6B003D8831 /* BusMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusMapViewController.h; sourceTree = "<group>"; };
 		C18E2D7517482F6B003D8831 /* BusMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusMapViewController.m; sourceTree = "<group>"; };
 		C18E2D7A17482FA9003D8831 /* BMVehicle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMVehicle.h; sourceTree = "<group>"; };
@@ -187,6 +192,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1000204174A33AD00F3F465 /* QuartzCore.framework in Frameworks */,
 				14D0D36A1719B662000A1F7B /* CoreLocation.framework in Frameworks */,
 				2749E357171919E3008FCDCD /* CoreData.framework in Frameworks */,
 				14CF285617190F4D00D69FB4 /* MapKit.framework in Frameworks */,
@@ -291,6 +297,7 @@
 		27C9C4BC1718EB87005EAE68 = {
 			isa = PBXGroup;
 			children = (
+				C1000203174A33AD00F3F465 /* QuartzCore.framework */,
 				A3DABFFF171B231000FC6C38 /* BusMap */,
 				14E63F4A171A2EDE000A4013 /* RouteForUserTrip */,
 				14ED356B1719D0D7009F6A11 /* images */,
@@ -410,6 +417,8 @@
 				C18E2D8117482FEA003D8831 /* BIOptions.m */,
 				C18E2D86174926C3003D8831 /* BMRoutes.h */,
 				C18E2D87174926C3003D8831 /* BMRoutes.m */,
+				C1000205174A36A000F3F465 /* BMVehicleAnnotationView.h */,
+				C1000206174A36A000F3F465 /* BMVehicleAnnotationView.m */,
 			);
 			name = BusMap;
 			sourceTree = "<group>";
@@ -532,6 +541,7 @@
 				C18E2D7C17482FA9003D8831 /* BMVehicle.m in Sources */,
 				C18E2D8217482FEA003D8831 /* BIOptions.m in Sources */,
 				C18E2D88174926C3003D8831 /* BMRoutes.m in Sources */,
+				C1000207174A36A000F3F465 /* BMVehicleAnnotationView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

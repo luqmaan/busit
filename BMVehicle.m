@@ -92,8 +92,15 @@
 
 - (void)updateVehicle:(BMVehicle *)newVehicle
 {
-    [self setCoordinate:newVehicle.coordinate];
+    [UIView animateWithDuration:1.0f animations:^(void){
+         self.coordinate = newVehicle.coordinate;
+     }
+     completion:^(BOOL finished) {
+         [self setCoordinate:newVehicle.coordinate];
+     }];
+    
 }
+
 
 @end
 

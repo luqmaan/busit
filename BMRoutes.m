@@ -80,8 +80,8 @@
     BOOL hasVehicle = FALSE;
     id matchedVehicle = routes[vehicle.routeId][@"vehicles"][vehicle.vehicleId];
     hasVehicle = ! [matchedVehicle isEqual:nil];
-    NSString *hasVehicleString = hasVehicle ? @"Yes" : @"No";
-    NSLog(@"hasVehicle: %@ %@ ==> %@", hasVehicleString, vehicle, matchedVehicle);
+//    NSString *hasVehicleString = hasVehicle ? @"Yes" : @"No";
+//    NSLog(@"hasVehicle: %@ %@ ==> %@", hasVehicleString, vehicle, matchedVehicle);
     return hasVehicle;
 }
 - (void)updateVehicle:(BMVehicle *)newVehicle

@@ -46,4 +46,5 @@
        andAPIData:(NSDictionary * __strong*)apiData;
 
 - (void)updateVehicle:(BMVehicle *)newVehicle;
+
 @end
