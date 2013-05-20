@@ -184,6 +184,17 @@
     
 }
 
+- (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)annotationViews
+{
+    for (MKAnnotationView *annView in annotationViews)
+    {
+        CGRect endFrame = annView.frame;
+        annView.frame = CGRectOffset(endFrame, 0, -500);
+        [UIView animateWithDuration:0.5
+                         animations:^{ annView.frame =  endFrame; }];
+    }
+}
+
 - (void)startTimer
 {
     NSLog(@"Started timer");

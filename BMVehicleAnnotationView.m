@@ -11,6 +11,9 @@
 @implementation BMVehicleAnnotationView
 {
     BMVehicle *vehicle;
+    UIColor *bgColor;
+    UIColor *borderColor;
+    UIColor *textColor;
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -28,15 +31,23 @@
     self = [super initWithAnnotation:annotation reuseIdentifier:reuseIdentifier];
     if(self){
         vehicle = (BMVehicle *) annotation;
+        
+        // setup frame
         CGRect frame = self.frame;
-        frame.size = CGSizeMake(15.0,15.0);
+        frame.size = CGSizeMake(16.0,16.0);
         [self setFrame:frame];
-        [self setBackgroundColor:[UIColor redColor]];
-        double hue = sin(vehicle.routeShortName.intValue ^ 2);
-        NSLog(@"%d %f", vehicle.routeShortName.intValue, hue);
-        UIColor *bgColor = [UIColor colorWithHue:hue saturation:0.531 brightness:0.953 alpha:1];
-        [self setBackgroundColor:bgColor];
+        [self setBackgroundColor:[UIColor clearColor]];
         [self setOpaque:NO];
+        
+        // give it color based on the route number
+        int num = vehicle.routeShortName.intValue;
+        double hue = (num % 20) / 20.0;
+        double saturation = ((num % 7) / 14.0) + 0.3;
+        NSLog(@"bus%d %f", vehicle.routeShortName.intValue, hue);
+        bgColor = [UIColor colorWithHue:hue saturation:saturation brightness:0.853 alpha:1];
+        borderColor = [UIColor colorWithHue:hue saturation:0.931 brightness:0.5 alpha:1];
+        textColor = [UIColor whiteColor];
+        
     }
     return self;
 }
@@ -48,35 +59,82 @@
     [self setCanShowCallout:YES];
 }
 
-- (void) drawString:(NSString*)s
-           withFont:(UIFont*)font
-             inRect:(CGRect)contextRect
-{
-    CGFloat fontHeight = font.pointSize;
-    
-    CGRect textRect = CGRectMake(0, 2, contextRect.size.width, fontHeight);
-    
-    [s drawInRect:textRect
-         withFont:font
-    lineBreakMode:UILineBreakModeClip
-        alignment:UITextAlignmentCenter];
-}
-
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
+    CGContextRef context = UIGraphicsGetCurrentContext();
+
+    // draw circle
+    CGPathRef roundedRectPath = [self newPathForRoundedRect:rect radius:8.0f];
+    [bgColor set];
+    CGContextAddPath(context, roundedRectPath);
+	CGContextFillPath(context);
+    
+    // draw border around circle
+    CGContextSetStrokeColorWithColor(context, borderColor.CGColor);
+    CGContextSetLineWidth(context, 1);
+    CGContextSetLineJoin(context, kCGLineJoinRound);
+    CGContextBeginPath(context);
+    CGContextAddPath(context, roundedRectPath);
+    CGContextStrokePath(context);
+    
+    // dispose of cgpathref
+    CGPathRelease(roundedRectPath);
+    
+    // draw route number
     [self drawString:vehicle.routeShortName
-            withFont:[UIFont fontWithName:@"HelveticaNeue-Medium" size:10]
+            withFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:12]
               inRect:rect];
-/*
-    BMVehicle *alert = (BMVehicle *)self.annotation;
-    if (alert != nil) {
-        NSString *pinImage = [NSString stringWithFormat:@"flag_icon.png"];
-        [[UIImage imageNamed:pinImage] drawInRect:CGRectMake(0, 0, 30.0, 30.0)];
-    }
-*/
 }
 
+- (void) drawString:(NSString*)string
+           withFont:(UIFont*)font
+             inRect:(CGRect)contextRect
+{
+    // http://www.cocoanetics.com/2010/02/drawing-rounded-rectangles/
+    
+    [textColor set];
+    
+    CGFloat fontHeight = font.pointSize;
+    CGRect textRect = CGRectMake(0, 0, contextRect.size.width, fontHeight);
+    
+    [string drawInRect:textRect
+             withFont:font
+        lineBreakMode:UILineBreakModeClip
+            alignment:UITextAlignmentCenter];
+}
+
+- (CGPathRef) newPathForRoundedRect:(CGRect)rect radius:(CGFloat)radius
+{
+	CGMutablePathRef retPath = CGPathCreateMutable();
+    
+	CGRect innerRect = CGRectInset(rect, radius, radius);
+    
+	CGFloat inside_right = innerRect.origin.x + innerRect.size.width;
+	CGFloat outside_right = rect.origin.x + rect.size.width;
+	CGFloat inside_bottom = innerRect.origin.y + innerRect.size.height;
+	CGFloat outside_bottom = rect.origin.y + rect.size.height;
+    
+	CGFloat inside_top = innerRect.origin.y;
+	CGFloat outside_top = rect.origin.y;
+	CGFloat outside_left = rect.origin.x;
+    
+	CGPathMoveToPoint(retPath, NULL, innerRect.origin.x, outside_top);
+    
+	CGPathAddLineToPoint(retPath, NULL, inside_right, outside_top);
+	CGPathAddArcToPoint(retPath, NULL, outside_right, outside_top, outside_right, inside_top, radius);
+	CGPathAddLineToPoint(retPath, NULL, outside_right, inside_bottom);
+	CGPathAddArcToPoint(retPath, NULL,  outside_right, outside_bottom, inside_right, outside_bottom, radius);
+    
+	CGPathAddLineToPoint(retPath, NULL, innerRect.origin.x, outside_bottom);
+	CGPathAddArcToPoint(retPath, NULL,  outside_left, outside_bottom, outside_left, inside_bottom, radius);
+	CGPathAddLineToPoint(retPath, NULL, outside_left, inside_top);
+	CGPathAddArcToPoint(retPath, NULL,  outside_left, outside_top, innerRect.origin.x, outside_top, radius);
+    
+	CGPathCloseSubpath(retPath);
+    
+	return retPath;
+}
 
 @end
