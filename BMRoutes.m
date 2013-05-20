@@ -9,6 +9,7 @@
 #import "BMRoutes.h"
 
 @interface BMRoutes() {
+    NSMutableDictionary *routes;
     NSArray *routeKeys;
 }
 @end
@@ -24,14 +25,14 @@
     return self;
 }
 
-- (void) addRouteWithRoutesDict:(NSDictionary *)routesDict
+- (void)addRouteWithRoutesDict:(NSDictionary *)routesDict
 {
     [self addRoute:routesDict[@"id"]
          shortName:routesDict[@"shortName"]
           longName:routesDict[@"longName"]];
 }
 
-- (void) addRoute:(NSString *)routeId
+- (void)addRoute:(NSString *)routeId
        shortName:(NSString *)shortName
         longName:(NSString *)longName
 {
@@ -40,28 +41,70 @@
      *      routeId: @"",
      *      shortName: @"",
      *      longName: @"",
-     *      vehicles: [BMVehicle, BMVehicle, BMVehicle...]
+     *      vehicles: [
+     *          vehicleId: BMVehicle, 
+     *          BMVehicle, 
+     *          BMVehicle...
+     *      ]
      *  }
      */
+    
+    // if the route is already created, don't recreate it
+    if (routes[routeId] != nil)
+        return;
+    
     NSArray *values = [NSArray arrayWithObjects: routeId,
                        shortName, longName, [[NSMutableDictionary alloc] init], nil];
-    NSMutableDictionary *route = [NSDictionary dictionaryWithObjects:values
-                                                             forKeys:routeKeys];
+    NSMutableDictionary *route = [NSMutableDictionary dictionaryWithObjects:values
+                                                                    forKeys:routeKeys];
     [routes setObject:route forKey:routeId];
 }
 
-- (void) removeRoute:(NSString *)routeId
+- (void)removeRoute:(NSString *)routeId
 {
     [routes removeObjectForKey:routeId];
 }
 
-- (void) addVehicle:(BMVehicle *)vehicle
+- (void)addVehicle:(BMVehicle *)vehicle
 {
+    NSLog(@"addVehicle: %@", vehicle.vehicleId);
     [routes[vehicle.routeId][@"vehicles"] setObject:vehicle forKey:vehicle.vehicleId];
 }
 
-- (void) removeVehicle:(BMVehicle *)vehicle
+- (void)removeVehicle:(BMVehicle *)vehicle
 {
     [routes[vehicle.routeId][@"vehicles"] removeObjectForKey:vehicle.vehicleId];
 }
+
+- (BOOL)hasVehicle:(BMVehicle *)vehicle
+{
+    BOOL hasVehicle = FALSE;
+    id matchedVehicle = routes[vehicle.routeId][@"vehicles"];
+    hasVehicle = [matchedVehicle isEqual:nil];
+    NSLog(@"hasVehicle: %c %@ ==> %@", hasVehicle, vehicle, matchedVehicle);
+    return hasVehicle;
+}
+- (void)updateVehicle:(BMVehicle *)newVehicle
+{
+    [[routes[newVehicle.routeId][@"vehicles"] objectForKey:newVehicle.vehicleId] updateVehicle:newVehicle];
+}
+
+- (NSString *)description
+{
+    NSMutableString *description = [[NSMutableString alloc] init];
+    NSEnumerator *routesEnumerator = [routes keyEnumerator];
+    id routeKey;
+    while ((routeKey = [routesEnumerator nextObject]))
+    {
+        [description appendFormat:@"\n%@ => ", routeKey];
+        NSEnumerator *vehicleEnumerator = [routes[routeKey][@"vehicles"] keyEnumerator];
+        id vehicleKey;
+        while ((vehicleKey = [vehicleEnumerator nextObject]))
+        {
+            [description appendFormat:@"%@ ", vehicleKey];
+        }
+    }
+    return [NSString stringWithFormat:@"%@", description];
+}
+
 @end

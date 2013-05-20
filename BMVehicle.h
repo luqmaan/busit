@@ -45,4 +45,5 @@
 -(id)initWithJSON:(NSDictionary *)vehicleData
        andAPIData:(NSDictionary * __strong*)apiData;
 
+- (void)updateVehicle:(BMVehicle *)newVehicle;
 @end

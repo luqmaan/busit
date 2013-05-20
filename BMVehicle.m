@@ -86,8 +86,14 @@
 }
 
 - (NSString *)description {      
-    NSString *desc = [NSString stringWithFormat:@"<BMVehicle: %@ - %@>", title, subtitle];
+    NSString *desc = [NSString stringWithFormat:@"<BMVehicle(%@): %@ - %@>", vehicleId, title, subtitle];
     return desc;
 }
+
+- (void)updateVehicle:(BMVehicle *)newVehicle
+{
+    [self setCoordinate:newVehicle.coordinate];
+}
+
 @end
 

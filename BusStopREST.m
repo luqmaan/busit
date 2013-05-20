@@ -96,7 +96,6 @@
 
 -(NSDictionary *)vehiclesForAgency:(NSString *)agencyId
 {
-    NSLog(@"vehicles for agency called");
     NSString *encodedTripId = [agencyId stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
     NSMutableString *urlStr = [NSMutableString stringWithFormat:@"http://onebusaway.forest.usf.edu/api/api/where/vehicles-for-agency/%@.json", encodedTripId];
     NSLog(@"urlStr: %@", urlStr);

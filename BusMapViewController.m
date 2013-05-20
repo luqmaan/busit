@@ -48,17 +48,8 @@
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
-    
-    dispatch_queue_t fetchAPIData = dispatch_queue_create("com.awesomeness.I.am", DISPATCH_QUEUE_SERIAL);
-    dispatch_async(fetchAPIData, ^{
-        [self updateAPIData];
-        [self updateRoutes];
-        [self addVehiclesToRoutes];
-    });
-    dispatch_release(fetchAPIData);
-    
     [self initMap];
-    
+    [self updateMap];
 }
 
 - (void)initMap
@@ -78,6 +69,19 @@
 
 };
 
+- (void)updateMap
+{
+    dispatch_queue_t fetchAPIData = dispatch_queue_create("com.awesomeness.I.am", DISPATCH_QUEUE_SERIAL);
+    dispatch_async(fetchAPIData, ^{
+        [self updateAPIData];
+        NSLog(@"updateRoutes");
+        [self updateRoutes];
+        NSLog(@"addVehiclesToRoutes");
+        [self addVehiclesToRoutes];
+    });
+    dispatch_release(fetchAPIData);
+}
+
 - (void)updateAPIData
 {
     apiData = [bench vehiclesForAgency:agencyId];
@@ -93,30 +97,56 @@
 
 - (void)addVehiclesToRoutes {
     
+    // prevent determining if vehicles need to be updated (extra work)
+    static BOOL firstTime = TRUE;
+    
     for (NSDictionary *vehicleDict in apiData[@"data"][@"list"]) {
         if (vehicleDict[@"tripStatus"] == nil || [vehicleDict[@"tripId"] isEqual: @""])
         {
-            NSLog(@"discard");
+//            NSLog(@"discard");
             continue;
         }
         BMVehicle *vehicle = [[BMVehicle alloc] initWithJSON:vehicleDict
                                                       andAPIData:&apiData];
-        [routes addVehicle:vehicle];
-        if ([mapOptions isVisibleRoute:vehicle.routeId]) {
-            NSLog(@"adding vehicle to map: %@", vehicle );
-            [mapView addAnnotation:vehicle];
+        
+        // another method (to be implemented later) will call removeAnnotations
+        // for routes that should no longer be visible (based on mapOptions)
+
+        if (!firstTime && [routes hasVehicle:vehicle]) {
+            NSLog(@"Updating vehicle: %@", vehicle);
+            [routes updateVehicle:vehicle];
         }
-        NSLog(@"%@", vehicle);
+        else {
+            NSLog(@"New vehicle: %@", vehicle);
+            [routes addVehicle:vehicle];
+            // if the annotation is not yet on the map (and its route is visible),
+            // add it to the map
+            if ([mapOptions isVisibleRoute:vehicle.routeId]) {
+                [mapView addAnnotation:vehicle];
+            }
+        }
+            
     }
     
-    NSLog(@"Routes: %@", routes);
+    firstTime = FALSE;
+//    NSLog(@"routes: %@", routes);
 }
 
+
+-(IBAction)refreshBtnPress:(id)sender
+{
+    [self updateMap];
+}
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    
+    // Remove routes?
 }
 
+- (void)viewDidUnload {
+    [super viewDidUnload];
+}
 @end

@@ -9,20 +9,17 @@
 #import <Foundation/Foundation.h>
 #import "BMVehicle.h"
 
-@interface BMRoutes : NSObject {
-    NSMutableDictionary *routes;
-}
+@interface BMRoutes : NSObject
 
-- (void) addRouteWithRoutesDict:(NSDictionary *)routesDict;
-
--(void) addRoute:(NSString *)routeId
+- (void)addRouteWithRoutesDict:(NSDictionary *)routesDict;
+- (void) addRoute:(NSString *)routeId
        shortName:(NSString *)shortName
         longName:(NSString *)longName;
+- (void)removeRoute:(NSString *)routeId;
 
--(void) removeRoute:(NSString *)routeId;
-
--(void) addVehicle:(BMVehicle *)vehicle;
-
--(void) removeVehicle:(BMVehicle *)vehicle;
+- (void)addVehicle:(BMVehicle *)vehicle;
+- (void)removeVehicle:(BMVehicle *)vehicle;
+- (BOOL)hasVehicle:(BMVehicle *)vehicle;
+- (void)updateVehicle:(BMVehicle *)newVehicle;
 
 @end
