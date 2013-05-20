@@ -47,9 +47,9 @@
 
 - (void)viewDidLoad 
 {
-    [super viewDidLoad];
     [self initMap];
     [self updateMap];
+    [super viewDidLoad];
 }
 
 - (void)initMap
@@ -66,7 +66,6 @@
                                                                        10.5*METERS_PER_MILE,
                                                                        10.5*METERS_PER_MILE);
     [mapView setRegion:viewRegion animated:YES];
-
 };
 
 - (void)updateMap
@@ -114,6 +113,7 @@
 
         if (!firstTime && [routes hasVehicle:vehicle]) {
             NSLog(@"Updating vehicle: %@", vehicle);
+            /* THIS IS WHERE I AM STUCK, hasVehicle always returns false */
             [routes updateVehicle:vehicle];
         }
         else {
@@ -132,11 +132,11 @@
 //    NSLog(@"routes: %@", routes);
 }
 
-
 -(IBAction)refreshBtnPress:(id)sender
 {
     [self updateMap];
 }
+
 
 - (void)didReceiveMemoryWarning
 {

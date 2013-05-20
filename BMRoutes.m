@@ -67,7 +67,6 @@
 
 - (void)addVehicle:(BMVehicle *)vehicle
 {
-    NSLog(@"addVehicle: %@", vehicle.vehicleId);
     [routes[vehicle.routeId][@"vehicles"] setObject:vehicle forKey:vehicle.vehicleId];
 }
 
@@ -79,9 +78,10 @@
 - (BOOL)hasVehicle:(BMVehicle *)vehicle
 {
     BOOL hasVehicle = FALSE;
-    id matchedVehicle = routes[vehicle.routeId][@"vehicles"];
-    hasVehicle = [matchedVehicle isEqual:nil];
-    NSLog(@"hasVehicle: %c %@ ==> %@", hasVehicle, vehicle, matchedVehicle);
+    id matchedVehicle = routes[vehicle.routeId][@"vehicles"][vehicle.vehicleId];
+    hasVehicle = ! [matchedVehicle isEqual:nil];
+    NSString *hasVehicleString = hasVehicle ? @"Yes" : @"No";
+    NSLog(@"hasVehicle: %@ %@ ==> %@", hasVehicleString, vehicle, matchedVehicle);
     return hasVehicle;
 }
 - (void)updateVehicle:(BMVehicle *)newVehicle
