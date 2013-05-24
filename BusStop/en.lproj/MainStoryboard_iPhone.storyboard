@@ -43,7 +43,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fWX-ta-7Fk">
-                                <rect key="frame" x="0.0" y="339" width="320" height="166"/>
+                                <rect key="frame" x="0.0" y="338" width="320" height="166"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Button" image="busit_title.png">
@@ -520,6 +520,91 @@
         <image name="btn_plan_a_route.png" width="519" height="226"/>
         <image name="busit_title.png" width="640" height="340"/>
     </resources>
+    <classes>
+        <class className="BusMapViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BusMapViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="refreshBtnPress:"/>
+                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
+            </relationships>
+        </class>
+        <class className="BusRouteOptionsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BusRouteOptionsViewController.h"/>
+        </class>
+        <class className="BusStopViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BusStopViewController.h"/>
+        </class>
+        <class className="RouteCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RouteCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="routeDetailsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="routeNameLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="RouteListViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RouteListViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="refresh:"/>
+            </relationships>
+        </class>
+        <class className="RouteStopsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RouteStopsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="addressLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="distanceFromHereLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="stopMap" candidateClass="MKMapView"/>
+                <relationship kind="outlet" name="stopsTable" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="ScheduleCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ScheduleCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="arrivalLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="departureLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="headSignLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="ScheduleRouteChooserViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ScheduleRouteChooserViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancel:"/>
+                <relationship kind="action" name="done:"/>
+            </relationships>
+        </class>
+        <class className="SearchDestinationViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchDestinationViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="nextButtonPressed:"/>
+                <relationship kind="outlet" name="mapToDisplayAddressFromSearchBar" candidateClass="MKMapView"/>
+                <relationship kind="outlet" name="nextButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="searchBarForAddress" candidateClass="UISearchBar"/>
+            </relationships>
+        </class>
+        <class className="SearchStartingViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchStartingViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+            </relationships>
+        </class>
+        <class className="StopCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/StopCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="stopDirectionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="stopDistanceLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="stopNameLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="StopScheduleViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/StopScheduleViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="routerFilterTapped:"/>
+                <relationship kind="outlet" name="currentTimeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="slotsTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="stopNameLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
