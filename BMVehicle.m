@@ -56,11 +56,16 @@
                                                      inReference:@"stops"
                                                      withAPIData:apiData];
         nextStopName = [stopDetails objectForKey:@"name"];
-        NSNumber *nextStopTime = [NSNumber numberWithFloat:[nextStopTimeOffset floatValue]/60];
+        NSNumber *nextStopMins = [NSNumber numberWithInt:floor([nextStopTimeOffset floatValue]/60)];
+        NSNumber *nextStopSecs = [NSNumber numberWithInt:([nextStopTimeOffset intValue]%60)];
+        NSString *nextStopTime = [NSString stringWithFormat:@"%@m %@s", nextStopMins, nextStopSecs];
+        if ([nextStopMins intValue] == 0) {
+            nextStopTime = [NSString stringWithFormat:@"%@s", nextStopSecs];
+        }
         
         // add data for the annotation
         title = [NSString stringWithFormat:@"%@ - %@", routeShortName, tripHeadsign];
-        subtitle = [NSString stringWithFormat:@"Arriving in %@mins at %@", nextStopTime, nextStopName];
+        subtitle = [NSString stringWithFormat:@"Arriving in %@ at %@", nextStopTime, nextStopName];
         NSDictionary *loc = [vehicleData objectForKey:@"location"];
         coordinate = CLLocationCoordinate2DMake(
                                                 [(NSNumber *)[loc objectForKey:@"lon"] floatValue],
@@ -89,14 +94,41 @@
     NSString *desc = [NSString stringWithFormat:@"<BMVehicle(%@): %@ - %@>", vehicleId, title, subtitle];
     return desc;
 }
+//
+//- (void)updateVehicle:(BMVehicle *)newVehicle
+//{
+//    [UIView animateWithDuration:1.0f animations:^(void){
+//        self.coordinate = newVehicle.coordinate;
+//    }
+//                     completion:^(BOOL finished) {
+//                         [self setCoordinate:newVehicle.coordinate];
+//                     }];
+//    
+//}
+
 
 - (void)updateVehicle:(BMVehicle *)newVehicle
 {
+    /* Somewhere we need to add logic to handle the case where a bus has reached the transit center and turns into another route. The vehicle id remains the same. And the routeId can even be changed below. However, the bus will show up in the wrong BMRoutes collection in the ViewController.
+     */
+    
     [UIView animateWithDuration:2.0f animations:^(void){
-         self.coordinate = newVehicle.coordinate;
+        //the animation only works when you say self.coordinate, why/
+        self.coordinate = newVehicle.coordinate;
      }
      completion:^(BOOL finished) {
-         [self setCoordinate:newVehicle.coordinate];
+         // these fields could change (and some will definitely change)
+         self.title = newVehicle.title;
+         self.subtitle = newVehicle.subtitle;
+         self.orientation = newVehicle.orientation;
+         self.tripHeadsign = newVehicle.tripHeadsign;
+         self.lastUpdateTime = newVehicle.lastUpdateTime;
+         self.nextStopName = newVehicle.nextStopName;
+         self.routeShortName = newVehicle.routeShortName;
+         self.routeLongName = newVehicle.routeLongName;
+         self.routeId = newVehicle.routeId;
+         self.nextStopTimeOffset = newVehicle.nextStopTimeOffset;
+         self.tripId = newVehicle.tripId;
      }];
     
 }

@@ -16,6 +16,7 @@
     BMOptions *mapOptions;
     NSTimer *updateTimer;
     BOOL updateInProgress;
+    BOOL firstTimeAddingVehiclesToRoutes;
 }
 
 @property (nonatomic, retain) BusStopREST *bench;
@@ -36,6 +37,7 @@
         mapOptions = [[BMOptions alloc] init];
         routes = [[BMRoutes alloc] init];
         updateInProgress = FALSE;
+        firstTimeAddingVehiclesToRoutes = TRUE;
     }
     return self;
 }
@@ -109,9 +111,6 @@
 
 - (void)addVehiclesToRoutes {
     
-    // prevent determining if vehicles need to be updated (extra work)
-    static BOOL firstTime = TRUE;
-    
     for (NSDictionary *vehicleDict in apiData[@"data"][@"list"]) {
         if (vehicleDict[@"tripStatus"] == nil || [vehicleDict[@"tripId"] isEqual: @""])
         {
@@ -124,9 +123,11 @@
         // another method (to be implemented later) will call removeAnnotations
         // for routes that should no longer be visible (based on mapOptions)
 
-        if (!firstTime && [routes hasVehicle:vehicle]) {
+        if (!firstTimeAddingVehiclesToRoutes && [routes hasVehicle:vehicle]) {
 //            NSLog(@"Updating vehicle: %@", vehicle);
-            [routes updateVehicle:vehicle];
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                [routes updateVehicle:vehicle];
+            });
         }
         else {
 //            NSLog(@"New vehicle: %@", vehicle);
@@ -142,7 +143,7 @@
             
     }
     
-    firstTime = FALSE;
+    firstTimeAddingVehiclesToRoutes = FALSE;
 //    NSLog(@"routes: %@", routes);
 }
 
@@ -198,7 +199,7 @@
 - (void)startTimer
 {
     NSLog(@"Started timer");
-    updateTimer = [NSTimer timerWithTimeInterval:15.0
+    updateTimer = [NSTimer timerWithTimeInterval:10.0
                                          target:self
                                        selector:@selector(updateMap)
                                        userInfo:nil

@@ -34,14 +34,14 @@
         
         // setup frame
         CGRect frame = self.frame;
-        frame.size = CGSizeMake(16.0,16.0);
+        frame.size = CGSizeMake(18.0,18.0);
         [self setFrame:frame];
         [self setBackgroundColor:[UIColor clearColor]];
         [self setOpaque:NO];
         
         // give it color based on the route number
         int num = vehicle.routeShortName.intValue;
-        double hue = (num % 20) / 20.0;
+        double hue = (num % 10) / 10.0;
         double saturation = ((num % 7) / 14.0) + 0.3;
         NSLog(@"bus%d %f", vehicle.routeShortName.intValue, hue);
         bgColor = [UIColor colorWithHue:hue saturation:saturation brightness:0.853 alpha:1];
@@ -66,11 +66,12 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
 
     // draw circle
-    CGPathRef roundedRectPath = [self newPathForRoundedRect:rect radius:8.0f];
+    CGPathRef roundedRectPath = [self newPathForRoundedRect:rect radius:9.0f];
     [bgColor set];
+    CGContextSetShadow(context, CGSizeMake(0.0f, 0.0f), 2.0f);
     CGContextAddPath(context, roundedRectPath);
 	CGContextFillPath(context);
-    
+
     // draw border around circle
     CGContextSetStrokeColorWithColor(context, borderColor.CGColor);
     CGContextSetLineWidth(context, 1);
@@ -84,7 +85,7 @@
     
     // draw route number
     [self drawString:vehicle.routeShortName
-            withFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:12]
+            withFont:[UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:11]
               inRect:rect];
 }
 
@@ -92,12 +93,10 @@
            withFont:(UIFont*)font
              inRect:(CGRect)contextRect
 {
-    // http://www.cocoanetics.com/2010/02/drawing-rounded-rectangles/
-    
+    // http://stackoverflow.com/questions/1302824/iphone-how-to-draw-text-in-the-middle-of-a-rect
     [textColor set];
     
-    CGFloat fontHeight = font.pointSize;
-    CGRect textRect = CGRectMake(0, 0, contextRect.size.width, fontHeight);
+    CGRect textRect = CGRectMake(0, 2, contextRect.size.width, contextRect.size.height);
     
     [string drawInRect:textRect
              withFont:font
@@ -107,18 +106,20 @@
 
 - (CGPathRef) newPathForRoundedRect:(CGRect)rect radius:(CGFloat)radius
 {
-	CGMutablePathRef retPath = CGPathCreateMutable();
+    // http://www.cocoanetics.com/2010/02/drawing-rounded-rectangles/
+
+    CGMutablePathRef retPath = CGPathCreateMutable();
     
 	CGRect innerRect = CGRectInset(rect, radius, radius);
     
 	CGFloat inside_right = innerRect.origin.x + innerRect.size.width;
-	CGFloat outside_right = rect.origin.x + rect.size.width;
+	CGFloat outside_right = rect.origin.x + rect.size.width - 1;
 	CGFloat inside_bottom = innerRect.origin.y + innerRect.size.height;
-	CGFloat outside_bottom = rect.origin.y + rect.size.height;
+	CGFloat outside_bottom = rect.origin.y + rect.size.height - 1;
     
 	CGFloat inside_top = innerRect.origin.y;
-	CGFloat outside_top = rect.origin.y;
-	CGFloat outside_left = rect.origin.x;
+	CGFloat outside_top = rect.origin.y + 1;
+	CGFloat outside_left = rect.origin.x + 1;
     
 	CGPathMoveToPoint(retPath, NULL, innerRect.origin.x, outside_top);
     
