@@ -35,19 +35,17 @@
         // setup frame
         CGRect frame = self.frame;
         frame.size = CGSizeMake(18.0,18.0);
-        [self setFrame:frame];
-        [self setBackgroundColor:[UIColor clearColor]];
-        [self setOpaque:NO];
+        self.frame = frame;
+        self.backgroundColor = [UIColor clearColor];
+        self.opaque = NO;
         
         // give it color based on the route number
         int num = vehicle.routeShortName.intValue;
         double hue = (num % 10) / 10.0;
         double saturation = ((num % 7) / 14.0) + 0.3;
-        NSLog(@"bus%d %f", vehicle.routeShortName.intValue, hue);
         bgColor = [UIColor colorWithHue:hue saturation:saturation brightness:0.853 alpha:1];
         borderColor = [UIColor colorWithHue:hue saturation:0.931 brightness:0.5 alpha:1];
         textColor = [UIColor whiteColor];
-        
     }
     return self;
 }
