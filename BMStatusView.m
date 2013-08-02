@@ -19,6 +19,14 @@
     return self;
 }
 
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    
+    if(self = [super initWithCoder:aDecoder]) {
+        
+    }
+    return self;
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -27,5 +35,6 @@
     // Drawing code
 }
 */
+
 
 @end

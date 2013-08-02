@@ -4,3 +4,19 @@
     border-color:     black;
     border-radius:    8px;
 }
+#statusView {
+    background-color: rgba(250,250,250,0.8);
+    border-top-right-radius: 10pt;
+    border-top-left-radius: 10pt;
+    border-width: 1pt;
+    border-color: rgba(225,225,225,0.7);
+    opacity: 0.5;
+}
+tab-bar {
+    opacity: 0.6;
+    /*background-color: red;*/
+    color: rgba(57,119,213,1);
+    selected-color: white;
+    /*background-color: #288de3;*/
+    width: 90%;
+}

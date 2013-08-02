@@ -14,6 +14,7 @@
 #import "BMVehicleAnnotationView.h"
 #import "BMOptions.h"
 #import "BMRoutes.h"
+#import "BMStatusView.h"
 
 #define METERS_PER_MILE 1609.344
 
@@ -22,5 +23,7 @@
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
 -(IBAction)refreshBtnPress:(id)sender;
+@property (weak, nonatomic) IBOutlet UIView *statusView
+;
 
 @end

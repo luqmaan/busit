@@ -26,7 +26,7 @@
 
 @implementation BusMapViewController
 
-@synthesize apiData, bench, mapView;
+@synthesize apiData, bench, mapView, statusView;
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     NSLog(@"init with coder");
@@ -52,6 +52,7 @@
 
 - (void)viewDidLoad 
 {
+    self.view.layer.cornerRadius = 10;
     [self initMap];
     [self updateMap];
     [super viewDidLoad];
@@ -60,6 +61,8 @@
 - (void)initMap
 {
     mapView.delegate = self;
+    mapView.layer.cornerRadius = 10;
+
     [self.view setBackgroundColor:[UIColor lightGrayColor]];
     [mapView setCenterCoordinate:mapView.userLocation.coordinate animated:YES];
     
