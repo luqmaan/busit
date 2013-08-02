@@ -67,12 +67,12 @@
 		27C9C4F417190FA1005EAE68 /* RouteListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C9C4F317190FA1005EAE68 /* RouteListViewController.m */; };
 		C1000204174A33AD00F3F465 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1000203174A33AD00F3F465 /* QuartzCore.framework */; };
 		C1000207174A36A000F3F465 /* BMVehicleAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1000206174A36A000F3F465 /* BMVehicleAnnotationView.m */; };
-		C1200F38174FCF9400EF9D10 /* PXEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1200F37174FCF9400EF9D10 /* PXEngine.framework */; };
 		C1200F3B174FD0C200EF9D10 /* default.css in Resources */ = {isa = PBXBuildFile; fileRef = C1200F3A174FD0C200EF9D10 /* default.css */; };
 		C18E2D7617482F6B003D8831 /* BusMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C18E2D7517482F6B003D8831 /* BusMapViewController.m */; };
 		C18E2D7C17482FA9003D8831 /* BMVehicle.m in Sources */ = {isa = PBXBuildFile; fileRef = C18E2D7B17482FA9003D8831 /* BMVehicle.m */; };
 		C18E2D8217482FEA003D8831 /* BIOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = C18E2D8117482FEA003D8831 /* BIOptions.m */; };
 		C18E2D88174926C3003D8831 /* BMRoutes.m in Sources */ = {isa = PBXBuildFile; fileRef = C18E2D87174926C3003D8831 /* BMRoutes.m */; };
+		C1B9D78317AC7ABA00D4CCA8 /* PXEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1B9D78217AC7ABA00D4CCA8 /* PXEngine.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -179,7 +179,6 @@
 		C1000203174A33AD00F3F465 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C1000205174A36A000F3F465 /* BMVehicleAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMVehicleAnnotationView.h; sourceTree = "<group>"; };
 		C1000206174A36A000F3F465 /* BMVehicleAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMVehicleAnnotationView.m; sourceTree = "<group>"; };
-		C1200F37174FCF9400EF9D10 /* PXEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PXEngine.framework; path = ../../../../Applications/Pixate/Frameworks/PXEngine.framework; sourceTree = "<group>"; };
 		C1200F3A174FD0C200EF9D10 /* default.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = default.css; sourceTree = "<group>"; };
 		C18E2D7417482F6B003D8831 /* BusMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusMapViewController.h; sourceTree = "<group>"; };
 		C18E2D7517482F6B003D8831 /* BusMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusMapViewController.m; sourceTree = "<group>"; };
@@ -189,6 +188,7 @@
 		C18E2D8117482FEA003D8831 /* BIOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIOptions.m; sourceTree = "<group>"; };
 		C18E2D86174926C3003D8831 /* BMRoutes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMRoutes.h; sourceTree = "<group>"; };
 		C18E2D87174926C3003D8831 /* BMRoutes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMRoutes.m; sourceTree = "<group>"; };
+		C1B9D78217AC7ABA00D4CCA8 /* PXEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PXEngine.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,7 +203,7 @@
 				27C9C4C91718EB87005EAE68 /* UIKit.framework in Frameworks */,
 				27C9C4CB1718EB87005EAE68 /* Foundation.framework in Frameworks */,
 				27C9C4CD1718EB87005EAE68 /* CoreGraphics.framework in Frameworks */,
-				C1200F38174FCF9400EF9D10 /* PXEngine.framework in Frameworks */,
+				C1B9D78317AC7ABA00D4CCA8 /* PXEngine.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,8 +327,8 @@
 		27C9C4C71718EB87005EAE68 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C1B9D78217AC7ABA00D4CCA8 /* PXEngine.framework */,
 				C1000203174A33AD00F3F465 /* QuartzCore.framework */,
-				C1200F37174FCF9400EF9D10 /* PXEngine.framework */,
 				14D0D3691719B662000A1F7B /* CoreLocation.framework */,
 				2749E356171919E3008FCDCD /* CoreData.framework */,
 				14CF285517190F4D00D69FB4 /* MapKit.framework */,
@@ -647,6 +647,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SYSTEM_APPS_DIR)/Pixate/Frameworks\"",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BusStop/BusStop-Prefix.pch";
@@ -665,6 +666,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SYSTEM_APPS_DIR)/Pixate/Frameworks\"",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BusStop/BusStop-Prefix.pch";
