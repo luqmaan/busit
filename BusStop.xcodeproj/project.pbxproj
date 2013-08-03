@@ -41,6 +41,7 @@
 		C18E2D8217482FEA003D8831 /* BIOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = C18E2D8117482FEA003D8831 /* BIOptions.m */; };
 		C18E2D88174926C3003D8831 /* BMRoutes.m in Sources */ = {isa = PBXBuildFile; fileRef = C18E2D87174926C3003D8831 /* BMRoutes.m */; };
 		C1B9D78317AC7ABA00D4CCA8 /* PXEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1B9D78217AC7ABA00D4CCA8 /* PXEngine.framework */; };
+		C1EF02CF17AD5F6F0025138B /* BusStopUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1EF02CE17AD5F6F0025138B /* BusStopUIViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,6 +94,8 @@
 		C18E2D86174926C3003D8831 /* BMRoutes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMRoutes.h; sourceTree = "<group>"; };
 		C18E2D87174926C3003D8831 /* BMRoutes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMRoutes.m; sourceTree = "<group>"; };
 		C1B9D78217AC7ABA00D4CCA8 /* PXEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PXEngine.framework; sourceTree = "<group>"; };
+		C1EF02CD17AD5F6F0025138B /* BusStopUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusStopUIViewController.h; sourceTree = "<group>"; };
+		C1EF02CE17AD5F6F0025138B /* BusStopUIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusStopUIViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +177,8 @@
 		27C9C4CE1718EB87005EAE68 /* BusStop */ = {
 			isa = PBXGroup;
 			children = (
+				C1EF02CD17AD5F6F0025138B /* BusStopUIViewController.h */,
+				C1EF02CE17AD5F6F0025138B /* BusStopUIViewController.m */,
 				27C9C4D71718EB87005EAE68 /* BusStopAppDelegate.h */,
 				27C9C4D81718EB87005EAE68 /* BusStopAppDelegate.m */,
 				27C9C4E01718EB87005EAE68 /* MainStoryboard_iPhone.storyboard */,
@@ -318,6 +323,7 @@
 				C18E2D8217482FEA003D8831 /* BIOptions.m in Sources */,
 				C18E2D88174926C3003D8831 /* BMRoutes.m in Sources */,
 				C1000207174A36A000F3F465 /* BMVehicleAnnotationView.m in Sources */,
+				C1EF02CF17AD5F6F0025138B /* BusStopUIViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
