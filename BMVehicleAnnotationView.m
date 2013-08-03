@@ -14,13 +14,16 @@
     UIColor *bgColor;
     UIColor *borderColor;
     UIColor *textColor;
+    CGFloat pinSize;
+    CGFloat fontSize;
 }
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        self->pinSize = 25.0;
+        self->fontSize = 15.0;
     }
     return self;
 }
@@ -34,7 +37,7 @@
         
         // setup frame
         CGRect frame = self.frame;
-        frame.size = CGSizeMake(18.0,18.0);
+        frame.size = CGSizeMake(self->pinSize,self->pinSize);
         self.frame = frame;
         self.backgroundColor = [UIColor clearColor];
         self.opaque = NO;
@@ -63,13 +66,17 @@
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
 
+    CGContextSetAllowsAntialiasing(context, true);
+    CGContextSetShouldAntialias(context, true);
+    CGContextSetInterpolationQuality( context , kCGInterpolationHigh );
+    
     // draw circle
-    CGPathRef roundedRectPath = [self newPathForRoundedRect:rect radius:9.0f];
+    CGPathRef roundedRectPath = [self newPathForRoundedRect:rect radius:self->pinSize/2.0f];
     [bgColor set];
     CGContextSetShadow(context, CGSizeMake(0.0f, 0.0f), 2.0f);
     CGContextAddPath(context, roundedRectPath);
 	CGContextFillPath(context);
-
+    
     // draw border around circle
     CGContextSetStrokeColorWithColor(context, borderColor.CGColor);
     CGContextSetLineWidth(context, 1);
@@ -83,7 +90,7 @@
     
     // draw route number
     [self drawString:vehicle.routeShortName
-            withFont:[UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:11]
+            withFont:[UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:self->fontSize]
               inRect:rect];
 }
 
