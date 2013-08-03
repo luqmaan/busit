@@ -9,7 +9,7 @@
             <objects>
                 <viewController id="Vka-dc-8DK" customClass="BusMapViewController" sceneMemberID="viewController">
                     <mapView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="Rm3-53-ypo">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </mapView>
                     <navigationItem key="navigationItem" title="Live Bus Map" id="XdA-Pp-d5l">
@@ -30,7 +30,7 @@
         <!--Navigation Controller-->
         <scene sceneID="qW1-Dw-g1g">
             <objects>
-                <navigationController definesPresentationContext="YES" id="iUU-rM-dkx" sceneMemberID="viewController">
+                <navigationController definesPresentationContext="YES" navigationBarHidden="YES" id="iUU-rM-dkx" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="K5B-rp-yvi">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
