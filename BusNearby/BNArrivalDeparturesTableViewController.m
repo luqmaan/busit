@@ -82,9 +82,14 @@
     tripHeadsign.text = data[@"tripHeadsign"];
     #pragma mark - TODO: add proper calculation for distance in miles
     int miles = [(NSNumber *)data[@"distanceFromStop"] intValue] / 500;
-    UILabel *distance =  (UILabel *)[cell viewWithTag:3];
+    UILabel *distance = (UILabel *)[cell viewWithTag:3];
     distance.text = [NSString stringWithFormat:@"%dmi %@ stops away", miles, data[@"numberOfStopsAway"]];
-    
+    UILabel *scheduled =  (UILabel *)[cell viewWithTag:4];
+    scheduled.text = [NSString stringWithFormat:@"Scheduled: %@", data[@"scheduledArrivalTime"]];
+    UILabel *predicted =  (UILabel *)[cell viewWithTag:5];
+    predicted.text = [NSString stringWithFormat:@"Predicted: %@", data[@"predictedArrivalTime"]];
+    UILabel *updated =  (UILabel *)[cell viewWithTag:6];
+    updated.text = [NSString stringWithFormat:@"Updated: %@", data[@"lastUpdateTime"]];
     
     return cell;
 }

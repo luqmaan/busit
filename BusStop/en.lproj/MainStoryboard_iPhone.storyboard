@@ -37,25 +37,25 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Stop ID" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jgN-nr-uSf">
-                                <rect key="frame" x="12" y="118" width="57" height="21"/>
+                                <rect key="frame" x="12" y="128" width="57" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Stop Name" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lk6-wi-ZES">
-                                <rect key="frame" x="103" y="118" width="197" height="21"/>
+                                <rect key="frame" x="103" y="128" width="197" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" mapType="standard" showsUserLocation="YES" id="AqR-Vj-TwB">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
                             <containerView contentMode="scaleToFill" id="xX4-Wo-Ruv">
-                                <rect key="frame" x="0.0" y="159" width="320" height="296"/>
+                                <rect key="frame" x="0.0" y="158" width="320" height="209"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <connections>
@@ -81,16 +81,16 @@
         <scene sceneID="nqO-Jw-7fj">
             <objects>
                 <tableViewController id="b6G-Ts-MgF" customClass="BNArrivalDeparturesTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="175" sectionHeaderHeight="22" sectionFooterHeight="22" id="X9A-if-mtg">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="296"/>
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="141" sectionHeaderHeight="22" sectionFooterHeight="22" id="X9A-if-mtg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="209"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="arrivalsDeparturesCell" rowHeight="175" id="80n-Ts-ote" customClass="ArrivalCell">
-                                <rect key="frame" x="0.0" y="22" width="320" height="175"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="arrivalsDeparturesCell" id="80n-Ts-ote">
+                                <rect key="frame" x="0.0" y="22" width="320" height="141"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="174"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="140"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" text="6 - 56th Street" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Me8-sK-TlB">
