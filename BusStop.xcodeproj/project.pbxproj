@@ -42,6 +42,7 @@
 		C18E2D88174926C3003D8831 /* BMRoutes.m in Sources */ = {isa = PBXBuildFile; fileRef = C18E2D87174926C3003D8831 /* BMRoutes.m */; };
 		C1B9D78317AC7ABA00D4CCA8 /* PXEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1B9D78217AC7ABA00D4CCA8 /* PXEngine.framework */; };
 		C1EF02CF17AD5F6F0025138B /* BusStopUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1EF02CE17AD5F6F0025138B /* BusStopUIViewController.m */; };
+		C1EF02D717AD9A530025138B /* BNNearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1EF02D617AD9A530025138B /* BNNearbyViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +97,8 @@
 		C1B9D78217AC7ABA00D4CCA8 /* PXEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PXEngine.framework; sourceTree = "<group>"; };
 		C1EF02CD17AD5F6F0025138B /* BusStopUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusStopUIViewController.h; sourceTree = "<group>"; };
 		C1EF02CE17AD5F6F0025138B /* BusStopUIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusStopUIViewController.m; sourceTree = "<group>"; };
+		C1EF02D517AD9A530025138B /* BNNearbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNNearbyViewController.h; path = BusNearby/BNNearbyViewController.h; sourceTree = "<group>"; };
+		C1EF02D617AD9A530025138B /* BNNearbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNNearbyViewController.m; path = BusNearby/BNNearbyViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +143,7 @@
 		27C9C4BC1718EB87005EAE68 = {
 			isa = PBXGroup;
 			children = (
+				C1EF02D417AD9A410025138B /* BusNearby */,
 				C1200F39174FD0AF00EF9D10 /* Resources */,
 				A3DABFFF171B231000FC6C38 /* BusMap */,
 				14ED356B1719D0D7009F6A11 /* images */,
@@ -235,6 +239,15 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		C1EF02D417AD9A410025138B /* BusNearby */ = {
+			isa = PBXGroup;
+			children = (
+				C1EF02D517AD9A530025138B /* BNNearbyViewController.h */,
+				C1EF02D617AD9A530025138B /* BNNearbyViewController.m */,
+			);
+			name = BusNearby;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -324,6 +337,7 @@
 				C18E2D88174926C3003D8831 /* BMRoutes.m in Sources */,
 				C1000207174A36A000F3F465 /* BMVehicleAnnotationView.m in Sources */,
 				C1EF02CF17AD5F6F0025138B /* BusStopUIViewController.m in Sources */,
+				C1EF02D717AD9A530025138B /* BNNearbyViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
