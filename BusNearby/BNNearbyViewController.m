@@ -47,7 +47,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Location
+#pragma mark - Location & API
 
 - (void)startStandardUpdates
 {
@@ -72,23 +72,21 @@
     didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation
 {
-    NSLog(@"location changeoijoijoij");
-    NSLog(@"LOCATIONS %@ ____ %@", newLocation, oldLocation);
     location = newLocation;
-    NSLog(@"location is: %f %f", location.coordinate.longitude, location.coordinate.latitude);
+    NSLog(@"New location: %f %f", location.coordinate.longitude, location.coordinate.latitude);
     [self updateAPIData];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
-    NSLog(@"locationManager Error: %@", error);
+    NSLog(@"locationManagerdidFailWithError: %@", error);
 }
 
 - (void)updateAPIData
 {
     apiData = [bench stopsForLocationLat:[NSNumber numberWithFloat:location.coordinate.latitude]
                                      Lon:[NSNumber numberWithFloat:location.coordinate.longitude]];
-    NSLog(@"apiData: %@, location: %@", apiData, location);
+    [self.tableView reloadData];
 }
 
 
@@ -96,66 +94,40 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [apiData[@"data"][@"list"] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"StopCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    // Configure the cell...
+    NSDictionary *data = apiData[@"data"][@"list"][indexPath.row];
+    NSArray *routesArray = apiData[@"data"][@"references"][@"routes"];
+                                            
+    UILabel *stopId = (UILabel *)[cell viewWithTag:1];
+    stopId.text = data[@"code"];
+    UILabel *stopName = (UILabel *)[cell viewWithTag:2];
+    stopName.text = data[@"name"];
+    UILabel *direction = (UILabel *)[cell viewWithTag:4];
+    direction.text = data[@"direction"];
+    UILabel *routes = (UILabel *)[cell viewWithTag:3];
+    NSMutableString *routesText = [NSMutableString string];
+    for (NSString *routeId in data[@"routeIds"]) {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@", routeId];
+        NSArray *filtered = [routesArray filteredArrayUsingPredicate:predicate];
+       [routesText appendFormat:@"%@ ", filtered[0][@"shortName"]];
+    }
+    routes.text = routesText;
     
     return cell;
 }
-
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
-
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
- {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- }
- else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
- */
-
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
- {
- }
- */
-
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
 
 #pragma mark - Table view delegate
 
