@@ -81,7 +81,7 @@
     
 //    NSArray *routesArray = apiData[@"data"][@"references"][@"routes"];
 //
-    UILabel *stopId = (UILabel *)[cell viewWithTag:1];
+    UILabel *stopId = (UILabel *)[cell viewWithTag:0];
     stopId.text = @"hai";
 //    UILabel *stopName = (UILabel *)[cell viewWithTag:2];
 //    stopName.text = stopData[@"name"];
