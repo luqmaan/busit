@@ -103,6 +103,13 @@
     return [apiData[@"data"][@"list"] count];
 }
 
+-(NSDictionary *)dataForIndexPath:(NSIndexPath *)indexPath {
+    return apiData[@"data"][@"list"][indexPath.row];
+}
+
+#pragma mark - Segues & Table view delegate
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"StopCell";
@@ -128,12 +135,6 @@
     
     return cell;
 }
-
--(NSDictionary *)dataForIndexPath:(NSIndexPath *)indexPath {
-    return apiData[@"data"][@"list"][indexPath.row];
-}
-
-#pragma mark - Segues & Table view delegate
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {

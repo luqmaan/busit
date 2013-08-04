@@ -9,15 +9,16 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import "BusStopREST.h"
+#import "BNArrivalDeparturesTableViewController.h"
 
-@interface BNStopDetailsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface BNStopDetailsViewController : UIViewController
 
 @property (weak, nonatomic) NSDictionary *stopData;
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UILabel *stopIdLabel;
 @property (weak, nonatomic) IBOutlet UILabel *stopNameLabel;
-@property (weak, nonatomic) IBOutlet UITableView *arrivalsTableView;
+@property (weak, nonatomic) IBOutlet UIView *arrivalsDeparturesTableView;
 
 
 @end

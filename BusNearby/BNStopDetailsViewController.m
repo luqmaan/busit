@@ -11,25 +11,25 @@
 @interface BNStopDetailsViewController () {
     NSDictionary *apiData;
     BusStopREST *bench;
+    BNArrivalDeparturesTableViewController *arrivalsDeparturesVC;
 }
 
 @property (nonatomic, retain) BusStopREST *bench;
 @property (nonatomic, retain) NSDictionary *apiData;
+@property (nonatomic, retain) BNArrivalDeparturesTableViewController *arrivalsDeparturesVC;
 
 @end
 
 @implementation BNStopDetailsViewController
 
-@synthesize apiData, bench, stopData;
+@synthesize apiData, bench, stopData, arrivalsDeparturesVC;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    if(self = [super initWithCoder:aDecoder]) {
         // Custom initialization
-        apiData = [[NSDictionary alloc] init];
         bench = [[BusStopREST alloc] init];
-        self.arrivalsTableView.delegate = self;
+        apiData = [[NSDictionary alloc] init];
     }
     return self;
 }
@@ -37,6 +37,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self updateAPIData];
     self.stopIdLabel.text = stopData[@"code"];
     self.stopNameLabel.text = stopData[@"name"];
 }
@@ -47,60 +48,28 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewDidUnload {
+    [self setArrivalsDeparturesTableView:nil];
+    [super viewDidUnload];
+}
 
 #pragma mark - API
 
 - (void)updateAPIData
 {
     apiData = [bench arrivalsAndDeparturesForStop:stopData[@"id"]];
-    [self.arrivalsTableView reloadData];
+    arrivalsDeparturesVC.apiData = apiData;
+
 }
 
+#pragma mark - Segues
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    return 12;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    NSLog(@"number of sections in tableview");
-    // Return the number of rows in the section.
-    return 5;
-    return [apiData[@"data"][@"list"] count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"StopCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    NSDictionary *stopData = [self dataForIndexPath:indexPath];
-    
-//    NSArray *routesArray = apiData[@"data"][@"references"][@"routes"];
-//
-    UILabel *stopId = (UILabel *)[cell viewWithTag:0];
-    stopId.text = @"hai";
-//    UILabel *stopName = (UILabel *)[cell viewWithTag:2];
-//    stopName.text = stopData[@"name"];
-//    UILabel *direction = (UILabel *)[cell viewWithTag:4];
-//    direction.text = stopData[@"direction"];
-//    UILabel *routes = (UILabel *)[cell viewWithTag:3];
-//    NSMutableString *routesText = [NSMutableString string];
-//    for (NSString *routeId in stopData[@"routeIds"]) {
-//        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@", routeId];
-//        NSArray *filtered = [routesArray filteredArrayUsingPredicate:predicate];
-//        [routesText appendFormat:@"%@ ", filtered[0][@"shortName"]];
-//    }
-//    routes.text = routesText;
-    
-    return cell;
-}
-
--(NSDictionary *)dataForIndexPath:(NSIndexPath *)indexPath {
-    return apiData[@"data"][@"list"][indexPath.row];
+    if ([[segue identifier] isEqualToString:@"arrivalsDeparturesSegue"]) {
+        arrivalsDeparturesVC = segue.destinationViewController;
+        arrivalsDeparturesVC.apiData = apiData;
+    }
 }
 
 @end
