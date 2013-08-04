@@ -1,49 +1,28 @@
 //
-//  BusStopUIViewController.m
+//  BusStopHelpers.m
 //  BusStop
 //
-//  Created by Lolcat on 8/3/13.
+//  Created by Lolcat on 8/4/13.
 //  Copyright (c) 2013 0xC0ffee. All rights reserved.
 //
 
-#import "BusStopUIViewController.h"
-#import <QuartzCore/QuartzCore.h>
+#import "BusStopHelpers.h"
 
+@implementation BusStopHelpers
 
-@interface BusStopUIViewController ()
-
-@end
-
-@implementation BusStopUIViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
++(void)drawCornersAroundView:(UIView *)view
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
+    NSLog(@"self: %@", self);
     // http://stackoverflow.com/questions/4847163/round-two-corners-in-uiview
     // Create the mask image you need calling the previous function
-    UIImage *mask = MTDContextCreateRoundedMask( self.view.bounds, 10.0, 10.0, 0.0, 0.0 );
+    UIImage *mask = MTDContextCreateRoundedMask( view.bounds, 10.0, 10.0, 0.0, 0.0 );
     // Create a new layer that will work as a mask
     CALayer *layerMask = [CALayer layer];
-    layerMask.frame = self.view.bounds;
+    layerMask.frame = view.bounds;
     // Put the mask image as content of the layer
     layerMask.contents = (id)mask.CGImage;
     // set the mask layer as mask of the view layer
-    self.view.layer.mask = layerMask;
-    [super viewDidLoad];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    view.layer.mask = layerMask;
 }
 
 static inline UIImage* MTDContextCreateRoundedMask( CGRect rect, CGFloat radius_tl, CGFloat radius_tr, CGFloat radius_bl, CGFloat radius_br ) {

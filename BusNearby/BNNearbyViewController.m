@@ -26,6 +26,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self updateNearbyStops];
+    [BusStopHelpers drawCornersAroundView:self.view];
 	// Do any additional setup after loading the view.
 }
 
@@ -33,6 +35,11 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)updateNearbyStops
+{
+    
 }
 
 @end

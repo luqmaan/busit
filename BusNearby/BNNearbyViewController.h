@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 0xC0ffee. All rights reserved.
 //
 
-#import "BusStopUIViewController.h"
+#import "BusStopHelpers.h"
 
-@interface BNNearbyViewController : BusStopUIViewController
+@interface BNNearbyViewController : UITableViewController
 
 @end

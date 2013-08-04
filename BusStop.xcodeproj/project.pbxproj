@@ -36,12 +36,12 @@
 		C1000204174A33AD00F3F465 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1000203174A33AD00F3F465 /* QuartzCore.framework */; };
 		C1000207174A36A000F3F465 /* BMVehicleAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1000206174A36A000F3F465 /* BMVehicleAnnotationView.m */; };
 		C1200F3B174FD0C200EF9D10 /* default.css in Resources */ = {isa = PBXBuildFile; fileRef = C1200F3A174FD0C200EF9D10 /* default.css */; };
+		C1224A3017AE5AC7005F4D62 /* BusStopHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = C1224A2F17AE5AC7005F4D62 /* BusStopHelpers.m */; };
 		C18E2D7617482F6B003D8831 /* BusMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C18E2D7517482F6B003D8831 /* BusMapViewController.m */; };
 		C18E2D7C17482FA9003D8831 /* BMVehicle.m in Sources */ = {isa = PBXBuildFile; fileRef = C18E2D7B17482FA9003D8831 /* BMVehicle.m */; };
 		C18E2D8217482FEA003D8831 /* BIOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = C18E2D8117482FEA003D8831 /* BIOptions.m */; };
 		C18E2D88174926C3003D8831 /* BMRoutes.m in Sources */ = {isa = PBXBuildFile; fileRef = C18E2D87174926C3003D8831 /* BMRoutes.m */; };
 		C1B9D78317AC7ABA00D4CCA8 /* PXEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1B9D78217AC7ABA00D4CCA8 /* PXEngine.framework */; };
-		C1EF02CF17AD5F6F0025138B /* BusStopUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1EF02CE17AD5F6F0025138B /* BusStopUIViewController.m */; };
 		C1EF02D717AD9A530025138B /* BNNearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1EF02D617AD9A530025138B /* BNNearbyViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -86,6 +86,8 @@
 		C1000205174A36A000F3F465 /* BMVehicleAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMVehicleAnnotationView.h; sourceTree = "<group>"; };
 		C1000206174A36A000F3F465 /* BMVehicleAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMVehicleAnnotationView.m; sourceTree = "<group>"; };
 		C1200F3A174FD0C200EF9D10 /* default.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = default.css; sourceTree = "<group>"; };
+		C1224A2E17AE5AC7005F4D62 /* BusStopHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusStopHelpers.h; sourceTree = "<group>"; };
+		C1224A2F17AE5AC7005F4D62 /* BusStopHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusStopHelpers.m; sourceTree = "<group>"; };
 		C18E2D7417482F6B003D8831 /* BusMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusMapViewController.h; sourceTree = "<group>"; };
 		C18E2D7517482F6B003D8831 /* BusMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusMapViewController.m; sourceTree = "<group>"; };
 		C18E2D7A17482FA9003D8831 /* BMVehicle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMVehicle.h; sourceTree = "<group>"; };
@@ -95,8 +97,6 @@
 		C18E2D86174926C3003D8831 /* BMRoutes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMRoutes.h; sourceTree = "<group>"; };
 		C18E2D87174926C3003D8831 /* BMRoutes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMRoutes.m; sourceTree = "<group>"; };
 		C1B9D78217AC7ABA00D4CCA8 /* PXEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PXEngine.framework; sourceTree = "<group>"; };
-		C1EF02CD17AD5F6F0025138B /* BusStopUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusStopUIViewController.h; sourceTree = "<group>"; };
-		C1EF02CE17AD5F6F0025138B /* BusStopUIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusStopUIViewController.m; sourceTree = "<group>"; };
 		C1EF02D517AD9A530025138B /* BNNearbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNNearbyViewController.h; path = BusNearby/BNNearbyViewController.h; sourceTree = "<group>"; };
 		C1EF02D617AD9A530025138B /* BNNearbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNNearbyViewController.m; path = BusNearby/BNNearbyViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -181,12 +181,12 @@
 		27C9C4CE1718EB87005EAE68 /* BusStop */ = {
 			isa = PBXGroup;
 			children = (
-				C1EF02CD17AD5F6F0025138B /* BusStopUIViewController.h */,
-				C1EF02CE17AD5F6F0025138B /* BusStopUIViewController.m */,
 				27C9C4D71718EB87005EAE68 /* BusStopAppDelegate.h */,
 				27C9C4D81718EB87005EAE68 /* BusStopAppDelegate.m */,
 				27C9C4E01718EB87005EAE68 /* MainStoryboard_iPhone.storyboard */,
 				2749E34717191872008FCDCD /* BusRoutes.xcdatamodeld */,
+				C1224A2E17AE5AC7005F4D62 /* BusStopHelpers.h */,
+				C1224A2F17AE5AC7005F4D62 /* BusStopHelpers.m */,
 			);
 			path = BusStop;
 			sourceTree = "<group>";
@@ -336,8 +336,8 @@
 				C18E2D8217482FEA003D8831 /* BIOptions.m in Sources */,
 				C18E2D88174926C3003D8831 /* BMRoutes.m in Sources */,
 				C1000207174A36A000F3F465 /* BMVehicleAnnotationView.m in Sources */,
-				C1EF02CF17AD5F6F0025138B /* BusStopUIViewController.m in Sources */,
 				C1EF02D717AD9A530025138B /* BNNearbyViewController.m in Sources */,
+				C1224A3017AE5AC7005F4D62 /* BusStopHelpers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

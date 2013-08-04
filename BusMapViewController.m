@@ -52,7 +52,7 @@
 
 - (void)viewDidLoad
 {
-    
+    [BusStopHelpers drawCornersAroundView:self.view];
     [self initMap];
     [self updateMap];
     [super viewDidLoad];
