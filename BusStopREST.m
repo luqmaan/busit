@@ -20,9 +20,11 @@
 
 -(NSDictionary *)restToJSON:(NSString *)jsonURL paramStr:(NSString *)paramStr
 {
-    NSString *wholeURLStr = [NSString stringWithFormat:@"%@?key=%@", jsonURL, kFrakkingLongAPIKey];
+    NSString *wholeURLStr = [NSString stringWithFormat:@"%@?key=%@&%@", jsonURL, kFrakkingLongAPIKey, paramStr];
     NSURL *url = [NSURL URLWithString:wholeURLStr];
     NSMutableURLRequest *req = [[NSMutableURLRequest alloc] initWithURL:url];
+    
+    NSLog(@"GET %@", wholeURLStr);
     
     [req setHTTPMethod:@"GET"];
     NSURLConnection *conn = [NSURLConnection connectionWithRequest:req delegate:self];
@@ -61,7 +63,7 @@
 {
     NSString *encodedRouteId = [routeId stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
     NSMutableString *urlStr = [NSMutableString stringWithFormat:@"http://onebusaway.forest.usf.edu/api/api/where/stops-for-route/%@.json", encodedRouteId];
-    return [self restToJSON:urlStr paramStr:@"includePolylines=false&"];
+    return [self restToJSON:urlStr paramStr:@"includePolylines=false"];
 }
 
 
@@ -76,7 +78,7 @@
 {
     NSString *encodedStopId = [stopId stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
     NSMutableString *urlStr = [NSMutableString stringWithFormat:@"http://onebusaway.forest.usf.edu/api/api/where/stop/%@.json", encodedStopId];
-    return [self restToJSON:urlStr paramStr:@"includePolylines=false&"];
+    return [self restToJSON:urlStr paramStr:@"includePolylines=false"];
 }
 
 -(NSDictionary *)scheduleForStop:(NSString *)stopId
@@ -98,8 +100,14 @@
 {
     NSString *encodedTripId = [agencyId stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
     NSMutableString *urlStr = [NSMutableString stringWithFormat:@"http://onebusaway.forest.usf.edu/api/api/where/vehicles-for-agency/%@.json", encodedTripId];
-    NSLog(@"urlStr: %@", urlStr);
     return [self restToJSON:urlStr paramStr:@""];
+}
+
+-(NSDictionary *)stopsForLocationLat:(NSNumber *)lat Lon:(NSNumber *)lon
+{
+    NSMutableString *urlStr = [NSMutableString stringWithFormat:@"http://onebusaway.forest.usf.edu/api/api/where/stops-for-location.json"];
+    NSString *paramStr = [NSString stringWithFormat:@"lat=%@&lon=%@", lat, lon];
+    return [self restToJSON:urlStr paramStr:paramStr];
 }
 
 #pragma mark - NSURLConnection/Data Delegates

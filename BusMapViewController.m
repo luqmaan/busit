@@ -29,7 +29,6 @@
 @synthesize apiData, bench, mapView, statusView;
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
-    NSLog(@"init with coder");
     if(self = [super initWithCoder:aDecoder]) {        
         bench = [[BusStopREST alloc] init];
         apiData = [[NSDictionary alloc]init];
