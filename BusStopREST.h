@@ -26,6 +26,7 @@
 -(NSDictionary *)tripDetailsForTrip:(NSString *)tripId;
 -(NSDictionary *)vehiclesForAgency:(NSString *)agencyId;
 -(NSDictionary *)stopsForLocationLat:(NSNumber *)lat Lon:(NSNumber *)lon;
+-(NSDictionary *)arrivalsAndDeparturesForStop:(NSString *)stopId;
 
 @end
 

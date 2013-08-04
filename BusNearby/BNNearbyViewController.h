@@ -6,9 +6,10 @@
 //  Copyright (c) 2013 0xC0ffee. All rights reserved.
 //
 
+#import <CoreLocation/CoreLocation.h>
 #import "BusStopHelpers.h"
 #import "BusStopREST.h"
-#import <CoreLocation/CoreLocation.h>
+#import "BNStopDetailsViewController.h"
 
 @interface BNNearbyViewController : UITableViewController  <CLLocationManagerDelegate>
 

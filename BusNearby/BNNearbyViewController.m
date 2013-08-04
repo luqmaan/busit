@@ -29,7 +29,7 @@
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if(self = [super initWithCoder:aDecoder]) {
         bench = [[BusStopREST alloc] init];
-        apiData = [[NSDictionary alloc]init];
+        apiData = [[NSDictionary alloc] init];
     }
     return self;
 }
@@ -108,39 +108,41 @@
     static NSString *CellIdentifier = @"StopCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    NSDictionary *data = apiData[@"data"][@"list"][indexPath.row];
+    NSDictionary *stopData = [self dataForIndexPath:indexPath];
     NSArray *routesArray = apiData[@"data"][@"references"][@"routes"];
-                                            
+    
     UILabel *stopId = (UILabel *)[cell viewWithTag:1];
-    stopId.text = data[@"code"];
+    stopId.text = stopData[@"code"];
     UILabel *stopName = (UILabel *)[cell viewWithTag:2];
-    stopName.text = data[@"name"];
+    stopName.text = stopData[@"name"];
     UILabel *direction = (UILabel *)[cell viewWithTag:4];
-    direction.text = data[@"direction"];
+    direction.text = stopData[@"direction"];
     UILabel *routes = (UILabel *)[cell viewWithTag:3];
     NSMutableString *routesText = [NSMutableString string];
-    for (NSString *routeId in data[@"routeIds"]) {
+    for (NSString *routeId in stopData[@"routeIds"]) {
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@", routeId];
         NSArray *filtered = [routesArray filteredArrayUsingPredicate:predicate];
-       [routesText appendFormat:@"%@ ", filtered[0][@"shortName"]];
+        [routesText appendFormat:@"%@ ", filtered[0][@"shortName"]];
     }
     routes.text = routesText;
     
     return cell;
 }
 
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+-(NSDictionary *)dataForIndexPath:(NSIndexPath *)indexPath {
+    return apiData[@"data"][@"list"][indexPath.row];
 }
 
+#pragma mark - Segues & Table view delegate
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"stopDetailSegue"]) {        
+        NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+        NSDictionary *stopData = [self dataForIndexPath:path];
+        BNStopDetailsViewController *stopDetailsVC = segue.destinationViewController;
+        stopDetailsVC.stopData = stopData;
+    }
+}
 
 @end
