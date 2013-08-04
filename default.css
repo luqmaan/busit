@@ -1,0 +1,8 @@
+#statusView {
+    background-color: rgba(250,250,250,0.8);
+    border-top-right-radius: 10pt;
+    border-top-left-radius: 10pt;
+    border-width: 1pt;
+    border-color: rgba(225,225,225,0.7);
+    opacity: 0.5;
+}
