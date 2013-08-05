@@ -9,7 +9,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "BusStopHelpers.h"
 #import "BusStopREST.h"
-#import "BNStopDetailsViewController.h"
+#import "BNArrivalDeparturesTableViewController.h"
 
 @interface BNNearbyViewController : UITableViewController  <CLLocationManagerDelegate>
 

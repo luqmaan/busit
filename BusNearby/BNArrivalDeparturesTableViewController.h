@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BusStopREST.h"
 
 @interface BNArrivalDeparturesTableViewController : UITableViewController
 
-@property NSDictionary* apiData;
-
-- (void)updateWith:(NSDictionary *)newApiData;
+@property (weak, nonatomic) NSDictionary *stopData;
 
 @end

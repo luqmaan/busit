@@ -141,7 +141,7 @@
     if ([[segue identifier] isEqualToString:@"stopDetailSegue"]) {        
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
         NSDictionary *stopData = [self dataForIndexPath:path];
-        BNStopDetailsViewController *stopDetailsVC = segue.destinationViewController;
+        BNArrivalDeparturesTableViewController *stopDetailsVC = segue.destinationViewController;
         stopDetailsVC.stopData = stopData;
     }
 }
