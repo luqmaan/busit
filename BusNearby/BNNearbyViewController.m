@@ -39,6 +39,7 @@
     [super viewDidLoad];
     [self startStandardUpdates];
     [BusStopHelpers drawCornersAroundView:self.view];
+    [BusStopHelpers drawAllCornersAroundView:self.tableView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -125,11 +126,16 @@
     UILabel *direction = (UILabel *)[cell viewWithTag:4];
     direction.text = stopData[@"direction"];
     UILabel *routes = (UILabel *)[cell viewWithTag:3];
-    NSMutableString *routesText = [NSMutableString string];
+    NSMutableString *routesText = [NSMutableString stringWithString:@"Routes "];
+    id lastRouteId = [stopData[@"routeIds"] lastObject];
     for (NSString *routeId in stopData[@"routeIds"]) {
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@", routeId];
         NSArray *filtered = [routesArray filteredArrayUsingPredicate:predicate];
-        [routesText appendFormat:@"%@ ", filtered[0][@"shortName"]];
+        if (routeId == lastRouteId)
+            [routesText appendFormat:@"%@", filtered[0][@"shortName"]];            
+        else
+            [routesText appendFormat:@"%@ ", filtered[0][@"shortName"]];
+
     }
     routes.text = routesText;
     
@@ -146,4 +152,7 @@
     }
 }
 
+- (void)viewDidUnload {
+    [super viewDidUnload];
+}
 @end

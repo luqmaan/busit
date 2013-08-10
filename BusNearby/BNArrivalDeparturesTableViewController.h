@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 #import "BusStopREST.h"
+#import "BusStopHelpers.h"
 
 @interface BNArrivalDeparturesTableViewController : UITableViewController
 
 @property (weak, nonatomic) NSDictionary *stopData;
+
+- (IBAction)dismissView:(id)sender;
 
 @end

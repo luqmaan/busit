@@ -106,9 +106,6 @@
 -(NSDictionary *)stopsForLocationLat:(NSNumber *)lat Lon:(NSNumber *)lon
 {
     NSMutableString *urlStr = [NSMutableString stringWithFormat:@"http://onebusaway.forest.usf.edu/api/api/where/stops-for-location.json"];
-    
-    urlStr = [NSMutableString stringWithFormat:@"http://localhost:8000/stops-for-location.json"];
-    
     NSString *paramStr = [NSString stringWithFormat:@"lat=%@&lon=%@", lat, lon];
     return [self restToJSON:urlStr paramStr:paramStr];
 }
@@ -118,11 +115,6 @@
     NSLog(@"called arrivalsanddeps");
     NSString *encodedStopId = [stopId stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
     NSMutableString *urlStr = [NSMutableString stringWithFormat:@"http://onebusaway.forest.usf.edu/api/api/where/arrivals-and-departures-for-stop/%@.json", encodedStopId];
-    
-    urlStr = [NSMutableString stringWithFormat:@"http://localhost:8000/arrivals-and-departures-for-stop.json"];
-    NSLog(@"new urlstr: %@", urlStr);
-    
-    NSLog(@"arrivals for stop %@", urlStr);
     return [self restToJSON:urlStr paramStr:@""];
 }
 

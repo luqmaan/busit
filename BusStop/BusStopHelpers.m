@@ -25,6 +25,11 @@
     view.layer.mask = layerMask;
 }
 
++(void)drawAllCornersAroundView:(UIView *)view
+{
+    view.layer.cornerRadius = 10.0f;
+}
+
 static inline UIImage* MTDContextCreateRoundedMask( CGRect rect, CGFloat radius_tl, CGFloat radius_tr, CGFloat radius_bl, CGFloat radius_br ) {
     
     CGContextRef context;

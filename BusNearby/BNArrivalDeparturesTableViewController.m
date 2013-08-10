@@ -37,7 +37,6 @@
     if (self) {
         bench = [[BusStopREST alloc] init];
         apiData = [[NSDictionary alloc] init];
-        [self updateAPIData];
     }
     return self;
 }
@@ -46,19 +45,25 @@
 {
     [super viewDidLoad];
     [self updateAPIData];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [BusStopHelpers drawCornersAroundView:self.view];
+    self.tableView.layer.cornerRadius = 10;
+    self.tableView.layer.masksToBounds = YES;
+    self.tableView.separatorColor = [UIColor clearColor];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    self.apiData = nil;
 }
+
+- (void)viewDidUnload {
+    [super viewDidUnload];
+}
+- (IBAction)dismissView:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 #pragma mark - API
 
@@ -74,13 +79,19 @@
 {
     return 2;
 }
+- (NSNumber *)rowCount {
+    return [NSNumber numberWithUnsignedInteger:[apiData[@"data"][@"entry"][@"arrivalsAndDepartures"] count]];
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0)
         return 1;
-    else
-        return [apiData[@"data"][@"entry"][@"arrivalsAndDepartures"] count];
+    else {
+        if ([[self rowCount] intValue] == 0)
+            return 1;
+        return [[self rowCount] intValue];
+    }
 }
 
 -(NSDictionary *)dataForIndexPath:(NSIndexPath *)indexPath {
@@ -91,14 +102,13 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0)
-        return 150.0f;
+        return 240.0f;
     else
-        return 135.0f;
+        return 125.0f;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSLog(@"%@", indexPath);
+{    
     if (indexPath.section == 0) {
         
         static NSString *CellIdentifier = @"stopMapCell";
@@ -117,24 +127,43 @@
         static NSString *CellIdentifier = @"arrivalsDeparturesCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
         
+        
         NSDictionary *data = [self dataForIndexPath:indexPath];
         
         UILabel *routeName = (UILabel *)[cell viewWithTag:1];
+        if ([[self rowCount] intValue] == 0) {
+            routeName.text = @"Sorry, there are no arrivals for this stop.";
+            return cell;
+        }
+        
         routeName.text = [NSString stringWithFormat:@"%@ %@", data[@"routeShortName"], data[@"routeLongName"]];
         UILabel *tripHeadsign = (UILabel *)[cell viewWithTag:2];
         tripHeadsign.text = data[@"tripHeadsign"];
-        #pragma mark - TODO: add proper calculation for distance in miles
+        
         int miles = [(NSNumber *)data[@"distanceFromStop"] intValue] / 500;
         UILabel *distance = (UILabel *)[cell viewWithTag:3];
-        distance.text = [NSString stringWithFormat:@"%dmi %@ stops away", miles, data[@"numberOfStopsAway"]];
+        distance.text = [NSString stringWithFormat:@"%dmi / %@ stops away", miles, data[@"numberOfStopsAway"]];
+        
         UILabel *scheduled =  (UILabel *)[cell viewWithTag:4];
-        scheduled.text = [NSString stringWithFormat:@"Scheduled: %@", data[@"scheduledArrivalTime"]];
+        scheduled.text = [NSString stringWithFormat:@"%@", [self timeWithTimestamp:data[@"scheduledArrivalTime"]]];
         UILabel *predicted =  (UILabel *)[cell viewWithTag:5];
-        predicted.text = [NSString stringWithFormat:@"Predicted: %@", data[@"predictedArrivalTime"]];
+        predicted.text = [NSString stringWithFormat:@"%@", [self timeWithTimestamp:data[@"predictedArrivalTime"]]];
         UILabel *updated =  (UILabel *)[cell viewWithTag:6];
-        updated.text = [NSString stringWithFormat:@"Updated: %@", data[@"lastUpdateTime"]];
+        updated.text = [NSString stringWithFormat:@"%@", [self timeWithTimestamp:data[@"lastUpdateTime"]]];
     
         return cell;
     }
 }
+
+-(NSString *)timeWithTimestamp:(NSString *)timeStampString {
+    NSTimeInterval _interval=[timeStampString doubleValue];
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:_interval];
+    NSDateFormatter *formatter;
+    NSString *dateString;
+    formatter = [[NSDateFormatter alloc] init];
+    formatter.DateFormat = @"hh:mm";
+    dateString = [formatter stringFromDate:date];
+    return dateString;
+}
+
 @end

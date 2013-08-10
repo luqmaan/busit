@@ -12,5 +12,6 @@
 @interface BusStopHelpers : NSObject
 
 +(void)drawCornersAroundView:(UIView *)view;
++(void)drawAllCornersAroundView:(UIView *)view;
 
 @end
