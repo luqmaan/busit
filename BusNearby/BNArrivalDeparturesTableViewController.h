@@ -16,5 +16,6 @@
 @property (weak, nonatomic) NSDictionary *stopData;
 
 - (IBAction)dismissView:(id)sender;
+- (IBAction)refresh:(id)sender;
 
 @end

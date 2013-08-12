@@ -9,45 +9,37 @@
 #import "BNArrivalDeparturesTableViewController.h"
 
 @interface BNArrivalDeparturesTableViewController () {
-    NSDictionary *apiData;
-    BusStopREST *bench;
-    BOOL updateInProgress;
-}
-@property NSDictionary *apiData;
-@property BusStopREST *bench;
+        NSDictionary *apiData;
+        BusStopREST *bench;
+    }
+    @property NSDictionary *apiData;
+    @property BusStopREST *bench;
 @end
 
-@implementation BNArrivalDeparturesTableViewController
+@implementation BNArrivalDeparturesTableViewController {
+    @private
+        BOOL updateInProgress;
+}
 
 @synthesize apiData, bench, stopData;
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     NSLog(@"init with coder");
     
-    if ( !(self = [super initWithCoder:aDecoder]) ) return nil;
+    if (!(self = [super initWithCoder:aDecoder]))
+        return nil;
     
     bench = [[BusStopREST alloc] init];
     apiData = [[NSDictionary alloc] init];
     updateInProgress = FALSE;
-    return self;
-}
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    NSLog(@"init w style");
-    self = [super initWithStyle:style];
-    if (self) {
-        bench = [[BusStopREST alloc] init];
-        apiData = [[NSDictionary alloc] init];
-        updateInProgress = FALSE;
-    }
+    [self updateAPIData];
     return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];    
-    [self updateAPIData];
+    [self.tableView reloadData];
     [BusStopHelpers drawCornersAroundView:self.view];
     self.tableView.layer.cornerRadius = 10;
     self.tableView.layer.masksToBounds = YES;
@@ -66,8 +58,11 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-
 #pragma mark - API
+
+- (IBAction)refresh:(id)sender {
+    [self updateAPIData];
+}
 
 - (void)updateAPIData
 {
@@ -76,13 +71,13 @@
         return;
     }
     dispatch_queue_t fetchAPIData = dispatch_queue_create("com.busit.arrival", DISPATCH_QUEUE_SERIAL);
+    updateInProgress = TRUE;
     
     dispatch_async(fetchAPIData, ^{
-        updateInProgress = TRUE;
         apiData = [bench arrivalsAndDeparturesForStop:stopData[@"id"]];
-        updateInProgress = FALSE;
         dispatch_async(dispatch_get_main_queue(), ^ {
-            [self.tableView reloadData];            
+            updateInProgress = FALSE;
+            [self.tableView reloadData];
         });
     });
     dispatch_release(fetchAPIData);
@@ -92,9 +87,14 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (updateInProgress)
-        return 0;
-    return 2;
+    
+    NSLog(@"number of sections in tableview, update:%@", updateInProgress ? @"YES" : @"NO");
+    if (updateInProgress) {
+        NSLog(@"number of sections in table view, udpate in progress");
+        return 1;
+    }
+    else
+        return 2;
 }
 - (NSNumber *)rowCount {
     return [NSNumber numberWithUnsignedInteger:[apiData[@"data"][@"entry"][@"arrivalsAndDepartures"] count]];
@@ -102,11 +102,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (updateInProgress)
-        return 0;
     if (section == 0)
         return 1;
     else {
+        if (updateInProgress)
+            return 0;
         if ([[self rowCount] intValue] == 0)
             return 1;
         return [[self rowCount] intValue];
@@ -128,18 +128,21 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"Cell for row at indexpath: %@", indexPath);
     if (indexPath.section == 0) {
         static NSString *CellIdentifier = @"stopMapCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-        if (updateInProgress) {
-            return cell;
-        }
-
-        NSLog(@"stopData: %@", stopData);
         
         UILabel *stopId = (UILabel *)[cell viewWithTag:1];
-        stopId.text = [NSString stringWithFormat:@"%@ %@", stopData[@"code"], stopData[@"direction"]];
         UILabel *stopName = (UILabel *)[cell viewWithTag:2];
+
+        if (updateInProgress) {
+            stopId.text = @"Loading...";
+            stopName.text = @"Please wait.";
+            return cell;
+        }
+        
+        stopId.text = [NSString stringWithFormat:@"%@ %@", stopData[@"code"], stopData[@"direction"]];
         stopName.text = stopData[@"name"];
         
         return cell;
@@ -147,31 +150,30 @@
     else {
         static NSString *CellIdentifier = @"arrivalsDeparturesCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+                
+        UILabel *routeName = (UILabel *)[cell viewWithTag:1];
+        UILabel *tripHeadsign = (UILabel *)[cell viewWithTag:2];
+        UILabel *distance = (UILabel *)[cell viewWithTag:3];
+        UILabel *scheduled =  (UILabel *)[cell viewWithTag:4];
+        UILabel *predicted =  (UILabel *)[cell viewWithTag:5];
+        UILabel *updated =  (UILabel *)[cell viewWithTag:6];
+        
         if (updateInProgress) {
             return cell;
         }
-                
-        NSDictionary *data = [self dataForIndexPath:indexPath];
-        
-        UILabel *routeName = (UILabel *)[cell viewWithTag:1];
         if ([[self rowCount] intValue] == 0) {
             routeName.text = @"Sorry, there are no arrivals for this stop.";
             return cell;
         }
         
+        NSDictionary *data = [self dataForIndexPath:indexPath];
         routeName.text = [NSString stringWithFormat:@"%@ %@", data[@"routeShortName"], data[@"routeLongName"]];
-        UILabel *tripHeadsign = (UILabel *)[cell viewWithTag:2];
         tripHeadsign.text = data[@"tripHeadsign"];
         
         int miles = [(NSNumber *)data[@"distanceFromStop"] intValue] / 500;
-        UILabel *distance = (UILabel *)[cell viewWithTag:3];
         distance.text = [NSString stringWithFormat:@"%dmi / %@ stops away", miles, data[@"numberOfStopsAway"]];
-        
-        UILabel *scheduled =  (UILabel *)[cell viewWithTag:4];
         scheduled.text = [NSString stringWithFormat:@"%@", [self timeWithTimestamp:data[@"scheduledArrivalTime"]]];
-        UILabel *predicted =  (UILabel *)[cell viewWithTag:5];
         predicted.text = [NSString stringWithFormat:@"%@", [self timeWithTimestamp:data[@"predictedArrivalTime"]]];
-        UILabel *updated =  (UILabel *)[cell viewWithTag:6];
         updated.text = [NSString stringWithFormat:@"%@", [self timeWithTimestamp:data[@"lastUpdateTime"]]];
     
         return cell;

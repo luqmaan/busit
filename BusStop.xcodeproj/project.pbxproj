@@ -37,6 +37,8 @@
 		C1000207174A36A000F3F465 /* BMVehicleAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1000206174A36A000F3F465 /* BMVehicleAnnotationView.m */; };
 		C1200F3B174FD0C200EF9D10 /* default.css in Resources */ = {isa = PBXBuildFile; fileRef = C1200F3A174FD0C200EF9D10 /* default.css */; };
 		C1224A3017AE5AC7005F4D62 /* BusStopHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = C1224A2F17AE5AC7005F4D62 /* BusStopHelpers.m */; };
+		C143E6D817B98E3600735A15 /* UIButtonBarRefresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C143E6D617B98E3600735A15 /* UIButtonBarRefresh@2x.png */; };
+		C143E6D917B98E3600735A15 /* UIButtonBarRefresh.png in Resources */ = {isa = PBXBuildFile; fileRef = C143E6D717B98E3600735A15 /* UIButtonBarRefresh.png */; };
 		C18E2D7617482F6B003D8831 /* BusMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C18E2D7517482F6B003D8831 /* BusMapViewController.m */; };
 		C18E2D7C17482FA9003D8831 /* BMVehicle.m in Sources */ = {isa = PBXBuildFile; fileRef = C18E2D7B17482FA9003D8831 /* BMVehicle.m */; };
 		C18E2D8217482FEA003D8831 /* BIOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = C18E2D8117482FEA003D8831 /* BIOptions.m */; };
@@ -89,6 +91,8 @@
 		C1200F3A174FD0C200EF9D10 /* default.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = default.css; sourceTree = "<group>"; };
 		C1224A2E17AE5AC7005F4D62 /* BusStopHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusStopHelpers.h; sourceTree = "<group>"; };
 		C1224A2F17AE5AC7005F4D62 /* BusStopHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusStopHelpers.m; sourceTree = "<group>"; };
+		C143E6D617B98E3600735A15 /* UIButtonBarRefresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UIButtonBarRefresh@2x.png"; sourceTree = "<group>"; };
+		C143E6D717B98E3600735A15 /* UIButtonBarRefresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UIButtonBarRefresh.png; sourceTree = "<group>"; };
 		C18E2D7417482F6B003D8831 /* BusMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusMapViewController.h; sourceTree = "<group>"; };
 		C18E2D7517482F6B003D8831 /* BusMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusMapViewController.m; sourceTree = "<group>"; };
 		C18E2D7A17482FA9003D8831 /* BMVehicle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMVehicle.h; sourceTree = "<group>"; };
@@ -126,6 +130,8 @@
 		14ED356B1719D0D7009F6A11 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				C143E6D617B98E3600735A15 /* UIButtonBarRefresh@2x.png */,
+				C143E6D717B98E3600735A15 /* UIButtonBarRefresh.png */,
 				14E63F4E171A3AA3000A4013 /* busit_title.png */,
 				14E63F45171A2B04000A4013 /* AppIcon@114.png */,
 				14E63F43171A2AF3000A4013 /* AppIcon@57.png */,
@@ -322,6 +328,8 @@
 				14E63F4F171A3AA3000A4013 /* busit_title.png in Resources */,
 				2773854D171B3CF400CFD1CB /* Default.png in Resources */,
 				C1200F3B174FD0C200EF9D10 /* default.css in Resources */,
+				C143E6D817B98E3600735A15 /* UIButtonBarRefresh@2x.png in Resources */,
+				C143E6D917B98E3600735A15 /* UIButtonBarRefresh.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

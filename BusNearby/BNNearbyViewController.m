@@ -127,7 +127,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"cell for row at indexpath");
+    NSLog(@"cell for row at indexpath %@", indexPath);
     static NSString *CellIdentifier = @"StopCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
@@ -171,10 +171,7 @@
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
-    NSLog(@"HAIAIA");
-
     if ([identifier isEqualToString:@"stopDetailSegue"]) {
-        NSLog(@"hai");
         if (updateInProgress)
             return NO;
     }
