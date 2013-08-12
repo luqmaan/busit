@@ -13,6 +13,7 @@
     BusStopREST *bench;
     CLLocationManager *locationManager;
     CLLocation *location;
+    BOOL updateInProgress;
 }
 
 @property (nonatomic, retain) BusStopREST *bench;
@@ -30,6 +31,7 @@
     if(self = [super initWithCoder:aDecoder]) {
         bench = [[BusStopREST alloc] init];
         apiData = [[NSDictionary alloc] init];
+        updateInProgress = TRUE;
     }
     return self;
 }
@@ -69,12 +71,14 @@
     [locationManager startMonitoringSignificantLocationChanges];
 }
 
-- (void)locationManager:(CLLocationManager *)locationManager
+- (void)locationManager:(CLLocationManager *)locManager
     didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation
 {
     location = newLocation;
     NSLog(@"New location: %f %f", location.coordinate.longitude, location.coordinate.latitude);
+    // only update the location once
+    [locationManager stopUpdatingLocation];
     [self updateAPIData];
 }
 
@@ -85,9 +89,15 @@
 
 - (void)updateAPIData
 {
+    NSLog(@"Start Updating api data");
+    updateInProgress = TRUE;
     apiData = [bench stopsForLocationLat:[NSNumber numberWithFloat:location.coordinate.latitude]
                                      Lon:[NSNumber numberWithFloat:location.coordinate.longitude]];
+    updateInProgress = FALSE;
+    NSLog(@"Stop Updating api data");
+    NSLog(@"reload tableview");
     [self.tableView reloadData];
+    NSLog(@"Did reload tableview");
 }
 
 
@@ -101,10 +111,14 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
+    if (updateInProgress)
+        return 1;
     return [apiData[@"data"][@"list"] count];
 }
 
 -(NSDictionary *)dataForIndexPath:(NSIndexPath *)indexPath {
+    if (updateInProgress)
+        return nil;
     return apiData[@"data"][@"list"][indexPath.row];
 }
 
@@ -113,19 +127,32 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"cell for row at indexpath");
     static NSString *CellIdentifier = @"StopCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
+    UILabel *stopId = (UILabel *)[cell viewWithTag:1];
+    UILabel *stopName = (UILabel *)[cell viewWithTag:2];
+    UILabel *direction = (UILabel *)[cell viewWithTag:4];
+    UILabel *routes = (UILabel *)[cell viewWithTag:3];
+    
+    if (updateInProgress) {
+        NSLog(@"cell for row at indexpath, but update in progress");
+        stopId.text = @"";
+        direction.text = @"";
+        routes.text = @"";
+        stopName.text = @"Loading...";
+        cell.accessoryView.hidden = YES;
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        return cell;
+    }
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
     NSDictionary *stopData = [self dataForIndexPath:indexPath];
     NSArray *routesArray = apiData[@"data"][@"references"][@"routes"];
-    
-    UILabel *stopId = (UILabel *)[cell viewWithTag:1];
     stopId.text = stopData[@"code"];
-    UILabel *stopName = (UILabel *)[cell viewWithTag:2];
     stopName.text = stopData[@"name"];
-    UILabel *direction = (UILabel *)[cell viewWithTag:4];
     direction.text = stopData[@"direction"];
-    UILabel *routes = (UILabel *)[cell viewWithTag:3];
     NSMutableString *routesText = [NSMutableString stringWithString:@"Routes "];
     id lastRouteId = [stopData[@"routeIds"] lastObject];
     for (NSString *routeId in stopData[@"routeIds"]) {
@@ -142,9 +169,21 @@
     return cell;
 }
 
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    NSLog(@"HAIAIA");
+
+    if ([identifier isEqualToString:@"stopDetailSegue"]) {
+        NSLog(@"hai");
+        if (updateInProgress)
+            return NO;
+    }
+    return YES;
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"stopDetailSegue"]) {        
+    if ([[segue identifier] isEqualToString:@"stopDetailSegue"]) {
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
         NSDictionary *stopData = [self dataForIndexPath:path];
         BNArrivalDeparturesTableViewController *stopDetailsVC = segue.destinationViewController;

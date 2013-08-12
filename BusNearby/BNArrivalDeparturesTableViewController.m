@@ -11,6 +11,7 @@
 @interface BNArrivalDeparturesTableViewController () {
     NSDictionary *apiData;
     BusStopREST *bench;
+    BOOL updateInProgress;
 }
 @property NSDictionary *apiData;
 @property BusStopREST *bench;
@@ -27,6 +28,7 @@
     
     bench = [[BusStopREST alloc] init];
     apiData = [[NSDictionary alloc] init];
+    updateInProgress = FALSE;
     return self;
 }
 
@@ -37,13 +39,14 @@
     if (self) {
         bench = [[BusStopREST alloc] init];
         apiData = [[NSDictionary alloc] init];
+        updateInProgress = FALSE;
     }
     return self;
 }
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+    [super viewDidLoad];    
     [self updateAPIData];
     [BusStopHelpers drawCornersAroundView:self.view];
     self.tableView.layer.cornerRadius = 10;
@@ -54,7 +57,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    self.apiData = nil;
 }
 
 - (void)viewDidUnload {
@@ -69,14 +71,29 @@
 
 - (void)updateAPIData
 {
-    apiData = [bench arrivalsAndDeparturesForStop:stopData[@"id"]];
-    [self.tableView reloadData];
+    if (updateInProgress) {
+        NSLog(@"Attempted to run a new update while update is in progress.");
+        return;
+    }
+    dispatch_queue_t fetchAPIData = dispatch_queue_create("com.busit.arrival", DISPATCH_QUEUE_SERIAL);
+    
+    dispatch_async(fetchAPIData, ^{
+        updateInProgress = TRUE;
+        apiData = [bench arrivalsAndDeparturesForStop:stopData[@"id"]];
+        updateInProgress = FALSE;
+        dispatch_async(dispatch_get_main_queue(), ^ {
+            [self.tableView reloadData];            
+        });
+    });
+    dispatch_release(fetchAPIData);
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    if (updateInProgress)
+        return 0;
     return 2;
 }
 - (NSNumber *)rowCount {
@@ -85,6 +102,8 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (updateInProgress)
+        return 0;
     if (section == 0)
         return 1;
     else {
@@ -104,15 +123,17 @@
     if (indexPath.section == 0)
         return 240.0f;
     else
-        return 125.0f;
+        return 155.0f;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{    
+{
     if (indexPath.section == 0) {
-        
         static NSString *CellIdentifier = @"stopMapCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+        if (updateInProgress) {
+            return cell;
+        }
 
         NSLog(@"stopData: %@", stopData);
         
@@ -126,8 +147,10 @@
     else {
         static NSString *CellIdentifier = @"arrivalsDeparturesCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-        
-        
+        if (updateInProgress) {
+            return cell;
+        }
+                
         NSDictionary *data = [self dataForIndexPath:indexPath];
         
         UILabel *routeName = (UILabel *)[cell viewWithTag:1];
@@ -161,6 +184,7 @@
     NSDateFormatter *formatter;
     NSString *dateString;
     formatter = [[NSDateFormatter alloc] init];
+    formatter.timeZone = [NSTimeZone timeZoneWithName:@"EST"];
     formatter.DateFormat = @"hh:mm";
     dateString = [formatter stringFromDate:date];
     return dateString;

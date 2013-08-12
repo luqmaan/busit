@@ -12,17 +12,18 @@
 
 +(void)drawCornersAroundView:(UIView *)view
 {
-    NSLog(@"self: %@", self);
-    // http://stackoverflow.com/questions/4847163/round-two-corners-in-uiview
-    // Create the mask image you need calling the previous function
-    UIImage *mask = MTDContextCreateRoundedMask( view.bounds, 10.0, 10.0, 0.0, 0.0 );
-    // Create a new layer that will work as a mask
-    CALayer *layerMask = [CALayer layer];
-    layerMask.frame = view.bounds;
-    // Put the mask image as content of the layer
-    layerMask.contents = (id)mask.CGImage;
-    // set the mask layer as mask of the view layer
-    view.layer.mask = layerMask;
+    view.layer.cornerRadius = 10;
+//    NSLog(@"self: %@", self);
+//    // http://stackoverflow.com/questions/4847163/round-two-corners-in-uiview
+//    // Create the mask image you need calling the previous function
+//    UIImage *mask = MTDContextCreateRoundedMask( view.bounds, 10.0, 10.0, 0.0, 0.0 );
+//    // Create a new layer that will work as a mask
+//    CALayer *layerMask = [CALayer layer];
+//    layerMask.frame = view.bounds;
+//    // Put the mask image as content of the layer
+//    layerMask.contents = (id)mask.CGImage;
+//    // set the mask layer as mask of the view layer
+//    view.layer.mask = layerMask;
 }
 
 +(void)drawAllCornersAroundView:(UIView *)view
