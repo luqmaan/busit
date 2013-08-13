@@ -1,4 +1,3 @@
-
 table-view {
     background-color: #fff;
 }
@@ -6,24 +5,16 @@ table-view-cell {
     color: #081c2e;
     background-color: #fff;
 }
-table-view label {
+table-view-cell label {
     font-family: "Avenir";
+    font-weight: 600;
 }
-#nearbyView {
-}
-#arrivalsView {
-
-}
-#routesLabel {
-    color: #5f7386;
-}
-.arrivalsTitle {
-    font-weight: bold;
-    color: #fff;
-}
-.arrivalsTitleBar {
-    background-color: #2d90ff;
-    opacity: 0.8;
+tab-bar {
+    background-color: black;
+    color: black;
+    selected-color: black;
+    box-shadow: inset 0px 0px clear;
+    height: 50pt;
 }
 .title {
     font-weight: "bold";
@@ -32,11 +23,22 @@ table-view label {
 .subtitle {
     color: #5f7386;
 }
-.arrivalTime {
-    color: #739dc4;
+#arrivalsView button {
+    font-family: "Avenir";
+    background-color: #2d90ff;
+    opacity: 0.8;
+    font-weight: bold;
+    border-radius: 7px;
+    color: #fff;
 }
-.arrivalTimeLabel {
-    color: #6184a5;
+
+.arrivalsTitle {
+    font-weight: bold;
+    color: #fff;
+}
+.arrivalsTitleBar {
+    background-color: #2d90ff;
+    opacity: 0.8;
 }
 .arrivalsRoute {
     color: #2461ba;
@@ -48,10 +50,17 @@ table-view label {
 .arrivalsHeadsign {
     color: #5ab5ff;
 }
-#arrivalsView button {
-    background-color: #2d90ff;
-    opacity: 0.8;
-    font-weight: bold;
-    border-radius: 7px;
-    color: #fff;
+
+.arrivalTime {
+    color: #739dc4;
+    font-weight: 600;
+}
+.arrivalTimeLabel {
+    color: #6184a5;
+    font-family: "HelveticaNeue";
+    font-size: 13pt;
+    
+}
+.arrivalDetails label {
+
 }

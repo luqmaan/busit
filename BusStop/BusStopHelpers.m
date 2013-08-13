@@ -84,4 +84,15 @@ static inline UIImage* MTDContextCreateRoundedMask( CGRect rect, CGFloat radius_
     return theImage;
 }
 
++(NSString *)timeWithTimestamp:(NSString *)timestampString {
+    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+    formatter.timeStyle = NSDateFormatterShortStyle;
+    formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"EDT"];
+    formatter.dateStyle = NSDateFormatterNoStyle;
+    double time = [timestampString doubleValue] / 1000.0;
+    formatter.DateFormat = @"h:mm";
+    NSString* result = [formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:time]];
+    return result;
+}
+
 @end

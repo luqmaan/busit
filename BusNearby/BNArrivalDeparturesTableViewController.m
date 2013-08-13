@@ -123,7 +123,7 @@
     if (indexPath.section == 0)
         return 240.0f;
     else
-        return 155.0f;
+        return 125.0f;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -172,24 +172,12 @@
         
         int miles = [(NSNumber *)data[@"distanceFromStop"] intValue] / 500;
         distance.text = [NSString stringWithFormat:@"%dmi / %@ stops away", miles, data[@"numberOfStopsAway"]];
-        scheduled.text = [NSString stringWithFormat:@"%@", [self timeWithTimestamp:data[@"scheduledArrivalTime"]]];
-        predicted.text = [NSString stringWithFormat:@"%@", [self timeWithTimestamp:data[@"predictedArrivalTime"]]];
-        updated.text = [NSString stringWithFormat:@"%@", [self timeWithTimestamp:data[@"lastUpdateTime"]]];
+        scheduled.text = [NSString stringWithFormat:@"%@", [BusStopHelpers timeWithTimestamp:data[@"scheduledArrivalTime"]]];
+        predicted.text = [NSString stringWithFormat:@"%@", [BusStopHelpers timeWithTimestamp:data[@"predictedArrivalTime"]]];
+        updated.text = [NSString stringWithFormat:@"%@", [BusStopHelpers timeWithTimestamp:data[@"lastUpdateTime"]]];
     
         return cell;
     }
-}
-
--(NSString *)timeWithTimestamp:(NSString *)timeStampString {
-    NSTimeInterval _interval=[timeStampString doubleValue];
-    NSDate *date = [NSDate dateWithTimeIntervalSince1970:_interval];
-    NSDateFormatter *formatter;
-    NSString *dateString;
-    formatter = [[NSDateFormatter alloc] init];
-    formatter.timeZone = [NSTimeZone timeZoneWithName:@"EST"];
-    formatter.DateFormat = @"hh:mm";
-    dateString = [formatter stringFromDate:date];
-    return dateString;
 }
 
 @end
