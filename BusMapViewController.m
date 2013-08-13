@@ -57,22 +57,38 @@
     [super viewDidLoad];
 }
 
+#pragma mark - Map & Location
+
 - (void)initMap
 {
     mapView.delegate = self;
-
     [self.view setBackgroundColor:[UIColor lightGrayColor]];
+};
+
+- (void)zoomIntoTampa
+{
     [mapView setCenterCoordinate:mapView.userLocation.coordinate animated:YES];
-    
     CLLocationCoordinate2D zoomLocation;
     zoomLocation.latitude = 27.977727;
     zoomLocation.longitude = -82.454109;
     
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation,
-                                                                       10.5*METERS_PER_MILE,
-                                                                       10.5*METERS_PER_MILE);
+                                                                       1000.5*METERS_PER_MILE,
+                                                                       1000.5*METERS_PER_MILE);
     [mapView setRegion:viewRegion animated:YES];
-};
+}
+
+- (void)mapView:(MKMapView *)map didUpdateUserLocation:(MKUserLocation *)userLocation
+{
+    CLLocationAccuracy accuracy = userLocation.location.horizontalAccuracy;
+    if (accuracy > 0) {
+        MKCoordinateRegion mapRegion;
+        mapRegion.center = map.userLocation.coordinate;
+        mapRegion.span.latitudeDelta = 0.2;
+        mapRegion.span.longitudeDelta = 0.2;
+        [map setRegion:mapRegion animated: YES];
+    }
+}
 
 - (void)updateMap
 {
@@ -96,6 +112,8 @@
     });
     dispatch_release(fetchAPIData);
 }
+
+#pragma mark - API
 
 - (void)updateAPIData
 {
