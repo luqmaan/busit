@@ -56,6 +56,7 @@
     [self initMap];
     [self updateMap];
     [self zoomIntoTampa];
+    self.navBar.topItem.prompt = @"Updating";
 }
 
 #pragma mark - Map & Location

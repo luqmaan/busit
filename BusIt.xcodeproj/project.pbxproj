@@ -29,6 +29,7 @@
 		C198C23C17BB124600A94F4D /* BMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C198C23717BB124600A94F4D /* BMViewController.m */; };
 		C198C24417BB131B00A94F4D /* BIHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = C198C24117BB131B00A94F4D /* BIHelpers.m */; };
 		C198C24517BB131B00A94F4D /* BIRest.m in Sources */ = {isa = PBXBuildFile; fileRef = C198C24317BB131B00A94F4D /* BIRest.m */; };
+		C19E604D17BB374500FB181A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C19E604C17BB374500FB181A /* QuartzCore.framework */; };
 		C1D9759717BB222F0037B005 /* BMOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D9759617BB222F0037B005 /* BMOptions.m */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +79,7 @@
 		C198C24117BB131B00A94F4D /* BIHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIHelpers.m; sourceTree = "<group>"; };
 		C198C24217BB131B00A94F4D /* BIRest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIRest.h; sourceTree = "<group>"; };
 		C198C24317BB131B00A94F4D /* BIRest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIRest.m; sourceTree = "<group>"; };
+		C19E604C17BB374500FB181A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C1D9759617BB222F0037B005 /* BMOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMOptions.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -86,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C19E604D17BB374500FB181A /* QuartzCore.framework in Frameworks */,
 				C198C22A17BB10F300A94F4D /* MapKit.framework in Frameworks */,
 				C190D7B017BB0C96005C24F2 /* CoreGraphics.framework in Frameworks */,
 				C190D7B217BB0C96005C24F2 /* UIKit.framework in Frameworks */,
@@ -129,6 +132,7 @@
 		C190D7AC17BB0C96005C24F2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C19E604C17BB374500FB181A /* QuartzCore.framework */,
 				C198C22917BB10F300A94F4D /* MapKit.framework */,
 				C190D7AD17BB0C96005C24F2 /* Foundation.framework */,
 				C190D7AF17BB0C96005C24F2 /* CoreGraphics.framework */,

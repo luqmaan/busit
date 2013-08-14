@@ -21,6 +21,7 @@
 
 @interface BMViewController : UIViewController <MKMapViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UINavigationBar *navBar;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
 -(IBAction)refreshBtnPress:(id)sender;

@@ -27,15 +27,19 @@
         <scene sceneID="tmv-9D-Cq9">
             <objects>
                 <tabBarController definesPresentationContext="YES" id="cHa-ne-20T" sceneMemberID="viewController">
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="yqe-uh-rGN">
+                    <navigationItem key="navigationItem" id="TLb-R9-rah"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" barStyle="black" id="yqe-uh-rGN">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.098039224743843079" green="0.34117648005485535" blue="0.7137255072593689" alpha="1" colorSpace="deviceRGB"/>
+                        <color key="barTintColor" red="0.83921575546264648" green="0.92549026012420654" blue="1" alpha="1" colorSpace="deviceRGB"/>
                     </tabBar>
                     <connections>
-                        <segue destination="Vek-LY-e0x" kind="relationship" relationship="viewControllers" id="YCW-aK-d4l"/>
                         <segue destination="PUH-8l-EO9" kind="relationship" relationship="viewControllers" id="vWt-BT-2Sj"/>
+                        <segue destination="Vek-LY-e0x" kind="relationship" relationship="viewControllers" id="2ua-mQ-LGO"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZkM-TV-bAl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -58,12 +62,41 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </mapView>
+                            <navigationBar autoresizesSubviews="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qdp-Zc-Zrq">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="74"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="barTintColor" red="0.83921575550000005" green="0.92549026010000002" blue="1" alpha="1" colorSpace="deviceRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" red="0.098039224743843079" green="0.34117648005485535" blue="0.7137255072593689" alpha="1" colorSpace="deviceRGB"/>
+                                    <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Live Map" prompt=" " id="Afw-Vr-pgL">
+                                        <barButtonItem key="leftBarButtonItem" title="Item" systemItem="refresh" id="ZFZ-Yv-0Ua">
+                                            <color key="tintColor" red="0.098039224743843079" green="0.34117648005485535" blue="0.7137255072593689" alpha="1" colorSpace="deviceRGB"/>
+                                            <connections>
+                                                <action selector="refreshBtnPress:" destination="PUH-8l-EO9" id="YHM-QX-wH3"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Location" id="j0M-aR-mbC">
+                                            <color key="tintColor" red="0.09803922474" green="0.34117648010000001" blue="0.71372550729999995" alpha="1" colorSpace="deviceRGB"/>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="CJb-Dt-IU7">
+                                <rect key="frame" x="0.0" y="74" width="320" height="2"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="progressTintColor" red="0.09803922474" green="0.34117648010000001" blue="0.71372550729999995" alpha="1" colorSpace="deviceRGB"/>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="location" id="vLK-Nd-H7j"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="mapView" destination="fAM-r2-qdm" id="Qld-dN-I9a"/>
+                        <outlet property="navBar" destination="Qdp-Zc-Zrq" id="Sag-In-EnA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="suw-e8-xrG" userLabel="First Responder" sceneMemberID="firstResponder"/>
