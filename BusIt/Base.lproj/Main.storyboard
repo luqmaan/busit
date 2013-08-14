@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4488.2" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="cHa-ne-20T">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3715.3"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller - Nearby-->
+        <scene sceneID="BZw-kS-XEI">
+            <objects>
+                <viewController id="Vek-LY-e0x" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tg2-gk-b3o"/>
+                        <viewControllerLayoutGuide type="bottom" id="IKp-Rc-aLi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZqW-r8-Owc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Nearby" image="nearby" id="QhN-Xy-XYI"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3HL-FM-y00" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="315" y="-40"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="tmv-9D-Cq9">
+            <objects>
+                <tabBarController definesPresentationContext="YES" id="cHa-ne-20T" sceneMemberID="viewController">
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="yqe-uh-rGN">
+                        <rect key="frame" x="129" y="330" width="163" height="49"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="Vek-LY-e0x" kind="relationship" relationship="viewControllers" id="YCW-aK-d4l"/>
+                        <segue destination="PUH-8l-EO9" kind="relationship" relationship="viewControllers" id="vWt-BT-2Sj"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZkM-TV-bAl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-219" y="286"/>
+        </scene>
+        <!--View Controller - Map-->
+        <scene sceneID="eah-Yn-1Cq">
+            <objects>
+                <viewController id="PUH-8l-EO9" customClass="BMViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iPX-jn-PQ5"/>
+                        <viewControllerLayoutGuide type="bottom" id="Fhx-Mr-MLj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="MCX-zE-yV3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fAM-r2-qdm">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Map" image="location" id="vLK-Nd-H7j"/>
+                    <connections>
+                        <outlet property="mapView" destination="fAM-r2-qdm" id="Qld-dN-I9a"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="suw-e8-xrG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="315" y="612"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="location" width="40" height="40"/>
+        <image name="nearby" width="40" height="40"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
