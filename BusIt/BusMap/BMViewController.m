@@ -26,7 +26,7 @@
 
 @implementation BMViewController
 
-@synthesize apiData, bench, mapView, statusView;
+@synthesize apiData, bench, mapView;
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if(self = [super initWithCoder:aDecoder]) {        
@@ -37,6 +37,7 @@
         routes = [[BMRoutes alloc] init];
         updateInProgress = FALSE;
         firstTimeAddingVehiclesToRoutes = TRUE;
+        self.tabBarController.tabBar.barTintColor = [UIColor redColor];
     }
     return self;
 }
@@ -56,7 +57,23 @@
     [self initMap];
     [self updateMap];
     [self zoomIntoTampa];
-    self.navBar.topItem.prompt = @"Updating";
+    self.tabBarController.tabBar.barTintColor = [UIColor redColor];
+    self.tabBarController.tabBar.barStyle = UIBarStyleDefault;
+    self.tabBarController.tabBar.translucent = YES;
+//    self.navBar.topItem.prompt = @"Updating";
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+    
+    // Remove routes?
+}
+
+- (void)viewDidUnload {
+    [self stopTimer];
+    [super viewDidUnload];
 }
 
 #pragma mark - Map & Location
@@ -214,6 +231,8 @@
     }
 }
 
+#pragma mark - Timer
+
 - (void)startTimer
 {
     NSLog(@"Started timer");
@@ -230,16 +249,4 @@
     updateTimer = nil;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-    
-    // Remove routes?
-}
-
-- (void)viewDidUnload {
-    [self stopTimer];
-    [super viewDidUnload];
-}
 @end

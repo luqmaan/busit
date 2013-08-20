@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>BusIt copy.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>BusIt.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -12,6 +17,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>C10825E417C3A49700AE58CF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>C190D7A917BB0C96005C24F2</key>
 		<dict>
 			<key>primary</key>
