@@ -26,6 +26,10 @@
 		C10825F817C3A49700AE58CF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C190D7C517BB0C96005C24F2 /* Images.xcassets */; };
 		C10825F917C3A49700AE58CF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C190D7B617BB0C96005C24F2 /* InfoPlist.strings */; };
 		C10825FA17C3A49700AE58CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C190D7BF17BB0C96005C24F2 /* Main.storyboard */; };
+		C177FE9C17C3A83A00B2FE4F /* BNArrivalsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C177FE9917C3A83A00B2FE4F /* BNArrivalsTableViewController.m */; };
+		C177FE9D17C3A83A00B2FE4F /* BNArrivalsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C177FE9917C3A83A00B2FE4F /* BNArrivalsTableViewController.m */; };
+		C177FE9E17C3A83A00B2FE4F /* BNNearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C177FE9B17C3A83A00B2FE4F /* BNNearbyViewController.m */; };
+		C177FE9F17C3A83A00B2FE4F /* BNNearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C177FE9B17C3A83A00B2FE4F /* BNNearbyViewController.m */; };
 		C190D7AE17BB0C96005C24F2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C190D7AD17BB0C96005C24F2 /* Foundation.framework */; };
 		C190D7B017BB0C96005C24F2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C190D7AF17BB0C96005C24F2 /* CoreGraphics.framework */; };
 		C190D7B217BB0C96005C24F2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C190D7B117BB0C96005C24F2 /* UIKit.framework */; };
@@ -65,6 +69,10 @@
 /* Begin PBXFileReference section */
 		C10825FE17C3A49700AE58CF /* BusIt copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BusIt copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C10825FF17C3A49700AE58CF /* BusIt copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "BusIt copy-Info.plist"; path = "/Users/lolcat/dev/busit/BusIt copy-Info.plist"; sourceTree = "<absolute>"; };
+		C177FE9817C3A83A00B2FE4F /* BNArrivalsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNArrivalsTableViewController.h; sourceTree = "<group>"; };
+		C177FE9917C3A83A00B2FE4F /* BNArrivalsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNArrivalsTableViewController.m; sourceTree = "<group>"; };
+		C177FE9A17C3A83A00B2FE4F /* BNNearbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNNearbyViewController.h; sourceTree = "<group>"; };
+		C177FE9B17C3A83A00B2FE4F /* BNNearbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNNearbyViewController.m; sourceTree = "<group>"; };
 		C190D7AA17BB0C96005C24F2 /* BusIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BusIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C190D7AD17BB0C96005C24F2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C190D7AF17BB0C96005C24F2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -142,9 +150,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C177FE9717C3A83A00B2FE4F /* BusNearby */ = {
+			isa = PBXGroup;
+			children = (
+				C177FE9817C3A83A00B2FE4F /* BNArrivalsTableViewController.h */,
+				C177FE9917C3A83A00B2FE4F /* BNArrivalsTableViewController.m */,
+				C177FE9A17C3A83A00B2FE4F /* BNNearbyViewController.h */,
+				C177FE9B17C3A83A00B2FE4F /* BNNearbyViewController.m */,
+			);
+			name = BusNearby;
+			path = BusIt/BusNearby;
+			sourceTree = "<group>";
+		};
 		C190D7A117BB0C96005C24F2 = {
 			isa = PBXGroup;
 			children = (
+				C177FE9717C3A83A00B2FE4F /* BusNearby */,
 				C198C22C17BB11D900A94F4D /* BusMap */,
 				C190D7B317BB0C96005C24F2 /* BusIt */,
 				C190D7D217BB0C97005C24F2 /* BusItTests */,
@@ -377,7 +398,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C10825E617C3A49700AE58CF /* BIHelpers.m in Sources */,
+				C177FE9F17C3A83A00B2FE4F /* BNNearbyViewController.m in Sources */,
 				C10825E717C3A49700AE58CF /* BMOptions.m in Sources */,
+				C177FE9D17C3A83A00B2FE4F /* BNArrivalsTableViewController.m in Sources */,
 				C10825E817C3A49700AE58CF /* BMViewController.m in Sources */,
 				C10825E917C3A49700AE58CF /* BMVehicleAnnotationView.m in Sources */,
 				C10825EA17C3A49700AE58CF /* BIViewController.m in Sources */,
@@ -395,7 +418,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C198C24417BB131B00A94F4D /* BIHelpers.m in Sources */,
+				C177FE9E17C3A83A00B2FE4F /* BNNearbyViewController.m in Sources */,
 				C1D9759717BB222F0037B005 /* BMOptions.m in Sources */,
+				C177FE9C17C3A83A00B2FE4F /* BNArrivalsTableViewController.m in Sources */,
 				C198C23C17BB124600A94F4D /* BMViewController.m in Sources */,
 				C198C23B17BB124600A94F4D /* BMVehicleAnnotationView.m in Sources */,
 				C190D7C417BB0C96005C24F2 /* BIViewController.m in Sources */,
