@@ -53,7 +53,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [BIHelpers drawCornersAroundView:self.view];
     [self initMap];
     [self updateMap];
     [self zoomIntoTampa];

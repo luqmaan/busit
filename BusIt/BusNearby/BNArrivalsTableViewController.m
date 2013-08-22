@@ -40,10 +40,6 @@
 {
     [super viewDidLoad];    
     [self.tableView reloadData];
-    [BIHelpers drawCornersAroundView:self.view];
-    self.tableView.layer.cornerRadius = 10;
-    self.tableView.layer.masksToBounds = YES;
-    self.tableView.separatorColor = [UIColor clearColor];
 }
 
 - (void)didReceiveMemoryWarning

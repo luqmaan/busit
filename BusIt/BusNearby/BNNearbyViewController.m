@@ -40,8 +40,6 @@
 {
     [super viewDidLoad];
     [self startStandardUpdates];
-    [BIHelpers drawCornersAroundView:self.view];
-    [BIHelpers drawAllCornersAroundView:self.tableView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,11 +48,17 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)refreshBtnPress:(id)sender {
+    [self startStandardUpdates];
+}
+
+
 #pragma mark - Location & API
 
 - (void)startStandardUpdates
 {
     NSLog(@"Starting standard updates");
+    self.navigationController.navigationItem.prompt = @"Updating location";
     if (locationManager == nil)
         locationManager = [[CLLocationManager alloc] init];
     locationManager.delegate = self;
@@ -90,12 +94,14 @@
 - (void)updateAPIData
 {
     NSLog(@"Start Updating api data");
+    self.navigationItem.prompt = @"Found location, fetching data";
     updateInProgress = TRUE;
     apiData = [bench stopsForLocationLat:[NSNumber numberWithFloat:location.coordinate.latitude]
                                      Lon:[NSNumber numberWithFloat:location.coordinate.longitude]];
     updateInProgress = FALSE;
     NSLog(@"Stop Updating api data");
     NSLog(@"reload tableview");
+    self.navigationItem.prompt = nil;
     [self.tableView reloadData];
     NSLog(@"Did reload tableview");
 }
@@ -180,7 +186,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"stopDetailSegue"]) {
+    if ([[segue identifier] isEqualToString:@"StopDetailsSegue"]) {
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
         NSDictionary *stopData = [self dataForIndexPath:path];
         BNArrivalsTableViewController *stopDetailsVC = segue.destinationViewController;
@@ -191,4 +197,5 @@
 - (void)viewDidUnload {
     [super viewDidUnload];
 }
+
 @end

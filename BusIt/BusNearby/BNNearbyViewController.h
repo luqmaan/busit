@@ -13,4 +13,6 @@
 
 @interface BNNearbyViewController : UITableViewController  <CLLocationManagerDelegate>
 
+- (IBAction)refreshBtnPress:(id)sender;
+
 @end
