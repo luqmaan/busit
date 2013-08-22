@@ -57,18 +57,14 @@
     [self initMap];
     [self updateMap];
     [self zoomIntoTampa];
-    self.tabBarController.tabBar.barTintColor = [UIColor redColor];
     self.tabBarController.tabBar.barStyle = UIBarStyleDefault;
     self.tabBarController.tabBar.translucent = YES;
-//    self.navBar.topItem.prompt = @"Updating";
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-    
-    // Remove routes?
+    // Perhaps remove routes?
 }
 
 - (void)viewDidUnload {
@@ -94,18 +90,21 @@
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 10.5*METERS_PER_MILE, 10.5*METERS_PER_MILE);
     [mapView setRegion:viewRegion animated:YES];
 }
-//
-//- (void)mapView:(MKMapView *)map didUpdateUserLocation:(MKUserLocation *)userLocation
-//{
-//    CLLocationAccuracy accuracy = userLocation.location.horizontalAccuracy;
-//    if (accuracy > 0) {
-//        MKCoordinateRegion mapRegion;
-//        mapRegion.center = map.userLocation.coordinate;
-//        mapRegion.span.latitudeDelta = 0.2;
-//        mapRegion.span.longitudeDelta = 0.2;
-//        [map setRegion:mapRegion animated: YES];
-//    }
-//}
+
+/*
+ Should the map zoom to the users location?
+- (void)mapView:(MKMapView *)map didUpdateUserLocation:(MKUserLocation *)userLocation
+{
+    CLLocationAccuracy accuracy = userLocation.location.horizontalAccuracy;
+    if (accuracy > 0) {
+        MKCoordinateRegion mapRegion;
+        mapRegion.center = map.userLocation.coordinate;
+        mapRegion.span.latitudeDelta = 0.2;
+        mapRegion.span.longitudeDelta = 0.2;
+        [map setRegion:mapRegion animated: YES];
+    }
+}
+*/
 
 - (void)updateMap
 {
@@ -114,8 +113,7 @@
         return;
     }
     
-    dispatch_queue_t fetchAPIData = dispatch_queue_create("com.awesomeness.I.am", DISPATCH_QUEUE_SERIAL);
-
+    dispatch_queue_t fetchAPIData = dispatch_queue_create("com.busit.vehiclesForRoute", DISPATCH_QUEUE_SERIAL);
     dispatch_async(fetchAPIData, ^{
         updateInProgress = TRUE;
         [self stopTimer];
@@ -145,48 +143,38 @@
 }
 
 - (void)addVehiclesToRoutes {
-    
     for (NSDictionary *vehicleDict in apiData[@"data"][@"list"]) {
         if (vehicleDict[@"tripStatus"] == nil || [vehicleDict[@"tripId"] isEqual: @""])
-        {
-//            NSLog(@"discard");
             continue;
-        }
-        BMVehicle *vehicle = [[BMVehicle alloc] initWithJSON:vehicleDict
-                                                      andAPIData:&apiData];
-        
-        // another method (to be implemented later) will call removeAnnotations
-        // for routes that should no longer be visible (based on mapOptions)
 
+        BMVehicle *vehicle = [[BMVehicle alloc] initWithJSON:vehicleDict
+                                                  andAPIData:&apiData];
+        // TODO: Add another method that will call removeAnnotations
+        // for routes that should no longer be visible (based on mapOptions)
         if (!firstTimeAddingVehiclesToRoutes && [routes hasVehicle:vehicle]) {
-//            NSLog(@"Updating vehicle: %@", vehicle);
+            // updating vehicle
             dispatch_sync(dispatch_get_main_queue(), ^{
                 [routes updateVehicle:vehicle];
             });
         }
         else {
-//            NSLog(@"New vehicle: %@", vehicle);
+            // adding new vehicle
             [routes addVehicle:vehicle];
-            // if the annotation is not yet on the map (and its route is visible),
-            // add it to the map
+            // if the annotation is not yet on the map (and its route is visible), add it to the map
             if ([mapOptions isVisibleRoute:vehicle.routeId]) {
                 dispatch_sync(dispatch_get_main_queue(), ^{
                     [mapView addAnnotation:vehicle];
                 });
             }
         }
-            
     }
-    
     firstTimeAddingVehiclesToRoutes = FALSE;
-//    NSLog(@"routes: %@", routes);
 }
 
 -(IBAction)refreshBtnPress:(id)sender
 {
     [self updateMap];
 }
-
 
 - (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
