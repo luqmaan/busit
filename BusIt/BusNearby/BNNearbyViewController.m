@@ -177,7 +177,7 @@
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
-    if ([identifier isEqualToString:@"stopDetailSegue"]) {
+    if ([identifier isEqualToString:@"StopDetailsSegue"]) {
         if (updateInProgress)
             return NO;
     }

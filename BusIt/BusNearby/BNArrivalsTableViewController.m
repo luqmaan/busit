@@ -104,6 +104,7 @@
     return 1;
 }
 - (NSNumber *)rowCount {
+    if (updateInProgress) return [NSNumber numberWithInt:0];
     return [NSNumber numberWithUnsignedInteger:[apiData[@"data"][@"entry"][@"arrivalsAndDepartures"] count]];
 }
 
