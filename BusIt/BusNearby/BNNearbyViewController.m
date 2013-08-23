@@ -159,7 +159,7 @@
     stopId.text = stopData[@"code"];
     stopName.text = stopData[@"name"];
     direction.text = stopData[@"direction"];
-    NSMutableString *routesText = [NSMutableString stringWithString:@"Routes "];
+    NSMutableString *routesText = [NSMutableString stringWithString:@""];
     id lastRouteId = [stopData[@"routeIds"] lastObject];
     for (NSString *routeId in stopData[@"routeIds"]) {
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@", routeId];
