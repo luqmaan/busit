@@ -78,16 +78,32 @@
     });
 }
 
+#pragma mark - Map View
+
+- (void)setupMapView
+{
+    /*
+    UILabel *stopId = (UILabel *)[cell viewWithTag:1];
+    UILabel *stopName = (UILabel *)[cell viewWithTag:2];
+    
+    if (updateInProgress) {
+        stopId.text = @"Loading...";
+        stopName.text = @"Please wait.";
+        return cell;
+    }
+    
+    stopId.text = [NSString stringWithFormat:@"%@ %@", stopData[@"code"], stopData[@"direction"]];
+    stopName.text = stopData[@"name"];
+    */
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    
     NSLog(@"number of sections in tableview, update:%@", updateInProgress ? @"YES" : @"NO");
-    if (updateInProgress) {
-        NSLog(@"number of sections in table view, udpate in progress");
+    if (updateInProgress)
         return 1;
-    }
     else
         return 2;
 }
@@ -97,15 +113,10 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0)
-        return 1;
-    else {
-        if (updateInProgress)
-            return 0;
-        if ([[self rowCount] intValue] == 0)
-            return 1;
-        return [[self rowCount] intValue];
-    }
+    if (updateInProgress) return 0;
+    // if there are no arrivals, use 1 row to inform the user
+    else if ([[self rowCount] intValue] == 0) return 1;
+    else return [[self rowCount] intValue];
 }
 
 -(NSDictionary *)dataForIndexPath:(NSIndexPath *)indexPath {
@@ -113,66 +124,39 @@
 }
 
 #pragma mark - Table view delegate
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.section == 0)
-        return 240.0f;
-    else
-        return 125.0f;
-}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"Cell for row at indexpath: %@", indexPath);
-    if (indexPath.section == 0) {
-        static NSString *CellIdentifier = @"stopMapCell";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-        
-        UILabel *stopId = (UILabel *)[cell viewWithTag:1];
-        UILabel *stopName = (UILabel *)[cell viewWithTag:2];
+    static NSString *CellIdentifier = @"ArrivalsDeparturesCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
 
-        if (updateInProgress) {
-            stopId.text = @"Loading...";
-            stopName.text = @"Please wait.";
-            return cell;
-        }
-        
-        stopId.text = [NSString stringWithFormat:@"%@ %@", stopData[@"code"], stopData[@"direction"]];
-        stopName.text = stopData[@"name"];
-        
-        return cell;
-    }
-    else {
-        static NSString *CellIdentifier = @"arrivalsDeparturesCell";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-                
-        UILabel *routeName = (UILabel *)[cell viewWithTag:1];
-        UILabel *tripHeadsign = (UILabel *)[cell viewWithTag:2];
-        UILabel *distance = (UILabel *)[cell viewWithTag:3];
-        UILabel *scheduled =  (UILabel *)[cell viewWithTag:4];
-        UILabel *predicted =  (UILabel *)[cell viewWithTag:5];
-        UILabel *updated =  (UILabel *)[cell viewWithTag:6];
-        
-        if (updateInProgress) {
-            return cell;
-        }
-        if ([[self rowCount] intValue] == 0) {
-            routeName.text = @"Sorry, there are no arrivals for this stop.";
-            return cell;
-        }
-        
-        NSDictionary *data = [self dataForIndexPath:indexPath];
-        routeName.text = [NSString stringWithFormat:@"%@ %@", data[@"routeShortName"], data[@"routeLongName"]];
-        tripHeadsign.text = data[@"tripHeadsign"];
-        
-        int miles = [(NSNumber *)data[@"distanceFromStop"] intValue] / 500;
-        distance.text = [NSString stringWithFormat:@"%dmi / %@ stops away", miles, data[@"numberOfStopsAway"]];
-        scheduled.text = [NSString stringWithFormat:@"%@", [BIHelpers timeWithTimestamp:data[@"scheduledArrivalTime"]]];
-        predicted.text = [NSString stringWithFormat:@"%@", [BIHelpers timeWithTimestamp:data[@"predictedArrivalTime"]]];
-        updated.text = [NSString stringWithFormat:@"%@", [BIHelpers timeWithTimestamp:data[@"lastUpdateTime"]]];
+    if (updateInProgress) return cell;
     
+    UILabel *routeName = (UILabel *)[cell viewWithTag:1];
+    UILabel *tripHeadsign = (UILabel *)[cell viewWithTag:2];
+    UILabel *distance = (UILabel *)[cell viewWithTag:3];
+    UILabel *scheduled =  (UILabel *)[cell viewWithTag:4];
+    UILabel *predicted =  (UILabel *)[cell viewWithTag:5];
+    UILabel *updated =  (UILabel *)[cell viewWithTag:6];
+    
+
+    if ([[self rowCount] intValue] == 0) {
+        routeName.text = @"Sorry, there are no arrivals for this stop.";
         return cell;
     }
+    
+    NSDictionary *data = [self dataForIndexPath:indexPath];
+    routeName.text = [NSString stringWithFormat:@"%@ %@", data[@"routeShortName"], data[@"routeLongName"]];
+    tripHeadsign.text = data[@"tripHeadsign"];
+    
+    int miles = [(NSNumber *)data[@"distanceFromStop"] intValue] / 500;
+    distance.text = [NSString stringWithFormat:@"%dmi / %@ stops away", miles, data[@"numberOfStopsAway"]];
+    scheduled.text = [NSString stringWithFormat:@"%@", [BIHelpers timeWithTimestamp:data[@"scheduledArrivalTime"]]];
+    predicted.text = [NSString stringWithFormat:@"%@", [BIHelpers timeWithTimestamp:data[@"predictedArrivalTime"]]];
+    updated.text = [NSString stringWithFormat:@"%@", [BIHelpers timeWithTimestamp:data[@"lastUpdateTime"]]];
+
+    return cell;
 }
 
 @end

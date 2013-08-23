@@ -107,6 +107,8 @@
 {
     NSMutableString *urlStr = [NSMutableString stringWithFormat:@"http://onebusaway.forest.usf.edu/api/api/where/stops-for-location.json"];
     NSString *paramStr = [NSString stringWithFormat:@"lat=%@&lon=%@", lat, lon];
+    urlStr = [NSMutableString stringWithString:@"http://localhost:8000/stops-for-location.json"];
+    
     return [self restToJSON:urlStr paramStr:paramStr];
 }
 
@@ -115,6 +117,9 @@
     NSLog(@"called arrivalsanddeps");
     NSString *encodedStopId = [stopId stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
     NSMutableString *urlStr = [NSMutableString stringWithFormat:@"http://onebusaway.forest.usf.edu/api/api/where/arrivals-and-departures-for-stop/%@.json", encodedStopId];
+    
+    urlStr = [NSMutableString stringWithString:@"http://localhost:8000/arrivals-and-departures-for-stop.json"];
+    
     return [self restToJSON:urlStr paramStr:@""];
 }
 
