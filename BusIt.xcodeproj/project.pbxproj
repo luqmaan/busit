@@ -68,7 +68,7 @@
 
 /* Begin PBXFileReference section */
 		C10825FE17C3A49700AE58CF /* BusIt copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BusIt copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C10825FF17C3A49700AE58CF /* BusIt copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "BusIt copy-Info.plist"; path = "/Users/lolcat/dev/busit/BusIt copy-Info.plist"; sourceTree = "<absolute>"; };
+		C10825FF17C3A49700AE58CF /* BusIt-ios6-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "BusIt-ios6-Info.plist"; path = "/Users/lolcat/dev/busit/BusIt-ios6-Info.plist"; sourceTree = "<absolute>"; };
 		C177FE9817C3A83A00B2FE4F /* BNArrivalsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNArrivalsTableViewController.h; sourceTree = "<group>"; };
 		C177FE9917C3A83A00B2FE4F /* BNArrivalsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNArrivalsTableViewController.m; sourceTree = "<group>"; };
 		C177FE9A17C3A83A00B2FE4F /* BNNearbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNNearbyViewController.h; sourceTree = "<group>"; };
@@ -171,7 +171,6 @@
 				C190D7D217BB0C97005C24F2 /* BusItTests */,
 				C190D7AC17BB0C96005C24F2 /* Frameworks */,
 				C190D7AB17BB0C96005C24F2 /* Products */,
-				C10825FF17C3A49700AE58CF /* BusIt copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -219,6 +218,7 @@
 		C190D7B417BB0C96005C24F2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C10825FF17C3A49700AE58CF /* BusIt-ios6-Info.plist */,
 				C190D7B517BB0C96005C24F2 /* BusIt-Info.plist */,
 				C190D7B617BB0C96005C24F2 /* InfoPlist.strings */,
 				C190D7B917BB0C96005C24F2 /* main.m */,
@@ -488,7 +488,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BusIt/BusIt-Prefix.pch";
-				INFOPLIST_FILE = "BusIt copy-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/BusIt-ios6-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "BusIt copy";
 				PROVISIONING_PROFILE = "";
@@ -505,7 +505,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BusIt/BusIt-Prefix.pch";
-				INFOPLIST_FILE = "BusIt copy-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/BusIt-ios6-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "BusIt copy";
 				PROVISIONING_PROFILE = "";

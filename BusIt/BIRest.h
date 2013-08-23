@@ -14,6 +14,7 @@
 }
 
 @property (nonatomic, strong) NSMutableData *cumulativeData;
+@property BOOL offlineMode;
 
 -(NSDictionary *)restToJSON:(NSString *)jsonURL paramStr:(NSString *)paramStr;
 -(NSDictionary *)agencies;

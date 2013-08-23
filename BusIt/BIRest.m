@@ -18,6 +18,15 @@
 
 @implementation BIRest
 
+-(id)init {
+    self = [super init];
+    if (self) {
+        self.offlineMode = NO;
+        return self;
+    }
+    return nil;
+}
+
 -(NSDictionary *)restToJSON:(NSString *)jsonURL paramStr:(NSString *)paramStr
 {
     NSString *wholeURLStr = [NSString stringWithFormat:@"%@?key=%@&%@", jsonURL, kFrakkingLongAPIKey, paramStr];
@@ -100,6 +109,10 @@
 {
     NSString *encodedAgencyId = [agencyId stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
     NSMutableString *urlStr = [NSMutableString stringWithFormat:@"http://onebusaway.forest.usf.edu/api/api/where/vehicles-for-agency/%@.json", encodedAgencyId];
+    
+    if (self.offlineMode)
+        urlStr = [NSMutableString stringWithString:@"http://localhost:8000/vehicles-for-agency.json"];
+    
     return [self restToJSON:urlStr paramStr:@""];
 }
 
@@ -107,7 +120,9 @@
 {
     NSMutableString *urlStr = [NSMutableString stringWithFormat:@"http://onebusaway.forest.usf.edu/api/api/where/stops-for-location.json"];
     NSString *paramStr = [NSString stringWithFormat:@"lat=%@&lon=%@", lat, lon];
-    urlStr = [NSMutableString stringWithString:@"http://localhost:8000/stops-for-location.json"];
+    
+    if (self.offlineMode)
+        urlStr = [NSMutableString stringWithString:@"http://localhost:8000/stops-for-location.json"];
     
     return [self restToJSON:urlStr paramStr:paramStr];
 }
@@ -118,7 +133,8 @@
     NSString *encodedStopId = [stopId stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
     NSMutableString *urlStr = [NSMutableString stringWithFormat:@"http://onebusaway.forest.usf.edu/api/api/where/arrivals-and-departures-for-stop/%@.json", encodedStopId];
     
-    urlStr = [NSMutableString stringWithString:@"http://localhost:8000/arrivals-and-departures-for-stop.json"];
+    if (self.offlineMode)
+        urlStr = [NSMutableString stringWithString:@"http://localhost:8000/arrivals-and-departures-for-stop.json"];
     
     return [self restToJSON:urlStr paramStr:@""];
 }
