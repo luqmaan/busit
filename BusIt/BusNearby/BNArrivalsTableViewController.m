@@ -101,11 +101,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    NSLog(@"number of sections in tableview, update:%@", updateInProgress ? @"YES" : @"NO");
-    if (updateInProgress)
-        return 1;
-    else
-        return 2;
+    return 1;
 }
 - (NSNumber *)rowCount {
     return [NSNumber numberWithUnsignedInteger:[apiData[@"data"][@"entry"][@"arrivalsAndDepartures"] count]];
@@ -130,7 +126,9 @@
     NSLog(@"Cell for row at indexpath: %@", indexPath);
     static NSString *CellIdentifier = @"ArrivalsDeparturesCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-
+    
+    // return the same cell if there is an udpate in progress
+    NSLog(@"updateInProgress? %@", updateInProgress ? @"YES" : @"NO");
     if (updateInProgress) return cell;
     
     UILabel *routeName = (UILabel *)[cell viewWithTag:1];

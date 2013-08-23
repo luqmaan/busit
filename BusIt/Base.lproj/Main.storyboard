@@ -124,11 +124,10 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="TripHeadsign" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aZ7-CZ-eAD">
-                                            <rect key="frame" x="20" y="49" width="42" height="21"/>
+                                            <rect key="frame" x="20" y="49" width="280" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="W3O-Y5-DUz"/>
-                                                <constraint firstAttribute="width" constant="42" id="gGn-Ta-Etz"/>
+                                                <constraint firstAttribute="width" constant="280" id="Kwm-ty-gcG"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -137,8 +136,7 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="centerY" secondItem="aZ7-CZ-eAD" secondAttribute="centerY" constant="27" id="44T-xe-zWK"/>
-                                        <constraint firstItem="aZ7-CZ-eAD" firstAttribute="top" secondItem="5vP-eU-Bvk" secondAttribute="bottom" constant="8" id="aPt-wW-CBw"/>
-                                        <constraint firstItem="5vP-eU-Bvk" firstAttribute="top" secondItem="ONZ-0p-OUz" secondAttribute="top" constant="20" id="lOR-o2-bgm"/>
+                                        <constraint firstItem="aZ7-CZ-eAD" firstAttribute="leading" secondItem="5vP-eU-Bvk" secondAttribute="leading" id="hyc-jl-qp7"/>
                                         <constraint firstAttribute="centerY" secondItem="5vP-eU-Bvk" secondAttribute="centerY" constant="56" id="sEe-MH-DCw"/>
                                     </constraints>
                                 </tableViewCellContentView>
