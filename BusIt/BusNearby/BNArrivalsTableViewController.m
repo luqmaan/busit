@@ -123,12 +123,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"Cell for row at indexpath: %@", indexPath);
     static NSString *CellIdentifier = @"ArrivalsDeparturesCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // return the same cell if there is an udpate in progress
-    NSLog(@"updateInProgress? %@", updateInProgress ? @"YES" : @"NO");
+    // NSLog(@"updateInProgress? %@", updateInProgress ? @"YES" : @"NO");
     if (updateInProgress) return cell;
     
     UILabel *routeName = (UILabel *)[cell viewWithTag:1];

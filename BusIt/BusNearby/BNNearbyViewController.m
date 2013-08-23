@@ -133,7 +133,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"cell for row at indexpath %@", indexPath);
+    NSLog(@"Cell for row at indexpath %@", indexPath);
     static NSString *CellIdentifier = @"StopCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
@@ -143,7 +143,7 @@
     UILabel *routes = (UILabel *)[cell viewWithTag:3];
     
     if (updateInProgress) {
-        NSLog(@"cell for row at indexpath, but update in progress");
+        NSLog(@"Cell for row at indexpath, but update in progress");
         stopId.text = @"";
         direction.text = @"";
         routes.text = @"";
