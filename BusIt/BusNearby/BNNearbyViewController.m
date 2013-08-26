@@ -175,18 +175,18 @@
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
-    NSLog(@"shouldPerformSegueWithId outer id: %@", identifier);
+    NSLog(@"shouldPerformSegueWithIdentifier: %@", identifier);
     if ([identifier isEqualToString:@"StopDetailsSegue"]) {
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
         NSDictionary *stopData = [self dataForIndexPath:path];
+        NSLog(@"stopData: %@", stopData);
+        NSLog(updateInProgress ? @"UpdateInProgress: YES" : @"UpdateInProgress: NO");
         if (updateInProgress) {
-            NSLog(@"Update in progress, NOOOO SEGUE");
+            NSLog(@"Update in progress, DONT perform segue");
             return NO;
         }
-        NSLog(@"stopData: %@", stopData);
-        NSLog(stopData ? @"Yes" : @"No");
         if (stopData == nil) {
-            NSLog(@"Stop data is empty, NO segue");
+            NSLog(@"Stop data is empty, DONT perform SEGUE");
             return NO;
         }
     }
