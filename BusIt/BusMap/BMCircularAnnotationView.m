@@ -64,23 +64,13 @@
     
     // draw route number
     [self drawString:self->text
-            withFont:[UIFont fontWithName:@"Avenir-Black" size:self->fontSize]
               inRect:rect];
 }
 
 - (void) drawString:(NSString*)string
-           withFont:(UIFont*)font
              inRect:(CGRect)contextRect
 {
-    // http://stackoverflow.com/questions/1302824/iphone-how-to-draw-text-in-the-middle-of-a-rect
-    [textColor set];
-    
-    CGRect textRect = CGRectMake(0, 3, contextRect.size.width, contextRect.size.height);
-    
-    [string drawInRect:textRect
-              withFont:font
-         lineBreakMode:UILineBreakModeClip
-             alignment:UITextAlignmentCenter];
+    return;
 }
 
 - (void) drawGradient:(CGContextRef)context inRect:(CGRect)rect
