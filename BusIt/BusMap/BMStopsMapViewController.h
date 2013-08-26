@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BMStopsViewController : UIViewController
+@interface BMStopsMapViewController : UIViewController
 
 @end

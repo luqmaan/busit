@@ -129,8 +129,10 @@
     UILabel *routeNumber = (UILabel *)[cell viewWithTag:7];
 
     if ([[self rowCount] intValue] == 0) {
-        for (int i = 2; i <= 7; i++) {
-            [(UILabel *)[cell viewWithTag:i] setHidden:YES];
+        for (int i = 2; i <= 13; i++) {
+            // hide all labels except routeName and tripHeadsign
+            UIView *view = (UILabel *)[cell viewWithTag:i];
+            if (view) [view setHidden:YES];
         }
         routeName.hidden = NO;
         tripHeadsign.hidden = NO;

@@ -190,7 +190,7 @@
             return NO;
         }
     }
-    NSLog(@"YES, perform a segue");
+    NSLog(@"YES perform segue");
     return YES;
 }
 

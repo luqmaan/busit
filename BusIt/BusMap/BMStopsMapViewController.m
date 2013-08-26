@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 Createch. All rights reserved.
 //
 
-#import "BMStopsViewController.h"
+#import "BMStopsMapViewController.h"
 
-@interface BMStopsViewController ()
+@interface BMStopsMapViewController ()
 
 @end
 
-@implementation BMStopsViewController
+@implementation BMStopsMapViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
