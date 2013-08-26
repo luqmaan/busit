@@ -37,7 +37,6 @@
         routes = [[BMRoutes alloc] init];
         updateInProgress = FALSE;
         firstTimeAddingVehiclesToRoutes = TRUE;
-        self.tabBarController.tabBar.barTintColor = [UIColor redColor];
     }
     return self;
 }
@@ -56,8 +55,6 @@
     [self initMap];
     [self updateMap];
     [self zoomIntoTampa];
-    self.tabBarController.tabBar.barStyle = UIBarStyleDefault;
-    self.tabBarController.tabBar.translucent = YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -112,7 +109,7 @@
         return;
     }
     
-    dispatch_queue_t fetchAPIData = dispatch_queue_create("com.busit.vehiclesForRoute", DISPATCH_QUEUE_SERIAL);
+dispatch_queue_t fetchAPIData = dispatch_queue_create("com.busit.vehiclesForRoute", DISPATCH_QUEUE_SERIAL);
     dispatch_async(fetchAPIData, ^{
         updateInProgress = TRUE;
         [self stopTimer];

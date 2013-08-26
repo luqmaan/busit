@@ -53,6 +53,7 @@
 		C198C24417BB131B00A94F4D /* BIHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = C198C24117BB131B00A94F4D /* BIHelpers.m */; };
 		C198C24517BB131B00A94F4D /* BIRest.m in Sources */ = {isa = PBXBuildFile; fileRef = C198C24317BB131B00A94F4D /* BIRest.m */; };
 		C19E604D17BB374500FB181A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C19E604C17BB374500FB181A /* QuartzCore.framework */; };
+		C1AF2BBF17C8597500844437 /* BMStopsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1AF2BBE17C8597500844437 /* BMStopsViewController.m */; };
 		C1D9759717BB222F0037B005 /* BMOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D9759617BB222F0037B005 /* BMOptions.m */; };
 /* End PBXBuildFile section */
 
@@ -109,6 +110,8 @@
 		C198C24217BB131B00A94F4D /* BIRest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIRest.h; sourceTree = "<group>"; };
 		C198C24317BB131B00A94F4D /* BIRest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIRest.m; sourceTree = "<group>"; };
 		C19E604C17BB374500FB181A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		C1AF2BBD17C8597500844437 /* BMStopsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMStopsViewController.h; sourceTree = "<group>"; };
+		C1AF2BBE17C8597500844437 /* BMStopsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMStopsViewController.m; sourceTree = "<group>"; };
 		C1D9759617BB222F0037B005 /* BMOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMOptions.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -260,6 +263,8 @@
 				C198C23517BB124600A94F4D /* BMVehicleAnnotationView.m */,
 				C198C23617BB124600A94F4D /* BMViewController.h */,
 				C198C23717BB124600A94F4D /* BMViewController.m */,
+				C1AF2BBD17C8597500844437 /* BMStopsViewController.h */,
+				C1AF2BBE17C8597500844437 /* BMStopsViewController.m */,
 			);
 			name = BusMap;
 			path = BusIt/BusMap;
@@ -420,6 +425,7 @@
 				C198C24417BB131B00A94F4D /* BIHelpers.m in Sources */,
 				C177FE9E17C3A83A00B2FE4F /* BNNearbyViewController.m in Sources */,
 				C1D9759717BB222F0037B005 /* BMOptions.m in Sources */,
+				C1AF2BBF17C8597500844437 /* BMStopsViewController.m in Sources */,
 				C177FE9C17C3A83A00B2FE4F /* BNArrivalsTableViewController.m in Sources */,
 				C198C23C17BB124600A94F4D /* BMViewController.m in Sources */,
 				C198C23B17BB124600A94F4D /* BMVehicleAnnotationView.m in Sources */,

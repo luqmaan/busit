@@ -74,27 +74,16 @@
         dispatch_async(dispatch_get_main_queue(), ^ {
             updateInProgress = FALSE;
             [self.tableView reloadData];
+            [self updateMapView];
         });
     });
 }
 
 #pragma mark - Map View
 
-- (void)setupMapView
+- (void)updateMapView
 {
-    /*
-    UILabel *stopId = (UILabel *)[cell viewWithTag:1];
-    UILabel *stopName = (UILabel *)[cell viewWithTag:2];
     
-    if (updateInProgress) {
-        stopId.text = @"Loading...";
-        stopName.text = @"Please wait.";
-        return cell;
-    }
-    
-    stopId.text = [NSString stringWithFormat:@"%@ %@", stopData[@"code"], stopData[@"direction"]];
-    stopName.text = stopData[@"name"];
-    */
 }
 
 #pragma mark - Table view data source
@@ -137,15 +126,23 @@
     UILabel *scheduled =  (UILabel *)[cell viewWithTag:4];
     UILabel *predicted =  (UILabel *)[cell viewWithTag:5];
     UILabel *updated =  (UILabel *)[cell viewWithTag:6];
-    
+    UILabel *routeNumber = (UILabel *)[cell viewWithTag:7];
 
     if ([[self rowCount] intValue] == 0) {
-        routeName.text = @"Sorry, there are no arrivals for this stop.";
+        for (int i = 2; i <= 7; i++) {
+            [(UILabel *)[cell viewWithTag:i] setHidden:YES];
+        }
+        routeName.hidden = NO;
+        tripHeadsign.hidden = NO;
+        routeName.text = @"Sorry, there are no arrivals";
+        tripHeadsign.text = @"for this stop.";
         return cell;
     }
     
     NSDictionary *data = [self dataForIndexPath:indexPath];
-    routeName.text = [NSString stringWithFormat:@"%@ %@", data[@"routeShortName"], data[@"routeLongName"]];
+    
+    routeNumber.text = data[@"routeShortName"];
+    routeName.text = data[@"routeLongName"];
     tripHeadsign.text = data[@"tripHeadsign"];
     
     int miles = [(NSNumber *)data[@"distanceFromStop"] intValue] / 500;

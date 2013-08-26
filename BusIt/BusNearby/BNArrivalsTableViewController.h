@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import "BIRest.h"
 #import "BIHelpers.h"

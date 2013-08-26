@@ -123,8 +123,6 @@
 }
 
 -(NSDictionary *)dataForIndexPath:(NSIndexPath *)indexPath {
-    if (updateInProgress)
-        return nil;
     return apiData[@"data"][@"list"][indexPath.row];
 }
 
@@ -177,10 +175,22 @@
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
+    NSLog(@"shouldPerformSegueWithId outer id: %@", identifier);
     if ([identifier isEqualToString:@"StopDetailsSegue"]) {
-        if (updateInProgress)
+        NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+        NSDictionary *stopData = [self dataForIndexPath:path];
+        if (updateInProgress) {
+            NSLog(@"Update in progress, NOOOO SEGUE");
             return NO;
+        }
+        NSLog(@"stopData: %@", stopData);
+        NSLog(stopData ? @"Yes" : @"No");
+        if (stopData == nil) {
+            NSLog(@"Stop data is empty, NO segue");
+            return NO;
+        }
     }
+    NSLog(@"YES, perform a segue");
     return YES;
 }
 
