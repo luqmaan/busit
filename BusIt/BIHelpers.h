@@ -11,8 +11,9 @@
 
 @interface BIHelpers : NSObject
 
-+(void)drawCornersAroundView:(UIView *)view;
-+(void)drawAllCornersAroundView:(UIView *)view;
-+(NSString *)timeWithTimestamp:(NSString *)timestampString;
++ (void)drawCornersAroundView:(UIView *)view;
++ (void)drawAllCornersAroundView:(UIView *)view;
++ (NSString *)timeWithTimestamp:(NSString *)timestampString;
++ (NSString *)formattedDistanceFromStop:(NSNumber *)distanceFromStop;
 
 @end

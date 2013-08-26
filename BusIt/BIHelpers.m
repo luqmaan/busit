@@ -10,7 +10,7 @@
 
 @implementation BIHelpers
 
-+(void)drawCornersAroundView:(UIView *)view
++ (void)drawCornersAroundView:(UIView *)view
 {
     view.layer.cornerRadius = 10;
 //    NSLog(@"self: %@", self);
@@ -26,7 +26,7 @@
 //    view.layer.mask = layerMask;
 }
 
-+(void)drawAllCornersAroundView:(UIView *)view
++ (void)drawAllCornersAroundView:(UIView *)view
 {
     view.layer.cornerRadius = 10.0f;
 }
@@ -84,7 +84,7 @@ static inline UIImage* MTDContextCreateRoundedMask( CGRect rect, CGFloat radius_
     return theImage;
 }
 
-+(NSString *)timeWithTimestamp:(NSString *)timestampString {
++ (NSString *)timeWithTimestamp:(NSString *)timestampString {
     NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
     formatter.timeStyle = NSDateFormatterShortStyle;
     formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"EDT"];
@@ -93,6 +93,14 @@ static inline UIImage* MTDContextCreateRoundedMask( CGRect rect, CGFloat radius_
     formatter.DateFormat = @"h:mm";
     NSString* result = [formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:time]];
     return result;
+}
+
++ (NSString *)formattedDistanceFromStop:(NSNumber *)distanceFromStop
+{
+    float meters = [distanceFromStop floatValue];
+    float miles = meters * 0.000621371192;
+    NSString *distanceString = [NSString stringWithFormat:@"%.2f", miles];
+    return distanceString;
 }
 
 @end

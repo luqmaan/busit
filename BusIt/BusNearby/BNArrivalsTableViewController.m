@@ -111,6 +111,21 @@
 
 #pragma mark - Table view delegate
 
+
+- (NSString *)distanceString:(float) meters
+{
+	if(meters > 1000.0) {
+		float km = meters * 0.001;
+		if(km > 5.0) {
+			return [NSString stringWithFormat:NSLocalizedString(@"%0.0f km", nil), km];
+		} else {
+			return [NSString stringWithFormat:NSLocalizedString(@"%0.1f km", nil), km];
+		}
+	} else {
+		return [NSString stringWithFormat:NSLocalizedString(@"%0.0f meters", nil), meters];
+	}
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"ArrivalsDeparturesCell";
@@ -146,9 +161,8 @@
     routeNumber.text = data[@"routeShortName"];
     routeName.text = data[@"routeLongName"];
     tripHeadsign.text = data[@"tripHeadsign"];
-    
-    int miles = [(NSNumber *)data[@"distanceFromStop"] intValue] / 500;
-    distance.text = [NSString stringWithFormat:@"%dmi / %@ stops away", miles, data[@"numberOfStopsAway"]];
+
+    distance.text = [NSString stringWithFormat:@"%@mi    %@ stops away", [BIHelpers formattedDistanceFromStop:data[@"distanceFromStop"]], data[@"numberOfStopsAway"]];
     scheduled.text = [NSString stringWithFormat:@"%@", [BIHelpers timeWithTimestamp:data[@"scheduledArrivalTime"]]];
     predicted.text = [NSString stringWithFormat:@"%@", [BIHelpers timeWithTimestamp:data[@"predictedArrivalTime"]]];
     updated.text = [NSString stringWithFormat:@"%@", [BIHelpers timeWithTimestamp:data[@"lastUpdateTime"]]];

@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3715.3"/>
     </dependencies>
     <scenes>
-        <!--Nearby View Controller - Nearby Stops-->
+        <!--Nearby View Controller - Nearby-->
         <scene sceneID="3XP-qD-Jtr">
             <objects>
                 <tableViewController id="iTL-02-yCz" customClass="BNNearbyViewController" sceneMemberID="viewController">
@@ -75,7 +75,7 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Nearby Stops" id="19U-Z5-rRt">
+                    <navigationItem key="navigationItem" title="Nearby" id="19U-Z5-rRt">
                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="Y3u-ZJ-lA4">
                             <connections>
                                 <action selector="refreshBtnPress:" destination="iTL-02-yCz" id="l6p-eu-GK7"/>
@@ -87,11 +87,11 @@
             </objects>
             <point key="canvasLocation" x="453" y="-668"/>
         </scene>
-        <!--Navigation Controller - Stops-->
+        <!--Navigation Controller - Nearby-->
         <scene sceneID="hxt-QK-ld5">
             <objects>
                 <navigationController definesPresentationContext="YES" id="lRK-Lh-mbV" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Stops" image="nearby" id="rt7-fO-X6P"/>
+                    <tabBarItem key="tabBarItem" title="Nearby" image="nearby" id="rt7-fO-X6P"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gDn-f7-XMd">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -103,7 +103,7 @@
             </objects>
             <point key="canvasLocation" x="7" y="-668"/>
         </scene>
-        <!--Arrivals Table View Controller - Arrivals For Stop-->
+        <!--Arrivals Table View Controller - Arrivals-->
         <scene sceneID="uui-JX-ZbM">
             <objects>
                 <tableViewController id="2q8-Xd-oEm" customClass="BNArrivalsTableViewController" sceneMemberID="viewController">
@@ -245,7 +245,7 @@
                             <outlet property="delegate" destination="2q8-Xd-oEm" id="zUk-2R-ZNX"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Arrivals For Stop" id="iUB-2J-FoR"/>
+                    <navigationItem key="navigationItem" title="Arrivals" id="iUB-2J-FoR"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o0S-zl-frs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
