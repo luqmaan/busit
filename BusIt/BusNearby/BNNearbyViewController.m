@@ -25,7 +25,7 @@
 
 @implementation BNNearbyViewController
 
-@synthesize apiData, bench, locationManager, location;
+@synthesize apiData, bench, locationManager, location, embeddedMapView;
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if(self = [super initWithCoder:aDecoder]) {
@@ -58,7 +58,7 @@
 - (void)startStandardUpdates
 {
     NSLog(@"Starting standard updates");
-    self.navigationController.navigationItem.prompt = @"Updating location";
+    self.navigationController.navigationItem.prompt = @"Finding location";
     if (locationManager == nil)
         locationManager = [[CLLocationManager alloc] init];
     locationManager.delegate = self;
@@ -93,19 +93,31 @@
 
 - (void)updateAPIData
 {
-    NSLog(@"Start Updating api data");
-    self.navigationItem.prompt = @"Found location, fetching data";
+    NSLog(@"Started updating api data");
+    self.navigationItem.prompt = @"Found location, fetching nearby stops";
     updateInProgress = TRUE;
-    apiData = [bench stopsForLocationLat:[NSNumber numberWithFloat:location.coordinate.latitude]
-                                     Lon:[NSNumber numberWithFloat:location.coordinate.longitude]];
-    updateInProgress = FALSE;
-    NSLog(@"Stop Updating api data");
-    NSLog(@"reload tableview");
-    self.navigationItem.prompt = nil;
-    [self.tableView reloadData];
-    NSLog(@"Did reload tableview");
+    
+    dispatch_queue_t fetchAPIData = dispatch_queue_create("com.busit.stops", DISPATCH_QUEUE_SERIAL);
+    
+    dispatch_async(fetchAPIData, ^{
+        apiData = [bench stopsForLocationLat:[NSNumber numberWithFloat:location.coordinate.latitude]
+                                         Lon:[NSNumber numberWithFloat:location.coordinate.longitude]];
+        dispatch_async(dispatch_get_main_queue(), ^ {
+            NSLog(@"Finished updating API data");
+            updateInProgress = FALSE;
+            [self.tableView reloadData];
+            self.navigationItem.prompt = nil;
+            [self updateMapView];
+        });
+    });
 }
 
+# pragma mark - Map View
+
+- (void)updateMapView
+{
+    [embeddedMapView initWithStops:apiData];
+}
 
 #pragma mark - Table view data source
 
@@ -201,6 +213,9 @@
         NSDictionary *stopData = [self dataForIndexPath:path];
         BNArrivalsTableViewController *stopDetailsVC = segue.destinationViewController;
         stopDetailsVC.stopData = stopData;
+    }
+    if ([[segue identifier] isEqualToString:@"EmbeddedMapViewSegue"]) {
+        embeddedMapView = segue.destinationViewController;
     }
 }
 

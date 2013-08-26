@@ -26,6 +26,10 @@
 		C10825F817C3A49700AE58CF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C190D7C517BB0C96005C24F2 /* Images.xcassets */; };
 		C10825F917C3A49700AE58CF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C190D7B617BB0C96005C24F2 /* InfoPlist.strings */; };
 		C10825FA17C3A49700AE58CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C190D7BF17BB0C96005C24F2 /* Main.storyboard */; };
+		C14DB59317CBBDDE00905967 /* BMEmbeddedMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C14DB59217CBBDDE00905967 /* BMEmbeddedMapViewController.m */; };
+		C14DB59617CBD10200905967 /* BMCircularAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C14DB59517CBD10200905967 /* BMCircularAnnotationView.m */; };
+		C14DB59917CBE03700905967 /* BMStopAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C14DB59817CBE03700905967 /* BMStopAnnotationView.m */; };
+		C14DB59C17CBE2A700905967 /* BMStop.m in Sources */ = {isa = PBXBuildFile; fileRef = C14DB59B17CBE2A700905967 /* BMStop.m */; };
 		C177FE9C17C3A83A00B2FE4F /* BNArrivalsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C177FE9917C3A83A00B2FE4F /* BNArrivalsTableViewController.m */; };
 		C177FE9D17C3A83A00B2FE4F /* BNArrivalsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C177FE9917C3A83A00B2FE4F /* BNArrivalsTableViewController.m */; };
 		C177FE9E17C3A83A00B2FE4F /* BNNearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C177FE9B17C3A83A00B2FE4F /* BNNearbyViewController.m */; };
@@ -53,7 +57,6 @@
 		C198C24417BB131B00A94F4D /* BIHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = C198C24117BB131B00A94F4D /* BIHelpers.m */; };
 		C198C24517BB131B00A94F4D /* BIRest.m in Sources */ = {isa = PBXBuildFile; fileRef = C198C24317BB131B00A94F4D /* BIRest.m */; };
 		C19E604D17BB374500FB181A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C19E604C17BB374500FB181A /* QuartzCore.framework */; };
-		C1AF2BBF17C8597500844437 /* BMStopsMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1AF2BBE17C8597500844437 /* BMStopsMapViewController.m */; };
 		C1D9759717BB222F0037B005 /* BMOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D9759617BB222F0037B005 /* BMOptions.m */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +73,14 @@
 /* Begin PBXFileReference section */
 		C10825FE17C3A49700AE58CF /* BusIt copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BusIt copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C10825FF17C3A49700AE58CF /* BusIt-ios6-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "BusIt-ios6-Info.plist"; path = "/Users/lolcat/dev/busit/BusIt-ios6-Info.plist"; sourceTree = "<absolute>"; };
+		C14DB59117CBBDDE00905967 /* BMEmbeddedMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMEmbeddedMapViewController.h; sourceTree = "<group>"; };
+		C14DB59217CBBDDE00905967 /* BMEmbeddedMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMEmbeddedMapViewController.m; sourceTree = "<group>"; };
+		C14DB59417CBD10200905967 /* BMCircularAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMCircularAnnotationView.h; sourceTree = "<group>"; };
+		C14DB59517CBD10200905967 /* BMCircularAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMCircularAnnotationView.m; sourceTree = "<group>"; };
+		C14DB59717CBE03700905967 /* BMStopAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMStopAnnotationView.h; sourceTree = "<group>"; };
+		C14DB59817CBE03700905967 /* BMStopAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMStopAnnotationView.m; sourceTree = "<group>"; };
+		C14DB59A17CBE2A700905967 /* BMStop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMStop.h; sourceTree = "<group>"; };
+		C14DB59B17CBE2A700905967 /* BMStop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMStop.m; sourceTree = "<group>"; };
 		C177FE9817C3A83A00B2FE4F /* BNArrivalsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNArrivalsTableViewController.h; sourceTree = "<group>"; };
 		C177FE9917C3A83A00B2FE4F /* BNArrivalsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNArrivalsTableViewController.m; sourceTree = "<group>"; };
 		C177FE9A17C3A83A00B2FE4F /* BNNearbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNNearbyViewController.h; sourceTree = "<group>"; };
@@ -110,8 +121,6 @@
 		C198C24217BB131B00A94F4D /* BIRest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIRest.h; sourceTree = "<group>"; };
 		C198C24317BB131B00A94F4D /* BIRest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIRest.m; sourceTree = "<group>"; };
 		C19E604C17BB374500FB181A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		C1AF2BBD17C8597500844437 /* BMStopsMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMStopsMapViewController.h; sourceTree = "<group>"; };
-		C1AF2BBE17C8597500844437 /* BMStopsMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMStopsMapViewController.m; sourceTree = "<group>"; };
 		C1D9759617BB222F0037B005 /* BMOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMOptions.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -263,8 +272,14 @@
 				C198C23517BB124600A94F4D /* BMVehicleAnnotationView.m */,
 				C198C23617BB124600A94F4D /* BMViewController.h */,
 				C198C23717BB124600A94F4D /* BMViewController.m */,
-				C1AF2BBD17C8597500844437 /* BMStopsMapViewController.h */,
-				C1AF2BBE17C8597500844437 /* BMStopsMapViewController.m */,
+				C14DB59117CBBDDE00905967 /* BMEmbeddedMapViewController.h */,
+				C14DB59217CBBDDE00905967 /* BMEmbeddedMapViewController.m */,
+				C14DB59417CBD10200905967 /* BMCircularAnnotationView.h */,
+				C14DB59517CBD10200905967 /* BMCircularAnnotationView.m */,
+				C14DB59717CBE03700905967 /* BMStopAnnotationView.h */,
+				C14DB59817CBE03700905967 /* BMStopAnnotationView.m */,
+				C14DB59A17CBE2A700905967 /* BMStop.h */,
+				C14DB59B17CBE2A700905967 /* BMStop.m */,
 			);
 			name = BusMap;
 			path = BusIt/BusMap;
@@ -425,14 +440,17 @@
 				C198C24417BB131B00A94F4D /* BIHelpers.m in Sources */,
 				C177FE9E17C3A83A00B2FE4F /* BNNearbyViewController.m in Sources */,
 				C1D9759717BB222F0037B005 /* BMOptions.m in Sources */,
-				C1AF2BBF17C8597500844437 /* BMStopsMapViewController.m in Sources */,
 				C177FE9C17C3A83A00B2FE4F /* BNArrivalsTableViewController.m in Sources */,
 				C198C23C17BB124600A94F4D /* BMViewController.m in Sources */,
 				C198C23B17BB124600A94F4D /* BMVehicleAnnotationView.m in Sources */,
+				C14DB59317CBBDDE00905967 /* BMEmbeddedMapViewController.m in Sources */,
 				C190D7C417BB0C96005C24F2 /* BIViewController.m in Sources */,
+				C14DB59C17CBE2A700905967 /* BMStop.m in Sources */,
 				C198C24517BB131B00A94F4D /* BIRest.m in Sources */,
 				C198C23917BB124600A94F4D /* BMStatusView.m in Sources */,
 				C190D7BA17BB0C96005C24F2 /* main.m in Sources */,
+				C14DB59617CBD10200905967 /* BMCircularAnnotationView.m in Sources */,
+				C14DB59917CBE03700905967 /* BMStopAnnotationView.m in Sources */,
 				C198C23A17BB124600A94F4D /* BMVehicle.m in Sources */,
 				C198C23817BB124600A94F4D /* BMRoutes.m in Sources */,
 				C190D7BE17BB0C96005C24F2 /* BIAppDelegate.m in Sources */,

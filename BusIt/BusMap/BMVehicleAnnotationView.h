@@ -7,8 +7,8 @@
 //
 
 #import <MapKit/MapKit.h>
-#import <QuartzCore/QuartzCore.h>
+#import "BMCircularAnnotationView.h"
 
-@interface BMVehicleAnnotationView : MKAnnotationView
+@interface BMVehicleAnnotationView : BMCircularAnnotationView
 
 @end

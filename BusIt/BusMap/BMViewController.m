@@ -29,7 +29,7 @@
 @synthesize apiData, bench, mapView;
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
-    if(self = [super initWithCoder:aDecoder]) {        
+    if(self = [super initWithCoder:aDecoder]) {
         bench = [[BIRest alloc] init];
         apiData = [[NSDictionary alloc]init];
         agencyId = @"Hillsborough Area Regional Transit";
@@ -206,6 +206,7 @@ dispatch_queue_t fetchAPIData = dispatch_queue_create("com.busit.vehiclesForRout
 
 - (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)annotationViews
 {
+    // drop from top of screen animation
     for (MKAnnotationView *annView in annotationViews)
     {
         CGRect endFrame = annView.frame;
