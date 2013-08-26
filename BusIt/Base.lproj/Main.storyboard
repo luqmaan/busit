@@ -111,9 +111,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <containerView key="tableHeaderView" contentMode="scaleToFill" id="JkL-Un-cbF">
+                            <rect key="frame" x="0.0" y="64" width="320" height="263"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <connections>
+                                <segue destination="xd9-eG-dmk" kind="embed" id="cMa-vH-1w2"/>
+                            </connections>
+                        </containerView>
                         <prototypes>
                             <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ArrivalsDeparturesCell" rowHeight="132" id="ETK-MY-da5">
-                                <rect key="frame" x="0.0" y="86" width="320" height="132"/>
+                                <rect key="frame" x="0.0" y="349" width="320" height="132"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="ETK-MY-da5" id="ONZ-0p-OUz">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="131"/>
@@ -303,29 +311,32 @@
             <point key="canvasLocation" x="7" y="44"/>
         </scene>
         <!--View Controller-->
-        <scene sceneID="qzk-UD-hbh">
+        <scene sceneID="b5l-xn-uK4">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="4GA-nh-KOw" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="yKC-nc-WXS"/>
-                        <viewControllerLayoutGuide type="bottom" id="ayx-7h-97c"/>
-                    </layoutGuides>
-                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="A82-9k-sJs">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="xd9-eG-dmk" sceneMemberID="viewController">
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="46i-nd-6x1">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="263"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="wqG-fe-UHv">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="w18-fD-vIV">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="156"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="XXG-hH-gkd"/>
+                                    <constraint firstAttribute="height" constant="156" id="kXz-Cx-G2A"/>
+                                </constraints>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="w18-fD-vIV" firstAttribute="leading" secondItem="46i-nd-6x1" secondAttribute="leading" id="OgL-Ws-fJb"/>
+                            <constraint firstItem="w18-fD-vIV" firstAttribute="top" secondItem="46i-nd-6x1" secondAttribute="top" id="s4c-mF-xXC"/>
+                        </constraints>
                     </view>
                     <toolbarItems/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XJz-Dw-Zht" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TQ7-zW-Dtb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1303" y="-406"/>
         </scene>
     </scenes>
     <resources>

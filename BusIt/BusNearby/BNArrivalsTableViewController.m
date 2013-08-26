@@ -66,10 +66,13 @@
         NSLog(@"Attempted to run a new update while update is in progress.");
         return;
     }
+    
     dispatch_queue_t fetchAPIData = dispatch_queue_create("com.busit.arrival", DISPATCH_QUEUE_SERIAL);
     updateInProgress = TRUE;
     
     dispatch_async(fetchAPIData, ^{
+        // wait for stop data to be defined by the segue
+        while (!stopData) ;
         apiData = [bench arrivalsAndDeparturesForStop:stopData[@"id"]];
         dispatch_async(dispatch_get_main_queue(), ^ {
             updateInProgress = FALSE;
