@@ -120,20 +120,20 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="RouteName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5vP-eU-Bvk">
-                                            <rect key="frame" x="40" y="8" width="280" height="24"/>
+                                            <rect key="frame" x="40" y="8" width="260" height="24"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="280" id="IoJ-hE-POz"/>
+                                                <constraint firstAttribute="width" constant="260" id="IoJ-hE-POz"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="TripHeadsign" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aZ7-CZ-eAD">
-                                            <rect key="frame" x="40" y="32" width="280" height="22"/>
+                                            <rect key="frame" x="40" y="32" width="260" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="280" id="Kwm-ty-gcG"/>
+                                                <constraint firstAttribute="width" constant="260" id="Kwm-ty-gcG"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="16"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -157,7 +157,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Sche" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7QF-QS-kFa">
-                                            <rect key="frame" x="142" y="84" width="36" height="22"/>
+                                            <rect key="frame" x="152" y="84" width="36" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
                                             <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -174,7 +174,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="12" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Scheduled" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qR1-rP-OK7">
-                                            <rect key="frame" x="130" y="106" width="60" height="16"/>
+                                            <rect key="frame" x="140" y="106" width="60" height="16"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="60" id="pKO-yX-KQV"/>
@@ -235,7 +235,7 @@
                                         <constraint firstItem="9jU-zY-oXz" firstAttribute="top" secondItem="qR1-rP-OK7" secondAttribute="top" id="plY-lJ-9JH"/>
                                         <constraint firstItem="0Ab-Kc-Iua" firstAttribute="top" secondItem="9jU-zY-oXz" secondAttribute="top" constant="-22" id="q1T-4B-ejl"/>
                                         <constraint firstItem="qR1-rP-OK7" firstAttribute="top" secondItem="7QF-QS-kFa" secondAttribute="bottom" id="wF8-gT-qrv"/>
-                                        <constraint firstItem="7QF-QS-kFa" firstAttribute="centerX" secondItem="5vP-eU-Bvk" secondAttribute="centerX" constant="-20" id="zly-yV-4SB"/>
+                                        <constraint firstItem="7QF-QS-kFa" firstAttribute="centerX" secondItem="5vP-eU-Bvk" secondAttribute="centerX" id="zly-yV-4SB"/>
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
