@@ -50,8 +50,6 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
-    CGFloat radius = 5.0f;
-    
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetFillColorWithColor(context, [UIColor clearColor].CGColor);
     
@@ -80,13 +78,8 @@
     CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, 0);
     CGGradientRelease(gradient);
     gradient = NULL;
-}
-
-- (void) drawString:(NSString*)string
-             inRect:(CGRect)contextRect
-{
-    // should be defined by child class
-    return;
+    
+    [text drawInRect:rect withAttributes:stringAttrs];
 }
 
 @end
