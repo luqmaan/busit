@@ -225,7 +225,7 @@
     if ([identifier isEqualToString:@"StopDetailsSegue"]) {
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
         NSDictionary *stopData = [self dataForIndexPath:path];
-        NSLog(@"stopData: %@", stopData);
+//        NSLog(@"stopData: %@", stopData);
         NSLog(updateInProgress ? @"UpdateInProgress: YES" : @"UpdateInProgress: NO");
         if (updateInProgress) {
             NSLog(@"Update in progress, DONT perform segue");

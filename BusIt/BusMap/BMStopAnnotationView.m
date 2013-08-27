@@ -32,7 +32,6 @@
         
         text = stop.title;
         width = [text length] * 9.0;
-        NSLog(@"width: %f", width);
         [super updateFrame];
         
         hue = [BIHelpers hueForStop:[stop.identifier intValue]];

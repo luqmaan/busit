@@ -39,7 +39,6 @@
 {
     CGRect frame = self.frame;
     frame.size = CGSizeMake(width, height);
-    NSLog(@"width@frame: %f", width);
     self.frame = frame;
 }
 
@@ -70,7 +69,6 @@
     CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, 0);
     CGGradientRelease(gradient);
     gradient = NULL;
-    CGContextClip(context);
     
     // draw a border around the gradient by rewalking the path and stroking it
     [borderColor set];
