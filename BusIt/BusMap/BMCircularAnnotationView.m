@@ -79,7 +79,16 @@
     CGGradientRelease(gradient);
     gradient = NULL;
     
-    [text drawInRect:rect withAttributes:stringAttrs];
+    if ([BIHelpers isBelowiOS7]) {
+        [textColor set];
+        [text drawInRect:rect
+                withFont:stringAttrs[NSFontAttributeName]
+           lineBreakMode:NSLineBreakByClipping
+               alignment:NSTextAlignmentCenter];
+    }
+    else {
+        [text drawInRect:rect withAttributes:stringAttrs];
+    }
 }
 
 @end

@@ -73,7 +73,6 @@
     }
     
     if([annotation isKindOfClass:[BMStop class]]){
-        NSLog(@"hahah");
         BMStop *stop = (BMStop *)annotation;
         NSString *annotationViewID = [NSString stringWithFormat:@"StopAnnotationView%@", stop.identifier];
         

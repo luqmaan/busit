@@ -30,7 +30,6 @@
     self = [super initWithAnnotation:annotation reuseIdentifier:reuseIdentifier];
     if(self){
         vehicle = (BMVehicle *) annotation;
-        
         text = vehicle.routeShortName;
         
         // set the color based on the route number

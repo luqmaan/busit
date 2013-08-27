@@ -8,6 +8,7 @@
 
 #import <MapKit/MapKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import "BIHelpers.h"
 
 @interface BMCircularAnnotationView : MKAnnotationView {
     double hue;

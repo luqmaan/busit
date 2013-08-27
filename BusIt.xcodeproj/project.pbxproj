@@ -7,33 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C10825E617C3A49700AE58CF /* BIHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = C198C24117BB131B00A94F4D /* BIHelpers.m */; };
-		C10825E717C3A49700AE58CF /* BMOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D9759617BB222F0037B005 /* BMOptions.m */; };
-		C10825E817C3A49700AE58CF /* BMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C198C23717BB124600A94F4D /* BMViewController.m */; };
-		C10825E917C3A49700AE58CF /* BMVehicleAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C198C23517BB124600A94F4D /* BMVehicleAnnotationView.m */; };
-		C10825EA17C3A49700AE58CF /* BIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C190D7C317BB0C96005C24F2 /* BIViewController.m */; };
-		C10825EB17C3A49700AE58CF /* BIRest.m in Sources */ = {isa = PBXBuildFile; fileRef = C198C24317BB131B00A94F4D /* BIRest.m */; };
-		C10825EC17C3A49700AE58CF /* BMStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = C198C23117BB124600A94F4D /* BMStatusView.m */; };
-		C10825ED17C3A49700AE58CF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C190D7B917BB0C96005C24F2 /* main.m */; };
-		C10825EE17C3A49700AE58CF /* BMVehicle.m in Sources */ = {isa = PBXBuildFile; fileRef = C198C23317BB124600A94F4D /* BMVehicle.m */; };
-		C10825EF17C3A49700AE58CF /* BMRoutes.m in Sources */ = {isa = PBXBuildFile; fileRef = C198C22F17BB124600A94F4D /* BMRoutes.m */; };
-		C10825F017C3A49700AE58CF /* BIAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C190D7BD17BB0C96005C24F2 /* BIAppDelegate.m */; };
-		C10825F217C3A49700AE58CF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C19E604C17BB374500FB181A /* QuartzCore.framework */; };
-		C10825F317C3A49700AE58CF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C198C22917BB10F300A94F4D /* MapKit.framework */; };
-		C10825F417C3A49700AE58CF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C190D7AF17BB0C96005C24F2 /* CoreGraphics.framework */; };
-		C10825F517C3A49700AE58CF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C190D7B117BB0C96005C24F2 /* UIKit.framework */; };
-		C10825F617C3A49700AE58CF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C190D7AD17BB0C96005C24F2 /* Foundation.framework */; };
-		C10825F817C3A49700AE58CF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C190D7C517BB0C96005C24F2 /* Images.xcassets */; };
-		C10825F917C3A49700AE58CF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C190D7B617BB0C96005C24F2 /* InfoPlist.strings */; };
-		C10825FA17C3A49700AE58CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C190D7BF17BB0C96005C24F2 /* Main.storyboard */; };
 		C14DB59317CBBDDE00905967 /* BMEmbeddedMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C14DB59217CBBDDE00905967 /* BMEmbeddedMapViewController.m */; };
 		C14DB59617CBD10200905967 /* BMCircularAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C14DB59517CBD10200905967 /* BMCircularAnnotationView.m */; };
 		C14DB59917CBE03700905967 /* BMStopAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C14DB59817CBE03700905967 /* BMStopAnnotationView.m */; };
 		C14DB59C17CBE2A700905967 /* BMStop.m in Sources */ = {isa = PBXBuildFile; fileRef = C14DB59B17CBE2A700905967 /* BMStop.m */; };
 		C177FE9C17C3A83A00B2FE4F /* BNArrivalsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C177FE9917C3A83A00B2FE4F /* BNArrivalsTableViewController.m */; };
-		C177FE9D17C3A83A00B2FE4F /* BNArrivalsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C177FE9917C3A83A00B2FE4F /* BNArrivalsTableViewController.m */; };
 		C177FE9E17C3A83A00B2FE4F /* BNNearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C177FE9B17C3A83A00B2FE4F /* BNNearbyViewController.m */; };
-		C177FE9F17C3A83A00B2FE4F /* BNNearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C177FE9B17C3A83A00B2FE4F /* BNNearbyViewController.m */; };
 		C190D7AE17BB0C96005C24F2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C190D7AD17BB0C96005C24F2 /* Foundation.framework */; };
 		C190D7B017BB0C96005C24F2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C190D7AF17BB0C96005C24F2 /* CoreGraphics.framework */; };
 		C190D7B217BB0C96005C24F2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C190D7B117BB0C96005C24F2 /* UIKit.framework */; };
@@ -58,6 +37,31 @@
 		C198C24517BB131B00A94F4D /* BIRest.m in Sources */ = {isa = PBXBuildFile; fileRef = C198C24317BB131B00A94F4D /* BIRest.m */; };
 		C19E604D17BB374500FB181A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C19E604C17BB374500FB181A /* QuartzCore.framework */; };
 		C1D9759717BB222F0037B005 /* BMOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D9759617BB222F0037B005 /* BMOptions.m */; };
+		C1F42C9A17CC586F001F2825 /* BIHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = C198C24117BB131B00A94F4D /* BIHelpers.m */; };
+		C1F42C9B17CC586F001F2825 /* BNNearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C177FE9B17C3A83A00B2FE4F /* BNNearbyViewController.m */; };
+		C1F42C9C17CC586F001F2825 /* BMOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D9759617BB222F0037B005 /* BMOptions.m */; };
+		C1F42C9D17CC586F001F2825 /* BNArrivalsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C177FE9917C3A83A00B2FE4F /* BNArrivalsTableViewController.m */; };
+		C1F42C9E17CC586F001F2825 /* BMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C198C23717BB124600A94F4D /* BMViewController.m */; };
+		C1F42C9F17CC586F001F2825 /* BMVehicleAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C198C23517BB124600A94F4D /* BMVehicleAnnotationView.m */; };
+		C1F42CA017CC586F001F2825 /* BMEmbeddedMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C14DB59217CBBDDE00905967 /* BMEmbeddedMapViewController.m */; };
+		C1F42CA117CC586F001F2825 /* BIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C190D7C317BB0C96005C24F2 /* BIViewController.m */; };
+		C1F42CA217CC586F001F2825 /* BMStop.m in Sources */ = {isa = PBXBuildFile; fileRef = C14DB59B17CBE2A700905967 /* BMStop.m */; };
+		C1F42CA317CC586F001F2825 /* BIRest.m in Sources */ = {isa = PBXBuildFile; fileRef = C198C24317BB131B00A94F4D /* BIRest.m */; };
+		C1F42CA417CC586F001F2825 /* BMStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = C198C23117BB124600A94F4D /* BMStatusView.m */; };
+		C1F42CA517CC586F001F2825 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C190D7B917BB0C96005C24F2 /* main.m */; };
+		C1F42CA617CC586F001F2825 /* BMCircularAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C14DB59517CBD10200905967 /* BMCircularAnnotationView.m */; };
+		C1F42CA717CC586F001F2825 /* BMStopAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C14DB59817CBE03700905967 /* BMStopAnnotationView.m */; };
+		C1F42CA817CC586F001F2825 /* BMVehicle.m in Sources */ = {isa = PBXBuildFile; fileRef = C198C23317BB124600A94F4D /* BMVehicle.m */; };
+		C1F42CA917CC586F001F2825 /* BMRoutes.m in Sources */ = {isa = PBXBuildFile; fileRef = C198C22F17BB124600A94F4D /* BMRoutes.m */; };
+		C1F42CAA17CC586F001F2825 /* BIAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C190D7BD17BB0C96005C24F2 /* BIAppDelegate.m */; };
+		C1F42CAC17CC586F001F2825 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C19E604C17BB374500FB181A /* QuartzCore.framework */; };
+		C1F42CAD17CC586F001F2825 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C198C22917BB10F300A94F4D /* MapKit.framework */; };
+		C1F42CAE17CC586F001F2825 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C190D7AF17BB0C96005C24F2 /* CoreGraphics.framework */; };
+		C1F42CAF17CC586F001F2825 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C190D7B117BB0C96005C24F2 /* UIKit.framework */; };
+		C1F42CB017CC586F001F2825 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C190D7AD17BB0C96005C24F2 /* Foundation.framework */; };
+		C1F42CB217CC586F001F2825 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C190D7C517BB0C96005C24F2 /* Images.xcassets */; };
+		C1F42CB317CC586F001F2825 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C190D7B617BB0C96005C24F2 /* InfoPlist.strings */; };
+		C1F42CB417CC586F001F2825 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C190D7BF17BB0C96005C24F2 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,7 +75,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C10825FE17C3A49700AE58CF /* BusIt copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BusIt copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C10825FF17C3A49700AE58CF /* BusIt-ios6-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "BusIt-ios6-Info.plist"; path = "/Users/lolcat/dev/busit/BusIt-ios6-Info.plist"; sourceTree = "<absolute>"; };
 		C14DB59117CBBDDE00905967 /* BMEmbeddedMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMEmbeddedMapViewController.h; sourceTree = "<group>"; };
 		C14DB59217CBBDDE00905967 /* BMEmbeddedMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMEmbeddedMapViewController.m; sourceTree = "<group>"; };
@@ -122,21 +125,12 @@
 		C198C24317BB131B00A94F4D /* BIRest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIRest.m; sourceTree = "<group>"; };
 		C19E604C17BB374500FB181A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C1D9759617BB222F0037B005 /* BMOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMOptions.m; sourceTree = "<group>"; };
+		C1F42C9717CC582E001F2825 /* BusIt copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "BusIt copy-Info.plist"; path = "/Users/lolcat/dev/busit/BusIt copy-Info.plist"; sourceTree = "<absolute>"; };
+		C1F42CB817CC586F001F2825 /* BusIt copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BusIt copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1F42CB917CC5870001F2825 /* BusIt copy2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "BusIt copy2-Info.plist"; path = "/Users/lolcat/dev/busit/BusIt copy2-Info.plist"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		C10825F117C3A49700AE58CF /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C10825F217C3A49700AE58CF /* QuartzCore.framework in Frameworks */,
-				C10825F317C3A49700AE58CF /* MapKit.framework in Frameworks */,
-				C10825F417C3A49700AE58CF /* CoreGraphics.framework in Frameworks */,
-				C10825F517C3A49700AE58CF /* UIKit.framework in Frameworks */,
-				C10825F617C3A49700AE58CF /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		C190D7A717BB0C96005C24F2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -156,6 +150,18 @@
 				C190D7CD17BB0C96005C24F2 /* XCTest.framework in Frameworks */,
 				C190D7CF17BB0C96005C24F2 /* UIKit.framework in Frameworks */,
 				C190D7CE17BB0C96005C24F2 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1F42CAB17CC586F001F2825 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C1F42CAC17CC586F001F2825 /* QuartzCore.framework in Frameworks */,
+				C1F42CAD17CC586F001F2825 /* MapKit.framework in Frameworks */,
+				C1F42CAE17CC586F001F2825 /* CoreGraphics.framework in Frameworks */,
+				C1F42CAF17CC586F001F2825 /* UIKit.framework in Frameworks */,
+				C1F42CB017CC586F001F2825 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,6 +189,8 @@
 				C190D7D217BB0C97005C24F2 /* BusItTests */,
 				C190D7AC17BB0C96005C24F2 /* Frameworks */,
 				C190D7AB17BB0C96005C24F2 /* Products */,
+				C1F42C9717CC582E001F2825 /* BusIt copy-Info.plist */,
+				C1F42CB917CC5870001F2825 /* BusIt copy2-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -191,7 +199,7 @@
 			children = (
 				C190D7AA17BB0C96005C24F2 /* BusIt.app */,
 				C190D7CB17BB0C96005C24F2 /* BusItTests.xctest */,
-				C10825FE17C3A49700AE58CF /* BusIt copy.app */,
+				C1F42CB817CC586F001F2825 /* BusIt copy.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -288,23 +296,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C10825E417C3A49700AE58CF /* BusIt IOS6 */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C10825FB17C3A49700AE58CF /* Build configuration list for PBXNativeTarget "BusIt IOS6" */;
-			buildPhases = (
-				C10825E517C3A49700AE58CF /* Sources */,
-				C10825F117C3A49700AE58CF /* Frameworks */,
-				C10825F717C3A49700AE58CF /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "BusIt IOS6";
-			productName = BusIt;
-			productReference = C10825FE17C3A49700AE58CF /* BusIt copy.app */;
-			productType = "com.apple.product-type.application";
-		};
 		C190D7A917BB0C96005C24F2 /* BusIt */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C190D7DC17BB0C97005C24F2 /* Build configuration list for PBXNativeTarget "BusIt" */;
@@ -340,6 +331,23 @@
 			productReference = C190D7CB17BB0C96005C24F2 /* BusItTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		C1F42C9817CC586F001F2825 /* BusIt copy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C1F42CB517CC586F001F2825 /* Build configuration list for PBXNativeTarget "BusIt copy" */;
+			buildPhases = (
+				C1F42C9917CC586F001F2825 /* Sources */,
+				C1F42CAB17CC586F001F2825 /* Frameworks */,
+				C1F42CB117CC586F001F2825 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "BusIt copy";
+			productName = BusIt;
+			productReference = C1F42CB817CC586F001F2825 /* BusIt copy.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -350,14 +358,14 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = Createch;
 				TargetAttributes = {
-					C10825E417C3A49700AE58CF = {
-						DevelopmentTeam = 86ZR44WS4J;
-					};
 					C190D7A917BB0C96005C24F2 = {
 						DevelopmentTeam = 86ZR44WS4J;
 					};
 					C190D7CA17BB0C96005C24F2 = {
 						TestTargetID = C190D7A917BB0C96005C24F2;
+					};
+					C1F42C9817CC586F001F2825 = {
+						DevelopmentTeam = 86ZR44WS4J;
 					};
 				};
 			};
@@ -376,22 +384,12 @@
 			targets = (
 				C190D7A917BB0C96005C24F2 /* BusIt */,
 				C190D7CA17BB0C96005C24F2 /* BusItTests */,
-				C10825E417C3A49700AE58CF /* BusIt IOS6 */,
+				C1F42C9817CC586F001F2825 /* BusIt copy */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		C10825F717C3A49700AE58CF /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C10825F817C3A49700AE58CF /* Images.xcassets in Resources */,
-				C10825F917C3A49700AE58CF /* InfoPlist.strings in Resources */,
-				C10825FA17C3A49700AE58CF /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		C190D7A817BB0C96005C24F2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -410,29 +408,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
-		C10825E517C3A49700AE58CF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
+		C1F42CB117CC586F001F2825 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C10825E617C3A49700AE58CF /* BIHelpers.m in Sources */,
-				C177FE9F17C3A83A00B2FE4F /* BNNearbyViewController.m in Sources */,
-				C10825E717C3A49700AE58CF /* BMOptions.m in Sources */,
-				C177FE9D17C3A83A00B2FE4F /* BNArrivalsTableViewController.m in Sources */,
-				C10825E817C3A49700AE58CF /* BMViewController.m in Sources */,
-				C10825E917C3A49700AE58CF /* BMVehicleAnnotationView.m in Sources */,
-				C10825EA17C3A49700AE58CF /* BIViewController.m in Sources */,
-				C10825EB17C3A49700AE58CF /* BIRest.m in Sources */,
-				C10825EC17C3A49700AE58CF /* BMStatusView.m in Sources */,
-				C10825ED17C3A49700AE58CF /* main.m in Sources */,
-				C10825EE17C3A49700AE58CF /* BMVehicle.m in Sources */,
-				C10825EF17C3A49700AE58CF /* BMRoutes.m in Sources */,
-				C10825F017C3A49700AE58CF /* BIAppDelegate.m in Sources */,
+				C1F42CB217CC586F001F2825 /* Images.xcassets in Resources */,
+				C1F42CB317CC586F001F2825 /* InfoPlist.strings in Resources */,
+				C1F42CB417CC586F001F2825 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
 		C190D7A617BB0C96005C24F2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -462,6 +450,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				C190D7D917BB0C97005C24F2 /* BusItTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1F42C9917CC586F001F2825 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C1F42C9A17CC586F001F2825 /* BIHelpers.m in Sources */,
+				C1F42C9B17CC586F001F2825 /* BNNearbyViewController.m in Sources */,
+				C1F42C9C17CC586F001F2825 /* BMOptions.m in Sources */,
+				C1F42C9D17CC586F001F2825 /* BNArrivalsTableViewController.m in Sources */,
+				C1F42C9E17CC586F001F2825 /* BMViewController.m in Sources */,
+				C1F42C9F17CC586F001F2825 /* BMVehicleAnnotationView.m in Sources */,
+				C1F42CA017CC586F001F2825 /* BMEmbeddedMapViewController.m in Sources */,
+				C1F42CA117CC586F001F2825 /* BIViewController.m in Sources */,
+				C1F42CA217CC586F001F2825 /* BMStop.m in Sources */,
+				C1F42CA317CC586F001F2825 /* BIRest.m in Sources */,
+				C1F42CA417CC586F001F2825 /* BMStatusView.m in Sources */,
+				C1F42CA517CC586F001F2825 /* main.m in Sources */,
+				C1F42CA617CC586F001F2825 /* BMCircularAnnotationView.m in Sources */,
+				C1F42CA717CC586F001F2825 /* BMStopAnnotationView.m in Sources */,
+				C1F42CA817CC586F001F2825 /* BMVehicle.m in Sources */,
+				C1F42CA917CC586F001F2825 /* BMRoutes.m in Sources */,
+				C1F42CAA17CC586F001F2825 /* BIAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,40 +515,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		C10825FC17C3A49700AE58CF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BusIt/BusIt-Prefix.pch";
-				INFOPLIST_FILE = "$(SRCROOT)/BusIt-ios6-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				PRODUCT_NAME = "BusIt copy";
-				PROVISIONING_PROFILE = "";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
-		};
-		C10825FD17C3A49700AE58CF /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BusIt/BusIt-Prefix.pch";
-				INFOPLIST_FILE = "$(SRCROOT)/BusIt-ios6-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				PRODUCT_NAME = "BusIt copy";
-				PROVISIONING_PROFILE = "";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
 		C190D7DA17BB0C97005C24F2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -677,18 +655,43 @@
 			};
 			name = Release;
 		};
+		C1F42CB617CC586F001F2825 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BusIt/BusIt-Prefix.pch";
+				INFOPLIST_FILE = "BusIt copy2-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				PRODUCT_NAME = "BusIt copy";
+				PROVISIONING_PROFILE = "";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		C1F42CB717CC586F001F2825 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BusIt/BusIt-Prefix.pch";
+				INFOPLIST_FILE = "BusIt copy2-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				PRODUCT_NAME = "BusIt copy";
+				PROVISIONING_PROFILE = "";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C10825FB17C3A49700AE58CF /* Build configuration list for PBXNativeTarget "BusIt IOS6" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C10825FC17C3A49700AE58CF /* Debug */,
-				C10825FD17C3A49700AE58CF /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		C190D7A517BB0C96005C24F2 /* Build configuration list for PBXProject "BusIt" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -712,6 +715,15 @@
 			buildConfigurations = (
 				C190D7E017BB0C97005C24F2 /* Debug */,
 				C190D7E117BB0C97005C24F2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C1F42CB517CC586F001F2825 /* Build configuration list for PBXNativeTarget "BusIt copy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C1F42CB617CC586F001F2825 /* Debug */,
+				C1F42CB717CC586F001F2825 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

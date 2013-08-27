@@ -103,4 +103,12 @@ static inline UIImage* MTDContextCreateRoundedMask( CGRect rect, CGFloat radius_
     return distanceString;
 }
 
++ (BOOL)isBelowiOS7
+{
+    if (SYSTEM_VERSION_LESS_THAN(@"7.0")) {
+        return YES;
+    }
+    return NO;
+}
+
 @end
