@@ -25,7 +25,7 @@
     if(self) {
         // setup frame
         CGRect frame = self.frame;
-        frame.size = CGSizeMake(self->pinSize,self->pinSize);
+        frame.size = CGSizeMake(self->width,self->height);
         self.frame = frame;
         self.backgroundColor = [UIColor clearColor];
         self.opaque = NO;
@@ -33,6 +33,8 @@
         borderColor = [UIColor whiteColor];
         bgColor = [UIColor colorWithHue:hue saturation:0.5 brightness:0.853 alpha:1];
         bgEndColor = [UIColor colorWithHue:hue saturation:0.931 brightness:0.5 alpha:1];
+        
+        [self.layer setBorderColor:[UIColor blackColor].CGColor];
     }
     return self;
 }
@@ -48,119 +50,43 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
+    CGFloat radius = 5.0f;
+    
     CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [UIColor clearColor].CGColor);
     
-    CGContextSetAllowsAntialiasing(context, true);
-    CGContextSetShouldAntialias(context, true);
-    CGContextSetInterpolationQuality( context , kCGInterpolationHigh );
+    CGContextMoveToPoint(context, rect.origin.x, rect.origin.y + radius);
+    CGContextAddLineToPoint(context, rect.origin.x, rect.origin.y + rect.size.height - radius);
+    CGContextAddArc(context, rect.origin.x + radius, rect.origin.y + rect.size.height - radius,
+                    radius, M_PI, M_PI / 2, 1); //STS fixed
+    CGContextAddLineToPoint(context, rect.origin.x + rect.size.width - radius,
+                            rect.origin.y + rect.size.height);
+    CGContextAddArc(context, rect.origin.x + rect.size.width - radius,
+                    rect.origin.y + rect.size.height - radius, radius, M_PI / 2, 0.0f, 1);
+    CGContextAddLineToPoint(context, rect.origin.x + rect.size.width, rect.origin.y + radius);
+    CGContextAddArc(context, rect.origin.x + rect.size.width - radius, rect.origin.y + radius,
+                    radius, 0.0f, -M_PI / 2, 1);
+    CGContextAddLineToPoint(context, rect.origin.x + radius, rect.origin.y);
+    CGContextAddArc(context, rect.origin.x + radius, rect.origin.y + radius, radius,
+                    -M_PI / 2, M_PI, 1);
+
+    CGContextClosePath(context);
+    CGContextClip(context);
     
-    // draw circle
-    CGPathRef roundedRectPath = [self newPathForSquare:rect radius:self->pinSize/2.0f];
-    //    [bgColor set];
-    CGContextAddPath(context, roundedRectPath);
-	CGContextFillPath(context);
-    CGPathRelease(roundedRectPath);
-    [self drawGradient:(CGContextRef)context inRect:rect];
-    
-    // draw route number
-    [self drawString:self->text
-              inRect:rect];
+    CFArrayRef colors = (__bridge CFArrayRef)[NSArray arrayWithObjects:(id)bgColor.CGColor, (id)bgEndColor.CGColor, nil];
+    CGGradientRef gradient = CGGradientCreateWithColors(NULL, colors, NULL);
+    CGPoint startPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMinY(rect));
+    CGPoint endPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMaxY(rect));
+    CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, 0);
+    CGGradientRelease(gradient);
+    gradient = NULL;
 }
 
 - (void) drawString:(NSString*)string
              inRect:(CGRect)contextRect
 {
+    // should be defined by child class
     return;
 }
-
-- (void) drawGradient:(CGContextRef)context inRect:(CGRect)rect
-{
-    CFArrayRef colors = (__bridge CFArrayRef)[NSArray arrayWithObjects:(id)bgColor.CGColor, (id)bgEndColor.CGColor, nil];
-    
-    CGGradientRef gradient = CGGradientCreateWithColors(NULL, colors, NULL);
-    
-    CGContextSaveGState(context);
-    CGContextAddEllipseInRect(context, rect);
-    CGContextClip(context);
-    
-    CGPoint startPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMinY(rect));
-    CGPoint endPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMaxY(rect));
-    CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, 0);
-    CGGradientRelease(gradient), gradient = NULL;
-    CGContextRestoreGState(context);
-    
-    CGContextDrawPath(context, kCGPathStroke);
-}
-
-
-- (CGPathRef) newPathForRoundedRect:(CGRect)rect radius:(CGFloat)radius
-{
-    // http://www.cocoanetics.com/2010/02/drawing-rounded-rectangles/
-    
-    CGMutablePathRef retPath = CGPathCreateMutable();
-    
-	CGRect innerRect = CGRectInset(rect, radius, radius);
-    
-	CGFloat inside_right = innerRect.origin.x + innerRect.size.width;
-	CGFloat outside_right = rect.origin.x + rect.size.width - 1;
-	CGFloat inside_bottom = innerRect.origin.y + innerRect.size.height;
-	CGFloat outside_bottom = rect.origin.y + rect.size.height - 1;
-    
-	CGFloat inside_top = innerRect.origin.y;
-	CGFloat outside_top = rect.origin.y + 1;
-	CGFloat outside_left = rect.origin.x + 1;
-    
-	CGPathMoveToPoint(retPath, NULL, innerRect.origin.x, outside_top);
-    
-	CGPathAddLineToPoint(retPath, NULL, inside_right, outside_top);
-	CGPathAddArcToPoint(retPath, NULL, outside_right, outside_top, outside_right, inside_top, radius);
-	CGPathAddLineToPoint(retPath, NULL, outside_right, inside_bottom);
-	CGPathAddArcToPoint(retPath, NULL,  outside_right, outside_bottom, inside_right, outside_bottom, radius);
-    
-	CGPathAddLineToPoint(retPath, NULL, innerRect.origin.x, outside_bottom);
-	CGPathAddArcToPoint(retPath, NULL,  outside_left, outside_bottom, outside_left, inside_bottom, radius);
-	CGPathAddLineToPoint(retPath, NULL, outside_left, inside_top);
-	CGPathAddArcToPoint(retPath, NULL,  outside_left, outside_top, innerRect.origin.x, outside_top, radius);
-    
-	CGPathCloseSubpath(retPath);
-    
-	return retPath;
-}
-
-
-- (CGPathRef) newPathForSquare:(CGRect)rect radius:(CGFloat)radius
-{
-    // http://www.cocoanetics.com/2010/02/drawing-rounded-rectangles/
-    
-    CGMutablePathRef retPath = CGPathCreateMutable();
-    
-	CGRect innerRect = CGRectInset(rect, radius, radius);
-    
-	CGFloat inside_right = innerRect.origin.x + innerRect.size.width;
-	CGFloat outside_right = rect.origin.x + rect.size.width - 1;
-	CGFloat inside_bottom = innerRect.origin.y + innerRect.size.height;
-	CGFloat outside_bottom = rect.origin.y + rect.size.height - 1;
-    
-	CGFloat inside_top = innerRect.origin.y;
-	CGFloat outside_top = rect.origin.y + 1;
-	CGFloat outside_left = rect.origin.x + 1;
-    
-	CGPathMoveToPoint(retPath, NULL, innerRect.origin.x, outside_top);
-    
-	CGPathAddLineToPoint(retPath, NULL, inside_right, outside_top);
-	CGPathAddArcToPoint(retPath, NULL, outside_right, outside_top, outside_right, inside_top, radius);
-	CGPathAddLineToPoint(retPath, NULL, outside_right, inside_bottom);
-	CGPathAddArcToPoint(retPath, NULL,  outside_right, outside_bottom, inside_right, outside_bottom, radius);
-    
-	CGPathAddLineToPoint(retPath, NULL, innerRect.origin.x, outside_bottom);
-	CGPathAddArcToPoint(retPath, NULL,  outside_left, outside_bottom, outside_left, inside_bottom, radius);
-	CGPathAddLineToPoint(retPath, NULL, outside_left, inside_top);
-	CGPathAddArcToPoint(retPath, NULL,  outside_left, outside_top, innerRect.origin.x, outside_top, radius);
-    
-	CGPathCloseSubpath(retPath);
-    
-	return retPath;
-}
-
 
 @end

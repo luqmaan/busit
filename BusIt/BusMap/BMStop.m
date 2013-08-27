@@ -14,7 +14,7 @@
 
 -(id)initWithStopData:(NSDictionary *)stopData
 {
-    identifier = stopData[@"id"];
+    identifier = stopData[@"code"];
     subtitle = stopData[@"name"];
     title = [NSString stringWithFormat:@"%@ %@", stopData[@"code"], stopData[@"direction"]];
     coordinate = CLLocationCoordinate2DMake(

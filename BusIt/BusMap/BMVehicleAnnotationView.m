@@ -17,7 +17,8 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self->pinSize = 25.0;
+        self->width = 25.0;
+        self->height = 25.0;
         self->fontSize = 13.0;
     }
     return self;
@@ -58,7 +59,7 @@
                          NSForegroundColorAttributeName: [UIColor whiteColor],
                          NSParagraphStyleAttributeName: style,
                          NSKernAttributeName: [NSNumber numberWithFloat:-1.0f]
-                         }];
+                       }];
 }
 
 

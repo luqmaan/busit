@@ -16,9 +16,9 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        pinSize = 25.0;
+        width = 55.0;
+        height = 15.0;
         fontSize = 12.0;
-        hue = (double)rand() / RAND_MAX;
     }
     return self;
 }
@@ -29,6 +29,10 @@
     if(self) {
         BMStop *stop = (BMStop *)annotation;
         text = stop.title;
+        hue = ([stop.identifier intValue] % 30) / 30.0;
+        bgColor = [UIColor colorWithHue:hue saturation:0.85 brightness:0.853 alpha:1];
+        bgEndColor = [UIColor colorWithHue:hue saturation:0.931 brightness:0.5 alpha:1];
+        NSLog(@"hue: %f identifier: %@", hue, stop.identifier);
     }
     return self;
 }
@@ -40,17 +44,21 @@
     // http://stackoverflow.com/questions/1302824/iphone-how-to-draw-text-in-the-middle-of-a-rect
     [textColor set];
     
-    CGRect textRect = CGRectMake(0, 3, contextRect.size.width, contextRect.size.height * 1.5);
+    CGRect textRect = CGRectMake(0, 0, contextRect.size.width, contextRect.size.height);
+    
+    NSLog(@"contextHeight: %f", contextRect.size.height);
     
     NSLog(@"string: %@", string);
     NSMutableParagraphStyle* style = [[NSMutableParagraphStyle alloc] init];
     [style setLineBreakMode:NSLineBreakByCharWrapping];
     [style setAlignment:NSTextAlignmentCenter];
-    [style setMaximumLineHeight:10.5f];
+    float lineHeight = 16;
+    [style setMaximumLineHeight:lineHeight];
+    [style setMinimumLineHeight:lineHeight];
     [style setLineSpacing:0.0f];
     [string drawInRect:textRect
         withAttributes:@{
-                         NSFontAttributeName: [UIFont fontWithName:@"Avenir-Medium" size:10],
+                         NSFontAttributeName: [UIFont fontWithName:@"AvenirNext-Demibold" size:fontSize],
                          NSForegroundColorAttributeName: [UIColor whiteColor],
                          NSParagraphStyleAttributeName: style,
                          NSKernAttributeName: [NSNumber numberWithFloat:-1.0f]

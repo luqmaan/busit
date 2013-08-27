@@ -11,13 +11,15 @@
 
 @interface BMCircularAnnotationView : MKAnnotationView {
     double hue;
+    double borderWidth;
     UIColor *bgColor;
     UIColor *bgEndColor;
     UIColor *borderColor;
     UIColor *textColor;
-    CGFloat pinSize;
-    CGFloat fontSize;
     NSString *text;
+    CGFloat width;
+    CGFloat height;
+    CGFloat fontSize;
 }
 
 @end

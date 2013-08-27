@@ -322,6 +322,10 @@
         <scene sceneID="b5l-xn-uK4">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="xd9-eG-dmk" customClass="BMEmbeddedMapViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="CTw-Kt-vSf"/>
+                        <viewControllerLayoutGuide type="bottom" id="ddT-vv-sMU"/>
+                    </layoutGuides>
                     <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="46i-nd-6x1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="190"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
