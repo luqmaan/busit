@@ -161,10 +161,18 @@
     
     NSDictionary *data = [self dataForIndexPath:indexPath];
     
+    double hue = [BIHelpers hueForRoute:[data[@"routeShortName"] intValue]];
+    UIColor *routeColor = [UIColor colorWithHue:hue saturation:1 brightness:0.7 alpha:1];
+    UIColor *timeColor = [UIColor colorWithHue:hue saturation:1 brightness:0.5 alpha:1];
+    routeNumber.textColor = routeColor;
+    scheduled.textColor = timeColor;
+    predicted.textColor = timeColor;
+    updated.textColor = timeColor;
+    
     routeNumber.text = data[@"routeShortName"];
     routeName.text = data[@"routeLongName"];
     tripHeadsign.text = data[@"tripHeadsign"];
-
+    
     distance.text = [NSString stringWithFormat:@"%@mi    %@ stops away", [BIHelpers formattedDistanceFromStop:data[@"distanceFromStop"]], data[@"numberOfStopsAway"]];
     scheduled.text = [NSString stringWithFormat:@"%@", [BIHelpers timeWithTimestamp:data[@"scheduledArrivalTime"]]];
     predicted.text = [NSString stringWithFormat:@"%@", [BIHelpers timeWithTimestamp:data[@"predictedArrivalTime"]]];
