@@ -23,20 +23,24 @@
 {
     self = [super initWithAnnotation:annotation reuseIdentifier:reuseIdentifier];
     if(self) {
-        // setup frame
-        CGRect frame = self.frame;
-        frame.size = CGSizeMake(self->width,self->height);
-        self.frame = frame;
+        [self updateFrame];
         self.backgroundColor = [UIColor clearColor];
         self.opaque = NO;
         textColor = [UIColor whiteColor];
         borderColor = [UIColor whiteColor];
         bgColor = [UIColor colorWithHue:hue saturation:0.5 brightness:0.853 alpha:1];
         bgEndColor = [UIColor colorWithHue:hue saturation:0.931 brightness:0.5 alpha:1];
-        
         [self.layer setBorderColor:[UIColor blackColor].CGColor];
     }
     return self;
+}
+
+- (void)updateFrame
+{
+    CGRect frame = self.frame;
+    frame.size = CGSizeMake(width, height);
+    NSLog(@"width@frame: %f", width);
+    self.frame = frame;
 }
 
 -(void)setAnnotation:(id<MKAnnotation>)annotation
@@ -51,7 +55,46 @@
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
+
+    // draw rounded rect shape with a clear color and clip the shape
     CGContextSetFillColorWithColor(context, [UIColor clearColor].CGColor);
+    [self walkPathInRect:rect withContext:context];
+    CGContextClosePath(context);
+    CGContextClip(context);
+    
+    // draw the context (now clipped to the shape) with a gradient
+    CFArrayRef colors = (__bridge CFArrayRef)[NSArray arrayWithObjects:(id)bgColor.CGColor, (id)bgEndColor.CGColor, nil];
+    CGGradientRef gradient = CGGradientCreateWithColors(NULL, colors, NULL);
+    CGPoint startPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMinY(rect));
+    CGPoint endPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMaxY(rect));
+    CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, 0);
+    CGGradientRelease(gradient);
+    gradient = NULL;
+    CGContextClip(context);
+    
+    // draw a border around the gradient by rewalking the path and stroking it
+    [borderColor set];
+    CGContextSetLineWidth(context,borderWidth);
+    [self walkPathInRect:rect withContext:context];
+    CGContextStrokePath(context);
+    
+    // draw the annotation's text in the rect
+    if ([BIHelpers isBelowiOS7]) {
+        // if below iOS 7 use the deprecated method
+        [textColor set];
+        [text drawInRect:rect
+                withFont:stringAttrs[NSFontAttributeName]
+           lineBreakMode:NSLineBreakByClipping
+               alignment:NSTextAlignmentCenter];
+    }
+    else {
+        [text drawInRect:rect withAttributes:stringAttrs];
+    }
+}
+
+- (void)walkPathInRect:(CGRect)rect withContext:(CGContextRef)context
+{
+//    http://stackoverflow.com/questions/1031930/how-is-a-rounded-rect-view-with-transparency-done-on-iphone/1031936#1031936
     
     CGContextMoveToPoint(context, rect.origin.x, rect.origin.y + radius);
     CGContextAddLineToPoint(context, rect.origin.x, rect.origin.y + rect.size.height - radius);
@@ -67,28 +110,6 @@
     CGContextAddLineToPoint(context, rect.origin.x + radius, rect.origin.y);
     CGContextAddArc(context, rect.origin.x + radius, rect.origin.y + radius, radius,
                     -M_PI / 2, M_PI, 1);
-
-    CGContextClosePath(context);
-    CGContextClip(context);
-    
-    CFArrayRef colors = (__bridge CFArrayRef)[NSArray arrayWithObjects:(id)bgColor.CGColor, (id)bgEndColor.CGColor, nil];
-    CGGradientRef gradient = CGGradientCreateWithColors(NULL, colors, NULL);
-    CGPoint startPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMinY(rect));
-    CGPoint endPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMaxY(rect));
-    CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, 0);
-    CGGradientRelease(gradient);
-    gradient = NULL;
-    
-    if ([BIHelpers isBelowiOS7]) {
-        [textColor set];
-        [text drawInRect:rect
-                withFont:stringAttrs[NSFontAttributeName]
-           lineBreakMode:NSLineBreakByClipping
-               alignment:NSTextAlignmentCenter];
-    }
-    else {
-        [text drawInRect:rect withAttributes:stringAttrs];
-    }
 }
 
 @end

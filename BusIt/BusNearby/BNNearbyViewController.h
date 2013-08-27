@@ -15,7 +15,6 @@
 @interface BNNearbyViewController : UITableViewController  <CLLocationManagerDelegate>
 
 - (IBAction)refreshBtnPress:(id)sender;
-
-@property (weak, nonatomic) IBOutlet BMEmbeddedMapViewController *embeddedMapView;
+- (void)performSegueForMapViewWithStop:(NSString *)stopCode;
 
 @end

@@ -9,6 +9,7 @@
 #import "BMEmbeddedMapViewController.h"
 #import "BMStopAnnotationView.h"
 #import "BMStop.h"
+#import "BNNearbyViewController.h"
 
 @interface BMEmbeddedMapViewController ()
 
@@ -113,5 +114,13 @@
     }
 }
 
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
+{
+    if ([view isKindOfClass:[BMStopAnnotationView class]]) {
+        BNNearbyViewController *parent = (BNNearbyViewController *)[self parentViewController];
+        BMStop *stop = (BMStop *)view.annotation;
+        [parent performSegueForMapViewWithStop:stop.identifier];
+    }
+}
 
 @end

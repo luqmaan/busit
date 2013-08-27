@@ -358,6 +358,10 @@
         <scene sceneID="cze-Ca-Xon">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="5gr-1T-YVg" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BvU-z7-RRS"/>
+                        <viewControllerLayoutGuide type="bottom" id="UCT-XC-mJx"/>
+                    </layoutGuides>
                     <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U2e-nL-JD6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

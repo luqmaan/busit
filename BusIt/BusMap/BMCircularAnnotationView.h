@@ -24,5 +24,5 @@
     CGFloat fontSize;
     NSDictionary *stringAttrs;
 }
-
+- (void)updateFrame;
 @end

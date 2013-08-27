@@ -14,8 +14,10 @@
     CLLocationManager *locationManager;
     CLLocation *location;
     BOOL updateInProgress;
+    BOOL performSegueAfterScroll;
 }
 
+@property (weak, nonatomic) BMEmbeddedMapViewController *embeddedMapView;
 @property (nonatomic, retain) BIRest *bench;
 @property (nonatomic, retain) NSDictionary *apiData;
 @property (nonatomic, retain) CLLocationManager *locationManager;
@@ -31,7 +33,8 @@
     if(self = [super initWithCoder:aDecoder]) {
         bench = [[BIRest alloc] init];
         apiData = [[NSDictionary alloc] init];
-        updateInProgress = TRUE;
+        updateInProgress = YES;
+        performSegueAfterScroll = NO;
     }
     return self;
 }
@@ -119,6 +122,21 @@
     [embeddedMapView initWithStops:apiData];
 }
 
+- (void)performSegueForMapViewWithStop:(NSString *)stopCode
+{
+    NSIndexPath *indexPath = [self indexPathForStopCode:stopCode];
+    [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+    performSegueAfterScroll = YES;
+}
+
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
+{
+    if (performSegueAfterScroll) {
+        performSegueAfterScroll = NO;
+        [self performSegueWithIdentifier:@"StopDetailsSegue" sender:nil];
+    }
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -134,8 +152,22 @@
     return [apiData[@"data"][@"list"] count];
 }
 
--(NSDictionary *)dataForIndexPath:(NSIndexPath *)indexPath {
+- (NSDictionary *)dataForIndexPath:(NSIndexPath *)indexPath
+{
     return apiData[@"data"][@"list"][indexPath.row];
+}
+
+- (NSIndexPath *)indexPathForStopCode:(NSString *)stopCode
+{
+    // find the indexPath for the row that contains the stop code specified
+    NSInteger rowCount = [self tableView:self.tableView numberOfRowsInSection:0];
+    for (int i = 0; i < rowCount; i++) {
+        if (apiData[@"data"][@"list"][i][@"code"] == stopCode) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+            return indexPath;
+        }
+    }
+    return nil;
 }
 
 #pragma mark - Segues & Table view delegate
@@ -168,6 +200,8 @@
     NSArray *routesArray = apiData[@"data"][@"references"][@"routes"];
     stopId.text = stopData[@"code"];
     stopName.text = stopData[@"name"];
+    double hue = [BIHelpers hueForStop:[stopData[@"code"] intValue]];
+    stopName.textColor = [UIColor colorWithHue:hue saturation:1 brightness:0.7 alpha:1];
     direction.text = stopData[@"direction"];
     NSMutableString *routesText = [NSMutableString stringWithString:@""];
     id lastRouteId = [stopData[@"routeIds"] lastObject];

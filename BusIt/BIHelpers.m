@@ -111,4 +111,14 @@ static inline UIImage* MTDContextCreateRoundedMask( CGRect rect, CGFloat radius_
     return NO;
 }
 
++ (double)hueForStop:(int)stopNumber
+{
+    return  (stopNumber % 30) / 30.0;
+}
+
++ (double)hueForRoute:(int)routeNumber
+{
+    return (routeNumber % 10) / 10.0;
+}
+
 @end

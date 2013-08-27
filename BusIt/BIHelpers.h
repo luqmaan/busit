@@ -23,5 +23,7 @@
 + (NSString *)timeWithTimestamp:(NSString *)timestampString;
 + (NSString *)formattedDistanceFromStop:(NSNumber *)distanceFromStop;
 + (BOOL)isBelowiOS7;
++ (double)hueForStop:(int)stopNumber;
++ (double)hueForRoute:(int)routeNumber;
 
 @end
