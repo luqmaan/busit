@@ -119,17 +119,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <containerView key="tableHeaderView" contentMode="scaleToFill" id="JkL-Un-cbF">
-                            <rect key="frame" x="0.0" y="64" width="320" height="190"/>
+                        <containerView key="tableHeaderView" contentMode="scaleToFill" id="OOI-k4-sjO">
+                            <rect key="frame" x="0.0" y="64" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="dWk-Cu-bGN" kind="embed" identifier="EmbeddedMapViewSegue" id="peB-ps-AR1"/>
+                                <segue destination="5gr-1T-YVg" kind="embed" id="w8C-66-2iv"/>
                             </connections>
                         </containerView>
                         <prototypes>
                             <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ArrivalsDeparturesCell" rowHeight="132" id="ETK-MY-da5">
-                                <rect key="frame" x="0.0" y="276" width="320" height="132"/>
+                                <rect key="frame" x="0.0" y="130" width="320" height="132"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="ETK-MY-da5" id="ONZ-0p-OUz">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="131"/>
@@ -265,7 +265,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o0S-zl-frs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="936" y="-668"/>
+            <point key="canvasLocation" x="955" y="-625"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="tmv-9D-Cq9">
@@ -354,29 +354,25 @@
             </objects>
             <point key="canvasLocation" x="441" y="-962"/>
         </scene>
-        <!--Embedded Map View Controller-->
-        <scene sceneID="8fC-BN-9Mo">
+        <!--View Controller-->
+        <scene sceneID="cze-Ca-Xon">
             <objects>
-                <viewController id="dWk-Cu-bGN" customClass="BMEmbeddedMapViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="SS1-S6-HAl"/>
-                        <viewControllerLayoutGuide type="bottom" id="0Ag-EM-kpp"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="eZ8-by-aAM">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="190"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="5gr-1T-YVg" sceneMemberID="viewController">
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U2e-nL-JD6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="LXB-uC-ol1">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="190"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="yUT-53-uCJ">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </mapView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <toolbarItems/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jk4-f7-bU7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HtL-go-ALk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="936" y="-962"/>
         </scene>
     </scenes>
     <resources>
