@@ -119,7 +119,7 @@
 
 - (void)updateMapView
 {
-    [embeddedMapView initWithStops:apiData];
+    [embeddedMapView addStopsToMap:apiData];
 }
 
 - (void)performSegueForMapViewWithStop:(NSString *)stopCode

@@ -13,7 +13,7 @@
 
 // not actual init's
 - (void)initWithStop:(NSDictionary *)stop andBuses:(NSArray *)busList;
-- (void)initWithStops:(NSDictionary *)apiData;
+- (void)addStopsToMap:(NSDictionary *)apiData;
 - (void)initWithRoute:(NSArray *)route andShape:(NSDictionary *)shape;
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
