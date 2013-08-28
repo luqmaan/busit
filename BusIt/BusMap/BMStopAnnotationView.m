@@ -35,7 +35,7 @@
         [super updateFrame];
         
         hue = [BIHelpers hueForStop:[stop.identifier intValue]];
-        bgColor = [UIColor colorWithHue:hue saturation:0.85 brightness:0.85 alpha:1];
+        bgColor = [UIColor colorWithHue:hue saturation:0.85 brightness:0.85 alpha:0.9];
         bgEndColor = [UIColor colorWithHue:hue saturation:0.931 brightness:0.75 alpha:1];
         borderColor = [UIColor colorWithHue:hue saturation:1 brightness:0.3 alpha:1];
         
