@@ -126,7 +126,7 @@
 		C19E604C17BB374500FB181A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C1D9759617BB222F0037B005 /* BMOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMOptions.m; sourceTree = "<group>"; };
 		C1F42C9717CC582E001F2825 /* BusIt copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "BusIt copy-Info.plist"; path = "/Users/lolcat/dev/busit/BusIt copy-Info.plist"; sourceTree = "<absolute>"; };
-		C1F42CB817CC586F001F2825 /* BusIt copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BusIt copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1F42CB817CC586F001F2825 /* BusIt 0.1.1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BusIt 0.1.1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1F42CB917CC5870001F2825 /* BusIt copy2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "BusIt copy2-Info.plist"; path = "/Users/lolcat/dev/busit/BusIt copy2-Info.plist"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
@@ -199,7 +199,7 @@
 			children = (
 				C190D7AA17BB0C96005C24F2 /* BusIt.app */,
 				C190D7CB17BB0C96005C24F2 /* BusItTests.xctest */,
-				C1F42CB817CC586F001F2825 /* BusIt copy.app */,
+				C1F42CB817CC586F001F2825 /* BusIt 0.1.1.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -331,9 +331,9 @@
 			productReference = C190D7CB17BB0C96005C24F2 /* BusItTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		C1F42C9817CC586F001F2825 /* BusIt copy */ = {
+		C1F42C9817CC586F001F2825 /* BusIt Deployment */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C1F42CB517CC586F001F2825 /* Build configuration list for PBXNativeTarget "BusIt copy" */;
+			buildConfigurationList = C1F42CB517CC586F001F2825 /* Build configuration list for PBXNativeTarget "BusIt Deployment" */;
 			buildPhases = (
 				C1F42C9917CC586F001F2825 /* Sources */,
 				C1F42CAB17CC586F001F2825 /* Frameworks */,
@@ -343,9 +343,9 @@
 			);
 			dependencies = (
 			);
-			name = "BusIt copy";
+			name = "BusIt Deployment";
 			productName = BusIt;
-			productReference = C1F42CB817CC586F001F2825 /* BusIt copy.app */;
+			productReference = C1F42CB817CC586F001F2825 /* BusIt 0.1.1.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -384,7 +384,7 @@
 			targets = (
 				C190D7A917BB0C96005C24F2 /* BusIt */,
 				C190D7CA17BB0C96005C24F2 /* BusItTests */,
-				C1F42C9817CC586F001F2825 /* BusIt copy */,
+				C1F42C9817CC586F001F2825 /* BusIt Deployment */,
 			);
 		};
 /* End PBXProject section */
@@ -666,7 +666,7 @@
 				GCC_PREFIX_HEADER = "BusIt/BusIt-Prefix.pch";
 				INFOPLIST_FILE = "BusIt copy2-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				PRODUCT_NAME = "BusIt copy";
+				PRODUCT_NAME = "BusIt 0.1.1";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -683,7 +683,7 @@
 				GCC_PREFIX_HEADER = "BusIt/BusIt-Prefix.pch";
 				INFOPLIST_FILE = "BusIt copy2-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				PRODUCT_NAME = "BusIt copy";
+				PRODUCT_NAME = "BusIt 0.1.1";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -719,7 +719,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C1F42CB517CC586F001F2825 /* Build configuration list for PBXNativeTarget "BusIt copy" */ = {
+		C1F42CB517CC586F001F2825 /* Build configuration list for PBXNativeTarget "BusIt Deployment" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C1F42CB617CC586F001F2825 /* Debug */,
