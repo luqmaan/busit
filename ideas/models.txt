@@ -1,0 +1,83 @@
+use existing BIRest: vehiclesForAgency 
+- dictionary straight from API
+    - requires api and api only
+    - too much work to refactor
+
+-(NSDictionary *)vehiclesForAgency:(NSString *)agencyId;
+-(NSDictionary *)stopsForLocationLat:(NSNumber *)lat Lon:(NSNumber *)lon;
+-(NSDictionary *)arrivalsAndDeparturesForStop:(NSString *)stopId;
+
+BDRoute
+--
+NSNumber *gtfsId;
+NSString *obaId;
+NSString *shortName;
+NSString *longName;
+NSNumber *type;
+NSString *url;
+NSString *colorHex;
+NSString *textColorHex;
+NSString *agencyId;
+
+
+BDVehicle
+vehicles-for-agency.json
+arrivals-and-departures-for-stop.json
+--
+NSString *obaId;
+CLLocationCoordinate2D location;
+NSString *obaTripId;
+NSNumber *gtfsTripId;
+NSSNumber *blockTripSequence;
+NSDate *serviceDate;
+NSNumber *scheduledDistanceAlongTrip;
+NSNumber *totalDistanceAlongTrip;
+NSNumber *orientation;
+NSString *obaClosestStop;
+NSString *gtfsClosestStop;
+NSNumber *closestStopTimeOffset;
+NSString *obaNextStop;
+NSString *gtfsNextStop;
+NSNumber *nextStopTimeOffset;
+NSString *status;
+NSString *predicted;
+NSDate *lastUpdateTime;
+CLLocationCoordinate2D lastKnowLocation;
+NSNumber *scheduleDeviation;
+NSNumber *distanceAlongTrip;
+
+
+BDStop
+stops.txt
+stops-for-location.json
+--
+NSNumber *gtfsId;
+NSString *obaId;
+CLLocationCoordinate2D location;
+NSString *direction;
+NSString *name;
+NSNumber *code;
+NSNumber *locationType;
+NSString *wheelChairBoarding;
+NSArray *routeIds; // array of BDRoutes
+BDArrivals *arrivals;
+
+
+BDArrivals
+stop_times.txt
+arrivals-and-departures-for-stop.json
+--
+NSNumber *gtfsTripId;
+NSString *obaTripId;
+NSString *obaId;
+NSString *routeId;
+NSString *vehicleId;
+NSNumber *pickup_type;
+NSNumber *drop_off_type;
+NSDate *scheduledArrivalTime;
+NSDate *scheduledDepartureTime; // usually equal to arrivalTime
+// if internet
+NSDate *predictedTime;
+NSDate *updatedTime;
+NSArray *vehicles; // array of BDVehicles
+

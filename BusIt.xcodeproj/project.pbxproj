@@ -36,6 +36,23 @@
 		C198C24417BB131B00A94F4D /* BIHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = C198C24117BB131B00A94F4D /* BIHelpers.m */; };
 		C198C24517BB131B00A94F4D /* BIRest.m in Sources */ = {isa = PBXBuildFile; fileRef = C198C24317BB131B00A94F4D /* BIRest.m */; };
 		C19E604D17BB374500FB181A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C19E604C17BB374500FB181A /* QuartzCore.framework */; };
+		C1B4D60917D0D1690014AB21 /* gtfs.db in Resources */ = {isa = PBXBuildFile; fileRef = C1B4D60617D0D1690014AB21 /* gtfs.db */; };
+		C1B4D60A17D0D1690014AB21 /* gtfs.db in Resources */ = {isa = PBXBuildFile; fileRef = C1B4D60617D0D1690014AB21 /* gtfs.db */; };
+		C1B4D60D17D0D1690014AB21 /* schema.sql in Resources */ = {isa = PBXBuildFile; fileRef = C1B4D60817D0D1690014AB21 /* schema.sql */; };
+		C1B4D60E17D0D1690014AB21 /* schema.sql in Resources */ = {isa = PBXBuildFile; fileRef = C1B4D60817D0D1690014AB21 /* schema.sql */; };
+		C1B4D61517D0D94C0014AB21 /* BDBusData.m in Sources */ = {isa = PBXBuildFile; fileRef = C1B4D61417D0D94C0014AB21 /* BDBusData.m */; };
+		C1B4D61817D3C6B60014AB21 /* BDStop.m in Sources */ = {isa = PBXBuildFile; fileRef = C1B4D61717D3C6B60014AB21 /* BDStop.m */; };
+		C1D0BDEF17CE950800FA976D /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D0BDE517CE950800FA976D /* FMDatabase.m */; };
+		C1D0BDF017CE950800FA976D /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D0BDE517CE950800FA976D /* FMDatabase.m */; };
+		C1D0BDF117CE950800FA976D /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D0BDE717CE950800FA976D /* FMDatabaseAdditions.m */; };
+		C1D0BDF217CE950800FA976D /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D0BDE717CE950800FA976D /* FMDatabaseAdditions.m */; };
+		C1D0BDF317CE950800FA976D /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D0BDE917CE950800FA976D /* FMDatabasePool.m */; };
+		C1D0BDF417CE950800FA976D /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D0BDE917CE950800FA976D /* FMDatabasePool.m */; };
+		C1D0BDF517CE950800FA976D /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D0BDEB17CE950800FA976D /* FMDatabaseQueue.m */; };
+		C1D0BDF617CE950800FA976D /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D0BDEB17CE950800FA976D /* FMDatabaseQueue.m */; };
+		C1D0BDF917CE950800FA976D /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D0BDEE17CE950800FA976D /* FMResultSet.m */; };
+		C1D0BDFA17CE950800FA976D /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D0BDEE17CE950800FA976D /* FMResultSet.m */; };
+		C1D0BDFC17CE955300FA976D /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C1D0BDFB17CE955300FA976D /* libsqlite3.dylib */; };
 		C1D9759717BB222F0037B005 /* BMOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D9759617BB222F0037B005 /* BMOptions.m */; };
 		C1F42C9A17CC586F001F2825 /* BIHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = C198C24117BB131B00A94F4D /* BIHelpers.m */; };
 		C1F42C9B17CC586F001F2825 /* BNNearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C177FE9B17C3A83A00B2FE4F /* BNNearbyViewController.m */; };
@@ -121,9 +138,26 @@
 		C198C23717BB124600A94F4D /* BMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMViewController.m; sourceTree = "<group>"; };
 		C198C24017BB131B00A94F4D /* BIHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIHelpers.h; sourceTree = "<group>"; };
 		C198C24117BB131B00A94F4D /* BIHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIHelpers.m; sourceTree = "<group>"; };
-		C198C24217BB131B00A94F4D /* BIRest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIRest.h; sourceTree = "<group>"; };
-		C198C24317BB131B00A94F4D /* BIRest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIRest.m; sourceTree = "<group>"; };
+		C198C24217BB131B00A94F4D /* BIRest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BIRest.h; path = ../BIRest.h; sourceTree = "<group>"; };
+		C198C24317BB131B00A94F4D /* BIRest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BIRest.m; path = ../BIRest.m; sourceTree = "<group>"; };
 		C19E604C17BB374500FB181A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		C1B4D60617D0D1690014AB21 /* gtfs.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = gtfs.db; sourceTree = "<group>"; };
+		C1B4D60817D0D1690014AB21 /* schema.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = schema.sql; sourceTree = "<group>"; };
+		C1B4D61317D0D94C0014AB21 /* BDBusData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDBusData.h; sourceTree = "<group>"; };
+		C1B4D61417D0D94C0014AB21 /* BDBusData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDBusData.m; sourceTree = "<group>"; };
+		C1B4D61617D3C6B60014AB21 /* BDStop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDStop.h; sourceTree = "<group>"; };
+		C1B4D61717D3C6B60014AB21 /* BDStop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDStop.m; sourceTree = "<group>"; };
+		C1D0BDE417CE950800FA976D /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		C1D0BDE517CE950800FA976D /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		C1D0BDE617CE950800FA976D /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		C1D0BDE717CE950800FA976D /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		C1D0BDE817CE950800FA976D /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		C1D0BDE917CE950800FA976D /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		C1D0BDEA17CE950800FA976D /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		C1D0BDEB17CE950800FA976D /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		C1D0BDED17CE950800FA976D /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		C1D0BDEE17CE950800FA976D /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		C1D0BDFB17CE955300FA976D /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		C1D9759617BB222F0037B005 /* BMOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMOptions.m; sourceTree = "<group>"; };
 		C1F42C9717CC582E001F2825 /* BusIt copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "BusIt copy-Info.plist"; path = "/Users/lolcat/dev/busit/BusIt copy-Info.plist"; sourceTree = "<absolute>"; };
 		C1F42CB817CC586F001F2825 /* BusIt 0.1.1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BusIt 0.1.1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -135,6 +169,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1D0BDFC17CE955300FA976D /* libsqlite3.dylib in Frameworks */,
 				C19E604D17BB374500FB181A /* QuartzCore.framework in Frameworks */,
 				C198C22A17BB10F300A94F4D /* MapKit.framework in Frameworks */,
 				C190D7B017BB0C96005C24F2 /* CoreGraphics.framework in Frameworks */,
@@ -183,6 +218,7 @@
 		C190D7A117BB0C96005C24F2 = {
 			isa = PBXGroup;
 			children = (
+				C1B4D60517D0D1690014AB21 /* BusData */,
 				C177FE9717C3A83A00B2FE4F /* BusNearby */,
 				C198C22C17BB11D900A94F4D /* BusMap */,
 				C190D7B317BB0C96005C24F2 /* BusIt */,
@@ -207,6 +243,8 @@
 		C190D7AC17BB0C96005C24F2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C1D0BDFB17CE955300FA976D /* libsqlite3.dylib */,
+				C1D0BDE317CE950800FA976D /* FMDB */,
 				C19E604C17BB374500FB181A /* QuartzCore.framework */,
 				C198C22917BB10F300A94F4D /* MapKit.framework */,
 				C190D7AD17BB0C96005C24F2 /* Foundation.framework */,
@@ -222,8 +260,6 @@
 			children = (
 				C198C24017BB131B00A94F4D /* BIHelpers.h */,
 				C198C24117BB131B00A94F4D /* BIHelpers.m */,
-				C198C24217BB131B00A94F4D /* BIRest.h */,
-				C198C24317BB131B00A94F4D /* BIRest.m */,
 				C190D7BC17BB0C96005C24F2 /* BIAppDelegate.h */,
 				C190D7BD17BB0C96005C24F2 /* BIAppDelegate.m */,
 				C190D7BF17BB0C96005C24F2 /* Main.storyboard */,
@@ -291,6 +327,39 @@
 			);
 			name = BusMap;
 			path = BusIt/BusMap;
+			sourceTree = "<group>";
+		};
+		C1B4D60517D0D1690014AB21 /* BusData */ = {
+			isa = PBXGroup;
+			children = (
+				C1B4D60617D0D1690014AB21 /* gtfs.db */,
+				C1B4D60817D0D1690014AB21 /* schema.sql */,
+				C198C24217BB131B00A94F4D /* BIRest.h */,
+				C198C24317BB131B00A94F4D /* BIRest.m */,
+				C1B4D61317D0D94C0014AB21 /* BDBusData.h */,
+				C1B4D61417D0D94C0014AB21 /* BDBusData.m */,
+				C1B4D61617D3C6B60014AB21 /* BDStop.h */,
+				C1B4D61717D3C6B60014AB21 /* BDStop.m */,
+			);
+			name = BusData;
+			path = BusIt/BusData;
+			sourceTree = "<group>";
+		};
+		C1D0BDE317CE950800FA976D /* FMDB */ = {
+			isa = PBXGroup;
+			children = (
+				C1D0BDE417CE950800FA976D /* FMDatabase.h */,
+				C1D0BDE517CE950800FA976D /* FMDatabase.m */,
+				C1D0BDE617CE950800FA976D /* FMDatabaseAdditions.h */,
+				C1D0BDE717CE950800FA976D /* FMDatabaseAdditions.m */,
+				C1D0BDE817CE950800FA976D /* FMDatabasePool.h */,
+				C1D0BDE917CE950800FA976D /* FMDatabasePool.m */,
+				C1D0BDEA17CE950800FA976D /* FMDatabaseQueue.h */,
+				C1D0BDEB17CE950800FA976D /* FMDatabaseQueue.m */,
+				C1D0BDED17CE950800FA976D /* FMResultSet.h */,
+				C1D0BDEE17CE950800FA976D /* FMResultSet.m */,
+			);
+			path = FMDB;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -397,6 +466,8 @@
 				C190D7C617BB0C96005C24F2 /* Images.xcassets in Resources */,
 				C190D7B817BB0C96005C24F2 /* InfoPlist.strings in Resources */,
 				C190D7C117BB0C96005C24F2 /* Main.storyboard in Resources */,
+				C1B4D60D17D0D1690014AB21 /* schema.sql in Resources */,
+				C1B4D60917D0D1690014AB21 /* gtfs.db in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,6 +486,8 @@
 				C1F42CB217CC586F001F2825 /* Images.xcassets in Resources */,
 				C1F42CB317CC586F001F2825 /* InfoPlist.strings in Resources */,
 				C1F42CB417CC586F001F2825 /* Main.storyboard in Resources */,
+				C1B4D60E17D0D1690014AB21 /* schema.sql in Resources */,
+				C1B4D60A17D0D1690014AB21 /* gtfs.db in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,9 +501,11 @@
 				C198C24417BB131B00A94F4D /* BIHelpers.m in Sources */,
 				C177FE9E17C3A83A00B2FE4F /* BNNearbyViewController.m in Sources */,
 				C1D9759717BB222F0037B005 /* BMOptions.m in Sources */,
+				C1D0BDEF17CE950800FA976D /* FMDatabase.m in Sources */,
 				C177FE9C17C3A83A00B2FE4F /* BNArrivalsTableViewController.m in Sources */,
 				C198C23C17BB124600A94F4D /* BMViewController.m in Sources */,
 				C198C23B17BB124600A94F4D /* BMVehicleAnnotationView.m in Sources */,
+				C1B4D61817D3C6B60014AB21 /* BDStop.m in Sources */,
 				C14DB59317CBBDDE00905967 /* BMEmbeddedMapViewController.m in Sources */,
 				C190D7C417BB0C96005C24F2 /* BIViewController.m in Sources */,
 				C14DB59C17CBE2A700905967 /* BMStop.m in Sources */,
@@ -439,7 +514,12 @@
 				C190D7BA17BB0C96005C24F2 /* main.m in Sources */,
 				C14DB59617CBD10200905967 /* BMCircularAnnotationView.m in Sources */,
 				C14DB59917CBE03700905967 /* BMStopAnnotationView.m in Sources */,
+				C1D0BDF117CE950800FA976D /* FMDatabaseAdditions.m in Sources */,
+				C1D0BDF917CE950800FA976D /* FMResultSet.m in Sources */,
 				C198C23A17BB124600A94F4D /* BMVehicle.m in Sources */,
+				C1B4D61517D0D94C0014AB21 /* BDBusData.m in Sources */,
+				C1D0BDF517CE950800FA976D /* FMDatabaseQueue.m in Sources */,
+				C1D0BDF317CE950800FA976D /* FMDatabasePool.m in Sources */,
 				C198C23817BB124600A94F4D /* BMRoutes.m in Sources */,
 				C190D7BE17BB0C96005C24F2 /* BIAppDelegate.m in Sources */,
 			);
@@ -460,6 +540,7 @@
 				C1F42C9A17CC586F001F2825 /* BIHelpers.m in Sources */,
 				C1F42C9B17CC586F001F2825 /* BNNearbyViewController.m in Sources */,
 				C1F42C9C17CC586F001F2825 /* BMOptions.m in Sources */,
+				C1D0BDF017CE950800FA976D /* FMDatabase.m in Sources */,
 				C1F42C9D17CC586F001F2825 /* BNArrivalsTableViewController.m in Sources */,
 				C1F42C9E17CC586F001F2825 /* BMViewController.m in Sources */,
 				C1F42C9F17CC586F001F2825 /* BMVehicleAnnotationView.m in Sources */,
@@ -471,7 +552,11 @@
 				C1F42CA517CC586F001F2825 /* main.m in Sources */,
 				C1F42CA617CC586F001F2825 /* BMCircularAnnotationView.m in Sources */,
 				C1F42CA717CC586F001F2825 /* BMStopAnnotationView.m in Sources */,
+				C1D0BDF217CE950800FA976D /* FMDatabaseAdditions.m in Sources */,
+				C1D0BDFA17CE950800FA976D /* FMResultSet.m in Sources */,
 				C1F42CA817CC586F001F2825 /* BMVehicle.m in Sources */,
+				C1D0BDF617CE950800FA976D /* FMDatabaseQueue.m in Sources */,
+				C1D0BDF417CE950800FA976D /* FMDatabasePool.m in Sources */,
 				C1F42CA917CC586F001F2825 /* BMRoutes.m in Sources */,
 				C1F42CAA17CC586F001F2825 /* BIAppDelegate.m in Sources */,
 			);
