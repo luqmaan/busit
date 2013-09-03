@@ -8,16 +8,17 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
+#import "BMStop.h"
+#import "FMDatabase.h"
+#import "FMDatabaseAdditions.h"
+#import "FMResultSet.h"
 
 @interface BDBusData : NSObject
 
--(BMStop *)stopWithCode:(NSNumber *)code;
--(BMStop *)stopWithObaId:(NSNumber *)obaId;
--(BMStop *)stopWithGtfsId:(NSNumber *)gtfsId;
--(NSArray *)stopNearLocation:(CLLocationCoordinate2D)location andRadius:(CGFLoat)miles;
+@property (nonatomic, retain) FMDatabase *database;
 
--(BMRoute *)routeWithObaId:(NSNumber *code);
--(BMRoute *)routeWithGtfsId:(NSNumber *code);
--(BMRoute *)routeWithShortName:(NSNumber *obaId);
+- (void)updateDatabase;
+- (NSArray *)stopsNearLocation:(CLLocationCoordinate2D)location andRadius:(CGFloat)miles;
+- (NSDictionary *)vehiclesForAgency:(NSString *)agencyId;
 
 @end

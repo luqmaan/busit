@@ -27,7 +27,8 @@ CREATE TABLE trips (
   direction varchar(128) NOT NULL
 );
 CREATE TABLE calendar (
-  service_id varchar(3) PRIMARY KEY NOT NULL,
+  id integer PRIMARY KEY AUTOINCREMENT NOT NULL,                       
+  service_id varchar(3) NOT NULL,
   monday integer NOT NULL,
   tuesday integer NOT NULL,
   wednesday integer NOT NULL,
@@ -55,12 +56,14 @@ CREATE TABLE shapes (
   shape_pt_sequence integer NOT NULL
 );
 CREATE TABLE calendar_dates (
+  id integer PRIMARY KEY AUTOINCREMENT NOT NULL,                             
   service_id char(3) NOT NULL,
   date_str integer NOT NULL,
   exception_type integer NOT NULL
 );
 CREATE TABLE fare_attributes (
-  fare_id integer PRIMARY KEY NOT NULL,
+  id integer PRIMARY KEY NOT NULL,
+  fare_id integer NOT NULL,
   price double(8) NOT NULL,
   currency_type double(8) NOT NULL,
   payment_method char(8) NOT NULL,

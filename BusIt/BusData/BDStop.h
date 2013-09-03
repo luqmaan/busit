@@ -7,23 +7,26 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MapKit/MapKit.h>
+#import "BDBusData.h"
 #import "BDArrivals.h"
 
 @interface BDStop : NSObject {
-    NSNumber *gtfsId;
-    NSString *obaId;
-    CLLocationCoordinate2D location;
-    NSString *direction;
-    NSString *name;
-    NSNumber *code;
-    NSNumber *locationType;
-    NSString *wheelChairBoarding;
-    NSArray *routeIds; // array of BDRoutes
-    BDArrivals *arrivals;
 }
 
+@property (nonatomic, retain) NSNumber *gtfsId;
+@property (nonatomic, retain) NSString *obaId;
+@property (nonatomic, assign) CLLocationCoordinate2D location;
+@property (nonatomic, retain) NSString *direction;
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) NSNumber *code;
+@property (nonatomic, retain) NSNumber *locationType;
+@property (nonatomic, retain) NSString *wheelChairBoarding;
+@property (nonatomic, retain) NSArray *routeIds; // array of BDRoutes
+@property (nonatomic, retain) BDArrivals *arrivals;
 
-
-- (id)initWithGtfs:(NSDictionary *)gtfsData andOba:(NSDictionary *)obaData;
+-(BDStop *)initWithCode:(NSNumber *)code;
+-(BDStop *)initWithObaId:(NSNumber *)obaId;
+-(BDStop *)initWithGtfsId:(NSNumber *)gtfsId;
 
 @end

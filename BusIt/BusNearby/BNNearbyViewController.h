@@ -11,6 +11,7 @@
 #import "BIRest.h"
 #import "BNArrivalsTableViewController.h"
 #import "BMEmbeddedMapViewController.h"
+#import "BDBusData.h"
 
 @interface BNNearbyViewController : UITableViewController  <CLLocationManagerDelegate>
 

@@ -42,6 +42,7 @@
 		C1B4D60E17D0D1690014AB21 /* schema.sql in Resources */ = {isa = PBXBuildFile; fileRef = C1B4D60817D0D1690014AB21 /* schema.sql */; };
 		C1B4D61517D0D94C0014AB21 /* BDBusData.m in Sources */ = {isa = PBXBuildFile; fileRef = C1B4D61417D0D94C0014AB21 /* BDBusData.m */; };
 		C1B4D61817D3C6B60014AB21 /* BDStop.m in Sources */ = {isa = PBXBuildFile; fileRef = C1B4D61717D3C6B60014AB21 /* BDStop.m */; };
+		C1B4D61B17D3C8CC0014AB21 /* BDArrivals.m in Sources */ = {isa = PBXBuildFile; fileRef = C1B4D61A17D3C8CC0014AB21 /* BDArrivals.m */; };
 		C1D0BDEF17CE950800FA976D /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D0BDE517CE950800FA976D /* FMDatabase.m */; };
 		C1D0BDF017CE950800FA976D /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D0BDE517CE950800FA976D /* FMDatabase.m */; };
 		C1D0BDF117CE950800FA976D /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D0BDE717CE950800FA976D /* FMDatabaseAdditions.m */; };
@@ -147,6 +148,8 @@
 		C1B4D61417D0D94C0014AB21 /* BDBusData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDBusData.m; sourceTree = "<group>"; };
 		C1B4D61617D3C6B60014AB21 /* BDStop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDStop.h; sourceTree = "<group>"; };
 		C1B4D61717D3C6B60014AB21 /* BDStop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDStop.m; sourceTree = "<group>"; };
+		C1B4D61917D3C8CC0014AB21 /* BDArrivals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDArrivals.h; sourceTree = "<group>"; };
+		C1B4D61A17D3C8CC0014AB21 /* BDArrivals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDArrivals.m; sourceTree = "<group>"; };
 		C1D0BDE417CE950800FA976D /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		C1D0BDE517CE950800FA976D /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		C1D0BDE617CE950800FA976D /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
@@ -340,6 +343,8 @@
 				C1B4D61417D0D94C0014AB21 /* BDBusData.m */,
 				C1B4D61617D3C6B60014AB21 /* BDStop.h */,
 				C1B4D61717D3C6B60014AB21 /* BDStop.m */,
+				C1B4D61917D3C8CC0014AB21 /* BDArrivals.h */,
+				C1B4D61A17D3C8CC0014AB21 /* BDArrivals.m */,
 			);
 			name = BusData;
 			path = BusIt/BusData;
@@ -498,6 +503,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1B4D61B17D3C8CC0014AB21 /* BDArrivals.m in Sources */,
 				C198C24417BB131B00A94F4D /* BIHelpers.m in Sources */,
 				C177FE9E17C3A83A00B2FE4F /* BNNearbyViewController.m in Sources */,
 				C1D9759717BB222F0037B005 /* BMOptions.m in Sources */,

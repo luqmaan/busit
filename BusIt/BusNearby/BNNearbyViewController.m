@@ -31,6 +31,10 @@
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if(self = [super initWithCoder:aDecoder]) {
+        BDBusData *busData = [[BDBusData alloc] init];
+        NSLog(@"busData %@", busData);
+        [busData updateDatabase];
+        NSLog(@"busData did createSchema");
         bench = [[BIRest alloc] init];
         apiData = [[NSDictionary alloc] init];
         updateInProgress = YES;
