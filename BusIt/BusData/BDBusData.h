@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
+#import "BIRest.h"
 #import "BMStop.h"
 #import "FMDatabase.h"
 #import "FMDatabaseAdditions.h"
@@ -17,7 +18,7 @@
 
 @property (nonatomic, retain) FMDatabase *database;
 
-- (void)updateDatabase;
+- (void)updateTables;
 - (NSArray *)stopsNearLocation:(CLLocationCoordinate2D)location andRadius:(CGFloat)miles;
 - (NSDictionary *)vehiclesForAgency:(NSString *)agencyId;
 

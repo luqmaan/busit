@@ -17,6 +17,9 @@
 @property BOOL offlineMode;
 
 -(NSDictionary *)restToJSON:(NSString *)jsonURL paramStr:(NSString *)paramStr;
+-(NSString *)strDataForURL:(NSString *)urlStr paramStr:(NSString *)paramStr;
+
+// One Bus Away API
 -(NSDictionary *)agencies;
 -(NSDictionary *)agency;
 -(NSDictionary *)routesForAgency;
@@ -28,6 +31,9 @@
 -(NSDictionary *)vehiclesForAgency:(NSString *)agencyId;
 -(NSDictionary *)stopsForLocationLat:(NSNumber *)lat Lon:(NSNumber *)lon;
 -(NSDictionary *)arrivalsAndDeparturesForStop:(NSString *)stopId;
+
+// Custom GFTS API
+-(NSString *)gtfsSqlForTable:(NSString *)tableName;
 
 @end
 

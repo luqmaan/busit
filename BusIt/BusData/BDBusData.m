@@ -8,17 +8,30 @@
 
 #import "BDBusData.h"
 
+@interface BDBusData() {}
+
+@property NSMutableArray *tableNames;
+@property BIRest *bench;
+
+@end
+
 @implementation BDBusData
 
-@synthesize database;
+@synthesize database, tableNames, bench;
 
 - (id)init
 {
     self = [super init];
     if (self) {
+        tableNames = [[NSMutableArray alloc] initWithObjects:@"stops", @"stop_times", @"trips", @"calendar", @"routes", @"shapes", @"calendar_dates", @"fare_attributes", @"fare_rules", nil];
+        bench = [[BIRest alloc] init];
         database = [self openDatabase];
         if ([self shouldCreateSchema]) {
             [self createSchema];
+            [self updateTables];
+        }
+        if ( 1 /* today is past the expiration data of the data stored in the sqlite */) {
+            [self updateTables];
         }
     }
     return self;
@@ -38,12 +51,7 @@
     return db;
 }
 
-- (void)updateDatabase
-{
-    [self createSchema];
-}
-
-#pragma mark - Schema
+#pragma mark - SQLite Setup
 
 - (void)dropTables
 {
@@ -59,7 +67,6 @@
 
 - (BOOL)shouldCreateSchema
 {
-    NSMutableArray *tableNames = [[NSMutableArray alloc] initWithObjects:@"stops", @"stop_times", @"trips", @"calendar", @"routes", @"shapes", @"calendar_dates", @"fare_attributes", @"fare_rules", nil];
     for (NSString *table in tableNames) {
         NSString *query = [NSString stringWithFormat:@"SELECT count(name) FROM sqlite_master WHERE type='table' AND name ='%@';", table];
         NSUInteger count = [database intForQuery:query];
@@ -94,8 +101,50 @@
     for (NSString *update in schemaArr) {
         [database executeUpdate:update];
     }
-    [self shouldCreateSchema];
 }
+
+- (void)updateTables
+{
+    [self dropTables];
+    [self createSchema];
+    for (NSString *tableName in tableNames) {
+        NSLog(@"Updating table: %@", tableName);
+        NSMutableString *csvStr = [NSMutableString stringWithString:[bench gtfsSqlForTable:tableName]];
+        NSLog(@"Downloaded data");
+        NSRange firstLineRange = [csvStr rangeOfString:@"\n"]; // position of first \n
+        firstLineRange.length = firstLineRange.location;
+        firstLineRange.location = 0;
+        NSString *firstLine = [csvStr substringWithRange:firstLineRange];
+        NSString *queryStr = [NSString stringWithFormat:@"'); INSERT INTO %@ (%@) VALUES ('", tableName, firstLine];
+        [csvStr deleteCharactersInRange:firstLineRange];
+        NSRange lastLine = NSMakeRange([csvStr length] - 1, 1);
+        [csvStr deleteCharactersInRange:lastLine];
+        [csvStr replaceOccurrencesOfString:@"'"
+                                withString:@"''"
+                                   options:NSCaseInsensitiveSearch
+                                     range:NSMakeRange(0, [csvStr length])];
+        [csvStr replaceOccurrencesOfString:@"\""
+                                withString:@"\\\""
+                                   options:NSCaseInsensitiveSearch
+                                     range:NSMakeRange(0, [csvStr length])];
+        [csvStr replaceOccurrencesOfString:@","
+                                withString:@"','"
+                                   options:NSCaseInsensitiveSearch
+                                     range:NSMakeRange(0, [csvStr length])];
+        [csvStr replaceOccurrencesOfString:@"\n"
+                                withString:queryStr
+                                   options:NSCaseInsensitiveSearch
+                                     range:NSMakeRange(0, [csvStr length])];
+        [csvStr appendString:@"');"];
+        NSString *queries = [csvStr substringFromIndex:3];
+        NSError *error;
+        NSLog(@"Prepared inserts, about to perform query");
+        [database executeBatch:queries error:&error];
+        if (error)
+            NSLog(@"%@", error);
+    }
+}
+
 
 #pragma mark - Misc. Data
 

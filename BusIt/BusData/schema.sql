@@ -58,7 +58,7 @@ CREATE TABLE shapes (
 CREATE TABLE calendar_dates (
   id integer PRIMARY KEY AUTOINCREMENT NOT NULL,                             
   service_id char(3) NOT NULL,
-  date_str integer NOT NULL,
+  date integer NOT NULL,
   exception_type integer NOT NULL
 );
 CREATE TABLE fare_attributes (

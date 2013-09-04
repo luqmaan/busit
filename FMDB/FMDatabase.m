@@ -1183,6 +1183,22 @@ void FMDBBlockSQLiteCallBackFunction(sqlite3_context *context, int argc, sqlite3
 #endif
 }
 
+- (BOOL)executeBatch:(NSString *)sql error:(NSError**)error
+{
+    char* errorOutput;
+    int responseCode = sqlite3_exec(_db, [sql UTF8String], NULL, NULL, &errorOutput);
+    
+    if (errorOutput != nil)
+    {
+        *error = [NSError errorWithDomain:[NSString stringWithUTF8String:errorOutput]
+                                     code:responseCode
+                                 userInfo:nil];
+        return false;
+    }
+    
+    return true;
+}
+
 @end
 
 
@@ -1221,7 +1237,6 @@ void FMDBBlockSQLiteCallBackFunction(sqlite3_context *context, int argc, sqlite3
 - (NSString*)description {
     return [NSString stringWithFormat:@"%@ %ld hit(s) for query %@", [super description], _useCount, _query];
 }
-
 
 @end
 

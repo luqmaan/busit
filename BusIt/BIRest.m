@@ -27,9 +27,10 @@
     return nil;
 }
 
--(NSDictionary *)restToJSON:(NSString *)jsonURL paramStr:(NSString *)paramStr
+
+-(void)fetchURL:(NSString *)urlStr paramStr:(NSString *)paramStr
 {
-    NSString *wholeURLStr = [NSString stringWithFormat:@"%@?key=%@&%@", jsonURL, kFrakkingLongAPIKey, paramStr];
+    NSString *wholeURLStr = [NSString stringWithFormat:@"%@?key=%@&%@", urlStr, kFrakkingLongAPIKey, paramStr];
     NSURL *url = [NSURL URLWithString:wholeURLStr];
     NSMutableURLRequest *req = [[NSMutableURLRequest alloc] initWithURL:url];
     
@@ -46,12 +47,25 @@
     {
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
     }
-    
+}
+
+-(NSDictionary *)restToJSON:(NSString *)jsonURL paramStr:(NSString *)paramStr
+{
+    [self fetchURL:jsonURL paramStr:paramStr];
     NSDictionary *response = [NSJSONSerialization JSONObjectWithData:self.cumulativeData options:0 error:nil];
-    NSString *strData = [[NSString alloc] initWithData:self.cumulativeData encoding:NSUTF8StringEncoding];
     [self.cumulativeData setLength:0];
     return response;
 }
+
+-(NSString *)strDataForURL:(NSString *)urlStr paramStr:(NSString *)paramStr
+{
+    [self fetchURL:urlStr paramStr:paramStr];
+    NSString *strData = [[NSString alloc] initWithData:self.cumulativeData encoding:NSUTF8StringEncoding];
+    [self.cumulativeData setLength:0];
+    return strData;
+}
+
+#pragma mark - OBA API
 
 -(NSDictionary *)agencies
 {
@@ -137,6 +151,15 @@
         urlStr = [NSMutableString stringWithString:@"http://localhost:8000/arrivals-and-departures-for-stop.json"];
     
     return [self restToJSON:urlStr paramStr:@""];
+}
+
+#pragma mark - GTFS API
+
+-(NSString *)gtfsSqlForTable:(NSString *)tableName
+{
+    NSMutableString *urlStr = [NSMutableString stringWithFormat:@"http://localhost:8000/google_transit/%@.txt", tableName];
+    NSString *data = [self strDataForURL:urlStr paramStr:@""];
+    return data;
 }
 
 #pragma mark - NSURLConnection/Data Delegates

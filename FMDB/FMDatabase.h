@@ -826,6 +826,14 @@
 
 - (void)makeFunctionNamed:(NSString*)name maximumArguments:(int)count withBlock:(void (^)(sqlite3_context *context, int argc, sqlite3_value **argv))block;
 
+/** Multiple queries in FMDB.
+ 
+ @see http://stackoverflow.com/questions/8073423/multiple-queries-not-running-in-fmdb
+ 
+ */
+
+- (BOOL)executeBatch:(NSString *)sql error:(NSError**)error;
+
 
 ///---------------------
 /// @name Date formatter
