@@ -22,16 +22,17 @@
 @property (nonatomic, retain) NSDictionary *apiData;
 @property (nonatomic, retain) CLLocationManager *locationManager;
 @property (nonatomic, retain) CLLocation *location;
+@property BDBusData *busData;
 
 @end
 
 @implementation BNNearbyViewController
 
-@synthesize apiData, bench, locationManager, location, embeddedMapView;
+@synthesize apiData, bench, locationManager, location, embeddedMapView, busData;
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if(self = [super initWithCoder:aDecoder]) {
-        BDBusData *busData = [[BDBusData alloc] init];
+        busData = [[BDBusData alloc] init];
         NSLog(@"busData %@", busData);
         bench = [[BIRest alloc] init];
         apiData = [[NSDictionary alloc] init];
@@ -101,6 +102,8 @@
     NSLog(@"Started updating api data");
     self.navigationItem.prompt = @"Found location, fetching nearby stops";
     updateInProgress = TRUE;
+    
+    [busData stopsNearLocation:location andLimit:15];
     
     dispatch_queue_t fetchAPIData = dispatch_queue_create("com.busit.stops", DISPATCH_QUEUE_SERIAL);
     

@@ -36,13 +36,14 @@
 		C198C24417BB131B00A94F4D /* BIHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = C198C24117BB131B00A94F4D /* BIHelpers.m */; };
 		C198C24517BB131B00A94F4D /* BIRest.m in Sources */ = {isa = PBXBuildFile; fileRef = C198C24317BB131B00A94F4D /* BIRest.m */; };
 		C19E604D17BB374500FB181A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C19E604C17BB374500FB181A /* QuartzCore.framework */; };
-		C1B4D60917D0D1690014AB21 /* gtfs.db in Resources */ = {isa = PBXBuildFile; fileRef = C1B4D60617D0D1690014AB21 /* gtfs.db */; };
-		C1B4D60A17D0D1690014AB21 /* gtfs.db in Resources */ = {isa = PBXBuildFile; fileRef = C1B4D60617D0D1690014AB21 /* gtfs.db */; };
 		C1B4D60D17D0D1690014AB21 /* schema.sql in Resources */ = {isa = PBXBuildFile; fileRef = C1B4D60817D0D1690014AB21 /* schema.sql */; };
 		C1B4D60E17D0D1690014AB21 /* schema.sql in Resources */ = {isa = PBXBuildFile; fileRef = C1B4D60817D0D1690014AB21 /* schema.sql */; };
 		C1B4D61517D0D94C0014AB21 /* BDBusData.m in Sources */ = {isa = PBXBuildFile; fileRef = C1B4D61417D0D94C0014AB21 /* BDBusData.m */; };
 		C1B4D61817D3C6B60014AB21 /* BDStop.m in Sources */ = {isa = PBXBuildFile; fileRef = C1B4D61717D3C6B60014AB21 /* BDStop.m */; };
 		C1B4D61B17D3C8CC0014AB21 /* BDArrivals.m in Sources */ = {isa = PBXBuildFile; fileRef = C1B4D61A17D3C8CC0014AB21 /* BDArrivals.m */; };
+		C1CEE70D17E8BF5D00C372F5 /* gtfs_tampa.db in Resources */ = {isa = PBXBuildFile; fileRef = C1CEE70C17E8BF5D00C372F5 /* gtfs_tampa.db */; };
+		C1CEE70E17E8BF5D00C372F5 /* gtfs_tampa.db in Resources */ = {isa = PBXBuildFile; fileRef = C1CEE70C17E8BF5D00C372F5 /* gtfs_tampa.db */; };
+		C1CEE70F17E8BF5D00C372F5 /* gtfs_tampa.db in Resources */ = {isa = PBXBuildFile; fileRef = C1CEE70C17E8BF5D00C372F5 /* gtfs_tampa.db */; };
 		C1D0BDEF17CE950800FA976D /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D0BDE517CE950800FA976D /* FMDatabase.m */; };
 		C1D0BDF017CE950800FA976D /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D0BDE517CE950800FA976D /* FMDatabase.m */; };
 		C1D0BDF117CE950800FA976D /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D0BDE717CE950800FA976D /* FMDatabaseAdditions.m */; };
@@ -142,7 +143,6 @@
 		C198C24217BB131B00A94F4D /* BIRest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BIRest.h; path = ../BIRest.h; sourceTree = "<group>"; };
 		C198C24317BB131B00A94F4D /* BIRest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BIRest.m; path = ../BIRest.m; sourceTree = "<group>"; };
 		C19E604C17BB374500FB181A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		C1B4D60617D0D1690014AB21 /* gtfs.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = gtfs.db; sourceTree = "<group>"; };
 		C1B4D60817D0D1690014AB21 /* schema.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = schema.sql; sourceTree = "<group>"; };
 		C1B4D61317D0D94C0014AB21 /* BDBusData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDBusData.h; sourceTree = "<group>"; };
 		C1B4D61417D0D94C0014AB21 /* BDBusData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDBusData.m; sourceTree = "<group>"; };
@@ -150,6 +150,7 @@
 		C1B4D61717D3C6B60014AB21 /* BDStop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDStop.m; sourceTree = "<group>"; };
 		C1B4D61917D3C8CC0014AB21 /* BDArrivals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDArrivals.h; sourceTree = "<group>"; };
 		C1B4D61A17D3C8CC0014AB21 /* BDArrivals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDArrivals.m; sourceTree = "<group>"; };
+		C1CEE70C17E8BF5D00C372F5 /* gtfs_tampa.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = gtfs_tampa.db; sourceTree = "<group>"; };
 		C1D0BDE417CE950800FA976D /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		C1D0BDE517CE950800FA976D /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		C1D0BDE617CE950800FA976D /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
@@ -335,7 +336,7 @@
 		C1B4D60517D0D1690014AB21 /* BusData */ = {
 			isa = PBXGroup;
 			children = (
-				C1B4D60617D0D1690014AB21 /* gtfs.db */,
+				C1CEE70C17E8BF5D00C372F5 /* gtfs_tampa.db */,
 				C1B4D60817D0D1690014AB21 /* schema.sql */,
 				C198C24217BB131B00A94F4D /* BIRest.h */,
 				C198C24317BB131B00A94F4D /* BIRest.m */,
@@ -468,11 +469,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1CEE70D17E8BF5D00C372F5 /* gtfs_tampa.db in Resources */,
 				C190D7C617BB0C96005C24F2 /* Images.xcassets in Resources */,
 				C190D7B817BB0C96005C24F2 /* InfoPlist.strings in Resources */,
 				C190D7C117BB0C96005C24F2 /* Main.storyboard in Resources */,
 				C1B4D60D17D0D1690014AB21 /* schema.sql in Resources */,
-				C1B4D60917D0D1690014AB21 /* gtfs.db in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,6 +482,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C190D7D717BB0C97005C24F2 /* InfoPlist.strings in Resources */,
+				C1CEE70E17E8BF5D00C372F5 /* gtfs_tampa.db in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,11 +490,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1CEE70F17E8BF5D00C372F5 /* gtfs_tampa.db in Resources */,
 				C1F42CB217CC586F001F2825 /* Images.xcassets in Resources */,
 				C1F42CB317CC586F001F2825 /* InfoPlist.strings in Resources */,
 				C1F42CB417CC586F001F2825 /* Main.storyboard in Resources */,
 				C1B4D60E17D0D1690014AB21 /* schema.sql in Resources */,
-				C1B4D60A17D0D1690014AB21 /* gtfs.db in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

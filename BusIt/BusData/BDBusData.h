@@ -9,17 +9,19 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 #import "BIRest.h"
-#import "BMStop.h"
+#import "BDStop.h"
 #import "FMDatabase.h"
 #import "FMDatabaseAdditions.h"
 #import "FMResultSet.h"
+
+#define DEG2RAD(degrees) (degrees * 0.01745327) // degrees * pi over 180
+
 
 @interface BDBusData : NSObject
 
 @property (nonatomic, retain) FMDatabase *database;
 
-- (void)updateTables;
-- (NSArray *)stopsNearLocation:(CLLocationCoordinate2D)location andRadius:(CGFloat)miles;
+- (NSArray *)stopsNearLocation:(CLLocation *)location andLimit:(int)limit;
 - (NSDictionary *)vehiclesForAgency:(NSString *)agencyId;
 
 @end

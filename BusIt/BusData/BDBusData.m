@@ -11,28 +11,42 @@
 @interface BDBusData() {}
 
 @property NSMutableArray *tableNames;
+@property NSMutableArray *databaseNames;
 @property BIRest *bench;
-
+@property NSString *documentsPath;
 @end
 
 @implementation BDBusData
 
-@synthesize database, tableNames, bench;
+@synthesize database, tableNames, bench, databaseNames, documentsPath;
 
 - (id)init
 {
     self = [super init];
     if (self) {
-        tableNames = [[NSMutableArray alloc] initWithObjects:@"stops", @"stop_times", @"trips", @"calendar", @"routes", @"shapes", @"calendar_dates", @"fare_attributes", @"fare_rules", nil];
+        
         bench = [[BIRest alloc] init];
-        database = [self openDatabase];
-        if ([self shouldCreateSchema]) {
-            [self createSchema];
-            [self updateTables];
+
+        // Specify the tables names and database names.
+        tableNames = [[NSMutableArray alloc] initWithObjects:@"stops", @"stop_times", @"trips", @"calendar", @"routes", @"shapes", @"calendar_dates", @"fare_attributes", @"fare_rules", nil];
+        databaseNames = [[NSMutableArray alloc] initWithObjects:@"gtfs_tampa", nil];
+        documentsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+        
+        [self copyDatabasesFromProjectToDocuments];
+        
+        // TODO: Determine which city we are working with.
+        // For now, default to Tampa.
+        NSString *dbPath = [documentsPath stringByAppendingPathComponent:@"gtfs_tampa.db"];
+        database = [FMDatabase databaseWithPath:dbPath];
+        [database open];
+        
+        // Update the cities database if needed
+        if ([self shouldUpdateDatabase]) {
+            [self downloadDatabase];
         }
-        if ( 1 /* today is past the expiration data of the data stored in the sqlite */) {
-            [self updateTables];
-        }
+        
+        [self addDistanceFunction];
+        
     }
     return self;
 }
@@ -42,114 +56,86 @@
     [database close];
 }
 
-- (FMDatabase *)openDatabase
-{
-    NSString *docsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-    NSString *dbPath = [docsPath stringByAppendingPathComponent:@"gtfs.db"];
-    FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
-    [db open];
-    return db;
-}
+#pragma mark - Database Updates
 
-#pragma mark - SQLite Setup
-
-- (void)dropTables
+// Add the databases to the Document's directory.
+// It isn't necessary to check if every cities data is up to date; the user only cares about their own city.
+- (void)copyDatabasesFromProjectToDocuments
 {
-    [database executeUpdate:@"PRAGMA writable_schema = 1;"];
-    [database executeUpdate:@"delete from sqlite_master where type = 'table';"];
-    [database executeUpdate:@"PRAGMA writable_schema = 0;"];
-    [database executeUpdate:@"VACUUM"];
-    FMResultSet *rs = [database executeQuery:@"PRAGMA INTEGRITY_CHECK;"];
-    while (rs.next) {
-        NSLog(@"Integrity check: %@", rs.resultDictionary);
-    }
-}
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
 
-- (BOOL)shouldCreateSchema
-{
-    for (NSString *table in tableNames) {
-        NSString *query = [NSString stringWithFormat:@"SELECT count(name) FROM sqlite_master WHERE type='table' AND name ='%@';", table];
-        NSUInteger count = [database intForQuery:query];
-        if (count == 0) {
-            NSLog(@"Need to update schema. Missing table %@", table);
-            return YES;
+    for (NSString *databaseName in databaseNames) {
+        // The destination path of the database
+        NSString *dbPath = [documentsPath stringByAppendingPathComponent:databaseName];
+        dbPath = [NSString stringWithFormat:@"%@.db", dbPath];
+        
+        // Check if the db already exists in the Documents folder
+        if (![fileManager fileExistsAtPath:dbPath]) {
+            // Copy the db from the Project directory to the Documents directory
+            NSString *sourcePath = [[NSBundle mainBundle] pathForResource:databaseName ofType:@"db"];
+            NSError *error;
+            [fileManager copyItemAtPath:sourcePath toPath:dbPath error:&error];
+            if (error) {
+                NSLog(@"Error copy file from project directory to documents directory: %@", error);
+            }
         }
     }
+}
+
+- (BOOL)shouldUpdateDatabase
+{
+    // TODO: Should return YES when today is past the expiration data of the data
+    // How do you find the expiration date?
     return NO;
 }
 
-- (void)logSchema
+- (void)downloadDatabase
 {
-    FMResultSet *results = [database executeQuery:@"SELECT rootpage, name, sql FROM sqlite_master ORDER BY name;"];
-    NSLog(@"tables: %@ %@ %d %@", results, [results resultDictionary], results.columnCount, [results columnNameForIndex:0]);
-    for (id column in [results columnNameToIndexMap]) {
-        NSLog(@"col: %@", column);
-    }
-    while ([results next]) {
-        NSLog(@"%@ %@ %@", results[1], results[0], results[2]);
-    }
+    // TODO
+    return;
 }
 
-- (void)createSchema
+// Adds a distance function to the database
+- (void)addDistanceFunction
 {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"schema" ofType:@"sql"];
-    NSString *schemaStr = [NSString stringWithContentsOfFile:path
-                                                    encoding:NSUTF8StringEncoding
-                                                       error:NULL];
-    schemaStr = [schemaStr stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-    NSArray* schemaArr = [schemaStr componentsSeparatedByString:@";"];
-    for (NSString *update in schemaArr) {
-        [database executeUpdate:update];
-    }
-}
-
-- (void)updateTables
-{
-    [self dropTables];
-    [self createSchema];
-    for (NSString *tableName in tableNames) {
-        NSLog(@"Updating table: %@", tableName);
-        NSMutableString *csvStr = [NSMutableString stringWithString:[bench gtfsSqlForTable:tableName]];
-        NSLog(@"Downloaded data");
-        NSRange firstLineRange = [csvStr rangeOfString:@"\n"]; // position of first \n
-        firstLineRange.length = firstLineRange.location;
-        firstLineRange.location = 0;
-        NSString *firstLine = [csvStr substringWithRange:firstLineRange];
-        NSString *queryStr = [NSString stringWithFormat:@"'); INSERT INTO %@ (%@) VALUES ('", tableName, firstLine];
-        [csvStr deleteCharactersInRange:firstLineRange];
-        NSRange lastLine = NSMakeRange([csvStr length] - 1, 1);
-        [csvStr deleteCharactersInRange:lastLine];
-        [csvStr replaceOccurrencesOfString:@"'"
-                                withString:@"''"
-                                   options:NSCaseInsensitiveSearch
-                                     range:NSMakeRange(0, [csvStr length])];
-        [csvStr replaceOccurrencesOfString:@"\""
-                                withString:@"\\\""
-                                   options:NSCaseInsensitiveSearch
-                                     range:NSMakeRange(0, [csvStr length])];
-        [csvStr replaceOccurrencesOfString:@","
-                                withString:@"','"
-                                   options:NSCaseInsensitiveSearch
-                                     range:NSMakeRange(0, [csvStr length])];
-        [csvStr replaceOccurrencesOfString:@"\n"
-                                withString:queryStr
-                                   options:NSCaseInsensitiveSearch
-                                     range:NSMakeRange(0, [csvStr length])];
-        [csvStr appendString:@"');"];
-        NSString *queries = [csvStr substringFromIndex:3];
-        NSError *error;
-        NSLog(@"Prepared inserts, about to perform query");
-        [database executeBatch:queries error:&error];
-        if (error)
-            NSLog(@"%@", error);
-    }
+    // See http://daveaddey.com/?p=71
+    [database makeFunctionNamed:@"distance" maximumArguments:4 withBlock:^(sqlite3_context *context, int argc, sqlite3_value **argv) {
+        // check that we have four arguments (lat1, lon1, lat2, lon2)
+        assert(argc == 4);
+        // check that all four arguments are non-null
+        if (sqlite3_value_type(argv[0]) == SQLITE_NULL || sqlite3_value_type(argv[1]) == SQLITE_NULL || sqlite3_value_type(argv[2]) == SQLITE_NULL || sqlite3_value_type(argv[3]) == SQLITE_NULL) {
+            sqlite3_result_null(context);
+            return;
+        }
+        // get the four argument values
+        double lat1 = sqlite3_value_double(argv[0]);
+        double lon1 = sqlite3_value_double(argv[1]);
+        double lat2 = sqlite3_value_double(argv[2]);
+        double lon2 = sqlite3_value_double(argv[3]);
+        // convert lat1 and lat2 into radians now, to avoid doing it twice below
+        double lat1rad = DEG2RAD(lat1);
+        double lat2rad = DEG2RAD(lat2);
+        // apply the spherical law of cosines to our latitudes and longitudes, and set the result appropriately
+        // 6378.1 is the approximate radius of the earth in kilometres
+        sqlite3_result_double(context, acos(sin(lat1rad) * sin(lat2rad) + cos(lat1rad) * cos(lat2rad) * cos(DEG2RAD(lon2) - DEG2RAD(lon1))) * 6378.1);
+    }];
 }
 
 
 #pragma mark - Misc. Data
 
-- (NSArray *)stopsNearLocation:(CLLocationCoordinate2D)location andRadius:(CGFloat)miles
+// Find stops nearby the location that are within the given distance.
+- (NSArray *)stopsNearLocation:(CLLocation *)location andLimit:(int)limit
 {
+    FMResultSet *nearby = [database executeQueryWithFormat:@"SELECT *, distance(stop_lat, stop_lon, %f, %f) as \"distance\" FROM stops ORDER BY distance(stop_lat, stop_lon, %f, %f) LIMIT %d", location.coordinate.latitude, location.coordinate.longitude, location.coordinate.latitude, location.coordinate.longitude, limit];
+    NSLog(@"nearby %@", nearby);
+    NSMutableArray *stops = [[NSMutableArray alloc] init];
+    while ([nearby next]) {
+        NSLog(@"result: %@ ", [nearby resultDictionary]);
+        
+    }
+    
     return nil;
 }
 
