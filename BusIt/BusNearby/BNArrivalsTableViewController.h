@@ -11,10 +11,11 @@
 #import <QuartzCore/QuartzCore.h>
 #import "BIRest.h"
 #import "BIHelpers.h"
+#import "BDStop.h"
 
 @interface BNArrivalsTableViewController : UITableViewController
 
-@property (weak, nonatomic) NSDictionary *stopData;
+@property (weak, nonatomic) NSDictionary *stop;
 
 - (IBAction)dismissView:(id)sender;
 - (IBAction)refresh:(id)sender;

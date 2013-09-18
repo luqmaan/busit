@@ -8,10 +8,7 @@
 
 #import "BNArrivalsTableViewController.h"
 
-@interface BNArrivalsTableViewController () {
-        NSDictionary *apiData;
-        BIRest *bench;
-    }
+@interface BNArrivalsTableViewController ()
     @property NSDictionary *apiData;
     @property BIRest *bench;
 @end
@@ -21,7 +18,7 @@
         BOOL updateInProgress;
 }
 
-@synthesize apiData, bench, stopData;
+@synthesize apiData, bench, stop;
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     NSLog(@"init with coder");
@@ -71,9 +68,6 @@
     updateInProgress = TRUE;
     
     dispatch_async(fetchAPIData, ^{
-        // wait for stop data to be defined by the segue
-        while (!stopData) ;
-        apiData = [bench arrivalsAndDeparturesForStop:stopData[@"id"]];
         dispatch_async(dispatch_get_main_queue(), ^ {
             updateInProgress = FALSE;
             [self.tableView reloadData];

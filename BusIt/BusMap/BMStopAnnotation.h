@@ -9,14 +9,16 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
+#import "BDStop.h"
 
-@interface BMStop : NSObject <MKAnnotation>
+@interface BMStopAnnotation : NSObject <MKAnnotation>
 
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 @property (nonatomic, readonly, copy) NSString *title;
 @property (nonatomic, readonly, copy) NSString *subtitle;
 @property (nonatomic, readonly) NSString *identifier;
+@property (nonatomic, assign) double hue;
 
--(id)initWithStopData:(NSDictionary *)stopData;
+-(id)initWithStop:(BDStop *)stop;
 
 @end

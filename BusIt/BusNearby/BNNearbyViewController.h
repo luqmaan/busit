@@ -8,10 +8,10 @@
 
 #import <CoreLocation/CoreLocation.h>
 #import "BIHelpers.h"
-#import "BIRest.h"
 #import "BNArrivalsTableViewController.h"
 #import "BMEmbeddedMapViewController.h"
 #import "BDBusData.h"
+#import "BDStop.h"
 
 @interface BNNearbyViewController : UITableViewController  <CLLocationManagerDelegate>
 

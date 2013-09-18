@@ -32,18 +32,11 @@
         databaseNames = [[NSMutableArray alloc] initWithObjects:@"gtfs_tampa", nil];
         documentsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
         
-        [self copyDatabasesFromProjectToDocuments];
-        
         // TODO: Determine which city we are working with.
         // For now, default to Tampa.
         NSString *dbPath = [documentsPath stringByAppendingPathComponent:@"gtfs_tampa.db"];
         database = [FMDatabase databaseWithPath:dbPath];
         [database open];
-        
-        // Update the cities database if needed
-        if ([self shouldUpdateDatabase]) {
-            [self downloadDatabase];
-        }
         
         [self addDistanceFunction];
         
@@ -57,6 +50,16 @@
 }
 
 #pragma mark - Database Updates
+
+// Call this the first time a BDData class is created.
+- (void) checkDatabases {
+    [self copyDatabasesFromProjectToDocuments];
+    
+    // Update the cities database if needed
+    if ([self shouldUpdateDatabase]) {
+        [self downloadDatabase];
+    }
+}
 
 // Add the databases to the Document's directory.
 // It isn't necessary to check if every cities data is up to date; the user only cares about their own city.
@@ -128,15 +131,17 @@
 // Find stops nearby the location that are within the given distance.
 - (NSArray *)stopsNearLocation:(CLLocation *)location andLimit:(int)limit
 {
-    FMResultSet *nearby = [database executeQueryWithFormat:@"SELECT *, distance(stop_lat, stop_lon, %f, %f) as \"distance\" FROM stops ORDER BY distance(stop_lat, stop_lon, %f, %f) LIMIT %d", location.coordinate.latitude, location.coordinate.longitude, location.coordinate.latitude, location.coordinate.longitude, limit];
-    NSLog(@"nearby %@", nearby);
+    // Query for nearby stops
+    FMResultSet *rs = [database executeQueryWithFormat:@"SELECT *, distance(stop_lat, stop_lon, %f, %f) as \"distance\" FROM stops ORDER BY distance(stop_lat, stop_lon, %f, %f) LIMIT %d", location.coordinate.latitude, location.coordinate.longitude, location.coordinate.latitude, location.coordinate.longitude, limit];
+    
     NSMutableArray *stops = [[NSMutableArray alloc] init];
-    while ([nearby next]) {
-        NSLog(@"result: %@ ", [nearby resultDictionary]);
-        
+    
+    while ([rs next]) {
+        BDStop *stop = [[BDStop alloc] initWithGtfsResult:[rs resultDictionary]];
+        [stops addObject:stop];
     }
     
-    return nil;
+    return [stops copy];
 }
 
 - (NSDictionary *)vehiclesForAgency:(NSString *)agencyId;

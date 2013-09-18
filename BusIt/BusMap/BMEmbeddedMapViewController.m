@@ -7,9 +7,6 @@
 //
 
 #import "BMEmbeddedMapViewController.h"
-#import "BMStopAnnotationView.h"
-#import "BMStop.h"
-#import "BNNearbyViewController.h"
 
 @interface BMEmbeddedMapViewController ()
 
@@ -31,22 +28,26 @@
 
 }
 
-- (void)addStopsToMap:(NSDictionary *)apiData
+- (void)addStopsToMap:(NSArray *)stops
 {
     [self initMapView];
     // Only add annotations to the map if they are not already present.
     // It is unnecessary to remove annotations, as stops do not move or update.
     NSMutableArray *existingAnnotations = [[NSMutableArray alloc] init];
+    
+    // Find the existing annotation and mark their identifiers.
     for (id annotation in mapView.annotations) {
-        if ([annotation isKindOfClass:[BMStop class]])
+        if ([annotation isKindOfClass:[BMStopAnnotation class]])
         {
-            BMStop *stop = (BMStop *)annotation;
+            BMStopAnnotation *stop = (BMStopAnnotation *)annotation;
             [existingAnnotations addObject:stop.identifier];
         }
     }
-    for (NSDictionary *stopData in apiData[@"data"][@"list"]) {
-        if (! [existingAnnotations containsObject:stopData[@"code"]]) {
-            BMStop *annotation = [[BMStop alloc] initWithStopData:stopData];
+    
+    // Add the stops with new identifiers.
+    for (BDStop *stop in stops) {
+        if (! [existingAnnotations containsObject:stop.code]) {
+            BMStopAnnotation *annotation = [[BMStopAnnotation alloc] initWithStop:stop];
             [mapView addAnnotation:annotation];
         }
     }
@@ -83,28 +84,21 @@
 
 - (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
-    NSLog(@"annotation: %@", annotation);
     if([annotation isKindOfClass:[MKUserLocation class]]){
         return nil;
     }
     
-    if([annotation isKindOfClass:[BMStop class]]){
-        BMStop *stop = (BMStop *)annotation;
-        NSString *annotationViewID = [NSString stringWithFormat:@"StopAnnotationView%@", stop.identifier];
-        
+    if([annotation isKindOfClass:[BMStopAnnotation class]]){
+        BMStopAnnotation *stopAnnotation = (BMStopAnnotation *)annotation;
+        NSString *annotationViewID = [NSString stringWithFormat:@"StopAnnotationView%@", stopAnnotation.identifier];
         MKAnnotationView *customPinView = [theMapView dequeueReusableAnnotationViewWithIdentifier:annotationViewID];
         
-        if (! customPinView) {
-            NSLog(@"Did not deque. New type of pin: %@", annotationViewID);
-            customPinView = [[BMStopAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:annotationViewID];
+        if (!customPinView) {
+            customPinView = [[BMStopAnnotationView alloc] initWithAnnotation:stopAnnotation reuseIdentifier:annotationViewID];
             [customPinView setCanShowCallout:YES];
             UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-            double hue = [BIHelpers hueForStop:[stop.identifier intValue]];
-            rightButton.tintColor = [UIColor colorWithHue:hue saturation:1 brightness:0.7 alpha:1];
+            rightButton.tintColor = [UIColor colorWithHue:stopAnnotation.hue saturation:1 brightness:0.7 alpha:1];
             customPinView.rightCalloutAccessoryView = rightButton;
-        }
-        else {
-            NSLog(@"Did deque.");
         }
         
         return customPinView;
@@ -119,7 +113,7 @@
 {
     if ([view isKindOfClass:[BMStopAnnotationView class]]) {
         BNNearbyViewController *parent = (BNNearbyViewController *)[self parentViewController];
-        BMStop *stop = (BMStop *)view.annotation;
+        BMStopAnnotation *stop = (BMStopAnnotation *)view.annotation;
         [parent performSegueForMapViewWithStop:stop.identifier];
     }
 }
