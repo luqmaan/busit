@@ -10,11 +10,13 @@
 
 @interface BMEmbeddedMapViewController ()
 
+@property MKUserLocation *userLocation;
+
 @end
 
 @implementation BMEmbeddedMapViewController
 
-@synthesize mapView;
+@synthesize mapView, userLocation;
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if(self = [super initWithCoder:aDecoder]) {
@@ -42,6 +44,7 @@
             BMStopAnnotation *stop = (BMStopAnnotation *)annotation;
             [existingAnnotations addObject:stop.identifier];
         }
+//        [mapView removeAnnotations:mapView.annotations];
     }
     
     // Add the stops with new identifiers.
@@ -154,24 +157,28 @@
 //    [mapView setRegion:mapRegion animated: YES];
 }
 
-- (void)mapView:(MKMapView *)map didUpdateUserLocation:(MKUserLocation *)userLocation
+- (void)mapView:(MKMapView *)map didUpdateUserLocation:(MKUserLocation *)newUserLocation
 {
-    [self zoomToFitAnnotations];
-    return ;
+//    [self zoomToFitAnnotations];
     // zoom into users location once
-    static BOOL didZoomIn = FALSE;
+    static BOOL didZoomIn;
+    userLocation = newUserLocation;
+    
     if (!didZoomIn) {
         didZoomIn = TRUE;
-        CLLocationAccuracy accuracy = userLocation.location.horizontalAccuracy;
-        if (accuracy > 0) {
-            MKCoordinateRegion mapRegion;
-            mapRegion.center = map.userLocation.coordinate;
-            mapRegion.span.latitudeDelta = 0.015;
-            mapRegion.span.longitudeDelta = 0.015;
-            [map setRegion:mapRegion animated: YES];
-        }
+        [self zoomToUserLocation:nil];
     }
 }
 
+- (IBAction)zoomToUserLocation:(id)sender {
+    CLLocationAccuracy accuracy = userLocation.location.horizontalAccuracy;
+    if (accuracy > 0) {
+        MKCoordinateRegion mapRegion;
+        mapRegion.center = mapView.userLocation.coordinate;
+        mapRegion.span.latitudeDelta = 0.0075;
+        mapRegion.span.longitudeDelta = 0.0075;
+        [mapView setRegion:mapRegion animated: YES];
+    }
+}
 
 @end

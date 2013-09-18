@@ -23,4 +23,6 @@
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
+- (IBAction)zoomToUserLocation:(id)sender;
+
 @end

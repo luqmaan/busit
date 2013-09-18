@@ -101,7 +101,7 @@
     dispatch_queue_t fetchAPIData = dispatch_queue_create("com.busit.stops", DISPATCH_QUEUE_SERIAL);
     
     dispatch_async(fetchAPIData, ^{
-        stops = [busData stopsNearLocation:location andLimit:25];
+        stops = [busData stopsNearLocation:location andLimit:200];
         dispatch_async(dispatch_get_main_queue(), ^ {
             updateInProgress = FALSE;
             [self.tableView reloadData];
@@ -177,6 +177,7 @@
     
     UILabel *stopId = (UILabel *)[cell viewWithTag:1];
     UILabel *stopName = (UILabel *)[cell viewWithTag:2];
+    UILabel *distance = (UILabel *)[cell viewWithTag:3];
     
     if (updateInProgress) {
         NSLog(@"Called cell for row at indexpath, but update is in progress");
@@ -195,6 +196,8 @@
     stopId.layer.borderColor = stopColor.CGColor;
     stopId.layer.borderWidth = 1;
     stopId.layer.cornerRadius = 3;
+    
+    distance.text = [NSString stringWithFormat:@"%.02fmi", [stop.distance floatValue]];
     
     return cell;
 }
