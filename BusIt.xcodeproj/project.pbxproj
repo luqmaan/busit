@@ -40,7 +40,7 @@
 		C1B4D60E17D0D1690014AB21 /* schema.sql in Resources */ = {isa = PBXBuildFile; fileRef = C1B4D60817D0D1690014AB21 /* schema.sql */; };
 		C1B4D61517D0D94C0014AB21 /* BDBusData.m in Sources */ = {isa = PBXBuildFile; fileRef = C1B4D61417D0D94C0014AB21 /* BDBusData.m */; };
 		C1B4D61817D3C6B60014AB21 /* BDStop.m in Sources */ = {isa = PBXBuildFile; fileRef = C1B4D61717D3C6B60014AB21 /* BDStop.m */; };
-		C1B4D61B17D3C8CC0014AB21 /* BDArrivals.m in Sources */ = {isa = PBXBuildFile; fileRef = C1B4D61A17D3C8CC0014AB21 /* BDArrivals.m */; };
+		C1B4D61B17D3C8CC0014AB21 /* BDArrival.m in Sources */ = {isa = PBXBuildFile; fileRef = C1B4D61A17D3C8CC0014AB21 /* BDArrival.m */; };
 		C1CEE70D17E8BF5D00C372F5 /* gtfs_tampa.db in Resources */ = {isa = PBXBuildFile; fileRef = C1CEE70C17E8BF5D00C372F5 /* gtfs_tampa.db */; };
 		C1CEE70E17E8BF5D00C372F5 /* gtfs_tampa.db in Resources */ = {isa = PBXBuildFile; fileRef = C1CEE70C17E8BF5D00C372F5 /* gtfs_tampa.db */; };
 		C1CEE70F17E8BF5D00C372F5 /* gtfs_tampa.db in Resources */ = {isa = PBXBuildFile; fileRef = C1CEE70C17E8BF5D00C372F5 /* gtfs_tampa.db */; };
@@ -148,8 +148,8 @@
 		C1B4D61417D0D94C0014AB21 /* BDBusData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDBusData.m; sourceTree = "<group>"; };
 		C1B4D61617D3C6B60014AB21 /* BDStop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDStop.h; sourceTree = "<group>"; };
 		C1B4D61717D3C6B60014AB21 /* BDStop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDStop.m; sourceTree = "<group>"; };
-		C1B4D61917D3C8CC0014AB21 /* BDArrivals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDArrivals.h; sourceTree = "<group>"; };
-		C1B4D61A17D3C8CC0014AB21 /* BDArrivals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDArrivals.m; sourceTree = "<group>"; };
+		C1B4D61917D3C8CC0014AB21 /* BDArrival.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDArrival.h; sourceTree = "<group>"; };
+		C1B4D61A17D3C8CC0014AB21 /* BDArrival.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDArrival.m; sourceTree = "<group>"; };
 		C1CEE70C17E8BF5D00C372F5 /* gtfs_tampa.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = gtfs_tampa.db; sourceTree = "<group>"; };
 		C1D0BDE417CE950800FA976D /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		C1D0BDE517CE950800FA976D /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
@@ -207,7 +207,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C177FE9717C3A83A00B2FE4F /* BusNearby */ = {
+		C177FE9717C3A83A00B2FE4F /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				C177FE9817C3A83A00B2FE4F /* BNArrivalsTableViewController.h */,
@@ -215,7 +215,7 @@
 				C177FE9A17C3A83A00B2FE4F /* BNNearbyViewController.h */,
 				C177FE9B17C3A83A00B2FE4F /* BNNearbyViewController.m */,
 			);
-			name = BusNearby;
+			name = Views;
 			path = BusIt/BusNearby;
 			sourceTree = "<group>";
 		};
@@ -223,7 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				C1B4D60517D0D1690014AB21 /* BusData */,
-				C177FE9717C3A83A00B2FE4F /* BusNearby */,
+				C177FE9717C3A83A00B2FE4F /* Views */,
 				C198C22C17BB11D900A94F4D /* BusMap */,
 				C190D7B317BB0C96005C24F2 /* BusIt */,
 				C190D7D217BB0C97005C24F2 /* BusItTests */,
@@ -344,8 +344,8 @@
 				C1B4D61417D0D94C0014AB21 /* BDBusData.m */,
 				C1B4D61617D3C6B60014AB21 /* BDStop.h */,
 				C1B4D61717D3C6B60014AB21 /* BDStop.m */,
-				C1B4D61917D3C8CC0014AB21 /* BDArrivals.h */,
-				C1B4D61A17D3C8CC0014AB21 /* BDArrivals.m */,
+				C1B4D61917D3C8CC0014AB21 /* BDArrival.h */,
+				C1B4D61A17D3C8CC0014AB21 /* BDArrival.m */,
 			);
 			name = BusData;
 			path = BusIt/BusData;
@@ -505,7 +505,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1B4D61B17D3C8CC0014AB21 /* BDArrivals.m in Sources */,
+				C1B4D61B17D3C8CC0014AB21 /* BDArrival.m in Sources */,
 				C198C24417BB131B00A94F4D /* BIHelpers.m in Sources */,
 				C177FE9E17C3A83A00B2FE4F /* BNNearbyViewController.m in Sources */,
 				C1D9759717BB222F0037B005 /* BMOptions.m in Sources */,

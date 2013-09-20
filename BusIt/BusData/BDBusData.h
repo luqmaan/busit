@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 #import "BIRest.h"
-#import "BDStop.h"
 #import "FMDatabase.h"
 #import "FMDatabaseAdditions.h"
 #import "FMResultSet.h"
@@ -19,7 +18,7 @@
 
 @interface BDBusData : NSObject
 
-@property (nonatomic, retain) FMDatabase *database;
+@property FMDatabase *database;
 
 - (NSArray *)stopsNearLocation:(CLLocation *)location andLimit:(int)limit;
 - (NSDictionary *)vehiclesForAgency:(NSString *)agencyId;

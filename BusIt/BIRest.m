@@ -153,15 +153,6 @@
     return [self restToJSON:urlStr paramStr:@""];
 }
 
-#pragma mark - GTFS API
-
--(NSString *)gtfsSqlForTable:(NSString *)tableName
-{
-    NSMutableString *urlStr = [NSMutableString stringWithFormat:@"http://localhost:8000/google_transit/%@.txt", tableName];
-    NSString *data = [self strDataForURL:urlStr paramStr:@""];
-    return data;
-}
-
 #pragma mark - NSURLConnection/Data Delegates
 
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response

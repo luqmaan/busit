@@ -7,23 +7,29 @@
 //
 
 #import "BDBusData.h"
+#import "BDStop.h"
 
 @interface BDBusData() {}
 
 @property NSMutableArray *tableNames;
 @property NSMutableArray *databaseNames;
-@property BIRest *bench;
 @property NSString *documentsPath;
 @end
 
 @implementation BDBusData
 
-@synthesize database, tableNames, bench, databaseNames, documentsPath;
+@synthesize database, tableNames, databaseNames, documentsPath;
 
 - (id)init
 {
     self = [super init];
     if (self) {
+        
+        static BOOL firstInstanceOfClass = YES;
+        if (firstInstanceOfClass) {
+            [self checkDatabases];
+            firstInstanceOfClass = NO;
+        }
         
         bench = [[BIRest alloc] init];
 
@@ -53,6 +59,7 @@
 
 // Call this the first time a BDData class is created.
 - (void) checkDatabases {
+    NSLog(@"Checking databases.");
     [self copyDatabasesFromProjectToDocuments];
     
     // Update the cities database if needed
@@ -65,7 +72,6 @@
 // It isn't necessary to check if every cities data is up to date; the user only cares about their own city.
 - (void)copyDatabasesFromProjectToDocuments
 {
-    
     NSFileManager *fileManager = [NSFileManager defaultManager];
 
     for (NSString *databaseName in databaseNames) {
@@ -148,5 +154,7 @@
 {
     return nil;
 }
+
+#pragma mark - Detailed Data
 
 @end

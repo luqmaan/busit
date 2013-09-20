@@ -15,7 +15,7 @@
 
 @interface BNArrivalsTableViewController : UITableViewController
 
-@property (weak, nonatomic) NSDictionary *stop;
+@property (weak, nonatomic) BDStop *stop;
 
 - (IBAction)dismissView:(id)sender;
 - (IBAction)refresh:(id)sender;

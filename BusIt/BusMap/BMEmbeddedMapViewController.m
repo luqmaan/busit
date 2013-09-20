@@ -33,26 +33,13 @@
 - (void)addStopsToMap:(NSArray *)stops
 {
     [self initMapView];
-    // Only add annotations to the map if they are not already present.
-    // It is unnecessary to remove annotations, as stops do not move or update.
-    NSMutableArray *existingAnnotations = [[NSMutableArray alloc] init];
     
-    // Find the existing annotation and mark their identifiers.
-    for (id annotation in mapView.annotations) {
-        if ([annotation isKindOfClass:[BMStopAnnotation class]])
-        {
-            BMStopAnnotation *stop = (BMStopAnnotation *)annotation;
-            [existingAnnotations addObject:stop.identifier];
-        }
-//        [mapView removeAnnotations:mapView.annotations];
-    }
-    
+    [mapView removeAnnotations:mapView.annotations];
+
     // Add the stops with new identifiers.
     for (BDStop *stop in stops) {
-        if (! [existingAnnotations containsObject:stop.code]) {
-            BMStopAnnotation *annotation = [[BMStopAnnotation alloc] initWithStop:stop];
-            [mapView addAnnotation:annotation];
-        }
+        BMStopAnnotation *annotation = [[BMStopAnnotation alloc] initWithStop:stop];
+        [mapView addAnnotation:annotation];
     }
 }
 

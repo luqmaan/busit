@@ -10,7 +10,7 @@
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import "BDBusData.h"
-#import "BDArrivals.h"
+#import "BDArrival.h"
 
 @interface BDStop : NSObject {
 }
@@ -24,13 +24,14 @@
 @property (nonatomic, retain) NSNumber *locationType;
 @property (nonatomic, retain) NSString *wheelChairBoarding;
 @property (nonatomic, retain) NSArray *routeIds; // array of BDRoutes
-@property (nonatomic, retain) BDArrivals *arrivals;
+@property (nonatomic, retain) NSMutableArray *arrivals;
 @property (nonatomic, retain) NSNumber *distance;
 @property (nonatomic, assign) double hue;
 
 //-(BDStop *)initWithCode:(NSNumber *)code;
 //-(BDStop *)initWithObaId:(NSNumber *)obaId;
 //-(BDStop *)initWithGtfsId:(NSNumber *)gtfsId;
--(BDStop *)initWithGtfsResult:(NSDictionary *)resultDict;
+- (BDStop *)initWithGtfsResult:(NSDictionary *)resultDict;
+- (void)fetchArrivalsAndPerformCallback:(void(^)(void))completion;
 
 @end

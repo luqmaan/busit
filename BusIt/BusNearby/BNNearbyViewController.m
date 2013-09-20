@@ -49,11 +49,11 @@
 }
 
 - (IBAction)refreshBtnPress:(id)sender {
-    [self startStandardUpdates];
+    // Find the center of the mapView and request coordinates within that region.
+    [self updateToMapCenter];
 }
 
-
-#pragma mark - Location & API
+#pragma mark - Location
 
 - (void)startStandardUpdates
 {
@@ -91,10 +91,12 @@
     NSLog(@"locationManagerdidFailWithError: %@", error);
 }
 
+# pragma mark - Data/API
+
 - (void)updateAPIData
 {
     NSLog(@"Started updating api data");
-    self.navigationItem.prompt = @"Found location, fetching nearby stops";
+    self.navigationItem.prompt = @"Finding stops";
     updateInProgress = TRUE;
     
     
@@ -112,6 +114,13 @@
 }
 
 # pragma mark - Map View
+
+- (void)updateToMapCenter
+{
+    CLLocationCoordinate2D center = [[embeddedMapView mapView] centerCoordinate];
+    location = [[CLLocation alloc] initWithLatitude:center.latitude longitude:center.longitude];
+    [self updateAPIData];
+}
 
 - (void)updateMapView
 {
