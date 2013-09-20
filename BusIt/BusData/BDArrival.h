@@ -16,13 +16,15 @@
 @property NSString *obaTripId;
 @property NSString *routeId;
 @property NSString *vehicleId;
-@property NSNumber *pickup_type;
-@property NSNumber *drop_off_type;
-@property NSDate *scheduledArrivalTime;
+@property NSString *scheduledArrivalTime;
 @property NSDate *scheduledDepartureTime;
 @property NSDate *predictedTime;
 @property NSDate *updatedTime;
 @property NSArray *vehicles;
+@property NSString *direction;
+@property NSString *tripHeadsign;
+@property NSNumber *serviceId;
+@property NSNumber *shapeId;
 
 - (id)initWithGtfsResult:(NSDictionary *)resultDict;
 

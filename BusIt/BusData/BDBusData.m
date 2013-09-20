@@ -25,22 +25,21 @@
     self = [super init];
     if (self) {
         
+        // Specify the tables names and database names.
+        tableNames = [[NSMutableArray alloc] initWithObjects:@"stops", @"stop_times", @"trips", @"calendar", @"routes", @"shapes", @"calendar_dates", @"fare_attributes", @"fare_rules", nil];
+        databaseNames = [[NSMutableArray alloc] initWithObjects:@"gtfs_tampa", nil];
+        documentsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+        
         static BOOL firstInstanceOfClass = YES;
         if (firstInstanceOfClass) {
             [self checkDatabases];
             firstInstanceOfClass = NO;
         }
         
-        bench = [[BIRest alloc] init];
-
-        // Specify the tables names and database names.
-        tableNames = [[NSMutableArray alloc] initWithObjects:@"stops", @"stop_times", @"trips", @"calendar", @"routes", @"shapes", @"calendar_dates", @"fare_attributes", @"fare_rules", nil];
-        databaseNames = [[NSMutableArray alloc] initWithObjects:@"gtfs_tampa", nil];
-        documentsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-        
         // TODO: Determine which city we are working with.
         // For now, default to Tampa.
-        NSString *dbPath = [documentsPath stringByAppendingPathComponent:@"gtfs_tampa.db"];
+        NSString *dbPath = [documentsPath stringByAppendingPathComponent:databaseNames[0]];
+        dbPath = [NSString stringWithFormat:@"%@.db", dbPath];
         database = [FMDatabase databaseWithPath:dbPath];
         [database open];
         
@@ -58,22 +57,35 @@
 #pragma mark - Database Updates
 
 // Call this the first time a BDData class is created.
-- (void) checkDatabases {
+- (void)checkDatabases {
     NSLog(@"Checking databases.");
     [self copyDatabasesFromProjectToDocuments];
-    
     // Update the cities database if needed
     if ([self shouldUpdateDatabase]) {
         [self downloadDatabase];
     }
 }
 
-// Add the databases to the Document's directory.
+- (void)deleteAllDatabases {
+    for (NSString *databaseName in databaseNames) {
+        // The destination path of the database
+        NSString *dbPath = [documentsPath stringByAppendingPathComponent:databaseName];
+        dbPath = [NSString stringWithFormat:@"%@.db", dbPath];
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSError *error;
+        [fileManager removeItemAtPath:dbPath error:&error];
+        if (error) {
+            NSLog(@"Error removing database at path %@ : %@", dbPath, error);
+        }
+    }
+}
+
+// Add the databases to the Documents directory.
 // It isn't necessary to check if every cities data is up to date; the user only cares about their own city.
 - (void)copyDatabasesFromProjectToDocuments
 {
+    NSLog(@"Copying databases from project to documents, if needed.");
     NSFileManager *fileManager = [NSFileManager defaultManager];
-
     for (NSString *databaseName in databaseNames) {
         // The destination path of the database
         NSString *dbPath = [documentsPath stringByAppendingPathComponent:databaseName];
@@ -81,6 +93,7 @@
         
         // Check if the db already exists in the Documents folder
         if (![fileManager fileExistsAtPath:dbPath]) {
+            NSLog(@"Database not already present. Copying %@ from project folder to document's directory.", databaseName);
             // Copy the db from the Project directory to the Documents directory
             NSString *sourcePath = [[NSBundle mainBundle] pathForResource:databaseName ofType:@"db"];
             NSError *error;
@@ -88,6 +101,9 @@
             if (error) {
                 NSLog(@"Error copy file from project directory to documents directory: %@", error);
             }
+        }
+        else {
+            NSLog(@"The database %@ already exists in the Documents directory.", databaseName);
         }
     }
 }
@@ -103,6 +119,18 @@
 {
     // TODO
     return;
+}
+
+- (void)logSchema
+{
+    FMResultSet *results = [database executeQuery:@"SELECT rootpage, name, sql FROM sqlite_master ORDER BY name;"];
+    NSLog(@"tables: %@ %@ %d %@", results, [results resultDictionary], results.columnCount, [results columnNameForIndex:0]);
+    for (id column in [results columnNameToIndexMap]) {
+        NSLog(@"col: %@", column);
+    }
+    while ([results next]) {
+        NSLog(@"%@ %@ %@", results[1], results[0], results[2]);
+    }
 }
 
 // Adds a distance function to the database
@@ -132,7 +160,7 @@
 }
 
 
-#pragma mark - Misc. Data
+#pragma mark - Miscellaneous Queries
 
 // Find stops nearby the location that are within the given distance.
 - (NSArray *)stopsNearLocation:(CLLocation *)location andLimit:(int)limit
@@ -147,14 +175,9 @@
         [stops addObject:stop];
     }
     
+    // Convert to NSArray
     return [stops copy];
 }
 
-- (NSDictionary *)vehiclesForAgency:(NSString *)agencyId;
-{
-    return nil;
-}
-
-#pragma mark - Detailed Data
 
 @end

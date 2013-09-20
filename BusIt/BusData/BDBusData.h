@@ -21,6 +21,5 @@
 @property FMDatabase *database;
 
 - (NSArray *)stopsNearLocation:(CLLocation *)location andLimit:(int)limit;
-- (NSDictionary *)vehiclesForAgency:(NSString *)agencyId;
 
 @end

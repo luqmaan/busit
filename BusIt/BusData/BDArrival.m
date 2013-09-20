@@ -14,27 +14,30 @@
 
 @implementation BDArrival
 
-@synthesize gtfsId, obaId, obaTripId, routeId, vehicleId, pickup_type, drop_off_type, scheduledArrivalTime, scheduledDepartureTime, predictedTime, updatedTime, vehicles;
+@synthesize gtfsId, obaId, obaTripId, routeId, vehicleId, scheduledArrivalTime, scheduledDepartureTime, predictedTime, updatedTime, vehicles, direction, tripHeadsign, serviceId, shapeId;
+
 @synthesize busData;
 
 - (id)initWithGtfsResult:(NSDictionary *)resultDict
 {
     self = [super init];
     if (self) {
-        gtfsId = nil;
+        gtfsId = resultDict[@"trip_id"];
         obaId = nil;
         obaTripId = nil;
-        scheduledArrivalTime = nil;
-        scheduledDepartureTime = nil;
-        routeId = nil;
+        scheduledArrivalTime = resultDict[@"arrival_time"];
+        scheduledDepartureTime = resultDict[@"departure_time"];
+        routeId = [resultDict[@"route_id"] stringValue];
+        direction = resultDict[@"direction"];
+        tripHeadsign = resultDict[@"trip_headsign"];
+        serviceId = resultDict[@"service_id"];
+        shapeId = resultDict[@"shape_id"];
     }
     return self;
 }
 
 - (void)updateWithOBAData:(NSDictionary *)obaData {
     vehicleId = nil;
-    pickup_type = nil;
-    drop_off_type = nil;
     predictedTime = nil;
     updatedTime = nil;
     vehicles = nil;

@@ -99,7 +99,6 @@
     self.navigationItem.prompt = @"Finding stops";
     updateInProgress = TRUE;
     
-    
     dispatch_queue_t fetchAPIData = dispatch_queue_create("com.busit.stops", DISPATCH_QUEUE_SERIAL);
     
     dispatch_async(fetchAPIData, ^{

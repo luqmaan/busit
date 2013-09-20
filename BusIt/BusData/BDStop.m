@@ -48,16 +48,18 @@
     NSDate *stopTime = [NSDate date];
     
     [DateFormatter setDateFormat:@"EEEE"];
-    NSString *serviceIdQuery = [NSString stringWithFormat:@"SELECT * FROM calendar"];
+    NSString *serviceIdQuery = [NSString stringWithFormat:@"SELECT * FROM calendar WHERE \"%@\" = 1", [DateFormatter stringFromDate:startTime]];
     NSLog(@"serviceIdQuery %@", serviceIdQuery);
     FMResultSet *serviceIdRs = [[busData database] executeQuery:serviceIdQuery];
-//    [serviceIdRs next];
-    NSLog(@"serviceIdrs: %@", [serviceIdRs resultDictionary]);
-    NSString *serviceId = [serviceIdRs objectForColumnName:@"service_id"];
+    NSString *serviceId;
+    while ([serviceIdRs next]) {
+        NSLog(@"serviceIdRs: %@", [serviceIdRs resultDictionary]);
+        serviceId = [serviceIdRs objectForColumnName:@"service_id"];
+    }
     
     // Search between 1 hour ago and 2 hours later.
-    [startTime dateByAddingTimeInterval:-1*60*60];
-    [startTime dateByAddingTimeInterval:2*60*60];
+    startTime = [startTime dateByAddingTimeInterval:-1*60*60];
+    stopTime = [stopTime dateByAddingTimeInterval:2*60*60];
     [DateFormatter setDateFormat:@"hh:mm:ss"];
     
     // We need to find trips that arrive at this stop within the time range and are on this day of the week.
@@ -65,11 +67,10 @@
     
     NSLog(@"Query: %@", query);
     FMResultSet *rs = [[busData database] executeQuery:query];
-    NSLog(@"Did find arrivals in SQLite %d %@ === %@ === %@", [rs columnCount]);
     
     // For each arrival in the SQLite, initialize a BDArrival.
     while ([rs next]) {
-        NSLog(@"%@", [rs resultDictionary]);
+//        NSLog(@"%@", [rs resultDictionary]);
         [arrivals addObject:[[BDArrival alloc] initWithGtfsResult:[rs resultDictionary]]];
     }
     
