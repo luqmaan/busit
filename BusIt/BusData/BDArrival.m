@@ -14,7 +14,7 @@
 
 @implementation BDArrival
 
-@synthesize gtfsId, obaId, obaTripId, routeId, vehicleId, scheduledArrivalTime, scheduledDepartureTime, predictedTime, updatedTime, vehicles, direction, tripHeadsign, serviceId, shapeId;
+@synthesize gtfsId, obaId, obaTripId, routeId, vehicleId, scheduledArrivalTime, scheduledDepartureTime, predictedTime, updatedTime, vehicles, direction, tripHeadsign, serviceId, shapeId, stopSequence;
 
 @synthesize busData;
 
@@ -32,8 +32,9 @@
         tripHeadsign = resultDict[@"trip_headsign"];
         serviceId = resultDict[@"service_id"];
         shapeId = resultDict[@"shape_id"];
+        stopSequence = resultDict[@"stop_sequence"];
     }
-    return self;
+    return self;    
 }
 
 - (void)updateWithOBAData:(NSDictionary *)obaData {

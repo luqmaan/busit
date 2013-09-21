@@ -23,14 +23,15 @@
 @property (nonatomic, retain) NSNumber *code;
 @property (nonatomic, retain) NSNumber *locationType;
 @property (nonatomic, retain) NSString *wheelChairBoarding;
-@property (nonatomic, retain) NSArray *routeIds; // array of BDRoutes
-@property (nonatomic, retain) NSMutableArray *arrivals;
 @property (nonatomic, retain) NSNumber *distance;
 @property (nonatomic, assign) double hue;
+/** Array of BDRoutes */
+@property (nonatomic, retain) NSArray *routeIds;
+/** Dictionary of arrivals grouped by tripHeadsign. Groups are NSMutableArray of BDArrival. */
+@property (nonatomic, retain) NSMutableDictionary *arrivals;
+/** Array of keys in the arrivals. Used to allow accessing of the arrivals by an indexPath. */
+@property (nonatomic, retain) NSArray *arrivalKeys;
 
-//-(BDStop *)initWithCode:(NSNumber *)code;
-//-(BDStop *)initWithObaId:(NSNumber *)obaId;
-//-(BDStop *)initWithGtfsId:(NSNumber *)gtfsId;
 - (BDStop *)initWithGtfsResult:(NSDictionary *)resultDict;
 - (void)fetchArrivalsAndPerformCallback:(void(^)(void))completion;
 

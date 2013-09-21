@@ -25,6 +25,7 @@
 @property NSString *tripHeadsign;
 @property NSNumber *serviceId;
 @property NSNumber *shapeId;
+@property NSNumber *stopSequence;
 
 - (id)initWithGtfsResult:(NSDictionary *)resultDict;
 

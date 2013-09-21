@@ -58,7 +58,6 @@
 
 - (void)updateAPIData
 {
-    updateInProgress = FALSE;
     
     NSLog(@"about to fetch arrivals for stop");
     NSLog(@"stop: %@", stop);
@@ -66,6 +65,7 @@
     [stop fetchArrivalsAndPerformCallback:^{
         NSLog(@"Got the OBA data");
         [self.tableView reloadData];
+
     }];
     
     // Got the local GTFS data, can reload
@@ -78,24 +78,18 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
-}
-- (NSNumber *)rowCount {
-    if (updateInProgress) return [NSNumber numberWithInt:0];
-    return [NSNumber numberWithUnsignedInteger:[stop.arrivals count]];
+    return [stop.arrivals count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (updateInProgress) return 0;
-    // if there are no arrivals, use 1 row to inform the user
-    else if ([[self rowCount] intValue] == 0) return 1;
-    else return [[self rowCount] intValue];
+    return [[stop.arrivals objectForKey:stop.arrivalKeys[section]] count];
 }
 
 -(BDArrival *)dataForIndexPath:(NSIndexPath *)indexPath {
-    return stop.arrivals[indexPath.row];
+    return [stop.arrivals objectForKey:stop.arrivalKeys[indexPath.section]][indexPath.row];
 }
+
 
 #pragma mark - Table view delegate
 
@@ -114,52 +108,61 @@
 	}
 }
 
+-(UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    static NSString *CellIdentifier = @"TripHeadsignCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil){
+        [NSException raise:@"headerView == nil.." format:@"No cells with matching CellIdentifier loaded from your storyboard"];
+    }
+    UILabel *routeNumber = (UILabel *)[cell viewWithTag:1];
+    UILabel *tripHeadsign = (UILabel *)[cell viewWithTag:2];
+    NSMutableArray *arrivalGroup = [stop.arrivals objectForKey:[stop.arrivalKeys objectAtIndex:section]];
+    
+    BDArrival *arrival = arrivalGroup[0];
+    
+    
+    double hue = [BIHelpers hueForRoute:[arrival.routeId intValue]];
+    UIColor *routeColor = [UIColor colorWithHue:hue saturation:1 brightness:0.7 alpha:1];
+    routeNumber.textColor = routeColor;
+    
+    
+    routeNumber.text = arrival.routeId;
+    tripHeadsign.text = arrival.tripHeadsign;
+    
+    return cell;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"ArrivalsDeparturesCell";
+    static NSString *CellIdentifier = @"ArrivalTimeCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // return the same cell if there is an udpate in progress
     // NSLog(@"updateInProgress? %@", updateInProgress ? @"YES" : @"NO");
     if (updateInProgress) return cell;
     
-    UILabel *routeName = (UILabel *)[cell viewWithTag:1];
-    UILabel *tripHeadsign = (UILabel *)[cell viewWithTag:2];
-    UILabel *distance = (UILabel *)[cell viewWithTag:3];
-    UILabel *scheduled =  (UILabel *)[cell viewWithTag:4];
-    UILabel *predicted =  (UILabel *)[cell viewWithTag:5];
-    UILabel *updated =  (UILabel *)[cell viewWithTag:6];
-    UILabel *routeNumber = (UILabel *)[cell viewWithTag:7];
-
-    if ([[self rowCount] intValue] == 0) {
-        for (int i = 2; i <= 13; i++) {
-            // hide all labels except routeName and tripHeadsign
-            UIView *view = (UILabel *)[cell viewWithTag:i];
-            if (view) [view setHidden:YES];
-        }
-        routeName.hidden = NO;
-        tripHeadsign.hidden = NO;
-        routeName.text = @"Sorry, there are no arrivals";
-        tripHeadsign.text = @"for this stop.";
-        return cell;
-    }
+    UILabel *scheduled =  (UILabel *)[cell viewWithTag:1];
+    UILabel *predicted =  (UILabel *)[cell viewWithTag:2];
+//
+//    if ([[self rowCount] intValue] == 0) {
+//        for (int i = 2; i <= 13; i++) {
+//            // hide all labels except routeName and tripHeadsign
+//            UIView *view = (UILabel *)[cell viewWithTag:i];
+//            if (view) [view setHidden:YES];
+//        }
+//        routeName.hidden = NO;
+//        tripHeadsign.hidden = NO;
+//        routeName.text = @"Sorry, there are no arrivals";
+//        tripHeadsign.text = @"for this stop.";
+//        return cell;
+//    }
+//    
     
     BDArrival *arrival = [self dataForIndexPath:indexPath];
-    
-    double hue = [BIHelpers hueForRoute:[arrival.routeId intValue]];
-    UIColor *routeColor = [UIColor colorWithHue:hue saturation:1 brightness:0.7 alpha:1];
-    UIColor *timeColor = [UIColor colorWithHue:hue saturation:1 brightness:0.5 alpha:1];
-    routeNumber.textColor = routeColor;
-    scheduled.textColor = timeColor;
-    predicted.textColor = timeColor;
-    updated.textColor = timeColor;
-    
-    routeNumber.text = arrival.routeId;
-    routeName.text = arrival.routeId;
-    tripHeadsign.text = arrival.tripHeadsign;
+    scheduled.text = arrival.scheduledArrivalTime;
+//    predicted.text = arrival.predictedTime;
     
 //    distance.text = [NSString stringWithFormat:@"%@mi    %@ stops away", [BIHelpers formattedDistanceFromStop:data[@"distanceFromStop"]], data[@"numberOfStopsAway"]];
-    scheduled.text = arrival.scheduledArrivalTime;
 //    predicted.text = [NSString stringWithFormat:@"%@", [BIHelpers timeWithTimestamp:data[@"predictedArrivalTime"]]];
 //    updated.text = [NSString stringWithFormat:@"%@", [BIHelpers timeWithTimestamp:data[@"lastUpdateTime"]]];
 

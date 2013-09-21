@@ -10,7 +10,7 @@
 
 @implementation BDStop
 
-@synthesize gtfsId, obaId, location, direction, name, code, locationType, wheelChairBoarding, routeIds, arrivals, distance, hue;
+@synthesize gtfsId, obaId, location, direction, name, code, locationType, wheelChairBoarding, routeIds, arrivals, distance, hue, arrivalKeys;
 
 - (BDStop *)initWithGtfsResult:(NSDictionary *)resultDict
 {
@@ -23,7 +23,7 @@
         code = resultDict[@"stop_id"];
         distance = resultDict[@"distance"];
         hue = ([code intValue] % 30) / 30.0;
-        arrivals = [[NSMutableArray alloc] init];
+        arrivals = [[NSMutableDictionary alloc] init];
 //        direction = nil;
 //        obaId = nil;
 //        locationType = nil;
@@ -58,21 +58,33 @@
     }
     
     // Search between 1 hour ago and 2 hours later.
-    startTime = [startTime dateByAddingTimeInterval:-1*60*60];
-    stopTime = [stopTime dateByAddingTimeInterval:2*60*60];
-    [DateFormatter setDateFormat:@"hh:mm:ss"];
+    startTime = [startTime dateByAddingTimeInterval:-0.5*60*60];
+    stopTime = [stopTime dateByAddingTimeInterval:1.5*60*60];
+    [DateFormatter setDateFormat:@"HH:mm:ss"];
     
     // We need to find trips that arrive at this stop within the time range and are on this day of the week.
     NSString *query = [NSString stringWithFormat:@"SELECT stop_times.*, trips.* FROM stop_times INNER JOIN trips ON stop_times.trip_id = trips.trip_id WHERE stop_times.stop_id = '%@' AND stop_times.arrival_time BETWEEN '%@' AND '%@' AND service_id = '%@' ORDER BY stop_times.arrival_time ASC", gtfsId, [DateFormatter stringFromDate:startTime], [DateFormatter stringFromDate:stopTime], serviceId];
+
     
     NSLog(@"Query: %@", query);
     FMResultSet *rs = [[busData database] executeQuery:query];
     
-    // For each arrival in the SQLite, initialize a BDArrival.
     while ([rs next]) {
-//        NSLog(@"%@", [rs resultDictionary]);
-        [arrivals addObject:[[BDArrival alloc] initWithGtfsResult:[rs resultDictionary]]];
+        // For each arrival in the result set, initialize a BDArrival.
+        // Add the arrival to the arrivals dictionary.
+        // Group them within the dict by tripHeadsign.
+        NSDictionary *arrivalDict = [rs resultDictionary];
+        BDArrival *arrival = [[BDArrival alloc] initWithGtfsResult:arrivalDict];
+        NSString *key = [NSString stringWithFormat:@"%@%@%@", arrival.stopSequence, arrival.routeId, arrival.tripHeadsign];
+        NSLog(@"key: %@", key);
+        if (![arrivals objectForKey:key]) {
+            [arrivals setObject:[[NSMutableArray alloc] init] forKey:key];
+        }
+        [[arrivals objectForKey:key] addObject:arrival];
+        NSLog(@"ADD arrival %@ %@ %@", arrival.tripHeadsign, arrival.routeId, arrival.scheduledArrivalTime);
     }
+    
+    arrivalKeys = [arrivals allKeys];
     
     // Asynchronously fetch the arrival Data from the OBA API.
     // Update the appropriate BDArrivals object with the given data.
