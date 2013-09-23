@@ -20,6 +20,12 @@
 
 @synthesize database, tableNames, databaseNames, documentsPath;
 
+// TODO: Determine which city we are working with.
+// For now, default to Tampa.
+NSString *regionName = @"HART";
+NSString *regionPrefix = @"Hillsborough Area Regional Transit_";
+
+
 - (id)init
 {
     self = [super init];
@@ -38,7 +44,8 @@
         
         // TODO: Determine which city we are working with.
         // For now, default to Tampa.
-        NSString *dbPath = [documentsPath stringByAppendingPathComponent:databaseNames[0]];
+        NSString *regionDb = databaseNames[0];
+        NSString *dbPath = [documentsPath stringByAppendingPathComponent:regionDb];
         dbPath = [NSString stringWithFormat:@"%@.db", dbPath];
         database = [FMDatabase databaseWithPath:dbPath];
         [database open];
@@ -177,6 +184,11 @@
     
     // Convert to NSArray
     return [stops copy];
+}
+
+- (NSString *)stringWithoutRegionPrefix:(NSString *)stringWithPrefix
+{
+    return [stringWithPrefix stringByReplacingOccurrencesOfString:regionPrefix withString:@""];
 }
 
 

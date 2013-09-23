@@ -17,6 +17,8 @@
     self = [super init];
     if (self) {
         gtfsId = resultDict[@"stop_id"];
+        // Unsure how I will handle this for multiple cities.
+        obaId = [NSString stringWithFormat:@"%@%@", regionPrefix, gtfsId];
         location = [[CLLocation alloc] initWithLatitude:[resultDict[@"stop_lat"] floatValue]
                                               longitude:[resultDict[@"stop_lon"] floatValue]];
         name = resultDict[@"stop_name"];
@@ -63,7 +65,7 @@
     [DateFormatter setDateFormat:@"HH:mm:ss"];
     
     // We need to find trips that arrive at this stop within the time range and are on this day of the week.
-    NSString *query = [NSString stringWithFormat:@"SELECT stop_times.*, trips.* FROM stop_times INNER JOIN trips ON stop_times.trip_id = trips.trip_id WHERE stop_times.stop_id = '%@' AND stop_times.arrival_time BETWEEN '%@' AND '%@' AND service_id = '%@' ORDER BY stop_times.arrival_time ASC", gtfsId, [DateFormatter stringFromDate:startTime], [DateFormatter stringFromDate:stopTime], serviceId];
+    NSString *query = [NSString stringWithFormat:@"SELECT stop_times.*, trips.* FROM stop_times INNER JOIN trips ON stop_times.trip_id = trips.trip_id WHERE stop_times.stop_id = '%@' AND stop_times.arrival_time BETWEEN '%@' AND '%@' AND service_id = '%@' ORDER BY trips.route_id ASC, stop_times.arrival_time ASC", gtfsId, [DateFormatter stringFromDate:startTime], [DateFormatter stringFromDate:stopTime], serviceId];
 
     
     NSLog(@"Query: %@", query);
@@ -75,7 +77,7 @@
         // Group them within the dict by tripHeadsign.
         NSDictionary *arrivalDict = [rs resultDictionary];
         BDArrival *arrival = [[BDArrival alloc] initWithGtfsResult:arrivalDict];
-        NSString *key = [NSString stringWithFormat:@"%@%@%@", arrival.stopSequence, arrival.routeId, arrival.tripHeadsign];
+        NSString *key = [self arrivalKeyForStopSequence:arrival.stopSequence routeId:arrival.routeId tripHeadsign:arrival.tripHeadsign];
         NSLog(@"key: %@", key);
         if (![arrivals objectForKey:key]) {
             [arrivals setObject:[[NSMutableArray alloc] init] forKey:key];
@@ -84,7 +86,19 @@
         NSLog(@"ADD arrival %@ %@ %@", arrival.tripHeadsign, arrival.routeId, arrival.scheduledArrivalTime);
     }
     
-    arrivalKeys = [arrivals allKeys];
+    arrivalKeys = [[arrivals allKeys] mutableCopy];
+    // Sort the arrivals alphabetically. By using the the routeId as the first number in the key.
+    [arrivalKeys sortUsingComparator:^NSComparisonResult(NSString* obj1, NSString* obj2) {
+        int route1 = [[obj1 componentsSeparatedByString:@"___"][0] intValue];
+        int route2 = [[obj2 componentsSeparatedByString:@"___"][0] intValue];
+        
+        if (route1 > route2)
+            return (NSComparisonResult)NSOrderedDescending;
+        else if (route1 < route2)
+            return (NSComparisonResult)NSOrderedAscending;
+        
+        return (NSComparisonResult)NSOrderedSame;
+    }];
     
     // Asynchronously fetch the arrival Data from the OBA API.
     // Update the appropriate BDArrivals object with the given data.
@@ -93,13 +107,33 @@
     dispatch_queue_t fetchAPIData = dispatch_queue_create("com.busit.arrivals", DISPATCH_QUEUE_SERIAL);
     
     dispatch_async(fetchAPIData, ^{
-//        NSDictionary *obArrivals = [[busData bench] arrivalsAndDeparturesForStop:obaId];
+        BIRest *bench = [[BIRest alloc] init];
+        NSLog(@"Gettig oba arrivals");
+        NSDictionary *obArrivals = [bench arrivalsAndDeparturesForStop:obaId];
+        NSLog(@"%@", obArrivals);
+        for (NSDictionary *arrivalAndDeparture in obArrivals[@"data"][@"entry"][@"arrivalsAndDepartures"]) {
+            NSLog(@"%@", arrivalAndDeparture);
+            // For each arrivalAndDeparture
+            // Match it to the already existing (I think) BDArrival.
+            // Tell that arrival to update itself with the OBA data.
+            NSString *key = [self arrivalKeyForStopSequence:arrivalAndDeparture[@"stopSequence"]
+                                                    routeId:[busData stringWithoutRegionPrefix:arrivalAndDeparture[@"routeId"]]
+                                               tripHeadsign:[busData stringWithoutRegionPrefix:arrivalAndDeparture[@"tripHeadsign"]]];
+            NSPredicate *findMatchingArrival = [NSPredicate predicateWithFormat:@"self.identifier == %@", [busData stringWithoutRegionPrefix:arrivalAndDeparture[@"tripId"]]];
+            BDArrival *arrival = [[arrivals objectForKey:key] filteredArrayUsingPredicate:findMatchingArrival][0];
+            [arrival updateWithOBAData:arrivalAndDeparture];
+        }
         dispatch_async(dispatch_get_main_queue(), ^ {
             NSLog(@"Got OBA Arrivals");
             completion();
         });
     });
     
+}
+
+- (NSString *)arrivalKeyForStopSequence:(NSNumber *)stopSequence routeId:(id)routeId tripHeadsign:(NSString *)tripHeadsign
+{
+    return [NSString stringWithFormat:@"%@___%@%d", routeId, stopSequence, [tripHeadsign integerValue]];
 }
 
 @end

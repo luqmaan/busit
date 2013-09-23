@@ -18,8 +18,15 @@
 
 @interface BDBusData : NSObject
 
+// Class Variables
+/** Some cities, like Tampa have a custom prefix before all identifiers. Very unusual. */
+extern NSString *regionName;
+extern NSString *regionPrefix;
+
+// Instance Variables
 @property FMDatabase *database;
 
+- (NSString *)stringWithoutRegionPrefix:(NSString *)stringWithPrefix;
 - (NSArray *)stopsNearLocation:(CLLocation *)location andLimit:(int)limit;
 
 @end

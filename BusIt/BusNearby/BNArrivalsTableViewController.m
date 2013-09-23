@@ -13,8 +13,6 @@
 @end
 
 @implementation BNArrivalsTableViewController {
-    @private
-        BOOL updateInProgress;
 }
 
 @synthesize busData, stop;
@@ -23,7 +21,6 @@
     NSLog(@"about to init arrivalsVC");
     if(self = [super initWithCoder:aDecoder]) {
         NSLog(@"did init arrivalsVC");
-        updateInProgress = FALSE;
         busData = [[BDBusData alloc] init];
         NSLog(@"Did init busData");
     }
@@ -134,34 +131,25 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"ArrivalTimeCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    // return the same cell if there is an udpate in progress
-    // NSLog(@"updateInProgress? %@", updateInProgress ? @"YES" : @"NO");
-    if (updateInProgress) return cell;
-    
-    UILabel *scheduled =  (UILabel *)[cell viewWithTag:1];
-    UILabel *predicted =  (UILabel *)[cell viewWithTag:2];
-//
-//    if ([[self rowCount] intValue] == 0) {
-//        for (int i = 2; i <= 13; i++) {
-//            // hide all labels except routeName and tripHeadsign
-//            UIView *view = (UILabel *)[cell viewWithTag:i];
-//            if (view) [view setHidden:YES];
-//        }
-//        routeName.hidden = NO;
-//        tripHeadsign.hidden = NO;
-//        routeName.text = @"Sorry, there are no arrivals";
-//        tripHeadsign.text = @"for this stop.";
-//        return cell;
-//    }
-//    
     
     BDArrival *arrival = [self dataForIndexPath:indexPath];
-    scheduled.text = arrival.scheduledArrivalTime;
-//    predicted.text = arrival.predictedTime;
+    UITableViewCell *cell;
+    static NSString *CellIdentifier;
     
+    // return the same cell if there is an udpate in progress
+    
+    if (!arrival.hasObaData) {
+        CellIdentifier = @"ScheduledArrivalCell";
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+        UILabel *scheduled =  (UILabel *)[cell viewWithTag:1];
+        scheduled.text = arrival.scheduledArrivalTime;
+    }
+    else {
+        CellIdentifier = @"RealtimeArrivalCell";
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+        UILabel *predicted =  (UILabel *)[cell viewWithTag:2];
+    }
+//    predicted.text = arrival.predictedTime;
 //    distance.text = [NSString stringWithFormat:@"%@mi    %@ stops away", [BIHelpers formattedDistanceFromStop:data[@"distanceFromStop"]], data[@"numberOfStopsAway"]];
 //    predicted.text = [NSString stringWithFormat:@"%@", [BIHelpers timeWithTimestamp:data[@"predictedArrivalTime"]]];
 //    updated.text = [NSString stringWithFormat:@"%@", [BIHelpers timeWithTimestamp:data[@"lastUpdateTime"]]];

@@ -7,26 +7,39 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
 #import "BDBusData.h"
+#import "BIRest.h"
 
 @interface BDArrival : NSObject
 
+@property BOOL hasObaData;
+@property NSString *identifier;
 @property NSString *gtfsId;
 @property NSString *obaId;
-@property NSString *obaTripId;
 @property NSString *routeId;
 @property NSString *vehicleId;
 @property NSString *scheduledArrivalTime;
 @property NSDate *scheduledDepartureTime;
-@property NSDate *predictedTime;
+@property NSDate *predictedArrivalTime;
+@property NSDate *predictedDepartureTime;
 @property NSDate *updatedTime;
-@property NSArray *vehicles;
 @property NSString *direction;
 @property NSString *tripHeadsign;
 @property NSNumber *serviceId;
 @property NSNumber *shapeId;
 @property NSNumber *stopSequence;
+@property NSString *distanceFromStop;
+@property NSNumber *numberOfStopsAway;
+@property CLLocation *position;
+@property NSDate *lastUpdateTime;
+@property NSNumber *scheduleDeviation;
+@property NSNumber *distanceAlongTrip;
+@property NSNumber *scheduledDistanceAlongTrip;
+@property NSNumber *totalDistanceAlongTrip;
+@property NSNumber *nextStopTimeOffset;
 
 - (id)initWithGtfsResult:(NSDictionary *)resultDict;
+- (void)updateWithOBAData:(NSDictionary *)obaData;
 
 @end

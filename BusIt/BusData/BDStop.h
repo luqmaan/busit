@@ -30,7 +30,7 @@
 /** Dictionary of arrivals grouped by tripHeadsign. Groups are NSMutableArray of BDArrival. */
 @property (nonatomic, retain) NSMutableDictionary *arrivals;
 /** Array of keys in the arrivals. Used to allow accessing of the arrivals by an indexPath. */
-@property (nonatomic, retain) NSArray *arrivalKeys;
+@property (nonatomic, retain) NSMutableArray *arrivalKeys;
 
 - (BDStop *)initWithGtfsResult:(NSDictionary *)resultDict;
 - (void)fetchArrivalsAndPerformCallback:(void(^)(void))completion;
