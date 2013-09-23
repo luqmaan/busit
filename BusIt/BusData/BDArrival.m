@@ -26,8 +26,8 @@
         gtfsId = resultDict[@"trip_id"];
         identifier = gtfsId;
         obaId = [NSString stringWithFormat:@"%@%@", regionPrefix, gtfsId];
-        scheduledArrivalTime = resultDict[@"arrival_time"];
-        scheduledDepartureTime = resultDict[@"departure_time"];
+        scheduledArrivalTime = [BDBusData dateFromGtfsTimestring:resultDict[@"arrival_time"]];
+        scheduledDepartureTime = [BDBusData dateFromGtfsTimestring:resultDict[@"departure_time"]];
         routeId = [resultDict[@"route_id"] stringValue];
         direction = resultDict[@"direction"];
         tripHeadsign = resultDict[@"trip_headsign"];
@@ -41,7 +41,10 @@
 
 - (void)updateWithOBAData:(NSDictionary *)obaData {
     NSLog(@"Update with OBA Data");
+    exit(0);
+    hasObaData = YES;
     vehicleId = obaData[@"vehicleId"];
+    NSLog(@" my own vehicleId %@", vehicleId);
     lastUpdateTime = [BIRest dateFromObaTimestamp:obaData[@"lastUpdateTime"]];
     predictedDepartureTime = [BIRest dateFromObaTimestamp:obaData[@"predictedDepartureTime"]];
     predictedArrivalTime = [BIRest dateFromObaTimestamp:obaData[@"predictedArrivalTime"]];
@@ -53,7 +56,6 @@
     totalDistanceAlongTrip = obaData[@"tripStatus"][@"totalDistanceAlongTrip"];
     distanceFromStop = [BIRest formattedDistanceFromStop:obaData[@"distanceFromStop"]];
     nextStopTimeOffset = obaData[@"tripStatus"][@"nextStopTimeOffset"];
-    hasObaData = YES;
 }
 
 

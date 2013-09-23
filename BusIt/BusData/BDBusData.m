@@ -191,5 +191,17 @@ NSString *regionPrefix = @"Hillsborough Area Regional Transit_";
     return [stringWithPrefix stringByReplacingOccurrencesOfString:regionPrefix withString:@""];
 }
 
++ (NSDate *)dateFromGtfsTimestring:(NSString *)timestring
+{
+    NSDate *date = [NSDate date];
+    NSArray *timestringComponents = [timestring componentsSeparatedByString:@":"];
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    [comps setHour:[timestringComponents[0] integerValue]];
+    [comps setMinute:[timestringComponents[1] integerValue]];
+    [comps setSecond:[timestringComponents[2] integerValue]];
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    date = [gregorian dateFromComponents:comps];
+    return date;
+}
 
 @end

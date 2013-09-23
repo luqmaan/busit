@@ -119,8 +119,9 @@
     
     
     double hue = [BIHelpers hueForRoute:[arrival.routeId intValue]];
-    UIColor *routeColor = [UIColor colorWithHue:hue saturation:1 brightness:0.7 alpha:1];
-    routeNumber.textColor = routeColor;
+    UIColor *routeColor = [UIColor colorWithHue:hue saturation:1 brightness:0.7 alpha:0.9];
+    cell.backgroundColor = routeColor;
+//    routeNumber.textColor = routeColor;
     
     
     routeNumber.text = arrival.routeId;
@@ -135,19 +136,23 @@
     BDArrival *arrival = [self dataForIndexPath:indexPath];
     UITableViewCell *cell;
     static NSString *CellIdentifier;
+    NSDateFormatter *DateFormatter= [[NSDateFormatter alloc] init];
+    [DateFormatter setDateFormat:@"hh:mm"];
     
     // return the same cell if there is an udpate in progress
+    NSLog(@"heyyyyy %@ %@", arrival.identifier, arrival.vehicleId);
     
-    if (!arrival.hasObaData) {
+    if (arrival.hasObaData == NO) {
         CellIdentifier = @"ScheduledArrivalCell";
         cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
         UILabel *scheduled =  (UILabel *)[cell viewWithTag:1];
-        scheduled.text = arrival.scheduledArrivalTime;
+        scheduled.text = [DateFormatter stringFromDate:arrival.scheduledArrivalTime];
+        NSLog(@"date: %@", arrival.scheduledArrivalTime);
     }
     else {
         CellIdentifier = @"RealtimeArrivalCell";
         cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-        UILabel *predicted =  (UILabel *)[cell viewWithTag:2];
+        NSLog(@"AHAHAHAHAA");
     }
 //    predicted.text = arrival.predictedTime;
 //    distance.text = [NSString stringWithFormat:@"%@mi    %@ stops away", [BIHelpers formattedDistanceFromStop:data[@"distanceFromStop"]], data[@"numberOfStopsAway"]];

@@ -28,5 +28,7 @@ extern NSString *regionPrefix;
 
 - (NSString *)stringWithoutRegionPrefix:(NSString *)stringWithPrefix;
 - (NSArray *)stopsNearLocation:(CLLocation *)location andLimit:(int)limit;
+/** Converts HH:mm:ss to NSDate. */
++ (NSDate *)dateFromGtfsTimestring:(NSString *)timestring;
 
 @end

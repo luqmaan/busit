@@ -13,13 +13,13 @@
 
 @interface BDArrival : NSObject
 
-@property BOOL hasObaData;
+@property (nonatomic, assign) BOOL hasObaData;
 @property NSString *identifier;
 @property NSString *gtfsId;
 @property NSString *obaId;
 @property NSString *routeId;
 @property NSString *vehicleId;
-@property NSString *scheduledArrivalTime;
+@property NSDate *scheduledArrivalTime;
 @property NSDate *scheduledDepartureTime;
 @property NSDate *predictedArrivalTime;
 @property NSDate *predictedDepartureTime;

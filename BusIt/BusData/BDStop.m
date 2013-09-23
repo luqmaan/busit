@@ -45,10 +45,12 @@
     // Find the arrivals for this stop between a time range.
     BDBusData *busData = [[BDBusData alloc] init];
     
+    // Get the start/stop time.
     NSDateFormatter *DateFormatter= [[NSDateFormatter alloc] init];
     NSDate *startTime = [NSDate date];
     NSDate *stopTime = [NSDate date];
     
+    // Use the current time (startTime) to determine the serviceId for today,
     [DateFormatter setDateFormat:@"EEEE"];
     NSString *serviceIdQuery = [NSString stringWithFormat:@"SELECT * FROM calendar WHERE \"%@\" = 1", [DateFormatter stringFromDate:startTime]];
     NSLog(@"serviceIdQuery %@", serviceIdQuery);
@@ -60,8 +62,20 @@
     }
     
     // Search between 1 hour ago and 2 hours later.
-    startTime = [startTime dateByAddingTimeInterval:-0.5*60*60];
+    startTime = [startTime dateByAddingTimeInterval:-05*60*60];
     stopTime = [stopTime dateByAddingTimeInterval:1.5*60*60];
+    
+    // Get midnight.
+    // http://stackoverflow.com/questions/9040319/how-can-i-get-an-nsdate-object-for-today-at-midnight
+    NSDate *midnight = [NSDate date];
+    NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
+    NSUInteger preservedComponents = (NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit);
+    midnight = [calendar dateFromComponents:[calendar components:preservedComponents fromDate:midnight]];
+    midnight = [midnight dateByAddingTimeInterval:-1];
+    
+    // Limit the query to no later than midnight.
+    stopTime = [stopTime earlierDate:midnight];
+    
     [DateFormatter setDateFormat:@"HH:mm:ss"];
     
     // We need to find trips that arrive at this stop within the time range and are on this day of the week.
@@ -110,18 +124,21 @@
         BIRest *bench = [[BIRest alloc] init];
         NSLog(@"Gettig oba arrivals");
         NSDictionary *obArrivals = [bench arrivalsAndDeparturesForStop:obaId];
-        NSLog(@"%@", obArrivals);
         for (NSDictionary *arrivalAndDeparture in obArrivals[@"data"][@"entry"][@"arrivalsAndDepartures"]) {
-            NSLog(@"%@", arrivalAndDeparture);
             // For each arrivalAndDeparture
             // Match it to the already existing (I think) BDArrival.
             // Tell that arrival to update itself with the OBA data.
             NSString *key = [self arrivalKeyForStopSequence:arrivalAndDeparture[@"stopSequence"]
                                                     routeId:[busData stringWithoutRegionPrefix:arrivalAndDeparture[@"routeId"]]
                                                tripHeadsign:[busData stringWithoutRegionPrefix:arrivalAndDeparture[@"tripHeadsign"]]];
-            NSPredicate *findMatchingArrival = [NSPredicate predicateWithFormat:@"self.identifier == %@", [busData stringWithoutRegionPrefix:arrivalAndDeparture[@"tripId"]]];
+            NSLog(@"obaKey is %@", key);
+            NSString *tripId = [busData stringWithoutRegionPrefix:arrivalAndDeparture[@"tripId"]];
+            NSLog(@"tripId = %@", tripId);
+            NSPredicate *findMatchingArrival = [NSPredicate predicateWithFormat:@"SELF.identifier == %@", tripId];
             BDArrival *arrival = [[arrivals objectForKey:key] filteredArrayUsingPredicate:findMatchingArrival][0];
+            NSLog(@"found arrival match %@", [arrivals objectForKey:key]);
             [arrival updateWithOBAData:arrivalAndDeparture];
+            NSLog(@"arrival's vehicleId %@", arrival.vehicleId);
         }
         dispatch_async(dispatch_get_main_queue(), ^ {
             NSLog(@"Got OBA Arrivals");
@@ -133,7 +150,9 @@
 
 - (NSString *)arrivalKeyForStopSequence:(NSNumber *)stopSequence routeId:(id)routeId tripHeadsign:(NSString *)tripHeadsign
 {
-    return [NSString stringWithFormat:@"%@___%@%d", routeId, stopSequence, [tripHeadsign integerValue]];
+    NSString *key = [NSString stringWithFormat:@"%@___%@%d", routeId, stopSequence, [tripHeadsign integerValue]];
+    NSLog(@"key is %@", key);
+    return key;
 }
 
 @end
