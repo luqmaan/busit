@@ -29,7 +29,7 @@
 @property NSNumber *serviceId;
 @property NSNumber *shapeId;
 @property NSNumber *stopSequence;
-@property NSString *distanceFromStop;
+@property NSNumber *distanceFromStop;
 @property NSNumber *numberOfStopsAway;
 @property CLLocation *position;
 @property NSDate *lastUpdateTime;
@@ -41,5 +41,7 @@
 
 - (id)initWithGtfsResult:(NSDictionary *)resultDict;
 - (void)updateWithOBAData:(NSDictionary *)obaData;
+- (NSString *)formattedScheduleDeviation;
+- (NSString *)formattedDistanceFromStop;
 
 @end

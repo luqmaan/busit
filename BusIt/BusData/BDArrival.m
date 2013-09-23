@@ -23,7 +23,7 @@
     self = [super init];
     if (self) {
         hasObaData = NO;
-        gtfsId = resultDict[@"trip_id"];
+        gtfsId = [NSString stringWithFormat:@"%@", resultDict[@"trip_id"]];
         identifier = gtfsId;
         obaId = [NSString stringWithFormat:@"%@%@", regionPrefix, gtfsId];
         scheduledArrivalTime = [BDBusData dateFromGtfsTimestring:resultDict[@"arrival_time"]];
@@ -40,11 +40,8 @@
 
 
 - (void)updateWithOBAData:(NSDictionary *)obaData {
-    NSLog(@"Update with OBA Data");
-    exit(0);
     hasObaData = YES;
     vehicleId = obaData[@"vehicleId"];
-    NSLog(@" my own vehicleId %@", vehicleId);
     lastUpdateTime = [BIRest dateFromObaTimestamp:obaData[@"lastUpdateTime"]];
     predictedDepartureTime = [BIRest dateFromObaTimestamp:obaData[@"predictedDepartureTime"]];
     predictedArrivalTime = [BIRest dateFromObaTimestamp:obaData[@"predictedArrivalTime"]];
@@ -54,10 +51,41 @@
     distanceAlongTrip = obaData[@"tripStatus"][@"distanceAlongTrip"];
     scheduledDistanceAlongTrip = obaData[@"tripStatus"][@"scheduledDistanceAlongTrip"];
     totalDistanceAlongTrip = obaData[@"tripStatus"][@"totalDistanceAlongTrip"];
-    distanceFromStop = [BIRest formattedDistanceFromStop:obaData[@"distanceFromStop"]];
+    distanceFromStop = obaData[@"distanceFromStop"];
     nextStopTimeOffset = obaData[@"tripStatus"][@"nextStopTimeOffset"];
 }
 
+- (NSString *)description {
+    return [NSString stringWithFormat:@"<Arrival: %@ %@>", identifier, tripHeadsign];
+}
 
+- (NSString *)formattedScheduleDeviation
+{
+    // http://developer.onebusaway.org/modules/onebusaway-application-modules/1.0.1/apidocs/org/onebusaway/realtime/api/VehicleLocationRecord.html#getScheduleDeviation()
+    int deviation = [scheduleDeviation doubleValue] / 60;
+    NSString *relative;
+    
+    if (deviation < 0)
+        relative = @"early";
+    else if (deviation > 0)
+        relative = @"late";
+    else
+        return @"On time";
+    
+    deviation = abs(deviation);
+    NSString *mins = @"mins";
+    if (deviation == 1)
+        mins = @"min";
+    
+    return [NSString stringWithFormat:@"%d %@ %@", deviation, mins, relative];
+}
+
+- (NSString *)formattedDistanceFromStop
+{
+    float meters = [distanceFromStop floatValue];
+    float miles = meters * 0.000621371192;
+    NSString *distanceString = [NSString stringWithFormat:@"%.2fmi away", miles];
+    return distanceString;
+}
 
 @end

@@ -187,13 +187,5 @@
     return [NSDate dateWithTimeIntervalSince1970:time];
 }
 
-+(NSString *)formattedDistanceFromStop:(NSNumber *)distanceFromStop
-{
-    float meters = [distanceFromStop floatValue];
-    float miles = meters * 0.000621371192;
-    NSString *distanceString = [NSString stringWithFormat:@"%.2f", miles];
-    return distanceString;
-}
-
 
 @end

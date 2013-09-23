@@ -35,7 +35,6 @@
 // One Bus Away API Helpers
 /** The timestamps returned by the OBA API are not directly usable and must be divided by 1000 first. */
 +(NSDate *)dateFromObaTimestamp:(NSString *)timestamp;
-+ (NSString *)formattedDistanceFromStop:(NSNumber *)distanceFromStop;
 
 @end
 

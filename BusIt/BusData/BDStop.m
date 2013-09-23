@@ -92,7 +92,6 @@
         NSDictionary *arrivalDict = [rs resultDictionary];
         BDArrival *arrival = [[BDArrival alloc] initWithGtfsResult:arrivalDict];
         NSString *key = [self arrivalKeyForStopSequence:arrival.stopSequence routeId:arrival.routeId tripHeadsign:arrival.tripHeadsign];
-        NSLog(@"key: %@", key);
         if (![arrivals objectForKey:key]) {
             [arrivals setObject:[[NSMutableArray alloc] init] forKey:key];
         }
@@ -121,26 +120,37 @@
     
     dispatch_async(fetchAPIData, ^{
         BIRest *bench = [[BIRest alloc] init];
-        NSLog(@"Getting oba arrivals");
         NSDictionary *obArrivals = [bench arrivalsAndDeparturesForStop:obaId];
+        // For each arrivalAndDeparture
+        // Match it to its corresponding BDArrival.
+        // Tell that arrival to update itself with the OBA data.
         for (NSDictionary *arrivalAndDeparture in obArrivals[@"data"][@"entry"][@"arrivalsAndDepartures"]) {
-            // For each arrivalAndDeparture
-            // Match it to the already existing (I think) BDArrival.
-            // Tell that arrival to update itself with the OBA data.
             NSString *key = [self arrivalKeyForStopSequence:arrivalAndDeparture[@"stopSequence"]
                                                     routeId:[busData stringWithoutRegionPrefix:arrivalAndDeparture[@"routeId"]]
                                                tripHeadsign:[busData stringWithoutRegionPrefix:arrivalAndDeparture[@"tripHeadsign"]]];
-            NSLog(@"obaKey is %@", key);
             NSString *tripId = [busData stringWithoutRegionPrefix:arrivalAndDeparture[@"tripId"]];
-            NSLog(@"tripId = %@", tripId);
-            NSPredicate *findMatchingArrival = [NSPredicate predicateWithFormat:@"SELF.identifier == %@", tripId];
-            BDArrival *arrival = [[arrivals objectForKey:key] filteredArrayUsingPredicate:findMatchingArrival][0];
-            NSLog(@"found arrival match %@", [arrivals objectForKey:key]);
-            [arrival updateWithOBAData:arrivalAndDeparture];
-            NSLog(@"arrival's vehicleId %@", arrival.vehicleId);
+            
+            // Find the arrival with the same tripId in the arrivals dictionary.
+            BDArrival *matchingArrival;
+            for (BDArrival *candidate in [arrivals objectForKey:key]) {
+                if ([candidate.identifier isEqualToString:tripId]) {
+                    matchingArrival = candidate;
+                    break;
+                }
+            }
+            if (matchingArrival) {
+                [matchingArrival updateWithOBAData:arrivalAndDeparture];
+            }
+            else {
+                // This will happen when the user is allowed to adjust the time. Or, if the GTFS database is out of date.
+                // The API will return an arrival, but it doesn't exist within the results returned by the SQL search.
+                // Do nothing, for now. (If we assume the lack of a match is because of time range, then clearly we don't want to show this arrival).
+                NSLog(@"NO matching arrival for %@", tripId);
+            }
         }
+        // Trigger the callback function, indicating we have found and updated with the OBA results.
         dispatch_async(dispatch_get_main_queue(), ^ {
-            NSLog(@"Got OBA Arrivals");
+            NSLog(@"Updated arrivals with OBA data.");
             completion();
         });
     });
@@ -149,8 +159,7 @@
 
 - (NSString *)arrivalKeyForStopSequence:(NSNumber *)stopSequence routeId:(id)routeId tripHeadsign:(NSString *)tripHeadsign
 {
-    NSString *key = [NSString stringWithFormat:@"%@___%@%d", routeId, stopSequence, [tripHeadsign integerValue]];
-    NSLog(@"key is %@", key);
+    NSString *key = [NSString stringWithFormat:@"%@___%@", routeId, tripHeadsign];
     return key;
 }
 

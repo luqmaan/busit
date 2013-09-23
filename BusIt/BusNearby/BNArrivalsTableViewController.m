@@ -139,27 +139,55 @@
     NSDateFormatter *DateFormatter= [[NSDateFormatter alloc] init];
     [DateFormatter setDateFormat:@"hh:mm"];
     
-    // return the same cell if there is an udpate in progress
-    NSLog(@"heyyyyy %@ %@", arrival.identifier, arrival.vehicleId);
-    
     if (arrival.hasObaData == NO) {
         CellIdentifier = @"ScheduledArrivalCell";
         cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-        UILabel *scheduled =  (UILabel *)[cell viewWithTag:1];
+        UILabel *scheduled = (UILabel *)[cell viewWithTag:1];
         scheduled.text = [DateFormatter stringFromDate:arrival.scheduledArrivalTime];
-        NSLog(@"date: %@", arrival.scheduledArrivalTime);
     }
     else {
         CellIdentifier = @"RealtimeArrivalCell";
         cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-        NSLog(@"AHAHAHAHAA");
+        UILabel *scheduled = (UILabel *)[cell viewWithTag:1];
+        UILabel *predicted = (UILabel *)[cell viewWithTag:2];
+        UILabel *distance = (UILabel *)[cell viewWithTag:3];
+        UILabel *timeOffset = (UILabel *)[cell viewWithTag:4];
+        scheduled.text = [DateFormatter stringFromDate:arrival.scheduledArrivalTime];
+        predicted.text = [DateFormatter stringFromDate:arrival.predictedArrivalTime];
+        distance.text = arrival.formattedDistanceFromStop;
+        timeOffset.text = arrival.formattedScheduleDeviation;
     }
+    
+    NSDate *now = [NSDate date];
+    if ([now isEqual:[arrival.scheduledArrivalTime laterDate:now]]) {
+        cell.backgroundColor = [UIColor colorWithHue:[BIHelpers hueForRoute:[arrival.routeId intValue]] saturation:0.01 brightness:0.945 alpha:1];
+    }
+    else {
+        cell.backgroundColor = [UIColor whiteColor];
+    }
+//    NSLog(@"%@ vs %@ => %@", arrival.scheduledArrivalTime, now, [arrival.scheduledArrivalTime laterDate:now]);
+    
 //    predicted.text = arrival.predictedTime;
 //    distance.text = [NSString stringWithFormat:@"%@mi    %@ stops away", [BIHelpers formattedDistanceFromStop:data[@"distanceFromStop"]], data[@"numberOfStopsAway"]];
 //    predicted.text = [NSString stringWithFormat:@"%@", [BIHelpers timeWithTimestamp:data[@"predictedArrivalTime"]]];
 //    updated.text = [NSString stringWithFormat:@"%@", [BIHelpers timeWithTimestamp:data[@"lastUpdateTime"]]];
 
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // http://stackoverflow.com/questions/8615862/custom-cell-row-height-setting-in-storyboard-is-not-responding
+    // For some reason the custom heights specified in Storyboard are ignored.
+    // This will force them to the custom height.
+    
+    if ([[self dataForIndexPath:indexPath] hasObaData])
+    {
+        return 70.0f;
+    }
+    else {
+        return 40.0f;
+    }
 }
 
 @end

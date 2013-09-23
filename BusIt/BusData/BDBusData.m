@@ -193,14 +193,16 @@ NSString *regionPrefix = @"Hillsborough Area Regional Transit_";
 
 + (NSDate *)dateFromGtfsTimestring:(NSString *)timestring
 {
-    NSDate *date = [NSDate date];
     NSArray *timestringComponents = [timestring componentsSeparatedByString:@":"];
-    NSDateComponents *comps = [[NSDateComponents alloc] init];
-    [comps setHour:[timestringComponents[0] integerValue]];
-    [comps setMinute:[timestringComponents[1] integerValue]];
-    [comps setSecond:[timestringComponents[2] integerValue]];
+
+    NSDate *date = [NSDate date];
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    date = [gregorian dateFromComponents:comps];
+    NSDateComponents *todayComponents =
+    [gregorian components:(NSEraCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit | NSWeekCalendarUnit | NSWeekdayCalendarUnit | NSWeekdayOrdinalCalendarUnit | NSQuarterCalendarUnit | NSWeekOfMonthCalendarUnit | NSWeekOfYearCalendarUnit | NSYearForWeekOfYearCalendarUnit | NSCalendarCalendarUnit | NSTimeZoneCalendarUnit) fromDate:date];
+    [todayComponents setHour:[timestringComponents[0] integerValue]];
+    [todayComponents setMinute:[timestringComponents[1] integerValue]];
+    [todayComponents setSecond:[timestringComponents[2] integerValue]];
+    date = [gregorian dateFromComponents:todayComponents];
     return date;
 }
 
