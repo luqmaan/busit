@@ -62,7 +62,7 @@
     }
     
     // Search between 1 hour ago and 2 hours later.
-    startTime = [startTime dateByAddingTimeInterval:-05*60*60];
+    startTime = [startTime dateByAddingTimeInterval:-0.5*60*60];
     stopTime = [stopTime dateByAddingTimeInterval:1.5*60*60];
     
     // Get midnight.
@@ -74,7 +74,7 @@
     midnight = [midnight dateByAddingTimeInterval:-1];
     
     // Limit the query to no later than midnight.
-    stopTime = [stopTime earlierDate:midnight];
+    stopTime = [stopTime laterDate:midnight];
     
     [DateFormatter setDateFormat:@"HH:mm:ss"];
     
@@ -97,7 +97,6 @@
             [arrivals setObject:[[NSMutableArray alloc] init] forKey:key];
         }
         [[arrivals objectForKey:key] addObject:arrival];
-        NSLog(@"ADD arrival %@ %@ %@", arrival.tripHeadsign, arrival.routeId, arrival.scheduledArrivalTime);
     }
     
     arrivalKeys = [[arrivals allKeys] mutableCopy];
@@ -122,7 +121,7 @@
     
     dispatch_async(fetchAPIData, ^{
         BIRest *bench = [[BIRest alloc] init];
-        NSLog(@"Gettig oba arrivals");
+        NSLog(@"Getting oba arrivals");
         NSDictionary *obArrivals = [bench arrivalsAndDeparturesForStop:obaId];
         for (NSDictionary *arrivalAndDeparture in obArrivals[@"data"][@"entry"][@"arrivalsAndDepartures"]) {
             // For each arrivalAndDeparture
