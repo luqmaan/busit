@@ -46,7 +46,7 @@
     predictedDepartureTime = [BIRest dateFromObaTimestamp:obaData[@"predictedDepartureTime"]];
     predictedArrivalTime = [BIRest dateFromObaTimestamp:obaData[@"predictedArrivalTime"]];
     position = [[CLLocation alloc] initWithLatitude:[obaData[@"tripStatus"][@"position"][@"lat"] doubleValue] longitude:[obaData[@"tripStatus"][@"position"][@"lon"] doubleValue]];
-    numberOfStopsAway = obaData[@"tripStatus"][@"numberOfStopsAway"];
+    numberOfStopsAway = obaData[@"numberOfStopsAway"];
     scheduleDeviation = obaData[@"tripStatus"][@"scheduleDeviation"];
     distanceAlongTrip = obaData[@"tripStatus"][@"distanceAlongTrip"];
     scheduledDistanceAlongTrip = obaData[@"tripStatus"][@"scheduledDistanceAlongTrip"];

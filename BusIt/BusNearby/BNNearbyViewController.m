@@ -9,14 +9,12 @@
 #import "BNNearbyViewController.h"
 
 @interface BNNearbyViewController () {
-    CLLocationManager *locationManager;
     CLLocation *location;
     BOOL updateInProgress;
     BOOL performSegueAfterScroll;
 }
 
 @property (weak, nonatomic) BMEmbeddedMapViewController *embeddedMapView;
-@property (nonatomic, retain) CLLocationManager *locationManager;
 @property (nonatomic, retain) CLLocation *location;
 @property BDBusData *busData;
 @property NSArray *stops;
@@ -25,7 +23,7 @@
 
 @implementation BNNearbyViewController
 
-@synthesize locationManager, location, embeddedMapView, busData, stops;
+@synthesize location, embeddedMapView, busData, stops;
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if(self = [super initWithCoder:aDecoder]) {
@@ -39,7 +37,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self startStandardUpdates];
+    [self.navigationController dismissViewControllerAnimated:NO completion:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,59 +48,22 @@
 
 - (IBAction)refreshBtnPress:(id)sender {
     // Find the center of the mapView and request coordinates within that region.
-    [self updateToMapCenter];
-}
-
-#pragma mark - Location
-
-- (void)startStandardUpdates
-{
-    NSLog(@"Starting standard updates");
-    self.navigationController.navigationItem.prompt = @"Finding location";
-    if (locationManager == nil)
-        locationManager = [[CLLocationManager alloc] init];
-    locationManager.delegate = self;
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    locationManager.distanceFilter = 100;
-    [locationManager startUpdatingLocation];
-}
-
-- (void)startSignificantChangeUpdates
-{
-    if (nil == locationManager)
-        locationManager = [[CLLocationManager alloc] init];
-    locationManager.delegate = self;    
-    [locationManager startMonitoringSignificantLocationChanges];
-}
-
-- (void)locationManager:(CLLocationManager *)locManager
-    didUpdateToLocation:(CLLocation *)newLocation
-           fromLocation:(CLLocation *)oldLocation
-{
-    location = newLocation;
-    NSLog(@"New location: %f %f", location.coordinate.longitude, location.coordinate.latitude);
-    // only update the location once
-    [locationManager stopUpdatingLocation];
-    [self updateAPIData];
-}
-
-- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
-{
-    NSLog(@"locationManagerdidFailWithError: %@", error);
+    [self updateLocationToMapCenter];
+    [self updateData];
 }
 
 # pragma mark - Data/API
 
-- (void)updateAPIData
+- (void)updateData
 {
-    NSLog(@"Started updating api data");
-    self.navigationItem.prompt = @"Finding stops";
+    NSLog(@"Updating data.");
     updateInProgress = TRUE;
     
     dispatch_queue_t fetchAPIData = dispatch_queue_create("com.busit.stops", DISPATCH_QUEUE_SERIAL);
     
     dispatch_async(fetchAPIData, ^{
-        stops = [busData stopsNearLocation:location andLimit:200];
+        NSLog(@"Finding stops near location %@", location);
+        stops = [busData stopsNearLocation:location andLimit:50];
         dispatch_async(dispatch_get_main_queue(), ^ {
             updateInProgress = FALSE;
             [self.tableView reloadData];
@@ -114,11 +75,11 @@
 
 # pragma mark - Map View
 
-- (void)updateToMapCenter
+- (void)updateLocationToMapCenter
 {
-    CLLocationCoordinate2D center = [[embeddedMapView mapView] centerCoordinate];
+    CLLocationCoordinate2D center = embeddedMapView.mapView.centerCoordinate;
     location = [[CLLocation alloc] initWithLatitude:center.latitude longitude:center.longitude];
-    [self updateAPIData];
+    NSLog(@"Updated map center to location");
 }
 
 - (void)updateMapView
@@ -212,15 +173,6 @@
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
-    NSLog(@"shouldPerformSegueWithIdentifier: %@", identifier);
-    if ([identifier isEqualToString:@"StopDetailsSegue"]) {
-        NSLog(updateInProgress ? @"UpdateInProgress: YES" : @"UpdateInProgress: NO");
-        if (updateInProgress) {
-            NSLog(@"Update in progress, DONT perform segue");
-            return NO;
-        }
-    }
-    NSLog(@"YES perform segue");
     return YES;
 }
 
@@ -234,6 +186,12 @@
     }
     if ([[segue identifier] isEqualToString:@"EmbeddedMapViewSegue"]) {
         embeddedMapView = segue.destinationViewController;
+        NSLog(@"embedded mapview: %@", embeddedMapView);
+        embeddedMapView.didUpdateLocationBlock = ^(){
+            NSLog(@"called didUpdateLocationBlock()");
+            [self updateLocationToMapCenter];
+            [self updateData];
+        };
     }
 }
 

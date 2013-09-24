@@ -25,15 +25,8 @@
     return self;
 }
 
-- (void)initWithStop:(NSDictionary *)stop andBuses:(NSArray *)busList
-{
-
-}
-
 - (void)addStopsToMap:(NSArray *)stops
 {
-    [self initMapView];
-    
     [mapView removeAnnotations:mapView.annotations];
 
     // Add the stops with new identifiers.
@@ -43,14 +36,13 @@
     }
 }
 
-- (void)initWithRoute:(NSArray *)route andShape:(NSDictionary *)shape
-{
-    
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSLog(@"hey im the mapview and i did load");
+    mapView.delegate = self;
+    mapView.showsUserLocation = YES;
+    
 	// Do any additional setup after loading the view.
 }
 
@@ -59,16 +51,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
-#pragma mark - Map
-
-- (void)initMapView
-{
-    mapView.delegate = self;
-    mapView.showsUserLocation = YES;
-}
-
 
 # pragma mark - Annotations
 
@@ -151,6 +133,8 @@
     static BOOL didZoomIn;
     userLocation = newUserLocation;
     
+    NSLog(@"did Update user location");
+    
     if (!didZoomIn) {
         didZoomIn = TRUE;
         [self zoomToUserLocation:nil];
@@ -158,14 +142,17 @@
 }
 
 - (IBAction)zoomToUserLocation:(id)sender {
-    CLLocationAccuracy accuracy = userLocation.location.horizontalAccuracy;
-    if (accuracy > 0) {
-        MKCoordinateRegion mapRegion;
-        mapRegion.center = mapView.userLocation.coordinate;
-        mapRegion.span.latitudeDelta = 0.0075;
-        mapRegion.span.longitudeDelta = 0.0075;
-        [mapView setRegion:mapRegion animated: YES];
-    }
+    MKCoordinateRegion mapRegion;
+    mapRegion.center = mapView.userLocation.coordinate;
+    mapRegion.span.latitudeDelta = 0.0075;
+    mapRegion.span.longitudeDelta = 0.0075;
+    [mapView setRegion:mapRegion animated:YES];
+//    self.didUpdateLocationBlock();
+//    NSLog(@"didUpdateLocationBlock %@", self.didUpdateLocationBlock);
 }
 
+- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
+{
+    self.didUpdateLocationBlock();
+}
 @end

@@ -33,6 +33,7 @@
     [self updateAPIData];
     NSLog(@"Did update apiData");
     [self.tableView reloadData];
+    self.navigationItem.title = [NSString stringWithFormat:@"Arrivals for %@", stop.name];
 }
 
 - (void)didReceiveMemoryWarning
@@ -59,14 +60,16 @@
     NSLog(@"about to fetch arrivals for stop");
     NSLog(@"stop: %@", stop);
     
+    self.navigationItem.prompt = @"Finding scheduled arrivals...";
     [stop fetchArrivalsAndPerformCallback:^{
         NSLog(@"Got the OBA data");
+        self.navigationItem.prompt = nil;
         [self.tableView reloadData];
-
     }];
     
     // Got the local GTFS data, can reload
     NSLog(@"Did fetch arrivals");
+    self.navigationItem.prompt = @"Getting realtime arrivals...";
     [self.tableView reloadData];
     
 }
@@ -152,10 +155,12 @@
         UILabel *predicted = (UILabel *)[cell viewWithTag:2];
         UILabel *distance = (UILabel *)[cell viewWithTag:3];
         UILabel *timeOffset = (UILabel *)[cell viewWithTag:4];
+        UILabel *stopsAway = (UILabel *)[cell viewWithTag:5];
         scheduled.text = [DateFormatter stringFromDate:arrival.scheduledArrivalTime];
         predicted.text = [DateFormatter stringFromDate:arrival.predictedArrivalTime];
         distance.text = arrival.formattedDistanceFromStop;
         timeOffset.text = arrival.formattedScheduleDeviation;
+        stopsAway.text = [arrival.numberOfStopsAway stringValue];
     }
     
     NSDate *now = [NSDate date];
@@ -183,7 +188,7 @@
     
     if ([[self dataForIndexPath:indexPath] hasObaData])
     {
-        return 70.0f;
+        return 80.0f;
     }
     else {
         return 40.0f;
