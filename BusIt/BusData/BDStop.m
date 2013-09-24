@@ -68,13 +68,16 @@
     // Get midnight.
     // http://stackoverflow.com/questions/9040319/how-can-i-get-an-nsdate-object-for-today-at-midnight
     NSDate *midnight = [NSDate date];
-    NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
-    NSUInteger preservedComponents = (NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit);
-    midnight = [calendar dateFromComponents:[calendar components:preservedComponents fromDate:midnight]];
-    midnight = [midnight dateByAddingTimeInterval:-1];
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *todayComponents =
+    [gregorian components:(NSEraCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit | NSWeekCalendarUnit | NSWeekdayCalendarUnit | NSWeekdayOrdinalCalendarUnit | NSQuarterCalendarUnit | NSWeekOfMonthCalendarUnit | NSWeekOfYearCalendarUnit | NSYearForWeekOfYearCalendarUnit | NSCalendarCalendarUnit | NSTimeZoneCalendarUnit) fromDate:midnight];
+    [todayComponents setHour:23];
+    [todayComponents setMinute:59];
+    [todayComponents setSecond:59];
+    midnight = [gregorian dateFromComponents:todayComponents];
     
     // Limit the query to no later than midnight.
-    stopTime = [stopTime laterDate:midnight];
+    stopTime = [stopTime earlierDate:midnight];
     
     [DateFormatter setDateFormat:@"HH:mm:ss"];
     
