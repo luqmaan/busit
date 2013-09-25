@@ -16,7 +16,7 @@
 
 @implementation BMEmbeddedMapViewController
 
-@synthesize mapView, userLocation, btnUserLocation, btnSearch, searchBar;
+@synthesize mapView, userLocation, btnUserLocation, btnSearch, searchBar, btnBookmark;
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if(self = [super initWithCoder:aDecoder]) {
@@ -43,6 +43,7 @@
     mapView.showsUserLocation = YES;
     btnUserLocation.layer.cornerRadius = 5.0f;
     btnSearch.layer.cornerRadius = 5.0f;
+    btnBookmark.layer.cornerRadius = 5.0f;
     [self setupSearchBar];
 }
 
@@ -225,7 +226,7 @@
         searchBar.frame = newFrame;
     } completion:nil];
 }
--(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+-(void)searchBarCancelButtonClicked:(UISearchBar *)theSearchBar
 {
     [searchBar resignFirstResponder];
     [self dismissSearchBar];
@@ -241,14 +242,21 @@
         //Error checking
         
         CLPlacemark *placemark = [placemarks objectAtIndex:0];
+        NSLog(@"%@", placemarks);
         
-        MKCoordinateRegion region;
-        region.center.latitude = placemark.location.coordinate.latitude;
-        region.center.longitude = placemark.location.coordinate.longitude;
-        region.span = mapView.region.span;
-        
-        // upda the mapview and hide  the search bar
-        [mapView setRegion:region animated:YES];
+        if (placemark) {
+            MKCoordinateRegion region;
+            region.center.latitude = placemark.location.coordinate.latitude;
+            region.center.longitude = placemark.location.coordinate.longitude;
+            region.span = mapView.region.span;
+            
+            // update the mapview and hide  the search bar
+            [mapView setRegion:region animated:YES];
+        }
+        else {
+            // TODO: Find a way to notify the user that the location couldn't be found.
+            NSLog(@"Could not find a matching location");
+        }
         [self dismissSearchBar];
     }];
 }

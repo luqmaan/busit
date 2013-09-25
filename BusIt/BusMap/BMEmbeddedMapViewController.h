@@ -25,6 +25,7 @@ typedef void(^ActionBlock)();
 @property (weak, nonatomic) IBOutlet UIButton *btnUserLocation;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UIButton *btnSearch;
+@property (weak, nonatomic) IBOutlet UIButton *btnBookmark;
 
 // not actual init's
 - (void)addStopsToMap:(NSArray *)stops;

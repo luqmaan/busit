@@ -193,7 +193,7 @@
                                         <constraint firstItem="ZXY-tK-3PR" firstAttribute="leading" secondItem="oT6-Qo-cqc" secondAttribute="leading" constant="5" id="wM3-E3-8Yr"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.45490199329999997" green="0.32156863810000003" blue="0.87843143940000001" alpha="1" colorSpace="deviceRGB"/>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ScheduledArrivalCell" id="KAF-0O-DOH">
                                 <rect key="frame" x="0.0" y="136" width="320" height="40"/>
@@ -442,6 +442,19 @@
                                     <action selector="showSearchBar:" destination="xd9-eG-dmk" eventType="touchUpInside" id="ydr-q6-SMX"/>
                                 </connections>
                             </button>
+                            <button alpha="0.89999997615814209" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eFr-k5-tJ3">
+                                <rect key="frame" x="282" y="192" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.79759680710000003" green="0.79759680710000003" blue="0.79759680710000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="QWR-Lj-70o"/>
+                                    <constraint firstAttribute="width" constant="30" id="xix-fW-SeR"/>
+                                </constraints>
+                                <state key="normal" image="bookmark"/>
+                                <connections>
+                                    <action selector="showSearchBar:" destination="xd9-eG-dmk" eventType="touchUpInside" id="CBS-ng-j6v"/>
+                                </connections>
+                            </button>
                             <searchBar hidden="YES" contentMode="redraw" placeholder="Enter Address" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pcz-aB-9y9">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -451,10 +464,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ddT-vv-sMU" firstAttribute="top" secondItem="keT-16-D0t" secondAttribute="bottom" id="0cv-XY-Lbx"/>
+                            <constraint firstItem="eFr-k5-tJ3" firstAttribute="top" secondItem="keT-16-D0t" secondAttribute="bottom" constant="-38" id="8z6-OU-zkt"/>
                             <constraint firstAttribute="trailing" secondItem="pcz-aB-9y9" secondAttribute="trailing" id="9vE-hC-I0a"/>
                             <constraint firstItem="keT-16-D0t" firstAttribute="top" secondItem="46i-nd-6x1" secondAttribute="top" id="FTg-7F-0dE"/>
                             <constraint firstItem="9wt-RT-Bbn" firstAttribute="top" secondItem="keT-16-D0t" secondAttribute="bottom" constant="-38" id="PTc-Ru-Wz9"/>
                             <constraint firstItem="omm-fE-v3S" firstAttribute="leading" secondItem="keT-16-D0t" secondAttribute="leading" constant="8" id="QK3-tx-WJp"/>
+                            <constraint firstItem="eFr-k5-tJ3" firstAttribute="leading" secondItem="keT-16-D0t" secondAttribute="trailing" constant="-38" id="kgl-90-sIc"/>
                             <constraint firstItem="CTw-Kt-vSf" firstAttribute="top" secondItem="pcz-aB-9y9" secondAttribute="bottom" constant="-44" id="mzZ-tV-a0e"/>
                             <constraint firstAttribute="trailing" secondItem="keT-16-D0t" secondAttribute="trailing" id="n9Q-J0-yl7"/>
                             <constraint firstItem="omm-fE-v3S" firstAttribute="bottom" secondItem="keT-16-D0t" secondAttribute="bottom" constant="-8" id="q0E-DO-q3V"/>
@@ -465,6 +480,7 @@
                     </view>
                     <toolbarItems/>
                     <connections>
+                        <outlet property="btnBookmark" destination="eFr-k5-tJ3" id="vX0-Yl-zNI"/>
                         <outlet property="btnSearch" destination="9wt-RT-Bbn" id="mwa-ox-l02"/>
                         <outlet property="btnUserLocation" destination="omm-fE-v3S" id="Shm-0F-Gga"/>
                         <outlet property="mapView" destination="keT-16-D0t" id="8lX-yL-bcf"/>
@@ -503,6 +519,7 @@
     </scenes>
     <resources>
         <image name="arrow-navigation" width="256" height="256"/>
+        <image name="bookmark" width="256" height="256"/>
         <image name="bus" width="25" height="25"/>
         <image name="location" width="32" height="32"/>
         <image name="search" width="256" height="256"/>

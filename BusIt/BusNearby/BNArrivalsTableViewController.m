@@ -78,11 +78,15 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    if ([stop.arrivals count] == 0)
+        return 1;
     return [stop.arrivals count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if ([stop.arrivals count] == 0)
+        return 0;
     return [[stop.arrivals objectForKey:stop.arrivalKeys[section]] count];
 }
 
@@ -114,21 +118,26 @@
     if (cell == nil){
         [NSException raise:@"headerView == nil.." format:@"No cells with matching CellIdentifier loaded from your storyboard"];
     }
+    
     UILabel *routeNumber = (UILabel *)[cell viewWithTag:1];
     UILabel *tripHeadsign = (UILabel *)[cell viewWithTag:2];
-    NSMutableArray *arrivalGroup = [stop.arrivals objectForKey:[stop.arrivalKeys objectAtIndex:section]];
     
-    BDArrival *arrival = arrivalGroup[0];
-    
-    
-    double hue = [BIHelpers hueForRoute:[arrival.routeId intValue]];
-    UIColor *routeColor = [UIColor colorWithHue:hue saturation:1 brightness:0.7 alpha:0.9];
-    cell.backgroundColor = routeColor;
-//    routeNumber.textColor = routeColor;
-    
-    
-    routeNumber.text = arrival.routeId;
-    tripHeadsign.text = arrival.tripHeadsign;
+    if ([stop.arrivals count] == 0) {
+        routeNumber.text = @":(";
+        tripHeadsign.text = @"No upcoming arrivals.";
+        return cell;
+    }
+    else {
+        NSMutableArray *arrivalGroup = [stop.arrivals objectForKey:[stop.arrivalKeys objectAtIndex:section]];
+        BDArrival *arrival = arrivalGroup[0];
+        
+        double hue = [BIHelpers hueForRoute:[arrival.routeId intValue]];
+        UIColor *routeColor = [UIColor colorWithHue:hue saturation:1 brightness:0.7 alpha:0.9];
+        cell.backgroundColor = routeColor;
+        
+        routeNumber.text = arrival.routeId;
+        tripHeadsign.text = arrival.tripHeadsign;
+    }
     
     return cell;
 }
