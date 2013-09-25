@@ -16,7 +16,7 @@
 
 @implementation BMEmbeddedMapViewController
 
-@synthesize mapView, userLocation;
+@synthesize mapView, userLocation, btnUserLocation, btnSearch, searchBar;
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if(self = [super initWithCoder:aDecoder]) {
@@ -41,6 +41,9 @@
     [super viewDidLoad];
     mapView.delegate = self;
     mapView.showsUserLocation = YES;
+    btnUserLocation.layer.cornerRadius = 5.0f;
+    btnSearch.layer.cornerRadius = 5.0f;
+    [self setupSearchBar];
 }
 
 - (void)didReceiveMemoryWarning
@@ -89,6 +92,8 @@
 - (void)removeAnnotations:(NSArray *)annotations
 {
     for (id<MKAnnotation>annotation in annotations) {
+        if([annotation isKindOfClass:[MKUserLocation class]])
+            continue;
         MKAnnotationView *annotationView = [mapView viewForAnnotation:annotation];
         [UIView animateWithDuration:0.5f animations:^(void){
             annotationView.alpha = 0.0f;
@@ -101,6 +106,10 @@
 
 - (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views {
     MKAnnotationView *aV;
+ 
+    if([aV.annotation isKindOfClass:[MKUserLocation class]])
+        return;
+        
     for (aV in views) {
         aV.alpha = 0.0f;
         [UIView beginAnimations:nil context:NULL];
@@ -164,6 +173,7 @@
 }
 
 - (IBAction)zoomToUserLocation:(id)sender {
+    NSLog(@"Did press zoom to user location button");
     MKCoordinateRegion mapRegion;
     mapRegion.center = mapView.userLocation.coordinate;
     mapRegion.span.latitudeDelta = 0.0075;
@@ -173,8 +183,77 @@
 //    NSLog(@"didUpdateLocationBlock %@", self.didUpdateLocationBlock);
 }
 
+
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
     self.didUpdateLocationBlock();
 }
+
+#pragma mark - Search bar
+
+- (void)setupSearchBar
+{
+    searchBar.delegate = self;
+}
+
+- (void)hideSearchBarProperly
+{
+    CGRect newFrame = searchBar.frame;
+    newFrame.origin.y = searchBar.frame.size.height * -1;
+    searchBar.frame = newFrame;
+    searchBar.hidden = NO;
+}
+
+- (IBAction)showSearchBar:(id)sender {
+    NSLog(@"Did press search bar button");
+    // Use the initial frame of the search bar to begin with.
+    // Then move it just outside of the screen.
+    // Perform a slide-in animation by transitioning to the new frame.
+    CGRect newFrame = searchBar.frame;
+    newFrame.origin.y = 0;
+    [self hideSearchBarProperly];
+    [UIView animateWithDuration:0.2f animations:^(void){
+        searchBar.frame = newFrame;
+    } completion:nil];
+    
+}
+
+- (void)dismissSearchBar {
+    CGRect newFrame = searchBar.frame;
+    newFrame.origin.y = searchBar.frame.size.height * -1;
+    [UIView animateWithDuration:0.2f animations:^(void){
+        searchBar.frame = newFrame;
+    } completion:nil];
+}
+-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    [searchBar resignFirstResponder];
+    [self dismissSearchBar];
+}
+
+-(void)searchBarSearchButtonClicked:(UISearchBar *)theSearchBar
+{
+    // hide the keyboard
+    [searchBar resignFirstResponder];
+    // http://stackoverflow.com/questions/2281798/how-to-search-mkmapview-with-uisearchbar
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    [geocoder geocodeAddressString:theSearchBar.text completionHandler:^(NSArray *placemarks, NSError *error) {
+        //Error checking
+        
+        CLPlacemark *placemark = [placemarks objectAtIndex:0];
+        
+        MKCoordinateRegion region;
+        region.center.latitude = placemark.location.coordinate.latitude;
+        region.center.longitude = placemark.location.coordinate.longitude;
+        region.span = mapView.region.span;
+        
+        // upda the mapview and hide  the search bar
+        [mapView setRegion:region animated:YES];
+        [self dismissSearchBar];
+    }];
+}
+
+
+
+
 @end
