@@ -7,13 +7,13 @@
         <!--Nearby View Controller - Stops-->
         <scene sceneID="3XP-qD-Jtr">
             <objects>
-                <tableViewController id="iTL-02-yCz" customClass="BNNearbyViewController" sceneMemberID="viewController">
+                <tableViewController extendedLayoutIncludesOpaqueBars="YES" id="iTL-02-yCz" customClass="BNNearbyViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="34" sectionHeaderHeight="22" sectionFooterHeight="22" id="VVB-EZ-ld2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <containerView key="tableHeaderView" contentMode="scaleToFill" id="yJI-LW-HdZ">
-                            <rect key="frame" x="0.0" y="64" width="320" height="190"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="190"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <connections>
@@ -22,7 +22,7 @@
                         </containerView>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="StopCell" rowHeight="34" id="mey-2W-TLU">
-                                <rect key="frame" x="0.0" y="276" width="320" height="34"/>
+                                <rect key="frame" x="0.0" y="212" width="320" height="34"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mey-2W-TLU" id="tDQ-T8-tcO">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="33"/>
@@ -73,13 +73,8 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Stops" id="19U-Z5-rRt">
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="Y3u-ZJ-lA4">
-                            <connections>
-                                <action selector="refreshBtnPress:" destination="iTL-02-yCz" id="l6p-eu-GK7"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <navigationItem key="navigationItem" title="Stops" id="19U-Z5-rRt"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ng0-mT-eTf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -129,14 +124,16 @@
         <!--Navigation Controller - Stops-->
         <scene sceneID="hxt-QK-ld5">
             <objects>
-                <navigationController definesPresentationContext="YES" id="lRK-Lh-mbV" sceneMemberID="viewController">
+                <navigationController definesPresentationContext="YES" navigationBarHidden="YES" id="lRK-Lh-mbV" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Stops" image="nearby" id="rt7-fO-X6P"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gDn-f7-XMd">
+                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Y1f-VK-PCM">
-                        <rect key="frame" x="0.0" y="416" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="436" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.0" green="0.34978351530167057" blue="0.8657069052419355" alpha="1" colorSpace="deviceRGB"/>
                     </toolbar>
                     <connections>
                         <segue destination="iTL-02-yCz" kind="relationship" relationship="rootViewController" id="vAU-t2-ydw"/>
@@ -156,7 +153,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TripHeadsignCell" id="dBk-Ss-x0n">
-                                <rect key="frame" x="0.0" y="94" width="320" height="40"/>
+                                <rect key="frame" x="0.0" y="30" width="320" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dBk-Ss-x0n" id="oT6-Qo-cqc">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="39"/>
@@ -196,7 +193,7 @@
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ScheduledArrivalCell" id="KAF-0O-DOH">
-                                <rect key="frame" x="0.0" y="134" width="320" height="40"/>
+                                <rect key="frame" x="0.0" y="70" width="320" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KAF-0O-DOH" id="WND-G7-OsL">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="39"/>
@@ -231,7 +228,7 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="RealtimeArrivalCell" rowHeight="80" id="2bu-NR-grM">
-                                <rect key="frame" x="0.0" y="174" width="320" height="80"/>
+                                <rect key="frame" x="0.0" y="110" width="320" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2bu-NR-grM" id="YPC-X3-t8a">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
@@ -345,7 +342,6 @@
         <scene sceneID="tmv-9D-Cq9">
             <objects>
                 <tabBarController definesPresentationContext="YES" id="cHa-ne-20T" sceneMemberID="viewController">
-                    <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="yqe-uh-rGN">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>

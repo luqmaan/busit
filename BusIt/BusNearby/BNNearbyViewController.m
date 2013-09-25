@@ -37,8 +37,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.navigationController dismissViewControllerAnimated:NO completion:nil];
+    NSLog(@"%@", NSStringFromCGRect(self.view.frame));
+    NSLog(@"%@", self.view.subviews);
 }
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -46,11 +48,30 @@
     // Dispose of any resources that can be recreated.
 }
 
+// Hide the navigationBar for this view
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [self setNeedsStatusBarAppearanceUpdate];
+    [super viewWillAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [super viewWillDisappear:animated];
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleDefault;
+}
+
 - (IBAction)refreshBtnPress:(id)sender {
     // Find the center of the mapView and request coordinates within that region.
     [self updateLocationToMapCenter];
     [self updateData];
 }
+
 
 # pragma mark - Data/API
 
