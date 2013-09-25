@@ -41,7 +41,6 @@
     NSLog(@"%@", self.view.subviews);
 }
 
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -62,8 +61,9 @@
     [super viewWillDisappear:animated];
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleDefault;
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
 }
 
 - (IBAction)refreshBtnPress:(id)sender {
