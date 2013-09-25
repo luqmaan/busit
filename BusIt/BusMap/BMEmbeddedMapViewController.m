@@ -20,15 +20,15 @@
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if(self = [super initWithCoder:aDecoder]) {
-        // For some reason mapView is null here, so I set its properties in the fake init methods
+        // For some reason mapView is null here, so I set the mapView's properties in the viewDidLoad method
     }
     return self;
 }
 
 - (void)addStopsToMap:(NSArray *)stops
 {
-    [mapView removeAnnotations:mapView.annotations];
-
+    [self removeAnnotations:mapView.annotations];
+    
     // Add the stops with new identifiers.
     for (BDStop *stop in stops) {
         BMStopAnnotation *annotation = [[BMStopAnnotation alloc] initWithStop:stop];
@@ -39,11 +39,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"hey im the mapview and i did load");
     mapView.delegate = self;
     mapView.showsUserLocation = YES;
-    
-	// Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning
@@ -80,13 +77,38 @@
     
 }
 
-
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
     if ([view isKindOfClass:[BMStopAnnotationView class]]) {
         BNNearbyViewController *parent = (BNNearbyViewController *)[self parentViewController];
         BMStopAnnotation *stop = (BMStopAnnotation *)view.annotation;
         [parent performSegueForMapViewWithStop:stop.identifier];
+    }
+}
+
+- (void)removeAnnotations:(NSArray *)annotations
+{
+    for (id<MKAnnotation>annotation in annotations) {
+        MKAnnotationView *annotationView = [mapView viewForAnnotation:annotation];
+        [UIView animateWithDuration:0.5f animations:^(void){
+            annotationView.alpha = 0.0f;
+        }
+         completion:^(BOOL finished){
+             [mapView removeAnnotation:annotation];
+         }];
+    }
+}
+
+- (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views {
+    MKAnnotationView *aV;
+    for (aV in views) {
+        aV.alpha = 0.0f;
+        [UIView beginAnimations:nil context:NULL];
+        aV.alpha = 1.0f;
+        [UIView setAnimationDuration:1.0f];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+        [UIView commitAnimations];
+        
     }
 }
 
