@@ -11,6 +11,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "BDBusData.h"
 #import "BDArrival.h"
+#import "BIRest.h"
 
 @interface BDStop : NSObject {
 }
@@ -33,6 +34,6 @@
 @property (nonatomic, retain) NSMutableArray *arrivalKeys;
 
 - (BDStop *)initWithGtfsResult:(NSDictionary *)resultDict;
-- (void)fetchArrivalsAndPerformCallback:(void(^)(void))completion;
+- (void)fetchArrivalsAndPerformCallback:(void(^)(void))completion progressCallback:(ProgressUpdateBlock)progressUpdateBlock;
 
 @end

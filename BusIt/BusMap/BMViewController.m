@@ -21,6 +21,9 @@
 
 @property (nonatomic, retain) BIRest *bench;
 @property (nonatomic, retain) NSDictionary *apiData;
+@property (weak, nonatomic) IBOutlet UIProgressView *progressBar;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
+@property (weak, nonatomic) IBOutlet UILabel *toolBarMessage;
 
 @end
 
@@ -109,7 +112,7 @@
         return;
     }
     
-dispatch_queue_t fetchAPIData = dispatch_queue_create("com.busit.vehiclesForRoute", DISPATCH_QUEUE_SERIAL);
+    dispatch_queue_t fetchAPIData = dispatch_queue_create("com.busit.vehiclesForRoute", DISPATCH_QUEUE_SERIAL);
     dispatch_async(fetchAPIData, ^{
         updateInProgress = TRUE;
         [self stopTimer];
@@ -127,7 +130,17 @@ dispatch_queue_t fetchAPIData = dispatch_queue_create("com.busit.vehiclesForRout
 
 - (void)updateAPIData
 {
+    __weak BMViewController *self_ = self;
+    self.progressBar.hidden = NO;
+    bench.progressUpdateBlock = ^(float downloadProgress) {
+        self_.progressBar.progress = downloadProgress;
+        NSLog(@"downloadProgress: %f", downloadProgress);
+    };
     apiData = [bench vehiclesForAgency:agencyId];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.progressBar.hidden = YES;
+        self.progressBar.progress = 0;
+    });
 }
 
 - (void)updateRoutes
@@ -185,7 +198,6 @@ dispatch_queue_t fetchAPIData = dispatch_queue_create("com.busit.vehiclesForRout
         
         MKAnnotationView *customPinView = [theMapView dequeueReusableAnnotationViewWithIdentifier:annotationViewID];
         if (! customPinView) {
-            NSLog(@"Did not deque. New type of pin: %@", annotationViewID);
             customPinView = [[BMVehicleAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:annotationViewID];
             
             [customPinView setCanShowCallout:YES];
@@ -194,7 +206,6 @@ dispatch_queue_t fetchAPIData = dispatch_queue_create("com.busit.vehiclesForRout
             customPinView.rightCalloutAccessoryView = rightButton;
         }
         else {
-            NSLog(@"Did deque.");
         }
     
         return customPinView;
@@ -221,17 +232,32 @@ dispatch_queue_t fetchAPIData = dispatch_queue_create("com.busit.vehiclesForRout
 - (void)startTimer
 {
     NSLog(@"Started timer");
-    updateTimer = [NSTimer timerWithTimeInterval:10.0
-                                         target:self
-                                       selector:@selector(updateMap)
-                                       userInfo:nil
-                                        repeats:NO];
+    updateTimer = [NSTimer timerWithTimeInterval:1.0
+                                          target:self
+                                        selector:@selector(updateToolbarMessage)
+                                        userInfo:nil
+                                         repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:updateTimer forMode:NSRunLoopCommonModes];
 }
 - (void)stopTimer
 {
     [updateTimer invalidate];
     updateTimer = nil;
+}
+
+int timeToUpdate = 10;
+- (void)updateToolbarMessage
+{
+    self.toolBarMessage.text = [NSString stringWithFormat:@"Refreshing realtime bus locations in %d seconds", timeToUpdate];
+    if (timeToUpdate == 0) {
+        timeToUpdate = 10;
+        [self stopTimer];
+        self.toolBarMessage.text = @"Updating realtime bus locations";
+        [self updateMap];
+    }
+    else {
+        timeToUpdate -= 1;        
+    }
 }
 
 @end

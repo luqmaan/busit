@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import <QuartzCore/QuartzCore.h>
-#import "BIRest.h"
 #import "BIHelpers.h"
 #import "BDStop.h"
 
@@ -17,7 +16,7 @@
 
 @property (weak, nonatomic) BDStop *stop;
 
-- (IBAction)dismissView:(id)sender;
 - (IBAction)refresh:(id)sender;
+@property (weak, nonatomic) IBOutlet UIProgressView *progressBar;
 
 @end

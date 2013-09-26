@@ -16,6 +16,13 @@
 @property (nonatomic, strong) NSMutableData *cumulativeData;
 @property BOOL offlineMode;
 
+typedef void (^ProgressUpdateBlock) (float newDownloadProgress);
+@property (nonatomic, assign) long long downloadSize;
+@property (nonatomic, assign) float downloadProgress;
+/** Define this block to receive progress updates */
+@property (nonatomic, copy) ProgressUpdateBlock progressUpdateBlock;
+
+
 -(NSDictionary *)restToJSON:(NSString *)jsonURL paramStr:(NSString *)paramStr;
 -(NSString *)strDataForURL:(NSString *)urlStr paramStr:(NSString *)paramStr;
 

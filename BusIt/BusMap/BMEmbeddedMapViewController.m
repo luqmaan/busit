@@ -213,10 +213,11 @@
     CGRect newFrame = searchBar.frame;
     newFrame.origin.y = 0;
     [self hideSearchBarProperly];
+    [searchBar becomeFirstResponder];
     [UIView animateWithDuration:0.2f animations:^(void){
         searchBar.frame = newFrame;
-    } completion:nil];
-    
+    } completion:^(BOOL finished) {
+    }];
 }
 
 - (void)dismissSearchBar {

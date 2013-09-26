@@ -59,12 +59,15 @@
     
     NSLog(@"about to fetch arrivals for stop");
     NSLog(@"stop: %@", stop);
-    
+    self.progressBar.progress = 0;
     self.navigationItem.prompt = @"Finding scheduled arrivals...";
+    
     [stop fetchArrivalsAndPerformCallback:^{
         NSLog(@"Got the OBA data");
         self.navigationItem.prompt = nil;
         [self.tableView reloadData];
+    } progressCallback:^(float newDownloadProgress) {
+        self.progressBar.progress = newDownloadProgress;
     }];
     
     // Got the local GTFS data, can reload

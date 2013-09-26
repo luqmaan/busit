@@ -18,6 +18,8 @@
 
 @implementation BIRest
 
+@synthesize downloadSize, downloadProgress;
+
 -(id)init {
     self = [super init];
     if (self) {
@@ -155,14 +157,23 @@
 
 #pragma mark - NSURLConnection/Data Delegates
 
--(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+-(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response
 {
     [self.cumulativeData setLength:0];
+    NSLog(@"%@", response);
+    if ([response statusCode] == 200) {
+        downloadSize = [response expectedContentLength];
+        downloadProgress = 0;
+    }
 }
 
 -(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
     [self.cumulativeData appendData:data];
+    downloadProgress += ((float) [data length] / (float) downloadSize);
+    NSLog(@"%f / %f = %f", (float) [data length], (float)downloadSize, downloadProgress);
+    if (self.progressUpdateBlock)
+        self.progressUpdateBlock(downloadProgress);
 }
 
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error

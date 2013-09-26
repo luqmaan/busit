@@ -35,7 +35,7 @@
     return self;
 }
 
-- (void)fetchArrivalsAndPerformCallback:(void(^)(void))completion {
+- (void)fetchArrivalsAndPerformCallback:(void(^)(void))completion progressCallback:(ProgressUpdateBlock)progressUpdateBlock {
     
     // Remove previous arrivals data
     NSLog(@"called fetchArrivalsAnd");
@@ -123,6 +123,7 @@
     
     dispatch_async(fetchAPIData, ^{
         BIRest *bench = [[BIRest alloc] init];
+        bench.progressUpdateBlock = progressUpdateBlock;
         NSDictionary *obArrivals = [bench arrivalsAndDeparturesForStop:obaId];
         // For each arrivalAndDeparture
         // Match it to its corresponding BDArrival.

@@ -78,7 +78,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ng0-mT-eTf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="453" y="-668"/>
+            <point key="canvasLocation" x="452" y="-630"/>
         </scene>
         <!--Table View Controller - Favorites-->
         <scene sceneID="d89-ji-y0a">
@@ -90,7 +90,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="DCB-dT-LJ0">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DCB-dT-LJ0" id="GDl-ty-RBc">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -104,22 +104,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6DN-8W-goT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="541" y="-1516"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="d2N-Dt-RG9">
-            <objects>
-                <navigationController definesPresentationContext="YES" id="4wj-Lj-xUn" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="favorites" id="LJu-U7-YeP"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aq6-eG-gBW">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="IAu-Cq-LrB" kind="relationship" relationship="rootViewController" id="2aP-U5-Mzu"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Bk5-c4-qb9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="7" y="-1516"/>
         </scene>
         <!--Navigation Controller - Stops-->
         <scene sceneID="hxt-QK-ld5">
@@ -150,9 +134,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <progressView key="tableHeaderView" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" id="NxF-6e-rHg">
+                        <progressView key="tableHeaderView" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" id="NxF-6e-rHg">
                             <rect key="frame" x="0.0" y="64" width="320" height="2"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.79759680710000003" green="0.79759680710000003" blue="0.79759680710000003" alpha="1" colorSpace="calibratedRGB"/>
                         </progressView>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TripHeadsignCell" id="dBk-Ss-x0n">
@@ -334,9 +319,16 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Arrivals" id="iUB-2J-FoR">
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="TGl-Ko-rwp"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="TGl-Ko-rwp">
+                            <connections>
+                                <action selector="refresh:" destination="2q8-Xd-oEm" id="CJc-CY-m1P"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="progressBar" destination="NxF-6e-rHg" id="h8Z-As-DuD"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o0S-zl-frs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -354,7 +346,6 @@
                     <connections>
                         <segue destination="lRK-Lh-mbV" kind="relationship" relationship="viewControllers" id="C3n-K4-vZK"/>
                         <segue destination="PUH-8l-EO9" kind="relationship" relationship="viewControllers" id="h1e-t9-3MZ"/>
-                        <segue destination="4wj-Lj-xUn" kind="relationship" relationship="viewControllers" id="sB0-Dg-0sh"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZkM-TV-bAl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -370,25 +361,61 @@
                         <viewControllerLayoutGuide type="bottom" id="Fhx-Mr-MLj"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="MCX-zE-yV3">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fAM-r2-qdm">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fAM-r2-qdm">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </mapView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1vq-1e-WLn">
+                                <rect key="frame" x="0.0" y="387" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Stz-X8-Pwb"/>
+                                </constraints>
+                                <items/>
+                            </toolbar>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Updating realtime bus locations" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pog-mm-9bz">
+                                <rect key="frame" x="10" y="398" width="300" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="CA7-iz-goB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.45490199329999997" green="0.32156863810000003" blue="0.87843143940000001" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="94e-5d-ec2">
+                                <rect key="frame" x="0.0" y="385" width="320" height="2"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Fhx-Mr-MLj" firstAttribute="top" secondItem="fAM-r2-qdm" secondAttribute="bottom" constant="-49" id="0wn-Bx-62u"/>
+                            <constraint firstAttribute="trailing" secondItem="94e-5d-ec2" secondAttribute="trailing" id="5yu-yA-p08"/>
                             <constraint firstItem="fAM-r2-qdm" firstAttribute="top" secondItem="MCX-zE-yV3" secondAttribute="top" id="6dG-qs-wJO"/>
+                            <constraint firstItem="94e-5d-ec2" firstAttribute="leading" secondItem="MCX-zE-yV3" secondAttribute="leading" id="9dI-i5-fWB"/>
+                            <constraint firstAttribute="trailing" secondItem="1vq-1e-WLn" secondAttribute="trailing" id="Hpb-04-a2E"/>
+                            <constraint firstItem="Pog-mm-9bz" firstAttribute="leading" secondItem="MCX-zE-yV3" secondAttribute="leading" constant="10" id="QXj-xM-gIm"/>
                             <constraint firstAttribute="trailing" secondItem="fAM-r2-qdm" secondAttribute="trailing" id="QxJ-Gc-mgs"/>
+                            <constraint firstItem="1vq-1e-WLn" firstAttribute="leading" secondItem="MCX-zE-yV3" secondAttribute="leading" id="Rdc-km-ceA"/>
+                            <constraint firstAttribute="trailing" secondItem="Pog-mm-9bz" secondAttribute="trailing" constant="10" id="cF3-4O-wYr"/>
+                            <constraint firstItem="94e-5d-ec2" firstAttribute="bottom" secondItem="1vq-1e-WLn" secondAttribute="bottom" constant="-44" id="e15-6l-Ssm"/>
+                            <constraint firstItem="Fhx-Mr-MLj" firstAttribute="top" secondItem="1vq-1e-WLn" secondAttribute="bottom" id="fjv-MZ-6iJ"/>
                             <constraint firstItem="fAM-r2-qdm" firstAttribute="leading" secondItem="MCX-zE-yV3" secondAttribute="leading" id="oqn-jT-jyM"/>
+                            <constraint firstItem="Pog-mm-9bz" firstAttribute="centerY" secondItem="1vq-1e-WLn" secondAttribute="centerY" constant="-0.5" id="sRp-Oh-Pkq"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <tabBarItem key="tabBarItem" title="Live Map" image="location" id="vLK-Nd-H7j"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="mapView" destination="fAM-r2-qdm" id="Qld-dN-I9a"/>
+                        <outlet property="progressBar" destination="94e-5d-ec2" id="O4m-R5-zMD"/>
+                        <outlet property="toolBar" destination="1vq-1e-WLn" id="C8u-5B-0dx"/>
+                        <outlet property="toolBarMessage" destination="Pog-mm-9bz" id="56E-27-fOE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="suw-e8-xrG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -442,7 +469,7 @@
                                     <action selector="showSearchBar:" destination="xd9-eG-dmk" eventType="touchUpInside" id="ydr-q6-SMX"/>
                                 </connections>
                             </button>
-                            <button alpha="0.89999997615814209" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eFr-k5-tJ3">
+                            <button hidden="YES" alpha="0.89999997615814209" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eFr-k5-tJ3">
                                 <rect key="frame" x="282" y="192" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.79759680710000003" green="0.79759680710000003" blue="0.79759680710000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -490,31 +517,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TQ7-zW-Dtb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="441" y="-962"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="cze-Ca-Xon">
-            <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="5gr-1T-YVg" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="BvU-z7-RRS"/>
-                        <viewControllerLayoutGuide type="bottom" id="UCT-XC-mJx"/>
-                    </layoutGuides>
-                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U2e-nL-JD6">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="yUT-53-uCJ">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </mapView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <toolbarItems/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HtL-go-ALk" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="675" y="151"/>
         </scene>
     </scenes>
     <resources>
