@@ -26,8 +26,12 @@ extern NSString *regionPrefix;
 // Instance Variables
 @property FMDatabase *database;
 
-- (NSString *)stringWithoutRegionPrefix:(NSString *)stringWithPrefix;
+// Data Access
 - (NSArray *)stopsNearLocation:(CLLocation *)location andLimit:(int)limit;
+- (NSArray *)routes;
+
+// Helpers
+- (NSString *)stringWithoutRegionPrefix:(NSString *)stringWithPrefix;
 /** Converts HH:mm:ss to NSDate. */
 + (NSDate *)dateFromGtfsTimestring:(NSString *)timestring;
 

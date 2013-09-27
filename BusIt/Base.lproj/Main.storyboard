@@ -80,30 +80,104 @@
             </objects>
             <point key="canvasLocation" x="452" y="-630"/>
         </scene>
-        <!--Table View Controller - Favorites-->
-        <scene sceneID="d89-ji-y0a">
+        <!--Routes View Controller - Routes-->
+        <scene sceneID="j15-M1-0GK">
             <objects>
-                <tableViewController id="IAu-Cq-LrB" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="pLW-6k-Ooj">
+                <tableViewController id="aVZ-rp-F4R" customClass="BNRoutesViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" id="aLt-Bx-K7O">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="DCB-dT-LJ0">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RouteCell" rowHeight="50" id="cSZ-yf-cAk">
+                                <rect key="frame" x="0.0" y="86" width="320" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DCB-dT-LJ0" id="GDl-ty-RBc">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cSZ-yf-cAk" id="lUD-zD-k3G">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="49"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumFontSize="7" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sNM-ky-ew9">
+                                            <rect key="frame" x="5" y="5" width="40" height="40"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" red="0.45490199329999997" green="0.32156863810000003" blue="0.87843143940000001" alpha="1" colorSpace="deviceRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="UEv-31-Hit"/>
+                                                <constraint firstAttribute="width" constant="40" id="Xg7-eX-FxV"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dover - Brandon Express" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="biq-rR-SZ0">
+                                            <rect key="frame" x="53" y="14" width="194" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="sNM-ky-ew9" firstAttribute="leading" secondItem="lUD-zD-k3G" secondAttribute="leading" constant="5" id="NNy-gr-lwx"/>
+                                        <constraint firstItem="biq-rR-SZ0" firstAttribute="leading" secondItem="sNM-ky-ew9" secondAttribute="trailing" constant="8" id="Qx8-OR-en6"/>
+                                        <constraint firstAttribute="centerY" secondItem="biq-rR-SZ0" secondAttribute="centerY" id="coq-et-E3S"/>
+                                        <constraint firstItem="sNM-ky-ew9" firstAttribute="top" secondItem="lUD-zD-k3G" secondAttribute="top" constant="5" id="f80-Ol-3dt"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="Meg-eZ-hIq" kind="push" id="Hc9-5P-FOF"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Routes" id="BHq-Rz-Szg"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fDh-vQ-sr7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="541" y="-1264"/>
+        </scene>
+        <!--Table View Controller - Stops-->
+        <scene sceneID="Evs-XX-JsX">
+            <objects>
+                <tableViewController id="Meg-eZ-hIq" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="bQ8-Sk-14w">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Wuv-1G-aec">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wuv-1G-aec" id="41j-z0-1WD">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Meg-eZ-hIq" id="p4S-nx-n6a"/>
+                            <outlet property="delegate" destination="Meg-eZ-hIq" id="nNk-v4-ZzG"/>
+                        </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Favorites" id="PD0-NI-AcL"/>
+                    <navigationItem key="navigationItem" title="Stops" id="4kQ-NM-PLC"/>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6DN-8W-goT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6pp-59-Mgv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="541" y="-1516"/>
+            <point key="canvasLocation" x="933" y="-1264"/>
+        </scene>
+        <!--Navigation Controller - Routes-->
+        <scene sceneID="53S-Cv-Fe9">
+            <objects>
+                <navigationController title="Routes" definesPresentationContext="YES" id="obu-II-9Gy" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Routes" image="collapse" id="gyZ-8W-fp7"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Yym-xX-ots">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="aVZ-rp-F4R" kind="relationship" relationship="rootViewController" id="Rtr-KF-gw8"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FPX-mS-746" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7" y="-1264"/>
         </scene>
         <!--Navigation Controller - Stops-->
         <scene sceneID="hxt-QK-ld5">
@@ -344,8 +418,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     </tabBar>
                     <connections>
-                        <segue destination="lRK-Lh-mbV" kind="relationship" relationship="viewControllers" id="C3n-K4-vZK"/>
-                        <segue destination="PUH-8l-EO9" kind="relationship" relationship="viewControllers" id="h1e-t9-3MZ"/>
+                        <segue destination="obu-II-9Gy" kind="relationship" relationship="viewControllers" id="a5X-2I-Mav"/>
+                        <segue destination="lRK-Lh-mbV" kind="relationship" relationship="viewControllers" id="dzb-Md-T1z"/>
+                        <segue destination="PUH-8l-EO9" kind="relationship" relationship="viewControllers" id="z1F-id-S0s"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZkM-TV-bAl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -516,13 +591,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TQ7-zW-Dtb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="441" y="-962"/>
+            <point key="canvasLocation" x="452" y="-60"/>
         </scene>
     </scenes>
     <resources>
         <image name="arrow-navigation" width="256" height="256"/>
         <image name="bookmark" width="256" height="256"/>
         <image name="bus" width="25" height="25"/>
+        <image name="collapse" width="32" height="32"/>
         <image name="location" width="32" height="32"/>
         <image name="search" width="256" height="256"/>
     </resources>

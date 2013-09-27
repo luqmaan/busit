@@ -8,6 +8,7 @@
 
 #import "BDBusData.h"
 #import "BDStop.h"
+#import "BDRoute.h"
 
 @interface BDBusData() {}
 
@@ -167,7 +168,7 @@ NSString *regionPrefix = @"Hillsborough Area Regional Transit_";
 }
 
 
-#pragma mark - Miscellaneous Queries
+#pragma mark - Data Access
 
 // Find stops nearby the location that are within the given distance.
 - (NSArray *)stopsNearLocation:(CLLocation *)location andLimit:(int)limit
@@ -185,6 +186,29 @@ NSString *regionPrefix = @"Hillsborough Area Regional Transit_";
     // Convert to NSArray
     return [stops copy];
 }
+
+- (NSArray *)routes
+{
+    NSLog(@"ehllo");
+    // Query for nearby stops
+    NSString *query = [NSString stringWithFormat:@"SELECT * FROM routes"];
+    
+    FMResultSet *rs = [database executeQuery:query];
+    
+    NSMutableArray *stops = [[NSMutableArray alloc] init];
+    NSLog(@"rs: %@", [rs resultDictionary]);
+    
+    while ([rs next]) {
+        BDRoute *route = [[BDRoute alloc] initWithGtfsResult:[rs resultDictionary]];
+        NSLog(@"stop %@", route);
+        [stops addObject:route];
+    }
+    
+    // Convert to NSArray
+    return [stops copy];
+}
+
+#pragma mark - Helpers
 
 - (NSString *)stringWithoutRegionPrefix:(NSString *)stringWithPrefix
 {

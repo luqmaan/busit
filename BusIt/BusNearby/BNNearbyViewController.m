@@ -47,6 +47,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewDidUnload {
+    [super viewDidUnload];
+}
+
+
 // Hide the navigationBar for this view
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -214,10 +219,6 @@
             [self updateData];
         };
     }
-}
-
-- (void)viewDidUnload {
-    [super viewDidUnload];
 }
 
 @end

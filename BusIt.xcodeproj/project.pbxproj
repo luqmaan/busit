@@ -11,6 +11,8 @@
 		C14DB59617CBD10200905967 /* BMCircularAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C14DB59517CBD10200905967 /* BMCircularAnnotationView.m */; };
 		C14DB59917CBE03700905967 /* BMStopAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C14DB59817CBE03700905967 /* BMStopAnnotationView.m */; };
 		C14DB59C17CBE2A700905967 /* BMStopAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = C14DB59B17CBE2A700905967 /* BMStopAnnotation.m */; };
+		C15FE65917F4BD1200E23AFF /* BNRoutesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C15FE65817F4BD1200E23AFF /* BNRoutesViewController.m */; };
+		C15FE65C17F4BF0A00E23AFF /* BDRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = C15FE65B17F4BF0A00E23AFF /* BDRoute.m */; };
 		C177FE9C17C3A83A00B2FE4F /* BNArrivalsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C177FE9917C3A83A00B2FE4F /* BNArrivalsTableViewController.m */; };
 		C177FE9E17C3A83A00B2FE4F /* BNNearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C177FE9B17C3A83A00B2FE4F /* BNNearbyViewController.m */; };
 		C190D7AE17BB0C96005C24F2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C190D7AD17BB0C96005C24F2 /* Foundation.framework */; };
@@ -103,6 +105,10 @@
 		C14DB59817CBE03700905967 /* BMStopAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMStopAnnotationView.m; sourceTree = "<group>"; };
 		C14DB59A17CBE2A700905967 /* BMStopAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMStopAnnotation.h; sourceTree = "<group>"; };
 		C14DB59B17CBE2A700905967 /* BMStopAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMStopAnnotation.m; sourceTree = "<group>"; };
+		C15FE65717F4BD1200E23AFF /* BNRoutesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRoutesViewController.h; sourceTree = "<group>"; };
+		C15FE65817F4BD1200E23AFF /* BNRoutesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRoutesViewController.m; sourceTree = "<group>"; };
+		C15FE65A17F4BF0A00E23AFF /* BDRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDRoute.h; sourceTree = "<group>"; };
+		C15FE65B17F4BF0A00E23AFF /* BDRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDRoute.m; sourceTree = "<group>"; };
 		C177FE9817C3A83A00B2FE4F /* BNArrivalsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNArrivalsTableViewController.h; sourceTree = "<group>"; };
 		C177FE9917C3A83A00B2FE4F /* BNArrivalsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNArrivalsTableViewController.m; sourceTree = "<group>"; };
 		C177FE9A17C3A83A00B2FE4F /* BNNearbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNNearbyViewController.h; sourceTree = "<group>"; };
@@ -210,6 +216,8 @@
 		C177FE9717C3A83A00B2FE4F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C15FE65717F4BD1200E23AFF /* BNRoutesViewController.h */,
+				C15FE65817F4BD1200E23AFF /* BNRoutesViewController.m */,
 				C177FE9817C3A83A00B2FE4F /* BNArrivalsTableViewController.h */,
 				C177FE9917C3A83A00B2FE4F /* BNArrivalsTableViewController.m */,
 				C177FE9A17C3A83A00B2FE4F /* BNNearbyViewController.h */,
@@ -224,7 +232,7 @@
 			children = (
 				C1B4D60517D0D1690014AB21 /* Models */,
 				C177FE9717C3A83A00B2FE4F /* Views */,
-				C198C22C17BB11D900A94F4D /* BusMap */,
+				C198C22C17BB11D900A94F4D /* Maps */,
 				C190D7B317BB0C96005C24F2 /* BusIt */,
 				C190D7D217BB0C97005C24F2 /* BusItTests */,
 				C190D7AC17BB0C96005C24F2 /* Frameworks */,
@@ -305,7 +313,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		C198C22C17BB11D900A94F4D /* BusMap */ = {
+		C198C22C17BB11D900A94F4D /* Maps */ = {
 			isa = PBXGroup;
 			children = (
 				C198C22E17BB124600A94F4D /* BMRoutes.h */,
@@ -329,7 +337,7 @@
 				C14DB59A17CBE2A700905967 /* BMStopAnnotation.h */,
 				C14DB59B17CBE2A700905967 /* BMStopAnnotation.m */,
 			);
-			name = BusMap;
+			name = Maps;
 			path = BusIt/BusMap;
 			sourceTree = "<group>";
 		};
@@ -346,6 +354,8 @@
 				C1B4D61717D3C6B60014AB21 /* BDStop.m */,
 				C1B4D61917D3C8CC0014AB21 /* BDArrival.h */,
 				C1B4D61A17D3C8CC0014AB21 /* BDArrival.m */,
+				C15FE65A17F4BF0A00E23AFF /* BDRoute.h */,
+				C15FE65B17F4BF0A00E23AFF /* BDRoute.m */,
 			);
 			name = Models;
 			path = BusIt/BusData;
@@ -528,7 +538,9 @@
 				C1B4D61517D0D94C0014AB21 /* BDBusData.m in Sources */,
 				C1D0BDF517CE950800FA976D /* FMDatabaseQueue.m in Sources */,
 				C1D0BDF317CE950800FA976D /* FMDatabasePool.m in Sources */,
+				C15FE65C17F4BF0A00E23AFF /* BDRoute.m in Sources */,
 				C198C23817BB124600A94F4D /* BMRoutes.m in Sources */,
+				C15FE65917F4BD1200E23AFF /* BNRoutesViewController.m in Sources */,
 				C190D7BE17BB0C96005C24F2 /* BIAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
