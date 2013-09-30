@@ -123,7 +123,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="Meg-eZ-hIq" kind="push" id="Hc9-5P-FOF"/>
+                                    <segue destination="Meg-eZ-hIq" kind="push" identifier="RouteDetailsSegue" id="Hc9-5P-FOF"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -134,22 +134,69 @@
             </objects>
             <point key="canvasLocation" x="541" y="-1264"/>
         </scene>
-        <!--Table View Controller - Stops-->
+        <!--Route Details View Controller - Route 6-->
         <scene sceneID="Evs-XX-JsX">
             <objects>
-                <tableViewController id="Meg-eZ-hIq" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6pp-59-Mgv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="Meg-eZ-hIq" customClass="BNRouteDetailsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="bQ8-Sk-14w">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="3IS-n3-kvo">
+                            <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="Meg-eZ-hIq" id="WXD-SS-dCE"/>
+                            </connections>
+                        </searchBar>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Wuv-1G-aec">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="StopCell" id="Wuv-1G-aec">
+                                <rect key="frame" x="0.0" y="130" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wuv-1G-aec" id="41j-z0-1WD">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="1234" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NBM-WX-H8J">
+                                            <rect key="frame" x="12" y="7" width="30" height="16"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="50" id="olj-y3-Lm7"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.2mi" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumFontSize="3" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f9B-6x-Pne">
+                                            <rect key="frame" x="12" y="24" width="30" height="14"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sunridge @ 50th Street" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VIb-x3-xDM">
+                                            <rect key="frame" x="50" y="11" width="260" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="NBM-WX-H8J" firstAttribute="top" secondItem="41j-z0-1WD" secondAttribute="top" constant="7" id="KNy-Vf-Ea5"/>
+                                        <constraint firstItem="NBM-WX-H8J" firstAttribute="leading" secondItem="41j-z0-1WD" secondAttribute="leading" constant="10" id="iH1-20-zqy"/>
+                                        <constraint firstItem="f9B-6x-Pne" firstAttribute="centerX" secondItem="NBM-WX-H8J" secondAttribute="centerX" constant="2" id="lkZ-q3-hsR"/>
+                                        <constraint firstAttribute="centerY" secondItem="VIb-x3-xDM" secondAttribute="centerY" id="pzo-Wd-1oX"/>
+                                        <constraint firstItem="f9B-6x-Pne" firstAttribute="width" secondItem="NBM-WX-H8J" secondAttribute="width" priority="750" id="s8x-Pr-dHF"/>
+                                        <constraint firstAttribute="trailing" secondItem="VIb-x3-xDM" secondAttribute="trailing" constant="10" id="sHU-eS-o7K"/>
+                                        <constraint firstItem="VIb-x3-xDM" firstAttribute="leading" secondItem="NBM-WX-H8J" secondAttribute="trailing" constant="10" id="tfP-pl-80u"/>
+                                        <constraint firstItem="f9B-6x-Pne" firstAttribute="top" secondItem="NBM-WX-H8J" secondAttribute="bottom" constant="1" id="u5q-77-eo1"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="2q8-Xd-oEm" kind="push" id="fR4-zl-5Og"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -157,9 +204,20 @@
                             <outlet property="delegate" destination="Meg-eZ-hIq" id="nNk-v4-ZzG"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Stops" id="4kQ-NM-PLC"/>
+                    <navigationItem key="navigationItem" title="Route 6" id="4kQ-NM-PLC"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="49t-r2-X8O" id="fcO-1B-cYd"/>
+                    </connections>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6pp-59-Mgv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="49t-r2-X8O">
+                    <connections>
+                        <outlet property="delegate" destination="Meg-eZ-hIq" id="LXt-e8-XLa"/>
+                        <outlet property="searchBar" destination="3IS-n3-kvo" id="Liy-F0-LWs"/>
+                        <outlet property="searchContentsController" destination="Meg-eZ-hIq" id="sWU-Q2-MZ4"/>
+                        <outlet property="searchResultsDataSource" destination="Meg-eZ-hIq" id="b9G-Wd-Cro"/>
+                        <outlet property="searchResultsDelegate" destination="Meg-eZ-hIq" id="wGT-si-UHm"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="933" y="-1264"/>
         </scene>
@@ -608,4 +666,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="fR4-zl-5Og"/>
+    </inferredMetricsTieBreakers>
 </document>

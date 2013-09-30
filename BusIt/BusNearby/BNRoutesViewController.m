@@ -85,11 +85,12 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"StopDetailsSegue"]) {
-
+    if ([[segue identifier] isEqualToString:@"RouteDetailsSegue"]) {
+        NSLog(@"RouteDetailsSegue");
+        BNRouteDetailsViewController *routeDetailsVC = segue.destinationViewController;
+        NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+        routeDetailsVC.route = [self dataForIndexPath:path];
     }
 }
-
-
 
 @end

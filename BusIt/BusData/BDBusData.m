@@ -189,18 +189,15 @@ NSString *regionPrefix = @"Hillsborough Area Regional Transit_";
 
 - (NSArray *)routes
 {
-    NSLog(@"ehllo");
     // Query for nearby stops
     NSString *query = [NSString stringWithFormat:@"SELECT * FROM routes"];
     
     FMResultSet *rs = [database executeQuery:query];
     
     NSMutableArray *stops = [[NSMutableArray alloc] init];
-    NSLog(@"rs: %@", [rs resultDictionary]);
     
     while ([rs next]) {
         BDRoute *route = [[BDRoute alloc] initWithGtfsResult:[rs resultDictionary]];
-        NSLog(@"stop %@", route);
         [stops addObject:route];
     }
     

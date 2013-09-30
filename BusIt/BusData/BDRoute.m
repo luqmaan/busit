@@ -8,9 +8,15 @@
 
 #import "BDRoute.h"
 
+@interface BDRoute () {}
+
+@property NSArray *stopsArray;
+    
+@end
+
 @implementation BDRoute
 
-@synthesize routeId, routeShortName, routeLongName, routeType, routeUrl, routeColor, routeTextColor, hue;
+@synthesize routeId, routeShortName, routeLongName, routeType, routeUrl, routeColor, routeTextColor, hue, stopsArray;
 
 - (BDRoute *)initWithGtfsResult:(NSDictionary *)resultDict
 {
@@ -28,9 +34,8 @@
     return self;
 }
 
-
-- (NSArray *)stops {
-    
+-(void)fetchStops
+{
     BDBusData *busData = [[BDBusData alloc] init];
     
     // Query for nearby stops
@@ -45,7 +50,14 @@
     }
     
     // Convert to NSArray
-    return [stops copy];
+    stopsArray = [stops copy];
+}
+
+- (NSArray *)stops {
+    if (!stopsArray) {
+        [self fetchStops];
+    }
+    return stopsArray;
 }
 
 - (NSArray *)stopsMatchingQuery:(NSString *)query
