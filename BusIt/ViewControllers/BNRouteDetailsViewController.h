@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BDBusData.h"
 #import "BDRoute.h"
-#import "BNArrivalsTableViewController.h"
+#import "BNStopDetailsViewController.h"
 
 @interface BNRouteDetailsViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
 

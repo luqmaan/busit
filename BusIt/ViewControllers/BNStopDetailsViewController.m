@@ -6,23 +6,20 @@
 //  Copyright (c) 2013 0xC0ffee. All rights reserved.
 //
 
-#import "BNArrivalsTableViewController.h"
+#import "BNStopDetailsViewController.h"
 
-@interface BNArrivalsTableViewController ()
+@interface BNStopDetailsViewController ()
     @property BDBusData *busData;
 @end
 
-@implementation BNArrivalsTableViewController {
+@implementation BNStopDetailsViewController {
 }
 
 @synthesize busData, stop;
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
-    NSLog(@"about to init arrivalsVC");
     if(self = [super initWithCoder:aDecoder]) {
-        NSLog(@"did init arrivalsVC");
         busData = [[BDBusData alloc] init];
-        NSLog(@"Did init busData");
     }
     return self;
 }
@@ -56,12 +53,12 @@
 
 - (void)updateAPIData
 {
-    
+
     NSLog(@"about to fetch arrivals for stop");
     NSLog(@"stop: %@", stop);
     self.progressBar.progress = 0;
     self.navigationItem.prompt = @"Finding scheduled arrivals...";
-    
+
     [stop fetchArrivalsAndPerformCallback:^{
         NSLog(@"Got the OBA data");
         self.navigationItem.prompt = nil;
@@ -69,12 +66,12 @@
     } progressCallback:^(float newDownloadProgress) {
         self.progressBar.progress = newDownloadProgress;
     }];
-    
+
     // Got the local GTFS data, can reload
     NSLog(@"Did fetch arrivals");
     self.navigationItem.prompt = @"Getting realtime arrivals...";
     [self.tableView reloadData];
-    
+
 }
 
 #pragma mark - Table view data source
@@ -121,10 +118,10 @@
     if (cell == nil){
         [NSException raise:@"headerView == nil.." format:@"No cells with matching CellIdentifier loaded from your storyboard"];
     }
-    
+
     UILabel *routeNumber = (UILabel *)[cell viewWithTag:1];
     UILabel *tripHeadsign = (UILabel *)[cell viewWithTag:2];
-    
+
     if ([stop.arrivals count] == 0) {
         routeNumber.text = @"☹";
         tripHeadsign.text = @"No scheduled arrivals.";
@@ -133,27 +130,27 @@
     else {
         NSMutableArray *arrivalGroup = [stop.arrivals objectForKey:[stop.arrivalKeys objectAtIndex:section]];
         BDArrival *arrival = arrivalGroup[0];
-        
+
         double hue = [BIHelpers hueForRoute:[arrival.routeId intValue]];
         UIColor *routeColor = [UIColor colorWithHue:hue saturation:1 brightness:0.7 alpha:0.9];
         cell.backgroundColor = routeColor;
-        
+
         routeNumber.text = arrival.routeId;
         tripHeadsign.text = arrival.tripHeadsign;
     }
-    
+
     return cell;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+
     BDArrival *arrival = [self dataForIndexPath:indexPath];
     UITableViewCell *cell;
     static NSString *CellIdentifier;
     NSDateFormatter *DateFormatter= [[NSDateFormatter alloc] init];
     [DateFormatter setDateFormat:@"hh:mm"];
-    
+
     if (arrival.hasObaData == NO) {
         CellIdentifier = @"ScheduledArrivalCell";
         cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
@@ -174,7 +171,7 @@
         timeOffset.text = arrival.formattedScheduleDeviation;
         stopsAway.text = [arrival.numberOfStopsAway stringValue];
     }
-    
+
     NSDate *now = [NSDate date];
     if ([now isEqual:[arrival.scheduledArrivalTime laterDate:now]]) {
         cell.backgroundColor = [UIColor colorWithHue:[BIHelpers hueForRoute:[arrival.routeId intValue]] saturation:0.01 brightness:0.945 alpha:1];
@@ -183,7 +180,7 @@
         cell.backgroundColor = [UIColor whiteColor];
     }
 //    NSLog(@"%@ vs %@ => %@", arrival.scheduledArrivalTime, now, [arrival.scheduledArrivalTime laterDate:now]);
-    
+
 //    predicted.text = arrival.predictedTime;
 //    distance.text = [NSString stringWithFormat:@"%@mi    %@ stops away", [BIHelpers formattedDistanceFromStop:data[@"distanceFromStop"]], data[@"numberOfStopsAway"]];
 //    predicted.text = [NSString stringWithFormat:@"%@", [BIHelpers timeWithTimestamp:data[@"predictedArrivalTime"]]];
@@ -197,7 +194,7 @@
     // http://stackoverflow.com/questions/8615862/custom-cell-row-height-setting-in-storyboard-is-not-responding
     // For some reason the custom heights specified in Storyboard are ignored.
     // This will force them to the custom height.
-    
+
     if ([[self dataForIndexPath:indexPath] hasObaData])
     {
         return 80.0f;

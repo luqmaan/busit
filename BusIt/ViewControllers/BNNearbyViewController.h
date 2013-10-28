@@ -8,7 +8,7 @@
 
 #import <CoreLocation/CoreLocation.h>
 #import "BIHelpers.h"
-#import "BNArrivalsTableViewController.h"
+#import "BNStopDetailsViewController.h"
 #import "BMEmbeddedMapViewController.h"
 #import "BDBusData.h"
 #import "BDStop.h"

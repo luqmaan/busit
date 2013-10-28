@@ -259,10 +259,10 @@
             </objects>
             <point key="canvasLocation" x="7" y="-668"/>
         </scene>
-        <!--Arrivals Table View Controller - Arrivals-->
+        <!--Stop Details Table View Controller - Stop Details-->
         <scene sceneID="uui-JX-ZbM">
             <objects>
-                <tableViewController id="2q8-Xd-oEm" customClass="BNArrivalsTableViewController" sceneMemberID="viewController">
+                <tableViewController id="2q8-Xd-oEm" customClass="BNStopDetailsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="40" sectionHeaderHeight="30" sectionFooterHeight="22" id="2ib-6p-YMh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -84,9 +84,9 @@
 {
     NSLog(@"Updating data.");
     updateInProgress = TRUE;
-    
+
     dispatch_queue_t fetchAPIData = dispatch_queue_create("com.busit.stops", DISPATCH_QUEUE_SERIAL);
-    
+
     dispatch_async(fetchAPIData, ^{
         NSLog(@"Finding stops near location %@", location);
         stops = [busData stopsNearLocation:location andLimit:50];
@@ -169,11 +169,11 @@
 {
     static NSString *CellIdentifier = @"StopCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
+
     UILabel *stopId = (UILabel *)[cell viewWithTag:1];
     UILabel *stopName = (UILabel *)[cell viewWithTag:2];
     UILabel *distance = (UILabel *)[cell viewWithTag:3];
-    
+
     if (updateInProgress) {
         NSLog(@"Called cell for row at indexpath, but update is in progress");
         stopId.text = @"";
@@ -191,9 +191,9 @@
     stopId.layer.borderColor = stopColor.CGColor;
     stopId.layer.borderWidth = 1;
     stopId.layer.cornerRadius = 3;
-    
+
     distance.text = [NSString stringWithFormat:@"%.02fmi", [stop.distance floatValue]];
-    
+
     return cell;
 }
 
@@ -207,7 +207,7 @@
     if ([[segue identifier] isEqualToString:@"StopDetailsSegue"]) {
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
         BDStop *stop = [self dataForIndexPath:path];
-        BNArrivalsTableViewController *stopDetailsVC = segue.destinationViewController;
+        BNStopDetailsViewController *stopDetailsVC = segue.destinationViewController;
         stopDetailsVC.stop = stop;
     }
     if ([[segue identifier] isEqualToString:@"EmbeddedMapViewSegue"]) {

@@ -12,7 +12,7 @@
 #import "BIHelpers.h"
 #import "BDStop.h"
 
-@interface BNArrivalsTableViewController : UITableViewController
+@interface BNStopDetailsViewController : UITableViewController
 
 @property (weak, nonatomic) BDStop *stop;
 

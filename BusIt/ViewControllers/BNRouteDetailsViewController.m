@@ -52,7 +52,7 @@
 {
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         return searchResults.count;
-        
+
     } else {
         return [route.stops count];
     }
@@ -67,31 +67,31 @@
 {
     static NSString *CellIdentifier = @"StopCell";
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
+
     UILabel *stopId = (UILabel *)[cell viewWithTag:1];
     UILabel *stopName = (UILabel *)[cell viewWithTag:2];
     UILabel *distance = (UILabel *)[cell viewWithTag:3];
-    
+
     BDStop *stop;
-    
+
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         stop = [searchResults objectAtIndex:indexPath.row];
     }
     else {
         stop = [self dataForIndexPath:indexPath];
     }
-    
+
     stopId.text = [stop.code stringValue];
     stopName.text = stop.name;
-    
+
     UIColor *stopColor = [UIColor colorWithHue:stop.hue saturation:1 brightness:0.7 alpha:1];;
     stopId.textColor = stopColor;
     stopId.layer.borderColor = stopColor.CGColor;
     stopId.layer.borderWidth = 1;
     stopId.layer.cornerRadius = 3;
-    
+
     distance.text = [NSString stringWithFormat:@"%.02fmi", [stop.distance floatValue]];
-    
+
     return cell;
 }
 
@@ -103,7 +103,7 @@
     if ([[segue identifier] isEqualToString:@"StopDetailsSegue"])
     {
         NSLog(@"StopDetailsSegue");
-        BNArrivalsTableViewController *stopDetailsVC = segue.destinationViewController;
+        BNStopDetailsViewController *stopDetailsVC = segue.destinationViewController;
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
         stopDetailsVC.stop = [self dataForIndexPath:path];
     }
@@ -125,7 +125,7 @@ shouldReloadTableForSearchString:(NSString *)searchString
                                scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
                                       objectAtIndex:[self.searchDisplayController.searchBar
                                                      selectedScopeButtonIndex]]];
-    
+
     return YES;
 }
 
