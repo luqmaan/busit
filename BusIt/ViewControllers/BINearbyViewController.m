@@ -1,14 +1,14 @@
 //
-//  BNNearbyViewController.m
+//  BINearbyViewController.m
 //  BusStop
 //
 //  Created by Lolcat on 8/3/13.
 //  Copyright (c) 2013 0xC0ffee. All rights reserved.
 //
 
-#import "BNNearbyViewController.h"
+#import "BINearbyViewController.h"
 
-@interface BNNearbyViewController () {
+@interface BINearbyViewController () {
     CLLocation *location;
     BOOL updateInProgress;
     BOOL performSegueAfterScroll;
@@ -21,7 +21,7 @@
 
 @end
 
-@implementation BNNearbyViewController
+@implementation BINearbyViewController
 
 @synthesize location, embeddedMapView, busData, stops;
 
@@ -207,7 +207,7 @@
     if ([[segue identifier] isEqualToString:@"StopDetailsSegue"]) {
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
         BDStop *stop = [self dataForIndexPath:path];
-        BNStopDetailsViewController *stopDetailsVC = segue.destinationViewController;
+        BIStopDetailsViewController *stopDetailsVC = segue.destinationViewController;
         stopDetailsVC.stop = stop;
     }
     if ([[segue identifier] isEqualToString:@"EmbeddedMapViewSegue"]) {

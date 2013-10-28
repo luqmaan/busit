@@ -44,14 +44,6 @@
     return self;
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -85,7 +77,7 @@
     CLLocationCoordinate2D zoomLocation;
     zoomLocation.latitude = 27.977727;
     zoomLocation.longitude = -82.454109;
-    
+
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 10.5*METERS_PER_MILE, 10.5*METERS_PER_MILE);
     [mapView setRegion:viewRegion animated:YES];
 }
@@ -111,7 +103,7 @@
         NSLog(@"Attempted to run a new update while update is in progress.");
         return;
     }
-    
+
     dispatch_queue_t fetchAPIData = dispatch_queue_create("com.busit.vehiclesForRoute", DISPATCH_QUEUE_SERIAL);
     dispatch_async(fetchAPIData, ^{
         updateInProgress = TRUE;
@@ -190,29 +182,29 @@
     if([annotation isKindOfClass:[MKUserLocation class]]){
         return nil;
     }
-    
+
     if([annotation isKindOfClass:[BMVehicle class]]){
 
         BMVehicle *vehicle = (BMVehicle *)annotation;
         NSString *annotationViewID = [NSString stringWithFormat:@"busPin%@", vehicle.routeShortName];
-        
+
         MKAnnotationView *customPinView = [theMapView dequeueReusableAnnotationViewWithIdentifier:annotationViewID];
         if (! customPinView) {
             customPinView = [[BMVehicleAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:annotationViewID];
-            
+
             [customPinView setCanShowCallout:YES];
-            
+
             UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
             customPinView.rightCalloutAccessoryView = rightButton;
         }
         else {
         }
-    
+
         return customPinView;
     }
-    
+
     return nil;
-    
+
 }
 
 - (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)annotationViews
@@ -256,7 +248,7 @@ int timeToUpdate = 10;
         [self updateMap];
     }
     else {
-        timeToUpdate -= 1;        
+        timeToUpdate -= 1;
     }
 }
 

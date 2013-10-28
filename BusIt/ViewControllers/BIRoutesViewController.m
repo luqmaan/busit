@@ -1,21 +1,21 @@
 //
-//  BNRoutesViewController.m
+//  BIRoutesViewController.m
 //  BusIt
 //
 //  Created by Lolcat on 9/26/13.
 //  Copyright (c) 2013 Createch. All rights reserved.
 //
 
-#import "BNRoutesViewController.h"
+#import "BIRoutesViewController.h"
 
-@interface BNRoutesViewController ()
+@interface BIRoutesViewController ()
 
 @property BDBusData *busData;
 @property NSArray *routes;
 
 @end
 
-@implementation BNRoutesViewController
+@implementation BIRoutesViewController
 
 @synthesize busData, routes;
 
@@ -63,23 +63,23 @@
 {
     static NSString *CellIdentifier = @"RouteCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
+
     UILabel *routeNumber = (UILabel *)[cell viewWithTag:1];
     UILabel *routeName = (UILabel *)[cell viewWithTag:2];
-    
+
     BDRoute *route = [self dataForIndexPath:indexPath];
-  
+
     UIColor *routeColor = [UIColor colorWithHue:route.hue saturation:1 brightness:0.7 alpha:1];
 
     routeName.text = route.routeLongName;
     routeNumber.text = route.routeShortName;
     routeNumber.backgroundColor = [UIColor clearColor];
-    
+
     routeNumber.layer.cornerRadius = 5.0f;
     routeNumber.layer.borderWidth = 1.0f;
     routeNumber.layer.borderColor = routeColor.CGColor;
     routeNumber.textColor = routeColor;
-    
+
     return cell;
 }
 
@@ -92,7 +92,7 @@
 {
     if ([[segue identifier] isEqualToString:@"RouteDetailsSegue"]) {
         NSLog(@"RouteDetailsSegue");
-        BNRouteDetailsViewController *routeDetailsVC = segue.destinationViewController;
+        BIRouteDetailsViewController *routeDetailsVC = segue.destinationViewController;
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
         routeDetailsVC.route = [self dataForIndexPath:path];
     }

@@ -28,7 +28,7 @@
 - (void)addStopsToMap:(NSArray *)stops
 {
     [self removeAnnotations:mapView.annotations];
-    
+
     // Add the stops with new identifiers.
     for (BDStop *stop in stops) {
         BMStopAnnotation *annotation = [[BMStopAnnotation alloc] initWithStop:stop];
@@ -60,12 +60,12 @@
     if([annotation isKindOfClass:[MKUserLocation class]]){
         return nil;
     }
-    
+
     if([annotation isKindOfClass:[BMStopAnnotation class]]){
         BMStopAnnotation *stopAnnotation = (BMStopAnnotation *)annotation;
         NSString *annotationViewID = [NSString stringWithFormat:@"StopAnnotationView%@", stopAnnotation.identifier];
         MKAnnotationView *customPinView = [theMapView dequeueReusableAnnotationViewWithIdentifier:annotationViewID];
-        
+
         if (!customPinView) {
             customPinView = [[BMStopAnnotationView alloc] initWithAnnotation:stopAnnotation reuseIdentifier:annotationViewID];
             [customPinView setCanShowCallout:YES];
@@ -73,18 +73,18 @@
             rightButton.tintColor = [UIColor colorWithHue:stopAnnotation.hue saturation:1 brightness:0.7 alpha:1];
             customPinView.rightCalloutAccessoryView = rightButton;
         }
-        
+
         return customPinView;
     }
-    
+
     return nil;
-    
+
 }
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
     if ([view isKindOfClass:[BMStopAnnotationView class]]) {
-        BNNearbyViewController *parent = (BNNearbyViewController *)[self parentViewController];
+        BINearbyViewController *parent = (BINearbyViewController *)[self parentViewController];
         BMStopAnnotation *stop = (BMStopAnnotation *)view.annotation;
         [parent performSegueForMapViewWithStop:stop.identifier];
     }
@@ -107,10 +107,10 @@
 
 - (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views {
     MKAnnotationView *aV;
- 
+
     if([aV.annotation isKindOfClass:[MKUserLocation class]])
         return;
-        
+
     for (aV in views) {
         aV.alpha = 0.0f;
         [UIView beginAnimations:nil context:NULL];
@@ -118,7 +118,7 @@
         [UIView setAnimationDuration:1.0f];
         [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
         [UIView commitAnimations];
-        
+
     }
 }
 
@@ -164,9 +164,9 @@
     // zoom into users location once
     static BOOL didZoomIn;
     userLocation = newUserLocation;
-    
+
     NSLog(@"did Update user location");
-    
+
     if (!didZoomIn) {
         didZoomIn = TRUE;
         [self zoomToUserLocation:nil];
@@ -241,16 +241,16 @@
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder geocodeAddressString:theSearchBar.text completionHandler:^(NSArray *placemarks, NSError *error) {
         //Error checking
-        
+
         CLPlacemark *placemark = [placemarks objectAtIndex:0];
         NSLog(@"%@", placemarks);
-        
+
         if (placemark) {
             MKCoordinateRegion region;
             region.center.latitude = placemark.location.coordinate.latitude;
             region.center.longitude = placemark.location.coordinate.longitude;
             region.span = mapView.region.span;
-            
+
             // update the mapview and hide  the search bar
             [mapView setRegion:region animated:YES];
         }

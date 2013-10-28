@@ -1,5 +1,5 @@
 //
-//  BNArrivalDeparturesTableViewController.h
+//  BIArrivalDeparturesTableViewController.h
 //  BusStop
 //
 //  Created by Lolcat on 8/4/13.
@@ -12,7 +12,7 @@
 #import "BIHelpers.h"
 #import "BDStop.h"
 
-@interface BNStopDetailsViewController : UITableViewController
+@interface BIStopDetailsViewController : UITableViewController
 
 @property (weak, nonatomic) BDStop *stop;
 

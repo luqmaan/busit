@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "BDBusData.h"
 #import "BDRoute.h"
-#import "BNStopDetailsViewController.h"
+#import "BIStopDetailsViewController.h"
 
-@interface BNRouteDetailsViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
+@interface BIRouteDetailsViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property BDRoute *route;
 

@@ -1,5 +1,5 @@
 //
-//  BNRoutesViewController.h
+//  BIRoutesViewController.h
 //  BusIt
 //
 //  Created by Lolcat on 9/26/13.
@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "BDBusData.h"
 #import "BDRoute.h"
-#import "BNRouteDetailsViewController.h"
+#import "BIRouteDetailsViewController.h"
 
-@interface BNRoutesViewController : UITableViewController
+@interface BIRoutesViewController : UITableViewController
 
 @end

@@ -1,18 +1,18 @@
 //
-//  BNArrivalDeparturesTableViewController.m
+//  BIArrivalDeparturesTableViewController.m
 //  BusStop
 //
 //  Created by Lolcat on 8/4/13.
 //  Copyright (c) 2013 0xC0ffee. All rights reserved.
 //
 
-#import "BNStopDetailsViewController.h"
+#import "BIStopDetailsViewController.h"
 
-@interface BNStopDetailsViewController ()
+@interface BIStopDetailsViewController ()
     @property BDBusData *busData;
 @end
 
-@implementation BNStopDetailsViewController {
+@implementation BIStopDetailsViewController {
 }
 
 @synthesize busData, stop;

@@ -11,7 +11,7 @@
 #import "BMStopAnnotationView.h"
 #import "BMStopAnnotation.h"
 #import "BDStop.H"
-#import "BNNearbyViewController.h"
+#import "BINearbyViewController.h"
 
 
 @interface BMEmbeddedMapViewController : UIViewController <MKMapViewDelegate, UISearchBarDelegate>

@@ -7,7 +7,7 @@
         <!--Nearby View Controller - Stops-->
         <scene sceneID="3XP-qD-Jtr">
             <objects>
-                <tableViewController extendedLayoutIncludesOpaqueBars="YES" id="iTL-02-yCz" customClass="BNNearbyViewController" sceneMemberID="viewController">
+                <tableViewController extendedLayoutIncludesOpaqueBars="YES" id="iTL-02-yCz" customClass="BINearbyViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="40" sectionHeaderHeight="22" sectionFooterHeight="22" id="VVB-EZ-ld2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -83,7 +83,7 @@
         <!--Routes View Controller - Routes-->
         <scene sceneID="j15-M1-0GK">
             <objects>
-                <tableViewController id="aVZ-rp-F4R" customClass="BNRoutesViewController" sceneMemberID="viewController">
+                <tableViewController id="aVZ-rp-F4R" customClass="BIRoutesViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" id="aLt-Bx-K7O">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -138,7 +138,7 @@
         <!--Route Details View Controller - Route 6-->
         <scene sceneID="Evs-XX-JsX">
             <objects>
-                <tableViewController id="Meg-eZ-hIq" customClass="BNRouteDetailsViewController" sceneMemberID="viewController">
+                <tableViewController id="Meg-eZ-hIq" customClass="BIRouteDetailsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="bQ8-Sk-14w">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -262,7 +262,7 @@
         <!--Stop Details Table View Controller - Stop Details-->
         <scene sceneID="uui-JX-ZbM">
             <objects>
-                <tableViewController id="2q8-Xd-oEm" customClass="BNStopDetailsViewController" sceneMemberID="viewController">
+                <tableViewController id="2q8-Xd-oEm" customClass="BIStopDetailsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="40" sectionHeaderHeight="30" sectionFooterHeight="22" id="2ib-6p-YMh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -431,7 +431,7 @@
                                         <constraint firstItem="wTR-Jw-uYE" firstAttribute="top" secondItem="75n-Ov-VNS" secondAttribute="bottom" id="Bhu-N4-jUo"/>
                                         <constraint firstItem="2QG-xW-Wgx" firstAttribute="leading" secondItem="YPC-X3-t8a" secondAttribute="leading" constant="20" id="Brs-wZ-5Vl"/>
                                         <constraint firstAttribute="trailing" secondItem="a9H-lS-5od" secondAttribute="trailing" constant="20" id="Ep9-n5-ATy"/>
-                                        <constraint firstItem="wTR-Jw-uYE" firstAttribute="trailing" secondItem="75n-Ov-VNS" secondAttribute="trailing" id="XXl-LO-BNs"/>
+                                        <constraint firstItem="wTR-Jw-uYE" firstAttribute="trailing" secondItem="75n-Ov-VNS" secondAttribute="trailing" id="XXl-LO-BIs"/>
                                         <constraint firstItem="d6A-hP-fpj" firstAttribute="top" secondItem="75n-Ov-VNS" secondAttribute="top" id="YD8-0W-vDh"/>
                                         <constraint firstItem="2QG-xW-Wgx" firstAttribute="top" secondItem="bXh-ap-SPL" secondAttribute="top" id="l51-BQ-TrU"/>
                                         <constraint firstItem="2QG-xW-Wgx" firstAttribute="trailing" secondItem="75n-Ov-VNS" secondAttribute="trailing" id="m7g-tn-SrI"/>
@@ -590,7 +590,7 @@
                                     <action selector="zoomToUserLocation:" destination="xd9-eG-dmk" eventType="touchUpInside" id="tsW-h4-gGs"/>
                                 </connections>
                             </button>
-                            <button alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9wt-RT-Bbn">
+                            <button alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9wt-RT-BBI">
                                 <rect key="frame" x="46" y="192" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.79759680710000003" green="0.79759680710000003" blue="0.79759680710000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -628,21 +628,21 @@
                             <constraint firstItem="eFr-k5-tJ3" firstAttribute="top" secondItem="keT-16-D0t" secondAttribute="bottom" constant="-38" id="8z6-OU-zkt"/>
                             <constraint firstAttribute="trailing" secondItem="pcz-aB-9y9" secondAttribute="trailing" id="9vE-hC-I0a"/>
                             <constraint firstItem="keT-16-D0t" firstAttribute="top" secondItem="46i-nd-6x1" secondAttribute="top" id="FTg-7F-0dE"/>
-                            <constraint firstItem="9wt-RT-Bbn" firstAttribute="top" secondItem="keT-16-D0t" secondAttribute="bottom" constant="-38" id="PTc-Ru-Wz9"/>
+                            <constraint firstItem="9wt-RT-BBI" firstAttribute="top" secondItem="keT-16-D0t" secondAttribute="bottom" constant="-38" id="PTc-Ru-Wz9"/>
                             <constraint firstItem="omm-fE-v3S" firstAttribute="leading" secondItem="keT-16-D0t" secondAttribute="leading" constant="8" id="QK3-tx-WJp"/>
                             <constraint firstItem="eFr-k5-tJ3" firstAttribute="leading" secondItem="keT-16-D0t" secondAttribute="trailing" constant="-38" id="kgl-90-sIc"/>
                             <constraint firstItem="CTw-Kt-vSf" firstAttribute="top" secondItem="pcz-aB-9y9" secondAttribute="bottom" constant="-44" id="mzZ-tV-a0e"/>
                             <constraint firstAttribute="trailing" secondItem="keT-16-D0t" secondAttribute="trailing" id="n9Q-J0-yl7"/>
                             <constraint firstItem="omm-fE-v3S" firstAttribute="bottom" secondItem="keT-16-D0t" secondAttribute="bottom" constant="-8" id="q0E-DO-q3V"/>
                             <constraint firstItem="keT-16-D0t" firstAttribute="leading" secondItem="46i-nd-6x1" secondAttribute="leading" id="xkx-IX-Z7j"/>
-                            <constraint firstItem="9wt-RT-Bbn" firstAttribute="leading" secondItem="omm-fE-v3S" secondAttribute="trailing" constant="8" id="xpl-uq-7ZR"/>
+                            <constraint firstItem="9wt-RT-BBI" firstAttribute="leading" secondItem="omm-fE-v3S" secondAttribute="trailing" constant="8" id="xpl-uq-7ZR"/>
                             <constraint firstItem="pcz-aB-9y9" firstAttribute="leading" secondItem="46i-nd-6x1" secondAttribute="leading" id="yPt-Cx-1Vh"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
                     <connections>
                         <outlet property="btnBookmark" destination="eFr-k5-tJ3" id="vX0-Yl-zNI"/>
-                        <outlet property="btnSearch" destination="9wt-RT-Bbn" id="mwa-ox-l02"/>
+                        <outlet property="btnSearch" destination="9wt-RT-BBI" id="mwa-ox-l02"/>
                         <outlet property="btnUserLocation" destination="omm-fE-v3S" id="Shm-0F-Gga"/>
                         <outlet property="mapView" destination="keT-16-D0t" id="8lX-yL-bcf"/>
                         <outlet property="searchBar" destination="pcz-aB-9y9" id="ZP2-Ft-VZ1"/>

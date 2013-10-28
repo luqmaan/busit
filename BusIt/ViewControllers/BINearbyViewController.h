@@ -1,5 +1,5 @@
 //
-//  BNNearbyViewController.h
+//  BINearbyViewController.h
 //  BusStop
 //
 //  Created by Lolcat on 8/3/13.
@@ -8,12 +8,12 @@
 
 #import <CoreLocation/CoreLocation.h>
 #import "BIHelpers.h"
-#import "BNStopDetailsViewController.h"
+#import "BIStopDetailsViewController.h"
 #import "BMEmbeddedMapViewController.h"
 #import "BDBusData.h"
 #import "BDStop.h"
 
-@interface BNNearbyViewController : UITableViewController  <CLLocationManagerDelegate>
+@interface BINearbyViewController : UITableViewController  <CLLocationManagerDelegate>
 
 - (IBAction)refreshBtnPress:(id)sender;
 - (void)performSegueForMapViewWithStop:(NSString *)stopCode;

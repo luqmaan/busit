@@ -6,15 +6,15 @@
 //  Copyright (c) 2013 Createch. All rights reserved.
 //
 
-#import "BNRouteDetailsViewController.h"
+#import "BIRouteDetailsViewController.h"
 
-@interface BNRouteDetailsViewController () {
+@interface BIRouteDetailsViewController () {
     NSArray *searchResults;
 }
 
 @end
 
-@implementation BNRouteDetailsViewController
+@implementation BIRouteDetailsViewController
 
 @synthesize route;
 
@@ -103,7 +103,7 @@
     if ([[segue identifier] isEqualToString:@"StopDetailsSegue"])
     {
         NSLog(@"StopDetailsSegue");
-        BNStopDetailsViewController *stopDetailsVC = segue.destinationViewController;
+        BIStopDetailsViewController *stopDetailsVC = segue.destinationViewController;
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
         stopDetailsVC.stop = [self dataForIndexPath:path];
     }
