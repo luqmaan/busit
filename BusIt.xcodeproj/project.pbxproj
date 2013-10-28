@@ -214,7 +214,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C177FE9717C3A83A00B2FE4F /* Views */ = {
+		C177FE9717C3A83A00B2FE4F /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				C15FE65717F4BD1200E23AFF /* BNRoutesViewController.h */,
@@ -226,15 +226,15 @@
 				C177FE9A17C3A83A00B2FE4F /* BNNearbyViewController.h */,
 				C177FE9B17C3A83A00B2FE4F /* BNNearbyViewController.m */,
 			);
-			name = Views;
-			path = BusIt/BusNearby;
+			name = "View Controllers";
+			path = BusIt/ViewControllers;
 			sourceTree = "<group>";
 		};
 		C190D7A117BB0C96005C24F2 = {
 			isa = PBXGroup;
 			children = (
 				C1B4D60517D0D1690014AB21 /* Models */,
-				C177FE9717C3A83A00B2FE4F /* Views */,
+				C177FE9717C3A83A00B2FE4F /* View Controllers */,
 				C198C22C17BB11D900A94F4D /* Maps */,
 				C190D7B317BB0C96005C24F2 /* BusIt */,
 				C190D7D217BB0C97005C24F2 /* BusItTests */,
@@ -339,7 +339,7 @@
 				C14DB59B17CBE2A700905967 /* BMStopAnnotation.m */,
 			);
 			name = Maps;
-			path = BusIt/BusMap;
+			path = BusIt/Maps;
 			sourceTree = "<group>";
 		};
 		C1B4D60517D0D1690014AB21 /* Models */ = {
@@ -359,7 +359,7 @@
 				C15FE65B17F4BF0A00E23AFF /* BDRoute.m */,
 			);
 			name = Models;
-			path = BusIt/BusData;
+			path = BusIt/Models;
 			sourceTree = "<group>";
 		};
 		C1D0BDE317CE950800FA976D /* FMDB */ = {
