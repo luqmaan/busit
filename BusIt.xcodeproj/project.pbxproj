@@ -15,6 +15,7 @@
 		8C521399181EA40300B7C294 /* BIBusData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C521393181EA40300B7C294 /* BIBusData.m */; };
 		8C52139A181EA40300B7C294 /* BIRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C521395181EA40300B7C294 /* BIRoute.m */; };
 		8C52139B181EA40300B7C294 /* BIStop.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C521397181EA40300B7C294 /* BIStop.m */; };
+		8C5213A1181EA83400B7C294 /* BIRest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5213A0181EA83400B7C294 /* BIRest.m */; };
 		C14DB59317CBBDDE00905967 /* BMEmbeddedMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C14DB59217CBBDDE00905967 /* BMEmbeddedMapViewController.m */; };
 		C14DB59617CBD10200905967 /* BMCircularAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C14DB59517CBD10200905967 /* BMCircularAnnotationView.m */; };
 		C14DB59917CBE03700905967 /* BMStopAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C14DB59817CBE03700905967 /* BMStopAnnotationView.m */; };
@@ -40,7 +41,6 @@
 		C198C23B17BB124600A94F4D /* BMVehicleAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C198C23517BB124600A94F4D /* BMVehicleAnnotationView.m */; };
 		C198C23C17BB124600A94F4D /* BMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C198C23717BB124600A94F4D /* BMViewController.m */; };
 		C198C24417BB131B00A94F4D /* BIHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = C198C24117BB131B00A94F4D /* BIHelpers.m */; };
-		C198C24517BB131B00A94F4D /* BIRest.m in Sources */ = {isa = PBXBuildFile; fileRef = C198C24317BB131B00A94F4D /* BIRest.m */; };
 		C19E604D17BB374500FB181A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C19E604C17BB374500FB181A /* QuartzCore.framework */; };
 		C1B4D60D17D0D1690014AB21 /* schema.sql in Resources */ = {isa = PBXBuildFile; fileRef = C1B4D60817D0D1690014AB21 /* schema.sql */; };
 		C1B4D60E17D0D1690014AB21 /* schema.sql in Resources */ = {isa = PBXBuildFile; fileRef = C1B4D60817D0D1690014AB21 /* schema.sql */; };
@@ -66,7 +66,6 @@
 		C1F42CA017CC586F001F2825 /* BMEmbeddedMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C14DB59217CBBDDE00905967 /* BMEmbeddedMapViewController.m */; };
 		C1F42CA117CC586F001F2825 /* BIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C190D7C317BB0C96005C24F2 /* BIViewController.m */; };
 		C1F42CA217CC586F001F2825 /* BMStopAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = C14DB59B17CBE2A700905967 /* BMStopAnnotation.m */; };
-		C1F42CA317CC586F001F2825 /* BIRest.m in Sources */ = {isa = PBXBuildFile; fileRef = C198C24317BB131B00A94F4D /* BIRest.m */; };
 		C1F42CA417CC586F001F2825 /* BMStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = C198C23117BB124600A94F4D /* BMStatusView.m */; };
 		C1F42CA517CC586F001F2825 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C190D7B917BB0C96005C24F2 /* main.m */; };
 		C1F42CA617CC586F001F2825 /* BMCircularAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C14DB59517CBD10200905967 /* BMCircularAnnotationView.m */; };
@@ -111,6 +110,8 @@
 		8C521395181EA40300B7C294 /* BIRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIRoute.m; sourceTree = "<group>"; };
 		8C521396181EA40300B7C294 /* BIStop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIStop.h; sourceTree = "<group>"; };
 		8C521397181EA40300B7C294 /* BIStop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIStop.m; sourceTree = "<group>"; };
+		8C52139F181EA83400B7C294 /* BIRest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIRest.h; sourceTree = "<group>"; };
+		8C5213A0181EA83400B7C294 /* BIRest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIRest.m; sourceTree = "<group>"; };
 		C10825FF17C3A49700AE58CF /* BusIt-ios6-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "BusIt-ios6-Info.plist"; path = "/Users/lolcat/dev/busit/BusIt-ios6-Info.plist"; sourceTree = "<absolute>"; };
 		C14DB59117CBBDDE00905967 /* BMEmbeddedMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMEmbeddedMapViewController.h; sourceTree = "<group>"; };
 		C14DB59217CBBDDE00905967 /* BMEmbeddedMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMEmbeddedMapViewController.m; sourceTree = "<group>"; };
@@ -153,8 +154,6 @@
 		C198C23717BB124600A94F4D /* BMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMViewController.m; sourceTree = "<group>"; };
 		C198C24017BB131B00A94F4D /* BIHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIHelpers.h; sourceTree = "<group>"; };
 		C198C24117BB131B00A94F4D /* BIHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIHelpers.m; sourceTree = "<group>"; };
-		C198C24217BB131B00A94F4D /* BIRest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BIRest.h; path = ../BIRest.h; sourceTree = "<group>"; };
-		C198C24317BB131B00A94F4D /* BIRest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BIRest.m; path = ../BIRest.m; sourceTree = "<group>"; };
 		C19E604C17BB374500FB181A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C1B4D60817D0D1690014AB21 /* schema.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = schema.sql; sourceTree = "<group>"; };
 		C1CEE70C17E8BF5D00C372F5 /* gtfs_tampa.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = gtfs_tampa.db; sourceTree = "<group>"; };
@@ -349,12 +348,12 @@
 				8C521391181EA40300B7C294 /* BIArrival.m */,
 				8C521392181EA40300B7C294 /* BIBusData.h */,
 				8C521393181EA40300B7C294 /* BIBusData.m */,
+				8C52139F181EA83400B7C294 /* BIRest.h */,
+				8C5213A0181EA83400B7C294 /* BIRest.m */,
 				8C521394181EA40300B7C294 /* BIRoute.h */,
 				8C521395181EA40300B7C294 /* BIRoute.m */,
 				8C521396181EA40300B7C294 /* BIStop.h */,
 				8C521397181EA40300B7C294 /* BIStop.m */,
-				C198C24217BB131B00A94F4D /* BIRest.h */,
-				C198C24317BB131B00A94F4D /* BIRest.m */,
 			);
 			name = Models;
 			path = BusIt/Models;
@@ -522,11 +521,11 @@
 				C1D0BDEF17CE950800FA976D /* FMDatabase.m in Sources */,
 				C198C23C17BB124600A94F4D /* BMViewController.m in Sources */,
 				C198C23B17BB124600A94F4D /* BMVehicleAnnotationView.m in Sources */,
+				8C5213A1181EA83400B7C294 /* BIRest.m in Sources */,
 				8C521399181EA40300B7C294 /* BIBusData.m in Sources */,
 				C14DB59317CBBDDE00905967 /* BMEmbeddedMapViewController.m in Sources */,
 				C190D7C417BB0C96005C24F2 /* BIViewController.m in Sources */,
 				C14DB59C17CBE2A700905967 /* BMStopAnnotation.m in Sources */,
-				C198C24517BB131B00A94F4D /* BIRest.m in Sources */,
 				C198C23917BB124600A94F4D /* BMStatusView.m in Sources */,
 				C190D7BA17BB0C96005C24F2 /* main.m in Sources */,
 				C14DB59617CBD10200905967 /* BMCircularAnnotationView.m in Sources */,
@@ -565,7 +564,6 @@
 				C1F42CA017CC586F001F2825 /* BMEmbeddedMapViewController.m in Sources */,
 				C1F42CA117CC586F001F2825 /* BIViewController.m in Sources */,
 				C1F42CA217CC586F001F2825 /* BMStopAnnotation.m in Sources */,
-				C1F42CA317CC586F001F2825 /* BIRest.m in Sources */,
 				C1F42CA417CC586F001F2825 /* BMStatusView.m in Sources */,
 				C1F42CA517CC586F001F2825 /* main.m in Sources */,
 				C1F42CA617CC586F001F2825 /* BMCircularAnnotationView.m in Sources */,
