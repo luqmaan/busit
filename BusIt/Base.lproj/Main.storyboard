@@ -44,7 +44,7 @@
                                                 <constraint firstAttribute="width" relation="lessThanOrEqual" constant="50" id="3j4-hV-no5"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.2mi" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumFontSize="3" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dXa-eD-96c">
@@ -99,7 +99,7 @@
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumFontSize="7" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sNM-ky-ew9">
                                             <rect key="frame" x="10" y="8" width="45" height="35"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" red="0.45490199329999997" green="0.32156863810000003" blue="0.87843143940000001" alpha="1" colorSpace="deviceRGB"/>
+                                            <color key="backgroundColor" red="0.076905969160000004" green="0.36175056729999999" blue="0.84812051060000004" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="35" id="UEv-31-Hit"/>
                                                 <constraint firstAttribute="width" constant="45" id="Xg7-eX-FxV"/>
@@ -259,7 +259,7 @@
             </objects>
             <point key="canvasLocation" x="7" y="-668"/>
         </scene>
-        <!--Stop Details Table View Controller - Stop Details-->
+        <!--Stop Details View Controller - Arrivals-->
         <scene sceneID="uui-JX-ZbM">
             <objects>
                 <tableViewController id="2q8-Xd-oEm" customClass="BIStopDetailsViewController" sceneMemberID="viewController">
@@ -311,7 +311,7 @@
                                         <constraint firstItem="ZXY-tK-3PR" firstAttribute="leading" secondItem="oT6-Qo-cqc" secondAttribute="leading" constant="5" id="wM3-E3-8Yr"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.45490199329999997" green="0.32156863810000003" blue="0.87843143940000001" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="backgroundColor" red="0.076905969160000004" green="0.36175056729999999" blue="0.84812051060000004" alpha="1" colorSpace="calibratedRGB"/>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ScheduledArrivalCell" id="KAF-0O-DOH">
                                 <rect key="frame" x="0.0" y="136" width="320" height="40"/>
@@ -517,7 +517,7 @@
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="CA7-iz-goB"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.45490199329999997" green="0.32156863810000003" blue="0.87843143940000001" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="textColor" red="0.076905969160000004" green="0.36175056729999999" blue="0.84812051060000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="94e-5d-ec2">
@@ -554,7 +554,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="suw-e8-xrG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7" y="-48"/>
+            <point key="canvasLocation" x="7" y="24"/>
         </scene>
         <!--Embedded Map View Controller-->
         <scene sceneID="b5l-xn-uK4">
@@ -661,13 +661,13 @@
         <image name="map-pin" width="32" height="32"/>
         <image name="search" width="256" height="256"/>
     </resources>
-    <color key="tintColor" red="0.45490199327468872" green="0.32156863808631897" blue="0.87843143939971924" alpha="1" colorSpace="deviceRGB"/>
+    <color key="tintColor" red="0.076905969161260829" green="0.36175056726973609" blue="0.84812051057815552" alpha="1" colorSpace="calibratedRGB"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="fR4-zl-5Og"/>
+        <segue reference="UDM-4e-ll4"/>
     </inferredMetricsTieBreakers>
 </document>

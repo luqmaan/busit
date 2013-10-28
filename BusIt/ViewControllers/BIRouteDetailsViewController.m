@@ -84,13 +84,7 @@
     stopId.text = [stop.code stringValue];
     stopName.text = stop.name;
 
-    UIColor *stopColor = [UIColor colorWithHue:stop.hue saturation:1 brightness:0.7 alpha:1];;
-    stopId.textColor = stopColor;
-    stopId.layer.borderColor = stopColor.CGColor;
-    stopId.layer.borderWidth = 1;
-    stopId.layer.cornerRadius = 3;
-
-    distance.text = [NSString stringWithFormat:@"%.02fmi", [stop.distance floatValue]];
+    distance.text = [NSString stringWithFormat:@"%.01fmi", [stop.distance floatValue]];
 
     return cell;
 }

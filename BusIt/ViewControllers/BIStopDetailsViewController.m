@@ -30,7 +30,7 @@
     [self updateAPIData];
     NSLog(@"Did update apiData");
     [self.tableView reloadData];
-    self.navigationItem.title = [NSString stringWithFormat:@"Arrivals for %@", stop.name];
+    self.navigationItem.title = [NSString stringWithFormat:@"%@", stop.name];
 }
 
 - (void)didReceiveMemoryWarning

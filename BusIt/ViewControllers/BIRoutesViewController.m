@@ -33,6 +33,7 @@
     [super viewDidLoad];
     routes = [busData routes];
     [self.tableView reloadData];
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithHue:0.589 saturation:1 brightness:1.0 alpha:0.3];
 }
 
 - (void)didReceiveMemoryWarning
