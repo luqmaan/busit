@@ -1,5 +1,5 @@
 //
-//  BDRouteDetailsViewController.m
+//  BIRouteDetailsViewController.m
 //  BusIt
 //
 //  Created by Lolcat on 9/29/13.
@@ -58,7 +58,7 @@
     }
 }
 
-- (BDStop *)dataForIndexPath:(NSIndexPath *)path
+- (BIStop *)dataForIndexPath:(NSIndexPath *)path
 {
     return route.stops[path.row];
 }
@@ -72,7 +72,7 @@
     UILabel *stopName = (UILabel *)[cell viewWithTag:2];
     UILabel *distance = (UILabel *)[cell viewWithTag:3];
 
-    BDStop *stop;
+    BIStop *stop;
 
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         stop = [searchResults objectAtIndex:indexPath.row];

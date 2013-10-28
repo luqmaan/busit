@@ -12,7 +12,7 @@
 
 @synthesize title, subtitle, coordinate, identifier, hue;
 
--(id)initWithStop:(BDStop *)stop
+-(id)initWithStop:(BIStop *)stop
 {
     identifier = [stop.code stringValue];
     subtitle = stop.name;

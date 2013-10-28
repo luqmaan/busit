@@ -1,5 +1,5 @@
 //
-//  BDArrivals.h
+//  BIArrivals.h
 //  BusIt
 //
 //  Created by Lolcat on 9/1/13.
@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
-#import "BDBusData.h"
+#import "BIBusData.h"
 #import "BIRest.h"
 
-@interface BDArrival : NSObject
+@interface BIArrival : NSObject
 
 @property (nonatomic, assign) BOOL hasObaData;
 @property NSString *identifier;

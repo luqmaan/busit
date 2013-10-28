@@ -1,23 +1,23 @@
 //
-//  BDBusData.m
+//  BIBusData.m
 //  BusIt
 //
 //  Created by Lolcat on 8/30/13.
 //  Copyright (c) 2013 Createch. All rights reserved.
 //
 
-#import "BDBusData.h"
-#import "BDStop.h"
-#import "BDRoute.h"
+#import "BIBusData.h"
+#import "BIStop.h"
+#import "BIRoute.h"
 
-@interface BDBusData() {}
+@interface BIBusData() {}
 
 @property NSMutableArray *tableNames;
 @property NSMutableArray *databaseNames;
 @property NSString *documentsPath;
 @end
 
-@implementation BDBusData
+@implementation BIBusData
 
 @synthesize database, tableNames, databaseNames, documentsPath;
 
@@ -31,18 +31,18 @@ NSString *regionPrefix = @"Hillsborough Area Regional Transit_";
 {
     self = [super init];
     if (self) {
-        
+
         // Specify the tables names and database names.
         tableNames = [[NSMutableArray alloc] initWithObjects:@"stops", @"stop_times", @"trips", @"calendar", @"routes", @"shapes", @"calendar_dates", @"fare_attributes", @"fare_rules", nil];
         databaseNames = [[NSMutableArray alloc] initWithObjects:@"gtfs_tampa", nil];
         documentsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-        
+
         static BOOL firstInstanceOfClass = YES;
         if (firstInstanceOfClass) {
             [self checkDatabases];
             firstInstanceOfClass = NO;
         }
-        
+
         // TODO: Determine which city we are working with.
         // For now, default to Tampa.
         NSString *regionDb = databaseNames[0];
@@ -50,9 +50,9 @@ NSString *regionPrefix = @"Hillsborough Area Regional Transit_";
         dbPath = [NSString stringWithFormat:@"%@.db", dbPath];
         database = [FMDatabase databaseWithPath:dbPath];
         [database open];
-        
+
         [self addDistanceFunction];
-        
+
     }
     return self;
 }
@@ -64,7 +64,7 @@ NSString *regionPrefix = @"Hillsborough Area Regional Transit_";
 
 #pragma mark - Database Updates
 
-// Call this the first time a BDData class is created.
+// Call this the first time a BIData class is created.
 - (void)checkDatabases {
     NSLog(@"Checking databases.");
     [self copyDatabasesFromProjectToDocuments];
@@ -98,7 +98,7 @@ NSString *regionPrefix = @"Hillsborough Area Regional Transit_";
         // The destination path of the database
         NSString *dbPath = [documentsPath stringByAppendingPathComponent:databaseName];
         dbPath = [NSString stringWithFormat:@"%@.db", dbPath];
-        
+
         // Check if the db already exists in the Documents folder
         if (![fileManager fileExistsAtPath:dbPath]) {
             NSLog(@"Database not already present. Copying %@ from project folder to document's directory.", databaseName);
@@ -175,14 +175,14 @@ NSString *regionPrefix = @"Hillsborough Area Regional Transit_";
 {
     // Query for nearby stops
     FMResultSet *rs = [database executeQueryWithFormat:@"SELECT *, distance(stop_lat, stop_lon, %f, %f) as \"distance\" FROM stops ORDER BY distance(stop_lat, stop_lon, %f, %f) LIMIT %d", location.coordinate.latitude, location.coordinate.longitude, location.coordinate.latitude, location.coordinate.longitude, limit];
-    
+
     NSMutableArray *stops = [[NSMutableArray alloc] init];
-    
+
     while ([rs next]) {
-        BDStop *stop = [[BDStop alloc] initWithGtfsResult:[rs resultDictionary]];
+        BIStop *stop = [[BIStop alloc] initWithGtfsResult:[rs resultDictionary]];
         [stops addObject:stop];
     }
-    
+
     // Convert to NSArray
     return [stops copy];
 }
@@ -191,16 +191,16 @@ NSString *regionPrefix = @"Hillsborough Area Regional Transit_";
 {
     // Query for nearby stops
     NSString *query = [NSString stringWithFormat:@"SELECT * FROM routes"];
-    
+
     FMResultSet *rs = [database executeQuery:query];
-    
+
     NSMutableArray *stops = [[NSMutableArray alloc] init];
-    
+
     while ([rs next]) {
-        BDRoute *route = [[BDRoute alloc] initWithGtfsResult:[rs resultDictionary]];
+        BIRoute *route = [[BIRoute alloc] initWithGtfsResult:[rs resultDictionary]];
         [stops addObject:route];
     }
-    
+
     // Convert to NSArray
     return [stops copy];
 }

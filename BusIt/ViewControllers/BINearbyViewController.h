@@ -10,8 +10,8 @@
 #import "BIHelpers.h"
 #import "BIStopDetailsViewController.h"
 #import "BMEmbeddedMapViewController.h"
-#import "BDBusData.h"
-#import "BDStop.h"
+#import "BIBusData.h"
+#import "BIStop.h"
 
 @interface BINearbyViewController : UITableViewController  <CLLocationManagerDelegate>
 

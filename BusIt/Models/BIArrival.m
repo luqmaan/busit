@@ -1,18 +1,18 @@
 //
-//  BDArrivals.m
+//  BIArrivals.m
 //  BusIt
 //
 //  Created by Lolcat on 9/1/13.
 //  Copyright (c) 2013 Createch. All rights reserved.
 //
 
-#import "BDArrival.h"
+#import "BIArrival.h"
 
-@interface BDArrival () {}
-    @property BDBusData *busData;
+@interface BIArrival () {}
+    @property BIBusData *busData;
 @end
 
-@implementation BDArrival
+@implementation BIArrival
 
 @synthesize gtfsId, obaId, routeId, vehicleId, scheduledArrivalTime, scheduledDepartureTime, predictedArrivalTime, predictedDepartureTime, updatedTime, direction, tripHeadsign, serviceId, shapeId, stopSequence, distanceFromStop, numberOfStopsAway, position, lastUpdateTime, scheduleDeviation, distanceAlongTrip, scheduledDistanceAlongTrip, totalDistanceAlongTrip, nextStopTimeOffset, hasObaData, identifier;
 
@@ -26,8 +26,8 @@
         gtfsId = [NSString stringWithFormat:@"%@", resultDict[@"trip_id"]];
         identifier = gtfsId;
         obaId = [NSString stringWithFormat:@"%@%@", regionPrefix, gtfsId];
-        scheduledArrivalTime = [BDBusData dateFromGtfsTimestring:resultDict[@"arrival_time"]];
-        scheduledDepartureTime = [BDBusData dateFromGtfsTimestring:resultDict[@"departure_time"]];
+        scheduledArrivalTime = [BIBusData dateFromGtfsTimestring:resultDict[@"arrival_time"]];
+        scheduledDepartureTime = [BIBusData dateFromGtfsTimestring:resultDict[@"departure_time"]];
         routeId = [resultDict[@"route_id"] stringValue];
         direction = resultDict[@"direction"];
         tripHeadsign = resultDict[@"trip_headsign"];
@@ -64,19 +64,19 @@
     // http://developer.onebusaway.org/modules/onebusaway-application-modules/1.0.1/apidocs/org/onebusaway/realtime/api/VehicleLocationRecord.html#getScheduleDeviation()
     int deviation = [scheduleDeviation doubleValue] / 60;
     NSString *relative;
-    
+
     if (deviation < 0)
         relative = @"early";
     else if (deviation > 0)
         relative = @"late";
     else
         return @"On time";
-    
+
     deviation = abs(deviation);
     NSString *mins = @"mins";
     if (deviation == 1)
         mins = @"min";
-    
+
     return [NSString stringWithFormat:@"%d %@ %@", deviation, mins, relative];
 }
 

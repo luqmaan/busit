@@ -1,5 +1,5 @@
 //
-//  BDBusData.h
+//  BIBusData.h
 //  BusIt
 //
 //  Created by Lolcat on 8/30/13.
@@ -16,7 +16,7 @@
 #define DEG2RAD(degrees) (degrees * 0.01745327) // degrees * pi over 180
 
 
-@interface BDBusData : NSObject
+@interface BIBusData : NSObject
 
 // Class Variables
 /** Some cities, like Tampa have a custom prefix before all identifiers. Very unusual. */

@@ -10,7 +10,7 @@
 
 @interface BIRoutesViewController ()
 
-@property BDBusData *busData;
+@property BIBusData *busData;
 @property NSArray *routes;
 
 @end
@@ -23,7 +23,7 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        busData = [[BDBusData alloc] init];
+        busData = [[BIBusData alloc] init];
     }
     return self;
 }
@@ -52,7 +52,7 @@
     return [routes count];
 }
 
-- (BDRoute *)dataForIndexPath:(NSIndexPath *)indexPath
+- (BIRoute *)dataForIndexPath:(NSIndexPath *)indexPath
 {
     return routes[indexPath.row];
 }
@@ -67,7 +67,7 @@
     UILabel *routeNumber = (UILabel *)[cell viewWithTag:1];
     UILabel *routeName = (UILabel *)[cell viewWithTag:2];
 
-    BDRoute *route = [self dataForIndexPath:indexPath];
+    BIRoute *route = [self dataForIndexPath:indexPath];
 
     UIColor *routeColor = [UIColor colorWithHue:route.hue saturation:1 brightness:0.7 alpha:1];
 

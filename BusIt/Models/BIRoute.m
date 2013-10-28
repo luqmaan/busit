@@ -1,24 +1,24 @@
 //
-//  BDRoute.m
+//  BIRoute.m
 //  BusIt
 //
 //  Created by Lolcat on 9/26/13.
 //  Copyright (c) 2013 Createch. All rights reserved.
 //
 
-#import "BDRoute.h"
+#import "BIRoute.h"
 
-@interface BDRoute () {}
+@interface BIRoute () {}
 
 @property NSArray *stopsArray;
-    
+
 @end
 
-@implementation BDRoute
+@implementation BIRoute
 
 @synthesize routeId, routeShortName, routeLongName, routeType, routeUrl, routeColor, routeTextColor, hue, stopsArray;
 
-- (BDRoute *)initWithGtfsResult:(NSDictionary *)resultDict
+- (BIRoute *)initWithGtfsResult:(NSDictionary *)resultDict
 {
     self = [super init];
     if (self) {
@@ -36,19 +36,19 @@
 
 -(void)fetchStops
 {
-    BDBusData *busData = [[BDBusData alloc] init];
-    
+    BIBusData *busData = [[BIBusData alloc] init];
+
     // Query for nearby stops
     NSString *query = [NSString stringWithFormat:@"SELECT trips.trip_headsign, stops.* FROM stop_times, trips INNER JOIN stops ON stop_times.stop_id = stops.stop_id WHERE stop_times.trip_id = trips.trip_id AND trips.route_id = '%@' GROUP BY stop_id", routeId];
-    
+
     FMResultSet *rs = [[busData database] executeQuery:query];
     NSMutableArray *stops = [[NSMutableArray alloc] init];
-    
+
     while ([rs next]) {
-        BDStop *stop = [[BDStop alloc] initWithGtfsResult:[rs resultDictionary]];
+        BIStop *stop = [[BIStop alloc] initWithGtfsResult:[rs resultDictionary]];
         [stops addObject:stop];
     }
-    
+
     // Convert to NSArray
     stopsArray = [stops copy];
 }

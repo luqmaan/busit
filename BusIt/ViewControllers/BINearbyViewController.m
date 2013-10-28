@@ -16,7 +16,7 @@
 
 @property (weak, nonatomic) BMEmbeddedMapViewController *embeddedMapView;
 @property (nonatomic, retain) CLLocation *location;
-@property BDBusData *busData;
+@property BIBusData *busData;
 @property NSArray *stops;
 
 @end
@@ -27,7 +27,7 @@
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if(self = [super initWithCoder:aDecoder]) {
-        busData = [[BDBusData alloc] init];
+        busData = [[BIBusData alloc] init];
         updateInProgress = YES;
         performSegueAfterScroll = NO;
     }
@@ -143,7 +143,7 @@
     return [stops count];
 }
 
-- (BDStop *)dataForIndexPath:(NSIndexPath *)indexPath
+- (BIStop *)dataForIndexPath:(NSIndexPath *)indexPath
 {
     return stops[indexPath.row];
 }
@@ -153,7 +153,7 @@
 {
     // find the indexPath for the row that contains the stop code specified
     int i = 0;
-    for (BDStop *stop in stops) {
+    for (BIStop *stop in stops) {
         if (stop.code == stopCode) {
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
             return indexPath;
@@ -181,7 +181,7 @@
         return cell;
     }
 
-    BDStop *stop = [self dataForIndexPath:indexPath];
+    BIStop *stop = [self dataForIndexPath:indexPath];
 
     stopId.text = [stop.code stringValue];
     stopName.text = stop.name;
@@ -206,7 +206,7 @@
 {
     if ([[segue identifier] isEqualToString:@"StopDetailsSegue"]) {
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
-        BDStop *stop = [self dataForIndexPath:path];
+        BIStop *stop = [self dataForIndexPath:path];
         BIStopDetailsViewController *stopDetailsVC = segue.destinationViewController;
         stopDetailsVC.stop = stop;
     }

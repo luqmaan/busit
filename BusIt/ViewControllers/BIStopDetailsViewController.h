@@ -10,11 +10,11 @@
 #import <MapKit/MapKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import "BIHelpers.h"
-#import "BDStop.h"
+#import "BIStop.h"
 
 @interface BIStopDetailsViewController : UITableViewController
 
-@property (weak, nonatomic) BDStop *stop;
+@property (weak, nonatomic) BIStop *stop;
 
 - (IBAction)refresh:(id)sender;
 @property (weak, nonatomic) IBOutlet UIProgressView *progressBar;

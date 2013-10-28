@@ -30,7 +30,7 @@
     [self removeAnnotations:mapView.annotations];
 
     // Add the stops with new identifiers.
-    for (BDStop *stop in stops) {
+    for (BIStop *stop in stops) {
         BMStopAnnotation *annotation = [[BMStopAnnotation alloc] initWithStop:stop];
         [mapView addAnnotation:annotation];
     }

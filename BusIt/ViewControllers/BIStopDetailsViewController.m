@@ -9,7 +9,7 @@
 #import "BIStopDetailsViewController.h"
 
 @interface BIStopDetailsViewController ()
-    @property BDBusData *busData;
+    @property BIBusData *busData;
 @end
 
 @implementation BIStopDetailsViewController {
@@ -19,7 +19,7 @@
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if(self = [super initWithCoder:aDecoder]) {
-        busData = [[BDBusData alloc] init];
+        busData = [[BIBusData alloc] init];
     }
     return self;
 }
@@ -90,7 +90,7 @@
     return [[stop.arrivals objectForKey:stop.arrivalKeys[section]] count];
 }
 
--(BDArrival *)dataForIndexPath:(NSIndexPath *)indexPath {
+-(BIArrival *)dataForIndexPath:(NSIndexPath *)indexPath {
     return [stop.arrivals objectForKey:stop.arrivalKeys[indexPath.section]][indexPath.row];
 }
 
@@ -129,7 +129,7 @@
     }
     else {
         NSMutableArray *arrivalGroup = [stop.arrivals objectForKey:[stop.arrivalKeys objectAtIndex:section]];
-        BDArrival *arrival = arrivalGroup[0];
+        BIArrival *arrival = arrivalGroup[0];
 
         double hue = [BIHelpers hueForRoute:[arrival.routeId intValue]];
         UIColor *routeColor = [UIColor colorWithHue:hue saturation:1 brightness:0.7 alpha:0.9];
@@ -145,7 +145,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    BDArrival *arrival = [self dataForIndexPath:indexPath];
+    BIArrival *arrival = [self dataForIndexPath:indexPath];
     UITableViewCell *cell;
     static NSString *CellIdentifier;
     NSDateFormatter *DateFormatter= [[NSDateFormatter alloc] init];

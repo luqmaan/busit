@@ -1,5 +1,5 @@
 //
-//  BDRoute.h
+//  BIRoute.h
 //  BusIt
 //
 //  Created by Lolcat on 9/26/13.
@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BDStop.h"
+#import "BIStop.h"
 
-@interface BDRoute : NSObject
+@interface BIRoute : NSObject
 
 @property NSNumber *routeId;
 @property NSString *routeShortName;
@@ -20,7 +20,7 @@
 @property NSString *routeTextColor;
 @property (nonatomic, assign) float hue;
 
-- (BDRoute *)initWithGtfsResult:(NSDictionary *)resultDict;
+- (BIRoute *)initWithGtfsResult:(NSDictionary *)resultDict;
 - (NSArray *)stops;
 
 /** TODO: implement a search tool to allow searching for a stop without viewing all of them. Perhaps this can be done in the  */

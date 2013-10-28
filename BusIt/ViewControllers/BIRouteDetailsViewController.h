@@ -1,5 +1,5 @@
 //
-//  BDRouteDetailsViewController.h
+//  BIRouteDetailsViewController.h
 //  BusIt
 //
 //  Created by Lolcat on 9/29/13.
@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BDBusData.h"
-#import "BDRoute.h"
+#import "BIBusData.h"
+#import "BIRoute.h"
 #import "BIStopDetailsViewController.h"
 
 @interface BIRouteDetailsViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
 
-@property BDRoute *route;
+@property BIRoute *route;
 
 @end

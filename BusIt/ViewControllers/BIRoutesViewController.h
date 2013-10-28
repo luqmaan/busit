@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BDBusData.h"
-#import "BDRoute.h"
+#import "BIBusData.h"
+#import "BIRoute.h"
 #import "BIRouteDetailsViewController.h"
 
 @interface BIRoutesViewController : UITableViewController

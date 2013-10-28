@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
-#import "BDStop.h"
+#import "BIStop.h"
 
 @interface BMStopAnnotation : NSObject <MKAnnotation>
 
@@ -19,6 +19,6 @@
 @property (nonatomic, readonly) NSString *identifier;
 @property (nonatomic, assign) double hue;
 
--(id)initWithStop:(BDStop *)stop;
+-(id)initWithStop:(BIStop *)stop;
 
 @end

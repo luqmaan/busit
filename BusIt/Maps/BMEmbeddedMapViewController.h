@@ -10,7 +10,7 @@
 #import <MapKit/MapKit.h>
 #import "BMStopAnnotationView.h"
 #import "BMStopAnnotation.h"
-#import "BDStop.H"
+#import "BIStop.H"
 #import "BINearbyViewController.h"
 
 
