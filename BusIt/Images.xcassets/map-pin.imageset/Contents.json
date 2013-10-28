@@ -3,12 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "icon-map-pin-glyphish.png"
+      "filename" : "map_marker-32.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "icon-map-pin-glyphish-1.png"
+      "filename" : "map_marker-50.png"
     }
   ],
   "info" : {

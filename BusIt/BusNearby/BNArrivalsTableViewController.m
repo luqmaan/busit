@@ -126,8 +126,8 @@
     UILabel *tripHeadsign = (UILabel *)[cell viewWithTag:2];
     
     if ([stop.arrivals count] == 0) {
-        routeNumber.text = @":(";
-        tripHeadsign.text = @"No upcoming arrivals.";
+        routeNumber.text = @"☹";
+        tripHeadsign.text = @"No scheduled arrivals.";
         return cell;
     }
     else {

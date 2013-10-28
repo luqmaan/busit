@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C52137D181CA60400B7C294 /* BNRouteDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C52137C181CA60400B7C294 /* BNRouteDetailsViewController.m */; };
 		C14DB59317CBBDDE00905967 /* BMEmbeddedMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C14DB59217CBBDDE00905967 /* BMEmbeddedMapViewController.m */; };
 		C14DB59617CBD10200905967 /* BMCircularAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C14DB59517CBD10200905967 /* BMCircularAnnotationView.m */; };
 		C14DB59917CBE03700905967 /* BMStopAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C14DB59817CBE03700905967 /* BMStopAnnotationView.m */; };
@@ -96,6 +97,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8C52137B181CA60400B7C294 /* BNRouteDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRouteDetailsViewController.h; sourceTree = "<group>"; };
+		8C52137C181CA60400B7C294 /* BNRouteDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRouteDetailsViewController.m; sourceTree = "<group>"; };
 		C10825FF17C3A49700AE58CF /* BusIt-ios6-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "BusIt-ios6-Info.plist"; path = "/Users/lolcat/dev/busit/BusIt-ios6-Info.plist"; sourceTree = "<absolute>"; };
 		C14DB59117CBBDDE00905967 /* BMEmbeddedMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMEmbeddedMapViewController.h; sourceTree = "<group>"; };
 		C14DB59217CBBDDE00905967 /* BMEmbeddedMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMEmbeddedMapViewController.m; sourceTree = "<group>"; };
@@ -169,9 +172,7 @@
 		C1D0BDEE17CE950800FA976D /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		C1D0BDFB17CE955300FA976D /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		C1D9759617BB222F0037B005 /* BMOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMOptions.m; sourceTree = "<group>"; };
-		C1F42C9717CC582E001F2825 /* BusIt copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "BusIt copy-Info.plist"; path = "/Users/lolcat/dev/busit/BusIt copy-Info.plist"; sourceTree = "<absolute>"; };
 		C1F42CB817CC586F001F2825 /* BusIt 0.1.1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BusIt 0.1.1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C1F42CB917CC5870001F2825 /* BusIt copy2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "BusIt copy2-Info.plist"; path = "/Users/lolcat/dev/busit/BusIt copy2-Info.plist"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +219,8 @@
 			children = (
 				C15FE65717F4BD1200E23AFF /* BNRoutesViewController.h */,
 				C15FE65817F4BD1200E23AFF /* BNRoutesViewController.m */,
+				8C52137B181CA60400B7C294 /* BNRouteDetailsViewController.h */,
+				8C52137C181CA60400B7C294 /* BNRouteDetailsViewController.m */,
 				C177FE9817C3A83A00B2FE4F /* BNArrivalsTableViewController.h */,
 				C177FE9917C3A83A00B2FE4F /* BNArrivalsTableViewController.m */,
 				C177FE9A17C3A83A00B2FE4F /* BNNearbyViewController.h */,
@@ -237,8 +240,6 @@
 				C190D7D217BB0C97005C24F2 /* BusItTests */,
 				C190D7AC17BB0C96005C24F2 /* Frameworks */,
 				C190D7AB17BB0C96005C24F2 /* Products */,
-				C1F42C9717CC582E001F2825 /* BusIt copy-Info.plist */,
-				C1F42CB917CC5870001F2825 /* BusIt copy2-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -536,6 +537,7 @@
 				C1D0BDF917CE950800FA976D /* FMResultSet.m in Sources */,
 				C198C23A17BB124600A94F4D /* BMVehicle.m in Sources */,
 				C1B4D61517D0D94C0014AB21 /* BDBusData.m in Sources */,
+				8C52137D181CA60400B7C294 /* BNRouteDetailsViewController.m in Sources */,
 				C1D0BDF517CE950800FA976D /* FMDatabaseQueue.m in Sources */,
 				C1D0BDF317CE950800FA976D /* FMDatabasePool.m in Sources */,
 				C15FE65C17F4BF0A00E23AFF /* BDRoute.m in Sources */,

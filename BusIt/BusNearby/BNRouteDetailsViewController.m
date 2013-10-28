@@ -95,6 +95,20 @@
     return cell;
 }
 
+
+#pragma mark - Segue
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"StopDetailsSegue"])
+    {
+        NSLog(@"StopDetailsSegue");
+        BNArrivalsTableViewController *stopDetailsVC = segue.destinationViewController;
+        NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+        stopDetailsVC.stop = [self dataForIndexPath:path];
+    }
+}
+
 #pragma mark - Search
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope

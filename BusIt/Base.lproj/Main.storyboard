@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="cHa-ne-20T">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="cHa-ne-20T">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
@@ -9,7 +9,7 @@
             <objects>
                 <tableViewController extendedLayoutIncludesOpaqueBars="YES" id="iTL-02-yCz" customClass="BNNearbyViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="40" sectionHeaderHeight="22" sectionFooterHeight="22" id="VVB-EZ-ld2">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <containerView key="tableHeaderView" contentMode="scaleToFill" id="yJI-LW-HdZ">
@@ -85,41 +85,42 @@
             <objects>
                 <tableViewController id="aVZ-rp-F4R" customClass="BNRoutesViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" id="aLt-Bx-K7O">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RouteCell" rowHeight="50" id="cSZ-yf-cAk">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RouteCell" rowHeight="50" id="cSZ-yf-cAk">
                                 <rect key="frame" x="0.0" y="86" width="320" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cSZ-yf-cAk" id="lUD-zD-k3G">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="49"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumFontSize="7" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sNM-ky-ew9">
-                                            <rect key="frame" x="5" y="5" width="40" height="40"/>
+                                            <rect key="frame" x="10" y="8" width="45" height="35"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="0.45490199329999997" green="0.32156863810000003" blue="0.87843143940000001" alpha="1" colorSpace="deviceRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="40" id="UEv-31-Hit"/>
-                                                <constraint firstAttribute="width" constant="40" id="Xg7-eX-FxV"/>
+                                                <constraint firstAttribute="height" constant="35" id="UEv-31-Hit"/>
+                                                <constraint firstAttribute="width" constant="45" id="Xg7-eX-FxV"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dover - Brandon Express" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="biq-rR-SZ0">
-                                            <rect key="frame" x="53" y="14" width="194" height="21"/>
+                                            <rect key="frame" x="63" y="14" width="247" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="sNM-ky-ew9" firstAttribute="leading" secondItem="lUD-zD-k3G" secondAttribute="leading" constant="5" id="NNy-gr-lwx"/>
+                                        <constraint firstAttribute="centerY" secondItem="sNM-ky-ew9" secondAttribute="centerY" constant="-0.5" id="JPo-8k-uSL"/>
+                                        <constraint firstItem="sNM-ky-ew9" firstAttribute="leading" secondItem="lUD-zD-k3G" secondAttribute="leading" constant="10" id="NNy-gr-lwx"/>
                                         <constraint firstItem="biq-rR-SZ0" firstAttribute="leading" secondItem="sNM-ky-ew9" secondAttribute="trailing" constant="8" id="Qx8-OR-en6"/>
                                         <constraint firstAttribute="centerY" secondItem="biq-rR-SZ0" secondAttribute="centerY" id="coq-et-E3S"/>
-                                        <constraint firstItem="sNM-ky-ew9" firstAttribute="top" secondItem="lUD-zD-k3G" secondAttribute="top" constant="5" id="f80-Ol-3dt"/>
+                                        <constraint firstAttribute="trailing" secondItem="biq-rR-SZ0" secondAttribute="trailing" constant="10" id="kys-RV-4EZ"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -137,10 +138,9 @@
         <!--Route Details View Controller - Route 6-->
         <scene sceneID="Evs-XX-JsX">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6pp-59-Mgv" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="Meg-eZ-hIq" customClass="BNRouteDetailsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="bQ8-Sk-14w">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" id="3IS-n3-kvo">
@@ -195,7 +195,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="2q8-Xd-oEm" kind="push" id="fR4-zl-5Og"/>
+                                    <segue destination="2q8-Xd-oEm" kind="push" identifier="StopDetailsSegue" id="fR4-zl-5Og"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -209,6 +209,7 @@
                         <outlet property="searchDisplayController" destination="49t-r2-X8O" id="fcO-1B-cYd"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6pp-59-Mgv" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <searchDisplayController id="49t-r2-X8O">
                     <connections>
                         <outlet property="delegate" destination="Meg-eZ-hIq" id="LXt-e8-XLa"/>
@@ -225,7 +226,7 @@
         <scene sceneID="53S-Cv-Fe9">
             <objects>
                 <navigationController title="Routes" definesPresentationContext="YES" id="obu-II-9Gy" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Routes" image="collapse" id="gyZ-8W-fp7"/>
+                    <tabBarItem key="tabBarItem" title="Routes" image="location" id="gyZ-8W-fp7"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Yym-xX-ots">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -237,11 +238,11 @@
             </objects>
             <point key="canvasLocation" x="7" y="-1264"/>
         </scene>
-        <!--Navigation Controller - Stops-->
+        <!--Navigation Controller - Stop Map-->
         <scene sceneID="hxt-QK-ld5">
             <objects>
                 <navigationController definesPresentationContext="YES" navigationBarHidden="YES" id="lRK-Lh-mbV" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Stops" image="bus" id="rt7-fO-X6P"/>
+                    <tabBarItem key="tabBarItem" title="Stop Map" image="map-pin" id="rt7-fO-X6P"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gDn-f7-XMd">
                         <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -263,7 +264,7 @@
             <objects>
                 <tableViewController id="2q8-Xd-oEm" customClass="BNArrivalsTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="40" sectionHeaderHeight="30" sectionFooterHeight="22" id="2ib-6p-YMh">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <progressView key="tableHeaderView" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" id="NxF-6e-rHg">
@@ -485,7 +486,7 @@
             </objects>
             <point key="canvasLocation" x="-523" y="-658"/>
         </scene>
-        <!--View Controller - Live Map-->
+        <!--View Controller - Live Bus Map-->
         <scene sceneID="eah-Yn-1Cq">
             <objects>
                 <viewController id="PUH-8l-EO9" customClass="BMViewController" sceneMemberID="viewController">
@@ -494,15 +495,15 @@
                         <viewControllerLayoutGuide type="bottom" id="Fhx-Mr-MLj"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="MCX-zE-yV3">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fAM-r2-qdm">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </mapView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1vq-1e-WLn">
-                                <rect key="frame" x="0.0" y="387" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="475" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="Stz-X8-Pwb"/>
@@ -510,7 +511,7 @@
                                 <items/>
                             </toolbar>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Updating realtime bus locations" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pog-mm-9bz">
-                                <rect key="frame" x="10" y="398" width="300" height="21"/>
+                                <rect key="frame" x="10" y="486" width="300" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="CA7-iz-goB"/>
@@ -520,7 +521,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="94e-5d-ec2">
-                                <rect key="frame" x="0.0" y="385" width="320" height="2"/>
+                                <rect key="frame" x="0.0" y="473" width="320" height="2"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </progressView>
                         </subviews>
@@ -542,7 +543,7 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <tabBarItem key="tabBarItem" title="Live Map" image="location" id="vLK-Nd-H7j"/>
+                    <tabBarItem key="tabBarItem" title="Live Bus Map" image="bus" id="vLK-Nd-H7j"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="mapView" destination="fAM-r2-qdm" id="Qld-dN-I9a"/>
@@ -656,15 +657,15 @@
         <image name="arrow-navigation" width="256" height="256"/>
         <image name="bookmark" width="256" height="256"/>
         <image name="bus" width="25" height="25"/>
-        <image name="collapse" width="32" height="32"/>
         <image name="location" width="32" height="32"/>
+        <image name="map-pin" width="32" height="32"/>
         <image name="search" width="256" height="256"/>
     </resources>
     <color key="tintColor" red="0.45490199327468872" green="0.32156863808631897" blue="0.87843143939971924" alpha="1" colorSpace="deviceRGB"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="fR4-zl-5Og"/>
