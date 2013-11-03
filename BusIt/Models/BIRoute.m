@@ -27,8 +27,8 @@
         routeLongName = resultDict[@"route_long_name"];
         routeType = resultDict[@"route_type"];
         routeUrl = resultDict[@"route_url"];
-        routeColor = resultDict[@"route_color"];
-        routeTextColor = resultDict[@"route_text_color"];
+        routeColor = [BIHelpers colorWithHexString:resultDict[@"route_color"]];
+        routeTextColor = [BIHelpers colorWithHexString:resultDict[@"route_text_color"]];
         hue = ([routeId intValue] % 10) / 10.0;
     }
     return self;

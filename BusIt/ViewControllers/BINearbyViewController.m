@@ -186,9 +186,9 @@
     stopId.text = [stop.code stringValue];
     stopName.text = stop.name;
 
-    UIColor *stopColor = [UIColor colorWithHue:stop.hue saturation:1 brightness:0.7 alpha:1];;
+    UIColor *stopColor = self.view.window.tintColor;
     stopId.textColor = stopColor;
-    stopId.layer.borderColor = stopColor.CGColor;
+    stopId.layer.borderColor = [BIHelpers adjustColor:stopColor brightness:1.0 alpha:0.5].CGColor;
     stopId.layer.borderWidth = 1;
     stopId.layer.cornerRadius = 3;
 

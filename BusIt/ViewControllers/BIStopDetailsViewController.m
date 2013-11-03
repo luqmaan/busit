@@ -57,6 +57,7 @@
     NSLog(@"about to fetch arrivals for stop");
     NSLog(@"stop: %@", stop);
     self.progressBar.progress = 0;
+    self.progressBar.hidden = NO;
     self.navigationItem.prompt = @"Finding scheduled arrivals...";
 
     [stop fetchArrivalsAndPerformCallback:^{
@@ -65,6 +66,9 @@
         [self.tableView reloadData];
     } progressCallback:^(float newDownloadProgress) {
         self.progressBar.progress = newDownloadProgress;
+        if (newDownloadProgress >= 0.9) {
+            self.progressBar.progress = 0;
+        }
     }];
 
     // Got the local GTFS data, can reload
@@ -130,10 +134,6 @@
     else {
         NSMutableArray *arrivalGroup = [stop.arrivals objectForKey:[stop.arrivalKeys objectAtIndex:section]];
         BIArrival *arrival = arrivalGroup[0];
-
-        double hue = [BIHelpers hueForRoute:[arrival.routeId intValue]];
-        UIColor *routeColor = [UIColor colorWithHue:hue saturation:1 brightness:0.7 alpha:0.9];
-        cell.backgroundColor = routeColor;
 
         routeNumber.text = arrival.routeId;
         tripHeadsign.text = arrival.tripHeadsign;

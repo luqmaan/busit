@@ -70,16 +70,14 @@
 
     BIRoute *route = [self dataForIndexPath:indexPath];
 
-    UIColor *routeColor = [UIColor colorWithHue:route.hue saturation:1 brightness:0.7 alpha:1];
-
     routeName.text = route.routeLongName;
     routeNumber.text = route.routeShortName;
     routeNumber.backgroundColor = [UIColor clearColor];
 
     routeNumber.layer.cornerRadius = 5.0f;
     routeNumber.layer.borderWidth = 1.0f;
-    routeNumber.layer.borderColor = routeColor.CGColor;
-    routeNumber.textColor = routeColor;
+    routeNumber.layer.borderColor = route.routeColor.CGColor;
+    routeNumber.textColor = route.routeColor;
 
     return cell;
 }

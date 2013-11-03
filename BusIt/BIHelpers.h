@@ -25,5 +25,7 @@
 + (BOOL)isBelowiOS7;
 + (double)hueForStop:(int)stopNumber;
 + (double)hueForRoute:(int)routeNumber;
++ (UIColor *)adjustColor:(UIColor*)color brightness:(float)brightness alpha:(float)alpha;
++ (UIColor*)colorWithHexString:(NSString*)hex;
 
 @end

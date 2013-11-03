@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "BIStop.h"
+#import "BIHelpers.h"
 
 @interface BIRoute : NSObject
 
@@ -16,8 +17,8 @@
 @property NSString *routeLongName;
 @property NSNumber *routeType;
 @property NSString *routeUrl;
-@property NSString *routeColor;
-@property NSString *routeTextColor;
+@property UIColor *routeColor;
+@property UIColor *routeTextColor;
 @property (nonatomic, assign) float hue;
 
 - (BIRoute *)initWithGtfsResult:(NSDictionary *)resultDict;
