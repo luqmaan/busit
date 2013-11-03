@@ -16,7 +16,7 @@
 
 @implementation BIRouteDetailsViewController
 
-@synthesize route;
+@synthesize route, searchBar;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -31,7 +31,8 @@
 {
     [super viewDidLoad];
     [self.tableView reloadData];
-    self.navigationItem.title = route.routeLongName;
+    self.navigationItem.title = [NSString stringWithFormat:@"Stops - Route %@", route.routeShortName];
+    searchBar.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -89,6 +90,17 @@
     return cell;
 }
 
+/** Force the height of the cell in the search results to be consistent. */
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSNumber *height;
+    static NSString *CellIdentifier = @"StopCell";
+    if (!height) {
+        UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        height = @(cell.bounds.size.height);
+    }
+    return [height floatValue];
+}
 
 #pragma mark - Segue
 
@@ -121,6 +133,17 @@ shouldReloadTableForSearchString:(NSString *)searchString
                                                      selectedScopeButtonIndex]]];
 
     return YES;
+}
+
+- (IBAction)showSearchBar:(id)sender {
+    // Scroll to the top of the table, no longer CGPointZero in iOS 7, must consider inset content like the search bar
+    CGPoint top = CGPointMake(self.tableView.contentOffset.x, -self.tableView.contentInset.top);
+    [self.tableView setContentOffset:top animated:NO];
+    [searchBar becomeFirstResponder];
+}
+-(void)searchBarCancelButtonClicked:(UISearchBar *)theSearchBar
+{
+    [theSearchBar resignFirstResponder];
 }
 
 @end

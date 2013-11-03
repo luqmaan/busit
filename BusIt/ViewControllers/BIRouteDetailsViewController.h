@@ -11,8 +11,11 @@
 #import "BIRoute.h"
 #import "BIStopDetailsViewController.h"
 
-@interface BIRouteDetailsViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
+@interface BIRouteDetailsViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
 @property BIRoute *route;
+
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+- (IBAction)showSearchBar:(id)sender;
 
 @end
