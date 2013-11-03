@@ -48,7 +48,6 @@
 {
     [super viewDidLoad];
     [self initMap];
-    [self updateMap];
     [self zoomIntoTampa];
 }
 
@@ -59,8 +58,20 @@
 }
 
 - (void)viewDidUnload {
-    [self stopTimer];
     [super viewDidUnload];
+    [self stopTimer];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self updateMap];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [self stopTimer];
 }
 
 #pragma mark - Map & Location
@@ -128,7 +139,11 @@
         self_.progressBar.progress = downloadProgress;
         NSLog(@"downloadProgress: %f", downloadProgress);
     };
+    
+    self.toolBarMessage.text = @"Fetching realtime bus locations...";
     apiData = [bench vehiclesForAgency:agencyId];
+    NSLog(@"Finished updating api data");
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         self.progressBar.hidden = YES;
         self.progressBar.progress = 0;
@@ -144,12 +159,17 @@
 }
 
 - (void)addVehiclesToRoutes {
+    NSLog(@"At addVehiclesToRoutes");
     for (NSDictionary *vehicleDict in apiData[@"data"][@"list"]) {
+        NSLog(@"for vehicle, %@", vehicleDict);
         if (vehicleDict[@"tripStatus"] == nil || [vehicleDict[@"tripId"] isEqual: @""])
             continue;
 
+        NSLog(@"vehicleDict not nil, abou to init BMVehicle");
         BMVehicle *vehicle = [[BMVehicle alloc] initWithJSON:vehicleDict
                                                   andAPIData:&apiData];
+        NSLog(@"le vehicle, %@", vehicleDict);
+
         // TODO: Add another method that will call removeAnnotations
         // for routes that should no longer be visible (based on mapOptions)
         if (!firstTimeAddingVehiclesToRoutes && [routes hasVehicle:vehicle]) {
@@ -233,18 +253,19 @@
 }
 - (void)stopTimer
 {
+    NSLog(@"Stopped timer");
     [updateTimer invalidate];
     updateTimer = nil;
 }
 
-int timeToUpdate = 10;
+int timeToUpdate = 2;
 - (void)updateToolbarMessage
 {
     self.toolBarMessage.text = [NSString stringWithFormat:@"Refreshing realtime bus locations in %d seconds", timeToUpdate];
     if (timeToUpdate == 0) {
         timeToUpdate = 10;
         [self stopTimer];
-        self.toolBarMessage.text = @"Updating realtime bus locations";
+        self.toolBarMessage.text = @"Fetching realtime bus locations";
         [self updateMap];
     }
     else {

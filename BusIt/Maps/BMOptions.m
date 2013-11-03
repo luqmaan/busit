@@ -16,7 +16,7 @@
 
 @implementation BMOptions
 
--(BMOptions *)init {
+- (BMOptions *)init {
     self = [super init];
     if (self) {
         visibleRoutes = [[NSMutableDictionary alloc] init];
@@ -27,14 +27,14 @@
 
 
 
-- (void) addRouteWithRoutesDict:(NSDictionary *)routesDict
+- (void)addRouteWithRoutesDict:(NSDictionary *)routesDict
 {
     [self addRoute:routesDict[@"id"]
          shortName:routesDict[@"shortName"]
           longName:routesDict[@"longName"]];
 }
 
-- (void) addRoute:(NSString *)routeId
+- (void)addRoute:(NSString *)routeId
         shortName:(NSString *)shortName
          longName:(NSString *)longName
 {
@@ -52,7 +52,7 @@
     [visibleRoutes setObject:route forKey:routeId];
 }
 
-- (void) removeRoute:(NSString *)routeId
+- (void)removeRoute:(NSString *)routeId
 {
     [visibleRoutes removeObjectForKey:routeId];
 }

@@ -250,7 +250,8 @@
             region.center.latitude = placemark.location.coordinate.latitude;
             region.center.longitude = placemark.location.coordinate.longitude;
             region.span = mapView.region.span;
-
+            region.span.latitudeDelta = 0.02;
+            region.span.longitudeDelta = 0.02;
             // update the mapview and hide  the search bar
             [mapView setRegion:region animated:YES];
         }
