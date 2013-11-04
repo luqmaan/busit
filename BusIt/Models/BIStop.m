@@ -128,6 +128,7 @@
         // For each arrivalAndDeparture
         // Match it to its corresponding BIArrival.
         // Tell that arrival to update itself with the OBA data.
+        NSLog(@"Parsing API response for arrivalAndDepartures");
         for (NSDictionary *arrivalAndDeparture in obArrivals[@"data"][@"entry"][@"arrivalsAndDepartures"]) {
             NSString *key = [self arrivalKeyForStopSequence:arrivalAndDeparture[@"stopSequence"]
                                                     routeId:[busData stringWithoutRegionPrefix:arrivalAndDeparture[@"routeId"]]

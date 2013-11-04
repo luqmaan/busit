@@ -84,7 +84,7 @@
 {
     float meters = [distanceFromStop floatValue];
     float miles = meters * 0.000621371192;
-    NSString *distanceString = [NSString stringWithFormat:@"%.2fmi away", miles];
+    NSString *distanceString = [NSString stringWithFormat:@"%.2f mi away", miles];
     return distanceString;
 }
 

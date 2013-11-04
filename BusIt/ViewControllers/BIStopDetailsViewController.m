@@ -58,22 +58,19 @@
     NSLog(@"stop: %@", stop);
     self.progressBar.progress = 0;
     self.progressBar.hidden = NO;
-    self.navigationItem.prompt = @"Finding scheduled arrivals...";
 
     [stop fetchArrivalsAndPerformCallback:^{
         NSLog(@"Got the OBA data");
-        self.navigationItem.prompt = nil;
         [self.tableView reloadData];
     } progressCallback:^(float newDownloadProgress) {
         self.progressBar.progress = newDownloadProgress;
-        if (newDownloadProgress >= 0.9) {
+        if (newDownloadProgress >= 1) {
             self.progressBar.progress = 0;
         }
     }];
 
     // Got the local GTFS data, can reload
     NSLog(@"Did fetch arrivals");
-    self.navigationItem.prompt = @"Getting realtime arrivals...";
     [self.tableView reloadData];
 
 }
@@ -117,6 +114,7 @@
 }
 
 -(UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+
     static NSString *CellIdentifier = @"TripHeadsignCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil){
@@ -149,8 +147,10 @@
     UITableViewCell *cell;
     static NSString *CellIdentifier;
     NSDateFormatter *DateFormatter= [[NSDateFormatter alloc] init];
+    NSTimeZone *tz = [NSTimeZone timeZoneWithName:@"EST"];
     [DateFormatter setDateFormat:@"hh:mm"];
-
+    [DateFormatter setTimeZone:tz];
+    
     if (arrival.hasObaData == NO) {
         CellIdentifier = @"ScheduledArrivalCell";
         cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
@@ -164,12 +164,10 @@
         UILabel *predicted = (UILabel *)[cell viewWithTag:2];
         UILabel *distance = (UILabel *)[cell viewWithTag:3];
         UILabel *timeOffset = (UILabel *)[cell viewWithTag:4];
-        UILabel *stopsAway = (UILabel *)[cell viewWithTag:5];
         scheduled.text = [DateFormatter stringFromDate:arrival.scheduledArrivalTime];
         predicted.text = [DateFormatter stringFromDate:arrival.predictedArrivalTime];
-        distance.text = arrival.formattedDistanceFromStop;
+        distance.text = [NSString stringWithFormat:@"%@ / %@ stops away", arrival.formattedDistanceFromStop, arrival.numberOfStopsAway.stringValue];
         timeOffset.text = arrival.formattedScheduleDeviation;
-        stopsAway.text = [arrival.numberOfStopsAway stringValue];
     }
 
     NSDate *now = [NSDate date];
@@ -179,12 +177,6 @@
     else {
         cell.backgroundColor = [UIColor whiteColor];
     }
-//    NSLog(@"%@ vs %@ => %@", arrival.scheduledArrivalTime, now, [arrival.scheduledArrivalTime laterDate:now]);
-
-//    predicted.text = arrival.predictedTime;
-//    distance.text = [NSString stringWithFormat:@"%@mi    %@ stops away", [BIHelpers formattedDistanceFromStop:data[@"distanceFromStop"]], data[@"numberOfStopsAway"]];
-//    predicted.text = [NSString stringWithFormat:@"%@", [BIHelpers timeWithTimestamp:data[@"predictedArrivalTime"]]];
-//    updated.text = [NSString stringWithFormat:@"%@", [BIHelpers timeWithTimestamp:data[@"lastUpdateTime"]]];
 
     return cell;
 }
@@ -197,7 +189,7 @@
 
     if ([[self dataForIndexPath:indexPath] hasObaData])
     {
-        return 80.0f;
+        return 60.0f;
     }
     else {
         return 40.0f;

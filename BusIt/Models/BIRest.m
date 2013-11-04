@@ -160,7 +160,6 @@
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response
 {
     [self.cumulativeData setLength:0];
-    NSLog(@"%@", response);
     if ([response statusCode] == 200) {
         downloadSize = [response expectedContentLength];
         downloadProgress = 0;
@@ -171,7 +170,6 @@
 {
     [self.cumulativeData appendData:data];
     downloadProgress += ((float) [data length] / (float) downloadSize);
-    NSLog(@"%f / %f = %f", (float) [data length], (float)downloadSize, downloadProgress);
     if (self.progressUpdateBlock)
         self.progressUpdateBlock(downloadProgress);
 }

@@ -93,7 +93,6 @@
         dispatch_async(dispatch_get_main_queue(), ^ {
             updateInProgress = FALSE;
             [self.tableView reloadData];
-            self.navigationItem.prompt = nil;
             [self updateMapView];
         });
     });
