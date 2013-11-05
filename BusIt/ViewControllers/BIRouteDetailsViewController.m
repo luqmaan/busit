@@ -61,7 +61,11 @@
 
 - (BIStop *)dataForIndexPath:(NSIndexPath *)path
 {
-    return route.stops[path.row];
+    if (searchResults) {
+        return searchResults[path.row];
+    } else {
+        return route.stops[path.row];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -110,7 +114,13 @@
     {
         NSLog(@"StopDetailsSegue");
         BIStopDetailsViewController *stopDetailsVC = segue.destinationViewController;
-        NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+        NSIndexPath *path;
+        if (searchResults) {
+            path = [self.searchDisplayController.searchResultsTableView indexPathForCell:sender];
+        }
+        else {
+            path = [self.tableView indexPathForSelectedRow];
+        }
         stopDetailsVC.stop = [self dataForIndexPath:path];
     }
 }
@@ -124,8 +134,7 @@
     searchResults = [route.stops filteredArrayUsingPredicate:resultPredicate];
 }
 
--(BOOL)searchDisplayController:(UISearchDisplayController *)controller
-shouldReloadTableForSearchString:(NSString *)searchString
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
     [self filterContentForSearchText:searchString
                                scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
@@ -144,6 +153,7 @@ shouldReloadTableForSearchString:(NSString *)searchString
 -(void)searchBarCancelButtonClicked:(UISearchBar *)theSearchBar
 {
     [theSearchBar resignFirstResponder];
+    searchResults = nil;
 }
 
 @end

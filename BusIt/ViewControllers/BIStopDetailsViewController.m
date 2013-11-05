@@ -63,7 +63,7 @@
         NSLog(@"Got the OBA data");
         [self.tableView reloadData];
         self.progressBar.progress = 1;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
             self.progressBar.progress = 0;
         });
     } progressCallback:^(float newDownloadProgress) {
@@ -95,11 +95,9 @@
     return [stop.arrivals objectForKey:stop.arrivalKeys[indexPath.section]][indexPath.row];
 }
 
-
 #pragma mark - Table view delegate
 
-
-- (NSString *)distanceString:(float) meters
+- (NSString *)distanceString:(float)meters
 {
 	if(meters > 1000.0) {
 		float km = meters * 0.001;
