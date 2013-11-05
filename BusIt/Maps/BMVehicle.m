@@ -66,7 +66,16 @@
         // add data for the annotation
         title = [NSString stringWithFormat:@"%@ - %@", routeShortName, tripHeadsign];
         subtitle = [NSString stringWithFormat:@"Arriving in %@ at %@", nextStopTime, nextStopName];
-        NSDictionary *loc = [vehicleData objectForKey:@"location"];
+        
+        // Sometimes the API returns locatoin as null, and instead defines tripStatus.
+        // When this happens, use the position dict from tripStatus.
+        id loc = [vehicleData objectForKey:@"location"];
+        if (![loc isKindOfClass:[NSDictionary class]]) {
+            NSLog(@"Location undefined, using tripStatus");
+            loc = (NSDictionary *)tripStatus[@"position"];
+        } else {
+            loc = (NSDictionary *)loc;
+        }
         coordinate = CLLocationCoordinate2DMake(
                                                 [(NSNumber *)[loc objectForKey:@"lon"] floatValue],
                                                 [(NSNumber *)[loc objectForKey:@"lat"] floatValue]);

@@ -137,7 +137,6 @@
     self.progressBar.hidden = NO;
     bench.progressUpdateBlock = ^(float downloadProgress) {
         self_.progressBar.progress = downloadProgress;
-        NSLog(@"downloadProgress: %f", downloadProgress);
     };
     
     self.toolBarMessage.text = @"Fetching realtime bus locations...";
@@ -159,17 +158,12 @@
 }
 
 - (void)addVehiclesToRoutes {
-    NSLog(@"At addVehiclesToRoutes");
     for (NSDictionary *vehicleDict in apiData[@"data"][@"list"]) {
-        NSLog(@"for vehicle, %@", vehicleDict);
         if (vehicleDict[@"tripStatus"] == nil || [vehicleDict[@"tripId"] isEqual: @""])
             continue;
-
-        NSLog(@"vehicleDict not nil, abou to init BMVehicle");
         BMVehicle *vehicle = [[BMVehicle alloc] initWithJSON:vehicleDict
                                                   andAPIData:&apiData];
-        NSLog(@"le vehicle, %@", vehicleDict);
-
+        
         // TODO: Add another method that will call removeAnnotations
         // for routes that should no longer be visible (based on mapOptions)
         if (!firstTimeAddingVehiclesToRoutes && [routes hasVehicle:vehicle]) {
@@ -263,7 +257,7 @@ int timeToUpdate = 2;
 {
     self.toolBarMessage.text = [NSString stringWithFormat:@"Refreshing realtime bus locations in %d seconds", timeToUpdate];
     if (timeToUpdate == 0) {
-        timeToUpdate = 10;
+        timeToUpdate = 2;
         [self stopTimer];
         self.toolBarMessage.text = @"Fetching realtime bus locations";
         [self updateMap];
