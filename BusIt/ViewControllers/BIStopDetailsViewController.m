@@ -49,30 +49,30 @@
 
 - (IBAction)refresh:(id)sender {
     [self updateAPIData];
+    CGPoint top = CGPointMake(self.tableView.contentOffset.x, -self.tableView.contentInset.top);
+    [self.tableView setContentOffset:top animated:YES];
 }
 
 - (void)updateAPIData
 {
-
     NSLog(@"about to fetch arrivals for stop");
     NSLog(@"stop: %@", stop);
-    self.progressBar.progress = 0;
-    self.progressBar.hidden = NO;
+    self.progressBar.progress = 0.1;
 
     [stop fetchArrivalsAndPerformCallback:^{
         NSLog(@"Got the OBA data");
         [self.tableView reloadData];
+        self.progressBar.progress = 1;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            self.progressBar.progress = 0;
+        });
     } progressCallback:^(float newDownloadProgress) {
         self.progressBar.progress = newDownloadProgress;
-        if (newDownloadProgress >= 1) {
-            self.progressBar.progress = 0;
-        }
     }];
 
     // Got the local GTFS data, can reload
     NSLog(@"Did fetch arrivals");
     [self.tableView reloadData];
-
 }
 
 #pragma mark - Table view data source

@@ -143,9 +143,16 @@
     apiData = [bench vehiclesForAgency:agencyId];
     NSLog(@"Finished updating api data");
     
+    self.progressBar.progress = 1;
+
+    
+    
     dispatch_async(dispatch_get_main_queue(), ^{
-        self.progressBar.hidden = YES;
-        self.progressBar.progress = 0;
+        self.progressBar.progress = 1;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            self.progressBar.hidden = YES;
+            self.progressBar.progress = 0;
+        });
     });
 }
 

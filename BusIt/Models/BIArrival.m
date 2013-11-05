@@ -45,14 +45,19 @@
     lastUpdateTime = [BIRest dateFromObaTimestamp:obaData[@"lastUpdateTime"]];
     predictedDepartureTime = [BIRest dateFromObaTimestamp:obaData[@"predictedDepartureTime"]];
     predictedArrivalTime = [BIRest dateFromObaTimestamp:obaData[@"predictedArrivalTime"]];
-    position = [[CLLocation alloc] initWithLatitude:[obaData[@"tripStatus"][@"position"][@"lat"] doubleValue] longitude:[obaData[@"tripStatus"][@"position"][@"lon"] doubleValue]];
     numberOfStopsAway = obaData[@"numberOfStopsAway"];
-    scheduleDeviation = obaData[@"tripStatus"][@"scheduleDeviation"];
-    distanceAlongTrip = obaData[@"tripStatus"][@"distanceAlongTrip"];
-    scheduledDistanceAlongTrip = obaData[@"tripStatus"][@"scheduledDistanceAlongTrip"];
-    totalDistanceAlongTrip = obaData[@"tripStatus"][@"totalDistanceAlongTrip"];
     distanceFromStop = obaData[@"distanceFromStop"];
-    nextStopTimeOffset = obaData[@"tripStatus"][@"nextStopTimeOffset"];
+    if ([obaData[@"tripStatus"] isKindOfClass:[NSDictionary class]]) {
+        position = [[CLLocation alloc] initWithLatitude:[obaData[@"tripStatus"][@"position"][@"lat"] doubleValue] longitude:[obaData[@"tripStatus"][@"position"][@"lon"] doubleValue]];
+        scheduleDeviation = obaData[@"tripStatus"][@"scheduleDeviation"];
+        distanceAlongTrip = obaData[@"tripStatus"][@"distanceAlongTrip"];
+        scheduledDistanceAlongTrip = obaData[@"tripStatus"][@"scheduledDistanceAlongTrip"];
+        totalDistanceAlongTrip = obaData[@"tripStatus"][@"totalDistanceAlongTrip"];
+        nextStopTimeOffset = obaData[@"tripStatus"][@"nextStopTimeOffset"];
+    }
+    else {
+        NSLog(@"The OBA Data doesn't have a tripStatus section.");
+    }
 }
 
 - (NSString *)description {
@@ -84,7 +89,7 @@
 {
     float meters = [distanceFromStop floatValue];
     float miles = meters * 0.000621371192;
-    NSString *distanceString = [NSString stringWithFormat:@"%.2f mi away", miles];
+    NSString *distanceString = [NSString stringWithFormat:@"%.2f mi", miles];
     return distanceString;
 }
 

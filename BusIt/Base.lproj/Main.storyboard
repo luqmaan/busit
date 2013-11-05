@@ -267,7 +267,7 @@
                         <progressView key="tableHeaderView" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" id="NxF-6e-rHg">
                             <rect key="frame" x="0.0" y="64" width="320" height="2"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="tintColor" red="0.0" green="0.87366408805209161" blue="0.88408627717391308" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" red="0.98544305560000001" green="0.0" blue="0.61613094810000002" alpha="1" colorSpace="calibratedRGB"/>
                             <color key="trackTintColor" red="0.083920668690000005" green="0.42999718349999999" blue="1" alpha="0.65000000000000002" colorSpace="calibratedRGB"/>
                         </progressView>
                         <prototypes>
@@ -503,7 +503,7 @@
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="94e-5d-ec2">
                                 <rect key="frame" x="0.0" y="489" width="320" height="2"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" red="0.0" green="0.87366408809999996" blue="0.88408627719999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.98544305562973022" green="0.0" blue="0.61613094806671143" alpha="1" colorSpace="calibratedRGB"/>
                             </progressView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
