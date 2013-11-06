@@ -29,6 +29,7 @@
     [super viewDidLoad];
     [self updateAPIData];
     NSLog(@"Did update apiData");
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithHue:0.589 saturation:1 brightness:1.0 alpha:0.3];
     [self.tableView reloadData];
     self.navigationItem.title = [NSString stringWithFormat:@"%@", stop.name];
 }
