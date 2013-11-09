@@ -31,7 +31,7 @@
 {
     [super viewDidLoad];
     [self.tableView reloadData];
-    self.navigationItem.title = [NSString stringWithFormat:@"Stops - Route %@", route.routeShortName];
+    self.navigationItem.title = [NSString stringWithFormat:@"Stops"];
     searchBar.delegate = self;
 }
 
@@ -46,15 +46,18 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        return searchResults.count;
-
-    } else {
+    if (section == 0) {
+        // Route Title
+        return 1;
+    }
+    else {
+        if (tableView == self.searchDisplayController.searchResultsTableView)
+            return searchResults.count;
         return [route.stops count];
     }
 }
@@ -70,40 +73,47 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"StopCell";
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-
-    UILabel *stopId = (UILabel *)[cell viewWithTag:1];
-    UILabel *stopName = (UILabel *)[cell viewWithTag:2];
-    UILabel *distance = (UILabel *)[cell viewWithTag:3];
-
-    BIStop *stop;
-
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        stop = [searchResults objectAtIndex:indexPath.row];
+    static NSString *CellIdentifier;
+    NSLog(@"indexpath: %@", indexPath);
+    
+    UITableViewCell *cell;
+    if (indexPath.section == 0) {
+        CellIdentifier = @"RouteOverviewCell";
+        cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+        UILabel *routeName = (UILabel *)[cell viewWithTag:1];
+        routeName.text = [NSString stringWithFormat:@"%@ %@", route.routeShortName, route.routeLongName];
     }
     else {
-        stop = [self dataForIndexPath:indexPath];
+        CellIdentifier = @"StopCell";
+        cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+        
+        UILabel *stopId = (UILabel *)[cell viewWithTag:1];
+        UILabel *stopName = (UILabel *)[cell viewWithTag:2];
+        UILabel *distance = (UILabel *)[cell viewWithTag:3];
+        
+        BIStop *stop;
+        
+        if (tableView == self.searchDisplayController.searchResultsTableView) {
+            stop = [searchResults objectAtIndex:indexPath.row];
+        }
+        else {
+            stop = [self dataForIndexPath:indexPath];
+        }
+        
+        stopId.text = [stop.code stringValue];
+        stopName.text = stop.name;
+        
+        distance.text = [NSString stringWithFormat:@"%.01fmi", [stop.distance floatValue]];
     }
-
-    stopId.text = [stop.code stringValue];
-    stopName.text = stop.name;
-
-    distance.text = [NSString stringWithFormat:@"%.01fmi", [stop.distance floatValue]];
 
     return cell;
 }
 
-/** Force the height of the cell in the search results to be consistent. */
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSNumber *height;
-    static NSString *CellIdentifier = @"StopCell";
-    if (!height) {
-        UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        height = @(cell.bounds.size.height);
-    }
-    return [height floatValue];
+    if (indexPath.section == 0)
+        return 50.0f;
+    return 30.0f;
 }
 
 #pragma mark - Segue
@@ -150,10 +160,12 @@
     [self.tableView setContentOffset:top animated:NO];
     [searchBar becomeFirstResponder];
 }
+
 -(void)searchBarCancelButtonClicked:(UISearchBar *)theSearchBar
 {
     [theSearchBar resignFirstResponder];
     searchResults = nil;
 }
+
 
 @end

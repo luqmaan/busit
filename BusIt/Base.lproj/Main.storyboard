@@ -152,18 +152,59 @@
                             </connections>
                         </searchBar>
                         <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="RouteOverviewCell" rowHeight="50" id="SnN-4d-pQy">
+                                <rect key="frame" x="0.0" y="130" width="320" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SnN-4d-pQy" id="r86-On-D1e">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Dover - Brandon Express" textAlignment="center" lineBreakMode="tailTruncation" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dMd-yL-eOC">
+                                            <rect key="frame" x="10" y="13" width="230" height="23"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CHz-K5-HDR">
+                                            <rect key="frame" x="250" y="-1" width="70" height="50"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" red="0.88233996979999996" green="0.93089807840000005" blue="1" alpha="1" colorSpace="deviceRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="70" id="6w1-tp-c5A"/>
+                                                <constraint firstAttribute="height" constant="50" id="QhC-E2-uyd"/>
+                                            </constraints>
+                                            <state key="normal" title="Map">
+                                                <color key="titleColor" red="0.076905969160000004" green="0.36175056729999999" blue="0.84812051060000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <segue destination="qlO-9C-vt7" kind="push" id="4Th-VU-WhP"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="dMd-yL-eOC" firstAttribute="leading" secondItem="r86-On-D1e" secondAttribute="leading" constant="10" id="A5u-yA-T1S"/>
+                                        <constraint firstAttribute="trailing" secondItem="CHz-K5-HDR" secondAttribute="trailing" id="FNK-4t-w1U"/>
+                                        <constraint firstAttribute="centerY" secondItem="CHz-K5-HDR" secondAttribute="centerY" id="Uje-lt-Pj1"/>
+                                        <constraint firstItem="CHz-K5-HDR" firstAttribute="leading" secondItem="dMd-yL-eOC" secondAttribute="trailing" constant="10" id="u2j-5B-Rfd"/>
+                                        <constraint firstAttribute="centerY" secondItem="dMd-yL-eOC" secondAttribute="centerY" id="vjZ-1h-2Lf"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="StopCell" id="Wuv-1G-aec">
-                                <rect key="frame" x="0.0" y="130" width="320" height="30"/>
+                                <rect key="frame" x="0.0" y="180" width="320" height="30"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wuv-1G-aec" id="41j-z0-1WD">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="29"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1234" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NBM-WX-H8J">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1234" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NBM-WX-H8J">
                                             <rect key="frame" x="10" y="7" width="30" height="16"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="40" id="olj-y3-Lm7"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="olj-y3-Lm7"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <color key="textColor" red="0.076905969160000004" green="0.36175056729999999" blue="0.84812051060000004" alpha="1" colorSpace="calibratedRGB"/>
@@ -218,6 +259,25 @@
                 </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="933" y="-1346"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="F0O-Nf-aDs">
+            <objects>
+                <viewController id="qlO-9C-vt7" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TXC-lN-bm8"/>
+                        <viewControllerLayoutGuide type="bottom" id="P7T-Ha-37H"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="XIP-AR-Hcl">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="iSk-kZ-iJg"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L3G-9g-n8K" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1431" y="-1421"/>
         </scene>
         <!--Navigation Controller - Routes-->
         <scene sceneID="53S-Cv-Fe9">
@@ -649,6 +709,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="UDM-4e-ll4"/>
+        <segue reference="fR4-zl-5Og"/>
     </inferredMetricsTieBreakers>
 </document>
