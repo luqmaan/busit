@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "BIStop.h"
 #import "BIHelpers.h"
+#import "BITrip.h"
+#import "ShapeReducer.h"
 
 @interface BIRoute : NSObject
 
@@ -26,5 +28,8 @@
 
 /** TODO: implement a search tool to allow searching for a stop without viewing all of them. Perhaps this can be done in the  */
 - (NSArray *)stopsMatchingQuery:(NSString *)query;
+
+- (NSArray *)fetchShape;
+- (NSArray *)trips;
 
 @end

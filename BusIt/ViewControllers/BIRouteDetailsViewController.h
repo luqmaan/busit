@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "BIBusData.h"
 #import "BIRoute.h"
+#import "BITrip.h"
 #import "BIStopDetailsViewController.h"
+#import "BMRouteMapViewController.h"
 
 @interface BIRouteDetailsViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
