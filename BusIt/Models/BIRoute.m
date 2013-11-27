@@ -70,7 +70,7 @@
 
 - (void)fetchTrips
 {
-    NSString *query = @"SELECT * FROM trips WHERE route_id = 30 GROUP BY shape_id";
+    NSString *query = [NSString stringWithFormat:@"SELECT * FROM trips WHERE route_id = %@ GROUP BY shape_id", routeId];
     BIBusData *busData = [[BIBusData alloc] init];
     FMResultSet *rs = [[busData database] executeQuery:query];
     NSMutableArray *trips = [[NSMutableArray alloc] init];
@@ -95,7 +95,7 @@
         [shape addPoint:point];
     }
     ShapeReducer *reducer = [[ShapeReducer alloc] init];
-    shape = [reducer reduce:shape tolerance:0.1];
+    shape = [reducer reduce:shape tolerance:0.001];
     return shape;
 }
 

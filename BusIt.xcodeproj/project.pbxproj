@@ -16,10 +16,7 @@
 		8C52139A181EA40300B7C294 /* BIRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C521395181EA40300B7C294 /* BIRoute.m */; };
 		8C52139B181EA40300B7C294 /* BIStop.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C521397181EA40300B7C294 /* BIStop.m */; };
 		8C5213A1181EA83400B7C294 /* BIRest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5213A0181EA83400B7C294 /* BIRest.m */; };
-		8C8CE6B0182DCAE6008F5904 /* BMRouteMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C8CE6AF182DCAE6008F5904 /* BMRouteMapViewController.m */; };
-		8C8CE6B9182DD4F3008F5904 /* CrumbPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C8CE6B6182DD4F3008F5904 /* CrumbPath.m */; };
-		8C8CE6BA182DD4F3008F5904 /* CrumbPathView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C8CE6B8182DD4F3008F5904 /* CrumbPathView.m */; };
-		8C8CE6C0182DDDCD008F5904 /* BMRouteOverlayPathRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C8CE6BF182DDDCD008F5904 /* BMRouteOverlayPathRenderer.m */; };
+		8C5A94211840487400E0A575 /* BITripViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5A94201840487400E0A575 /* BITripViewController.m */; };
 		8C8CE6C6182EB95C008F5904 /* ShapeReducer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C8CE6C5182EB95C008F5904 /* ShapeReducer.m */; };
 		8C8CE6C91830325F008F5904 /* BITrip.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C8CE6C81830325F008F5904 /* BITrip.m */; };
 		C14DB59317CBBDDE00905967 /* BMEmbeddedMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C14DB59217CBBDDE00905967 /* BMEmbeddedMapViewController.m */; };
@@ -118,14 +115,8 @@
 		8C521397181EA40300B7C294 /* BIStop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIStop.m; sourceTree = "<group>"; };
 		8C52139F181EA83400B7C294 /* BIRest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIRest.h; sourceTree = "<group>"; };
 		8C5213A0181EA83400B7C294 /* BIRest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIRest.m; sourceTree = "<group>"; };
-		8C8CE6AE182DCAE6008F5904 /* BMRouteMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMRouteMapViewController.h; sourceTree = "<group>"; };
-		8C8CE6AF182DCAE6008F5904 /* BMRouteMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMRouteMapViewController.m; sourceTree = "<group>"; };
-		8C8CE6B5182DD4F3008F5904 /* CrumbPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrumbPath.h; sourceTree = "<group>"; };
-		8C8CE6B6182DD4F3008F5904 /* CrumbPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrumbPath.m; sourceTree = "<group>"; };
-		8C8CE6B7182DD4F3008F5904 /* CrumbPathView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrumbPathView.h; sourceTree = "<group>"; };
-		8C8CE6B8182DD4F3008F5904 /* CrumbPathView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrumbPathView.m; sourceTree = "<group>"; };
-		8C8CE6BE182DDDCD008F5904 /* BMRouteOverlayPathRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMRouteOverlayPathRenderer.h; sourceTree = "<group>"; };
-		8C8CE6BF182DDDCD008F5904 /* BMRouteOverlayPathRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMRouteOverlayPathRenderer.m; sourceTree = "<group>"; };
+		8C5A941F1840487400E0A575 /* BITripViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BITripViewController.h; sourceTree = "<group>"; };
+		8C5A94201840487400E0A575 /* BITripViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BITripViewController.m; sourceTree = "<group>"; };
 		8C8CE6C4182EB95C008F5904 /* ShapeReducer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShapeReducer.h; sourceTree = "<group>"; };
 		8C8CE6C5182EB95C008F5904 /* ShapeReducer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShapeReducer.m; sourceTree = "<group>"; };
 		8C8CE6C71830325F008F5904 /* BITrip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BITrip.h; sourceTree = "<group>"; };
@@ -232,12 +223,6 @@
 		8C8CE6B4182DD4DB008F5904 /* Overlay */ = {
 			isa = PBXGroup;
 			children = (
-				8C8CE6B5182DD4F3008F5904 /* CrumbPath.h */,
-				8C8CE6B6182DD4F3008F5904 /* CrumbPath.m */,
-				8C8CE6B7182DD4F3008F5904 /* CrumbPathView.h */,
-				8C8CE6B8182DD4F3008F5904 /* CrumbPathView.m */,
-				8C8CE6BE182DDDCD008F5904 /* BMRouteOverlayPathRenderer.h */,
-				8C8CE6BF182DDDCD008F5904 /* BMRouteOverlayPathRenderer.m */,
 				8C8CE6C4182EB95C008F5904 /* ShapeReducer.h */,
 				8C8CE6C5182EB95C008F5904 /* ShapeReducer.m */,
 			);
@@ -255,6 +240,8 @@
 				8C521389181EA2EB00B7C294 /* BIRoutesViewController.m */,
 				8C52138A181EA2EB00B7C294 /* BIStopDetailsViewController.h */,
 				8C52138B181EA2EB00B7C294 /* BIStopDetailsViewController.m */,
+				8C5A941F1840487400E0A575 /* BITripViewController.h */,
+				8C5A94201840487400E0A575 /* BITripViewController.m */,
 			);
 			name = "View Controllers";
 			path = BusIt/ViewControllers;
@@ -368,8 +355,6 @@
 				C14DB59817CBE03700905967 /* BMStopAnnotationView.m */,
 				C14DB59A17CBE2A700905967 /* BMStopAnnotation.h */,
 				C14DB59B17CBE2A700905967 /* BMStopAnnotation.m */,
-				8C8CE6AE182DCAE6008F5904 /* BMRouteMapViewController.h */,
-				8C8CE6AF182DCAE6008F5904 /* BMRouteMapViewController.m */,
 			);
 			name = Maps;
 			path = BusIt/Maps;
@@ -562,24 +547,21 @@
 				8C5213A1181EA83400B7C294 /* BIRest.m in Sources */,
 				8C521399181EA40300B7C294 /* BIBusData.m in Sources */,
 				C14DB59317CBBDDE00905967 /* BMEmbeddedMapViewController.m in Sources */,
-				8C8CE6BA182DD4F3008F5904 /* CrumbPathView.m in Sources */,
 				C190D7C417BB0C96005C24F2 /* BIViewController.m in Sources */,
 				C14DB59C17CBE2A700905967 /* BMStopAnnotation.m in Sources */,
 				C198C23917BB124600A94F4D /* BMStatusView.m in Sources */,
 				C190D7BA17BB0C96005C24F2 /* main.m in Sources */,
-				8C8CE6B9182DD4F3008F5904 /* CrumbPath.m in Sources */,
-				8C8CE6B0182DCAE6008F5904 /* BMRouteMapViewController.m in Sources */,
 				C14DB59617CBD10200905967 /* BMCircularAnnotationView.m in Sources */,
 				C14DB59917CBE03700905967 /* BMStopAnnotationView.m in Sources */,
 				C1D0BDF117CE950800FA976D /* FMDatabaseAdditions.m in Sources */,
 				C1D0BDF917CE950800FA976D /* FMResultSet.m in Sources */,
 				C198C23A17BB124600A94F4D /* BMVehicle.m in Sources */,
-				8C8CE6C0182DDDCD008F5904 /* BMRouteOverlayPathRenderer.m in Sources */,
 				8C521398181EA40300B7C294 /* BIArrival.m in Sources */,
 				C1D0BDF517CE950800FA976D /* FMDatabaseQueue.m in Sources */,
 				8C52138F181EA2EB00B7C294 /* BIStopDetailsViewController.m in Sources */,
 				8C8CE6C91830325F008F5904 /* BITrip.m in Sources */,
 				8C8CE6C6182EB95C008F5904 /* ShapeReducer.m in Sources */,
+				8C5A94211840487400E0A575 /* BITripViewController.m in Sources */,
 				C1D0BDF317CE950800FA976D /* FMDatabasePool.m in Sources */,
 				8C52139A181EA40300B7C294 /* BIRoute.m in Sources */,
 				8C52138D181EA2EB00B7C294 /* BIRouteDetailsViewController.m in Sources */,

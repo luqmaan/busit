@@ -23,13 +23,14 @@
 
 @implementation Shape
 
-@synthesize _points, _needs_sort;
+@synthesize _points, _needs_sort, _needs_region, _region;
 
 - (id)init
 {
 	if ((self = [super init])) {
         _points = [[NSMutableArray alloc] init];
 		_needs_sort = NO;
+        _needs_region = NO;
 	}
     return self;
 }
@@ -37,6 +38,7 @@
 - (void)addPoint:(ShapePoint *)point {
     [_points addObject:point];
     _needs_sort = YES;
+    _needs_region = YES;
 }
 
 - (NSArray *)points {
@@ -51,9 +53,37 @@
             return (NSComparisonResult)NSOrderedSame;
         };
         NSArray *sortedPoints = [_points sortedArrayUsingComparator:sortBlock];
-        return sortedPoints;
+        _needs_sort = NO;
+        _points = [sortedPoints copy];
     }
     return _points;
+}
+
+- (MKCoordinateRegion)region {
+    if (_needs_region) {
+        CLLocationDegrees latDelta, lonDelta;
+        double minLat = [(ShapePoint *)_points[0] latitude];
+        double minLon = [(ShapePoint *)_points[0] longitude];
+        double maxLat = [(ShapePoint *)_points[0] latitude];
+        double maxLon = [(ShapePoint *)_points[0] longitude];
+        for (ShapePoint * p in _points) {
+            if (p.latitude > maxLat)
+                maxLat = p.latitude;
+            if (p.latitude < minLat)
+                minLat = p.latitude;
+            if (p.longitude > maxLon)
+                maxLon = p.longitude;
+            if (p.longitude < minLon)
+                minLon = p.longitude;
+        }
+        latDelta = (CLLocationDegrees)(maxLat - minLat);
+        lonDelta = (CLLocationDegrees)(maxLon - minLon);
+        MKCoordinateSpan span = MKCoordinateSpanMake(latDelta * 1.75, lonDelta * 1.5);
+        CLLocationCoordinate2D center = CLLocationCoordinate2DMake(maxLat - (latDelta / 2.0), maxLon - (lonDelta / 2.0));
+        _region = MKCoordinateRegionMake(center, span);
+        _needs_region = NO;
+    }
+    return _region;
 }
 
 @end

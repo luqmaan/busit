@@ -111,7 +111,7 @@
     else if (indexPath.section == 1) {
         CellIdentifier = @"TripCell";
         cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-        UILabel *tripName = (UILabel *)[cell viewWithTag:1];
+        UILabel *tripName = (UILabel *)[cell viewWithTag:2];
         UILabel *tripDirection = (UILabel *)[cell viewWithTag:1];
         BITrip *trip = [self dataForIndexPath:indexPath];
         tripName.text = trip.tripHeadsign;
@@ -148,10 +148,11 @@
         }
         stopDetailsVC.stop = [self dataForIndexPath:path];
     }
-    else if ([[segue identifier] isEqualToString:@"RouteMapSegue"]) {
-        NSLog(@"RouteMapSegue");
-        BMRouteMapViewController *routeMapViewVC = segue.destinationViewController;
-        routeMapViewVC.route = route;
+    else if ([[segue identifier] isEqualToString:@"TripSegue"]) {
+        NSLog(@"TripSegue");
+        BITripViewController *tripVC = segue.destinationViewController;
+        tripVC.route = route;
+        tripVC.trip = [self dataForIndexPath:[self.tableView indexPathForSelectedRow]];
     }
 }
 

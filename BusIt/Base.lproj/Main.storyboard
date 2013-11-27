@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="cHa-ne-20T">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--Nearby View Controller - Stops-->
@@ -175,11 +175,11 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.88233996979999996" green="0.93089807840000005" blue="1" alpha="1" colorSpace="deviceRGB"/>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TripCell" rowHeight="34" id="r43-HO-5GD">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TripCell" rowHeight="34" id="r43-HO-5GD">
                                 <rect key="frame" x="0.0" y="180" width="320" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="r43-HO-5GD" id="fbM-hw-ICB">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="33"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="33"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="East to TIA/Downtown/MTC" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IzN-23-Y2K">
@@ -208,6 +208,9 @@
                                         <constraint firstAttribute="trailing" secondItem="IzN-23-Y2K" secondAttribute="trailing" constant="15" id="ozW-Zf-sCz"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="qlO-9C-vt7" kind="push" identifier="TripSegue" id="Jck-BV-Ck6"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="StopCell" id="Wuv-1G-aec">
                                 <rect key="frame" x="0.0" y="214" width="320" height="30"/>
@@ -276,10 +279,10 @@
             </objects>
             <point key="canvasLocation" x="933" y="-1346"/>
         </scene>
-        <!--Route Map View Controller-->
+        <!--Trip View Controller-->
         <scene sceneID="F0O-Nf-aDs">
             <objects>
-                <viewController id="qlO-9C-vt7" customClass="BMRouteMapViewController" sceneMemberID="viewController">
+                <viewController id="qlO-9C-vt7" customClass="BITripViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TXC-lN-bm8"/>
                         <viewControllerLayoutGuide type="bottom" id="P7T-Ha-37H"/>
@@ -288,21 +291,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="rYn-qW-0BT">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="rYn-qW-0BT">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </mapView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="05l-cK-w2L">
+                                <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="UATC to MTC" id="eKa-sy-WF6"/>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="rYn-qW-0BT" secondAttribute="trailing" id="1Ii-b6-3k0"/>
                             <constraint firstItem="P7T-Ha-37H" firstAttribute="top" secondItem="rYn-qW-0BT" secondAttribute="bottom" constant="-49" id="1Je-if-VvH"/>
                             <constraint firstItem="rYn-qW-0BT" firstAttribute="leading" secondItem="XIP-AR-Hcl" secondAttribute="leading" id="LgU-io-9JP"/>
+                            <constraint firstAttribute="trailing" secondItem="05l-cK-w2L" secondAttribute="trailing" id="Ryb-v0-0JC"/>
+                            <constraint firstItem="05l-cK-w2L" firstAttribute="top" secondItem="TXC-lN-bm8" secondAttribute="bottom" id="eT7-nb-s1e"/>
+                            <constraint firstItem="05l-cK-w2L" firstAttribute="leading" secondItem="XIP-AR-Hcl" secondAttribute="leading" id="mCl-T7-HPy"/>
+                            <constraint firstItem="rYn-qW-0BT" firstAttribute="top" secondItem="XIP-AR-Hcl" secondAttribute="top" id="nWV-KZ-hV2"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="iSk-kZ-iJg"/>
                     <connections>
-                        <outlet property="mapView" destination="rYn-qW-0BT" id="4Jj-dy-dTD"/>
+                        <outlet property="mapView" destination="rYn-qW-0BT" id="1Lx-fL-TXQ"/>
+                        <outlet property="toolbar" destination="05l-cK-w2L" id="Og0-9L-oDA"/>
+                        <outlet property="toolbarTitle" destination="eKa-sy-WF6" id="zCB-u1-G3u"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L3G-9g-n8K" userLabel="First Responder" sceneMemberID="firstResponder"/>

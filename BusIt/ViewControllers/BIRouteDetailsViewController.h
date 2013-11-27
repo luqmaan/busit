@@ -11,7 +11,7 @@
 #import "BIRoute.h"
 #import "BITrip.h"
 #import "BIStopDetailsViewController.h"
-#import "BMRouteMapViewController.h"
+#import "BITripViewController.h"
 
 @interface BIRouteDetailsViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 

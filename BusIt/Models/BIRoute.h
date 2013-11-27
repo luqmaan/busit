@@ -29,7 +29,8 @@
 /** TODO: implement a search tool to allow searching for a stop without viewing all of them. Perhaps this can be done in the  */
 - (NSArray *)stopsMatchingQuery:(NSString *)query;
 
-- (NSArray *)fetchShape;
 - (NSArray *)trips;
+/** Could be part of Trip Model, but this works for now */
+- (Shape *)shapeForTrip:(BITrip *)trip;
 
 @end
