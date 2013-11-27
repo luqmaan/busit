@@ -92,7 +92,7 @@
 
 /** List of coordinates, for use in methods that don't accept NSArray, such as MKPolyline polylineWithCoordinates */
 - (CLLocationCoordinate2D *)coordinates {
-    // Fetch sorted points
+    // Points need to be sorted
     NSArray *points = self.points;
     CLLocationCoordinate2D *coordinateArray = malloc(sizeof(CLLocationCoordinate2D) * points.count);
     int i = 0;

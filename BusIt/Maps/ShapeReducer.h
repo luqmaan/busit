@@ -20,13 +20,15 @@
     NSMutableArray *_points;
     BOOL _needs_sort;
     BOOL _needs_region;
+    BOOL _needs_coordinates;
     MKCoordinateRegion _region;
 }
 
 @property (nonatomic, retain) NSMutableArray *_points;
+@property (nonatomic, assign) MKCoordinateRegion _region;
 @property BOOL _needs_sort;
 @property BOOL _needs_region;
-@property (nonatomic, assign) MKCoordinateRegion _region;
+@property BOOL _needs_coordinates;
 
 - (void)addPoint:(ShapePoint *)point;
 - (NSArray *)points;
