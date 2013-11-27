@@ -21,7 +21,6 @@
 @property BITrip *trip;
 @property Shape *shape;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
-@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *toolbarTitle;
+@property (weak, nonatomic) IBOutlet UILabel *tripTitle;
 
 @end

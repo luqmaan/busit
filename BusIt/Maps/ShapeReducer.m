@@ -4,13 +4,14 @@
 
 @synthesize latitude, longitude, sequence;
 
-- (id)initWithLatitude:(double)aLatitude longitude:(double)aLongitude sequence:(unsigned int)aSequence {
-	if ((self = [super init])) {
-		self.latitude = aLatitude;
-		self.longitude = aLongitude;
+- (id)initWithLatitude:(double)aLatitude longitude:(double)aLongitude sequence:(unsigned int)aSequence
+{
+    if ((self = [super init])) {
+        self.latitude = aLatitude;
+        self.longitude = aLongitude;
         self.sequence = aSequence;
-	}
-	return self;
+    }
+    return self;
 }
 
 - (id)init
@@ -27,21 +28,23 @@
 
 - (id)init
 {
-	if ((self = [super init])) {
+    if ((self = [super init])) {
         _points = [[NSMutableArray alloc] init];
-		_needs_sort = NO;
+        _needs_sort = NO;
         _needs_region = NO;
-	}
+    }
     return self;
 }
 
-- (void)addPoint:(ShapePoint *)point {
+- (void)addPoint:(ShapePoint *)point
+{
     [_points addObject:point];
     _needs_sort = YES;
     _needs_region = YES;
 }
 
-- (NSArray *)points {
+- (NSArray *)points
+{
     if (_needs_sort) {
         NSComparisonResult (^sortBlock)(id, id) = ^(id obj1, id obj2) {
             if ([obj1 sequence] > [obj2 sequence]) {
@@ -59,7 +62,8 @@
     return _points;
 }
 
-- (MKCoordinateRegion)region {
+- (MKCoordinateRegion)region
+{
     if (_needs_region) {
         CLLocationDegrees latDelta, lonDelta;
         double minLat = [(ShapePoint *)_points[0] latitude];
@@ -86,6 +90,21 @@
     return _region;
 }
 
+/** List of coordinates, for use in methods that don't accept NSArray, such as MKPolyline polylineWithCoordinates */
+- (CLLocationCoordinate2D *)coordinates {
+    // Fetch sorted points
+    NSArray *points = self.points;
+    CLLocationCoordinate2D *coordinateArray = malloc(sizeof(CLLocationCoordinate2D) * points.count);
+    int i = 0;
+    for (ShapePoint *p in points) {
+        coordinateArray[i] = CLLocationCoordinate2DMake(p.latitude, p.longitude);
+        i++;
+    }
+    return coordinateArray;
+    free(coordinateArray); // Obviously this doesn't happen, does it need to? If so, how?
+}
+
+
 @end
 
 
@@ -94,11 +113,11 @@
 - (id)init
 {
     self = [super init];
-    
     return self;
 }
 
-- (Shape*)reduce:(Shape*)aShape tolerance:(double)tolerance {
+- (Shape*)reduce:(Shape*)aShape tolerance:(double)tolerance
+{
     if (tolerance <= 0 || [aShape.points count] < 3) {
         return aShape;
     }
@@ -116,7 +135,8 @@
     
 }
 
-- (void) douglasPeuckerReductionWithTolerance:(double)tolerance shape:(Shape*)shape outputShape:(Shape*)outputShape firstIndex:(int)first lastIndex:(int)last {
+- (void) douglasPeuckerReductionWithTolerance:(double)tolerance shape:(Shape*)shape outputShape:(Shape*)outputShape firstIndex:(int)first lastIndex:(int)last
+{
     if (last <= first + 1) {
         return;
     }

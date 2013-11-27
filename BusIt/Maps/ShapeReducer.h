@@ -31,6 +31,7 @@
 - (void)addPoint:(ShapePoint *)point;
 - (NSArray *)points;
 - (MKCoordinateRegion)region;
+- (CLLocationCoordinate2D *)coordinates;
 
 @end
 
