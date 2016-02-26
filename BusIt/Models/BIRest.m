@@ -8,9 +8,9 @@
 
 #import "BIRest.h"
 
-#define kFrakkingLongAPIKey1 @"onebusaway.forest.usf.edu-7e74c063-43c9-4067-8aef-5730aa860628"
-#define kFrakkingLongAPIKey2 @"onebusaway.forest.usf.edu-f75b1e48-80c4-4880-a294-e353e13bd9d2"
-#define kFrakkingLongAPIKey3 @"onebusaway.forest.usf.edu-74cccb15-6eb5-400b-86d9-3a1db8931efd"
+#define kFrakkingLongAPIKey1 @"org.onebusaway.iphone"
+#define kFrakkingLongAPIKey2 @"org.onebusaway.iphone"
+#define kFrakkingLongAPIKey3 @"org.onebusaway.iphone"
 
 #define kFrakkingLongAPIKey kFrakkingLongAPIKey2
 
@@ -71,23 +71,23 @@
 
 -(NSDictionary *)agencies
 {
-    return [self restToJSON:@"http://onebusaway.forest.usf.edu/api/api/where/agencies-with-coverage.json" paramStr:@""];
+    return [self restToJSON:@"http://api.tampa.onebusaway.org/api/where/agencies-with-coverage.json" paramStr:@""];
 }
 
 -(NSDictionary *)agency
 {
-    return [self restToJSON:@"http://onebusaway.forest.usf.edu/api/api/where/agency/Hillsborough%20Area%20Regional%20Transit.json" paramStr:@""];
+    return [self restToJSON:@"http://api.tampa.onebusaway.org/api/where/agency/Hillsborough%20Area%20Regional%20Transit.json" paramStr:@""];
 }
 
 -(NSDictionary *)routesForAgency
 {
-    return [self restToJSON:@"http://onebusaway.forest.usf.edu/api/api/where/routes-for-agency/Hillsborough%20Area%20Regional%20Transit.json" paramStr:@""];
+    return [self restToJSON:@"http://api.tampa.onebusaway.org/api/where/routes-for-agency/Hillsborough%20Area%20Regional%20Transit.json" paramStr:@""];
 }
 
 -(NSDictionary *)stopsForRoute:(NSString *)routeId
 {
     NSString *encodedRouteId = [routeId stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
-    NSMutableString *urlStr = [NSMutableString stringWithFormat:@"http://onebusaway.forest.usf.edu/api/api/where/stops-for-route/%@.json", encodedRouteId];
+    NSMutableString *urlStr = [NSMutableString stringWithFormat:@"http://api.tampa.onebusaway.org/api/where/stops-for-route/%@.json", encodedRouteId];
     return [self restToJSON:urlStr paramStr:@"includePolylines=false"];
 }
 
@@ -95,21 +95,21 @@
 -(NSDictionary *)tripsForRoute:(NSString *)routeId
 {
     NSString *encodedRouteId = [routeId stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
-    NSMutableString *urlStr = [NSMutableString stringWithFormat:@"http://onebusaway.forest.usf.edu/api/api/where/trips-for-route/%@.json", encodedRouteId];
+    NSMutableString *urlStr = [NSMutableString stringWithFormat:@"http://api.tampa.onebusaway.org/api/where/trips-for-route/%@.json", encodedRouteId];
     return [self restToJSON:urlStr paramStr:@""];
 }
 
 -(NSDictionary *)stop:(NSString *)stopId
 {
     NSString *encodedStopId = [stopId stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
-    NSMutableString *urlStr = [NSMutableString stringWithFormat:@"http://onebusaway.forest.usf.edu/api/api/where/stop/%@.json", encodedStopId];
+    NSMutableString *urlStr = [NSMutableString stringWithFormat:@"http://api.tampa.onebusaway.org/api/where/stop/%@.json", encodedStopId];
     return [self restToJSON:urlStr paramStr:@"includePolylines=false"];
 }
 
 -(NSDictionary *)scheduleForStop:(NSString *)stopId
 {
     NSString *encodedStopId = [stopId stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
-    NSMutableString *urlStr = [NSMutableString stringWithFormat:@"http://onebusaway.forest.usf.edu/api/api/where/schedule-for-stop/%@.json", encodedStopId];
+    NSMutableString *urlStr = [NSMutableString stringWithFormat:@"http://api.tampa.onebusaway.org/api/where/schedule-for-stop/%@.json", encodedStopId];
     return [self restToJSON:urlStr paramStr:@""];
 }
 
@@ -117,14 +117,14 @@
 -(NSDictionary *)tripDetailsForTrip:(NSString *)tripId
 {
     NSString *encodedTripId = [tripId stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
-    NSMutableString *urlStr = [NSMutableString stringWithFormat:@"http://onebusaway.forest.usf.edu/api/api/where/trip-details/%@.json", encodedTripId];
+    NSMutableString *urlStr = [NSMutableString stringWithFormat:@"http://api.tampa.onebusaway.org/api/where/trip-details/%@.json", encodedTripId];
     return [self restToJSON:urlStr paramStr:@""];
 }
 
 -(NSDictionary *)vehiclesForAgency:(NSString *)agencyId
 {
     NSString *encodedAgencyId = [agencyId stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
-    NSMutableString *urlStr = [NSMutableString stringWithFormat:@"http://onebusaway.forest.usf.edu/api/api/where/vehicles-for-agency/%@.json", encodedAgencyId];
+    NSMutableString *urlStr = [NSMutableString stringWithFormat:@"http://api.tampa.onebusaway.org/api/where/vehicles-for-agency/%@.json", encodedAgencyId];
     
     if (self.offlineMode)
         urlStr = [NSMutableString stringWithString:@"http://localhost:8000/vehicles-for-agency.json"];
@@ -134,7 +134,7 @@
 
 -(NSDictionary *)stopsForLocationLat:(NSNumber *)lat Lon:(NSNumber *)lon
 {
-    NSMutableString *urlStr = [NSMutableString stringWithFormat:@"http://onebusaway.forest.usf.edu/api/api/where/stops-for-location.json"];
+    NSMutableString *urlStr = [NSMutableString stringWithFormat:@"http://api.tampa.onebusaway.org/api/where/stops-for-location.json"];
     NSString *paramStr = [NSString stringWithFormat:@"lat=%@&lon=%@", lat, lon];
     
     if (self.offlineMode)
@@ -147,7 +147,7 @@
 {
     NSLog(@"called arrivalsanddeps");
     NSString *encodedStopId = [stopId stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
-    NSMutableString *urlStr = [NSMutableString stringWithFormat:@"http://onebusaway.forest.usf.edu/api/api/where/arrivals-and-departures-for-stop/%@.json", encodedStopId];
+    NSMutableString *urlStr = [NSMutableString stringWithFormat:@"http://api.tampa.onebusaway.org/api/where/arrivals-and-departures-for-stop/%@.json", encodedStopId];
     
     if (self.offlineMode)
         urlStr = [NSMutableString stringWithString:@"http://localhost:8000/arrivals-and-departures-for-stop.json"];

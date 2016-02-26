@@ -143,6 +143,7 @@
     apiData = [bench vehiclesForAgency:agencyId];
     NSLog(@"Finished updating api data");
     
+    
     self.progressBar.progress = 1;
 
     
@@ -154,6 +155,7 @@
             self.progressBar.progress = 0;
         });
     });
+    
 }
 
 - (void)updateRoutes
@@ -179,16 +181,18 @@
                 [routes updateVehicle:vehicle];
             });
         }
-        else {
-            // adding new vehicle
-            [routes addVehicle:vehicle];
-            // if the annotation is not yet on the map (and its route is visible), add it to the map
-            if ([mapOptions isVisibleRoute:vehicle.routeId]) {
-                dispatch_sync(dispatch_get_main_queue(), ^{
-                    [mapView addAnnotation:vehicle];
-                });
-            }
-        }
+        [mapView addAnnotation:vehicle];
+
+//        else {
+//            // adding new vehicle
+//            [routes addVehicle:vehicle];
+//            // if the annotation is not yet on the map (and its route is visible), add it to the map
+////            if ([mapOptions isVisibleRoute:vehicle.routeId]) {
+////                dispatch_sync(dispatch_get_main_queue(), ^{
+//                    [mapView addAnnotation:vehicle];
+////                });
+////            }
+//        }
     }
     firstTimeAddingVehiclesToRoutes = FALSE;
 }
@@ -209,7 +213,8 @@
         BMVehicle *vehicle = (BMVehicle *)annotation;
         NSString *annotationViewID = [NSString stringWithFormat:@"busPin%@", vehicle.routeShortName];
 
-        MKAnnotationView *customPinView = [theMapView dequeueReusableAnnotationViewWithIdentifier:annotationViewID];
+        MKAnnotationView *
+        customPinView = [theMapView dequeueReusableAnnotationViewWithIdentifier:annotationViewID];
         if (! customPinView) {
             customPinView = [[BMVehicleAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:annotationViewID];
 
@@ -227,18 +232,18 @@
     return nil;
 
 }
-
-- (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)annotationViews
-{
-    // drop from top of screen animation
-    for (MKAnnotationView *annView in annotationViews)
-    {
-        CGRect endFrame = annView.frame;
-        annView.frame = CGRectOffset(endFrame, 0, -500);
-        [UIView animateWithDuration:0.5
-                         animations:^{ annView.frame =  endFrame; }];
-    }
-}
+//
+//- (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)annotationViews
+//{
+//    // drop from top of screen animation
+//    for (MKAnnotationView *annView in annotationViews)
+//    {
+//        CGRect endFrame = annView.frame;
+//        annView.frame = CGRectOffset(endFrame, 0, -500);
+//        [UIView animateWithDuration:0.5
+//                         animations:^{ annView.frame =  endFrame; }];
+//    }
+//}
 
 #pragma mark - Timer
 
@@ -259,12 +264,12 @@
     updateTimer = nil;
 }
 
-int timeToUpdate = 2;
+int timeToUpdate = 10;
 - (void)updateToolbarMessage
 {
     self.toolBarMessage.text = [NSString stringWithFormat:@"Refreshing realtime bus locations in %d seconds", timeToUpdate];
     if (timeToUpdate == 0) {
-        timeToUpdate = 2;
+        timeToUpdate = 10;
         [self stopTimer];
         self.toolBarMessage.text = @"Fetching realtime bus locations";
         [self updateMap];
